@@ -1,18 +1,47 @@
-# Roblox.Website.Local
-A fan-made open source Roblox website port in PHP.
 
-## Setup:
-1. You must have the following softwares to run this website:
-    - PHP +8.3
-    - PostgreSQL
-    - Composer and JWT
-    - Internet Information Service
-2. As of now, there isn't avaliable explanation for running this site.
+# RBLX.local
 
-## Credits
+An Open Source 2014 Roblox Revival 
 
-- meditext
-- SkylerClock
-- Carbon
-- newuser
-- exrand
+
+
+## Authors
+
+- [Meditext](https://github.com/Carbonapi)
+- [Carbon](https://github.com/Carbonapi)
+- [SkylerClock](https://github.com/SkylerClockYT)
+- [Exrand](https://github.com/randomyaps)
+- [NewUser](https://github.com/randomyaps)
+## Contributors
+
+## Deployment
+
+we haven done this yet.....
+
+## FAQ
+## Feedback & Issues
+
+If you have any feedback & issues, please put it in Issues
+
+
+## Features
+
+- 
+- 
+- 
+- 
+
+
+## Roadmap
+
+- Additional browser support
+
+- Add more integrations
+
+
+## License
+
+
+## Extended Support 
+ 
+as of now no versions of the source code will receive extended support
