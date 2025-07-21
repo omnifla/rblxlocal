@@ -14,7 +14,7 @@ if (!$user) {
         "id" => $guestCookie->GuestId, //
         "username" => "Guest " . substr(abs($guestCookie->GuestId), 0, 4), // guest username,
         
-    ]
+    ];
 }
 
 $baseUrl = "http://www.{$site_properties['hostname']}/";
