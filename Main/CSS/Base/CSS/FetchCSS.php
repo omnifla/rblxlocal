@@ -55,7 +55,7 @@ if (isset($css_bundle_hashes[$path])) {
         }
         if (file_exists($realPath) && is_readable($realPath)) {
             $content = file_get_contents($realPath);
-            $cssContents .= $content . "\n";
+            $cssContents .= "/* ".$cssPath . " */\n". $content . "\n";
             $commentPath = extractCssPath($content);
             if ($commentPath) {
                 $cssFiles[] = trim($commentPath);
@@ -108,6 +108,7 @@ if (isset($css_bundle_hashes[$path])) {
     }
 
     header('Content-Type: text/css');
+    
     echo rtrim($cssContents);
     exit;
 }
