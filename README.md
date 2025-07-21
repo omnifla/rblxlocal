@@ -4,6 +4,8 @@
 
 An Open Source 2014 Roblox Revival 
 
+## Notice
+
 
 
 ## Authors
@@ -42,6 +44,7 @@ If you have any feedback & issues, please put it in Issues
 
 ## License
 
+Carbone
 
 ## Extended Support 
  
