@@ -5,21 +5,24 @@ use Roblox\Authentication as Auth;
 use Roblox\Web\SiteHeader;
 use Roblox\Web\SiteFooter;
 
-$id = $_GET['id'] ?? $_GET['Id'] ?? $_GET["ID"];
-$user = Auth::GetUserInfo($id);
+$id = $_GET['id'] ?? $_GET['Id'] ?? $_GET["ID"] ?? 1;
+$user = Auth::GetUserInfo(intval($id));
+//var_dump($user);
+//exit;
 if(!$user){
     http_response_code(404);
     exit;
 }
-
+//$user['username'] = htmlspecialchars($user['username']);
+// $user['description'] = htmlspecialchars($user['description']);
 ?>
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "//www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="//www.w3.org/1999/xhtml" xml:lang="en" xmlns:fb="//www.facebook.com/2008/fbml">
 <!-- MachineID: WEB37 -->
 <head id="ctl00_Head1"><meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true" /><title>
-	stamina - ROBLOX
+	<?= $user['username'] ." - " .$site_properties['title'] ?>
 </title>
 <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=main___dac4a444950639c02cc831a484c826f5_m.css' />
 
@@ -62,13 +65,13 @@ if(!$user){
 <script type='text/javascript' src='//ajax.aspnetcdn.com/ajax/4.0/1/MicrosoftAjax.js'></script>
 <script type='text/javascript'>window.Sys || document.write("<script type='text/javascript' src='/js/Microsoft/MicrosoftAjax.js'><\/script>")</script>
 
-<script type='text/javascript' src='http://js.rbxcdn.com/8db10b38268e9779c510b84268538ec8.js'></script>
-<script type='text/javascript'>Roblox.config.externalResources = ['/js/jquery/jquery-1.7.2.min.js','/js/json2.min.js'];Roblox.config.paths['jQuery'] = 'http://js.rbxcdn.com/29cf397a226a92ca602cb139e9aae7d7.js';Roblox.config.paths['Pages.Catalog'] = 'http://js.rbxcdn.com/7123e398c0433de33356ac718bab90d5.js';Roblox.config.paths['Pages.CatalogShared'] = 'http://js.rbxcdn.com/4eb48eec34ca711d5a7b08a4291ac753.js';Roblox.config.paths['Pages.Messages'] = 'http://js.rbxcdn.com/9b1b88b531c486003bbf39ae61963c27.js';Roblox.config.paths['Resources.Messages'] = 'http://js.rbxcdn.com/fb9cb43a34372a004b06425a1c69c9c4.js';Roblox.config.paths['Widgets.AvatarImage'] = 'http://js.rbxcdn.com/a404577733d1b68e3056a8cd3f31614c.js';Roblox.config.paths['Widgets.DropdownMenu'] = 'http://js.rbxcdn.com/ff651da6797160efb3ebbb2c2f98fb86.js';Roblox.config.paths['Widgets.GroupImage'] = 'http://js.rbxcdn.com/3e692c7b60e1e28ce639184f793fdda9.js';Roblox.config.paths['Widgets.HierarchicalDropdown'] = 'http://js.rbxcdn.com/e8b579b8e31f8e7722a5d10900191fe7.js';Roblox.config.paths['Widgets.ItemImage'] = 'http://js.rbxcdn.com/f676cf25d820c731b5adb4bf362bcd90.js';Roblox.config.paths['Widgets.PlaceImage'] = 'http://js.rbxcdn.com/08e1942c5b0ef78773b03f02bffec494.js';Roblox.config.paths['Widgets.Suggestions'] = 'http://js.rbxcdn.com/a63d457706dfbc230cf66a9674a1ca8b.js';Roblox.config.paths['Widgets.SurveyModal'] = 'http://js.rbxcdn.com/d6e979598c460090eafb6d38231159f6.js';</script><script type="text/javascript">
+<script type='text/javascript' src='//js.rbxcdn.com/8db10b38268e9779c510b84268538ec8.js'></script>
+<script type='text/javascript'>Roblox.config.externalResources = ['/js/jquery/jquery-1.7.2.min.js','/js/json2.min.js'];Roblox.config.paths['jQuery'] = '//js.rbxcdn.com/29cf397a226a92ca602cb139e9aae7d7.js';Roblox.config.paths['Pages.Catalog'] = '//js.rbxcdn.com/7123e398c0433de33356ac718bab90d5.js';Roblox.config.paths['Pages.CatalogShared'] = '//js.rbxcdn.com/4eb48eec34ca711d5a7b08a4291ac753.js';Roblox.config.paths['Pages.Messages'] = '//js.rbxcdn.com/9b1b88b531c486003bbf39ae61963c27.js';Roblox.config.paths['Resources.Messages'] = '//js.rbxcdn.com/fb9cb43a34372a004b06425a1c69c9c4.js';Roblox.config.paths['Widgets.AvatarImage'] = '//js.rbxcdn.com/a404577733d1b68e3056a8cd3f31614c.js';Roblox.config.paths['Widgets.DropdownMenu'] = '//js.rbxcdn.com/ff651da6797160efb3ebbb2c2f98fb86.js';Roblox.config.paths['Widgets.GroupImage'] = '//js.rbxcdn.com/3e692c7b60e1e28ce639184f793fdda9.js';Roblox.config.paths['Widgets.HierarchicalDropdown'] = '//js.rbxcdn.com/e8b579b8e31f8e7722a5d10900191fe7.js';Roblox.config.paths['Widgets.ItemImage'] = '//js.rbxcdn.com/f676cf25d820c731b5adb4bf362bcd90.js';Roblox.config.paths['Widgets.PlaceImage'] = '//js.rbxcdn.com/08e1942c5b0ef78773b03f02bffec494.js';Roblox.config.paths['Widgets.Suggestions'] = '//js.rbxcdn.com/a63d457706dfbc230cf66a9674a1ca8b.js';Roblox.config.paths['Widgets.SurveyModal'] = '//js.rbxcdn.com/d6e979598c460090eafb6d38231159f6.js';</script><script type="text/javascript">
     $(function () {
         Roblox.JSErrorTracker.initialize({ 'suppressConsoleError': true, 'internalEventListenerPixelEnabled': true});
     });
 </script>
-<script type='text/javascript' src='http://js.rbxcdn.com/1e3dc2b22269576ba0a4616bd6f78f8d.js'></script>
+<script type='text/javascript' src='//js.rbxcdn.com/1e3dc2b22269576ba0a4616bd6f78f8d.js'></script>
 
 </head>
 <body class="">
@@ -268,11 +271,11 @@ $(function(){
                     <div style="margin-bottom: 10px;">
                         
                     </div>
-                    <a id="ctl00_cphRoblox_rbxUserPane_AvatarImage" disabled="disabled" class=" notranslate" title="stamina" class=" notranslate" onclick="return false" style="display:inline-block;height:352px;width:352px;"><img src="http://t4.rbxcdn.com/e67152f976636dd89429613befbe7f45" height="352" width="352" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="stamina" class=" notranslate" /></a>
+                    <a id="ctl00_cphRoblox_rbxUserPane_AvatarImage" disabled="disabled" class=" notranslate" title="stamina" class=" notranslate" onclick="return false" style="display:inline-block;height:352px;width:352px;"><img src="//t4.rbxcdn.com/e67152f976636dd89429613befbe7f45" height="352" width="352" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="stamina" class=" notranslate" /></a>
                     <br />
                     <div class="PointsContainer">
                         
-<img class="points-image" src="http://images.rbxcdn.com/d73731e112f8a06ce3978d7755b2ab8d.png" alt="User Points"/><span class="points-text">Player Points: <span class="roblox-se-player-points " title="0">0</span></span>
+<img class="points-image" src="//images.rbxcdn.com/d73731e112f8a06ce3978d7755b2ab8d.png" alt="User Points"/><span class="points-text">Player Points: <span class="roblox-se-player-points " title="0">0</span></span>
 
                     </div>
                     
@@ -345,39 +348,39 @@ $(function(){
 	<tr>
 		<td>
 			    <div class="Badge" class="notranslate">
-				    <div class="BadgeImage"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl00_hlHeader" href="Badges.aspx#Badge3"><img id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl00_iBadge" src="http://images.rbxcdn.com/d111059fca163b9824716cff2fe4aec5.png" alt="This badge is given to any player who has proven his or her combat abilities by accumulating 10 victories in battle. Players who have this badge are not complete newbies and probably know how to handle their weapons." style="height:75px;width:75px;border-width:0px;" /></a></div>
+				    <div class="BadgeImage"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl00_hlHeader" href="Badges.aspx#Badge3"><img id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl00_iBadge" src="//images.rbxcdn.com/d111059fca163b9824716cff2fe4aec5.png" alt="This badge is given to any player who has proven his or her combat abilities by accumulating 10 victories in battle. Players who have this badge are not complete newbies and probably know how to handle their weapons." style="height:75px;width:75px;border-width:0px;" /></a></div>
 				    <div class="BadgeLabel"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl00_HyperLink1" href="Badges.aspx#Badge3">Combat Initiation</a></div>
 			    </div>
 		    </td><td>
 			    <div class="Badge" class="notranslate">
-				    <div class="BadgeImage"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl01_hlHeader" href="Badges.aspx#Badge4"><img id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl01_iBadge" src="http://images.rbxcdn.com/14652f1598ba5520515965b4038214c0.png" alt="This badge is given to the warriors of Robloxia, who have time and time again overwhelmed their foes in battle. To earn this badge, you must rack up 100 knockouts. Anyone with this badge knows what to do in a fight!" style="height:75px;width:75px;border-width:0px;" /></a></div>
+				    <div class="BadgeImage"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl01_hlHeader" href="Badges.aspx#Badge4"><img id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl01_iBadge" src="//images.rbxcdn.com/14652f1598ba5520515965b4038214c0.png" alt="This badge is given to the warriors of Robloxia, who have time and time again overwhelmed their foes in battle. To earn this badge, you must rack up 100 knockouts. Anyone with this badge knows what to do in a fight!" style="height:75px;width:75px;border-width:0px;" /></a></div>
 				    <div class="BadgeLabel"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl01_HyperLink1" href="Badges.aspx#Badge4">Warrior</a></div>
 			    </div>
 		    </td><td>
 			    <div class="Badge" class="notranslate">
-				    <div class="BadgeImage"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl02_hlHeader" href="Badges.aspx#Badge2"><img id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl02_iBadge" src="http://images.rbxcdn.com/46c15f2030a8c68ab1ff4329765e515a.png" alt="This badge is given to players who have embraced the Roblox community and have made at least 20 friends. People who have this badge are good people to know and can probably help you out if you are having trouble." style="height:75px;width:75px;border-width:0px;" /></a></div>
+				    <div class="BadgeImage"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl02_hlHeader" href="Badges.aspx#Badge2"><img id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl02_iBadge" src="//images.rbxcdn.com/46c15f2030a8c68ab1ff4329765e515a.png" alt="This badge is given to players who have embraced the Roblox community and have made at least 20 friends. People who have this badge are good people to know and can probably help you out if you are having trouble." style="height:75px;width:75px;border-width:0px;" /></a></div>
 				    <div class="BadgeLabel"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl02_HyperLink1" href="Badges.aspx#Badge2">Friendship</a></div>
 			    </div>
 		    </td><td>
 			    <div class="Badge" class="notranslate">
-				    <div class="BadgeImage"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl03_hlHeader" href="Badges.aspx#Badge5"><img id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl03_iBadge" src="http://images.rbxcdn.com/4cb4d69560f1f3478c314b24a52d2644.png" alt="Anyone who has earned this badge is a very dangerous player indeed. Those Robloxians who excel at combat can one day hope to achieve this honor, the Bloxxer Badge. It is given to the warrior who has bloxxed at least 250 enemies and who has tasted victory more times than he or she has suffered defeat. Salute!" style="height:75px;width:75px;border-width:0px;" /></a></div>
+				    <div class="BadgeImage"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl03_hlHeader" href="Badges.aspx#Badge5"><img id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl03_iBadge" src="//images.rbxcdn.com/4cb4d69560f1f3478c314b24a52d2644.png" alt="Anyone who has earned this badge is a very dangerous player indeed. Those Robloxians who excel at combat can one day hope to achieve this honor, the Bloxxer Badge. It is given to the warrior who has bloxxed at least 250 enemies and who has tasted victory more times than he or she has suffered defeat. Salute!" style="height:75px;width:75px;border-width:0px;" /></a></div>
 				    <div class="BadgeLabel"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl03_HyperLink1" href="Badges.aspx#Badge5">Bloxxer</a></div>
 			    </div>
 		    </td><td>
 			    <div class="Badge" class="notranslate">
-				    <div class="BadgeImage"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl04_hlHeader" href="Badges.aspx#Badge12"><img id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl04_iBadge" src="http://images.rbxcdn.com/088451f70609387491bbf8e85f285065.png" alt="This decoration is awarded to all citizens who have played ROBLOX for at least a year. It recognizes stalwart community members who have stuck with us over countless releases and have helped shape ROBLOX into the game that it is today. These medalists are the true steel, the core of the Robloxian history ... and its future." style="height:75px;width:75px;border-width:0px;" /></a></div>
+				    <div class="BadgeImage"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl04_hlHeader" href="Badges.aspx#Badge12"><img id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl04_iBadge" src="//images.rbxcdn.com/088451f70609387491bbf8e85f285065.png" alt="This decoration is awarded to all citizens who have played ROBLOX for at least a year. It recognizes stalwart community members who have stuck with us over countless releases and have helped shape ROBLOX into the game that it is today. These medalists are the true steel, the core of the Robloxian history ... and its future." style="height:75px;width:75px;border-width:0px;" /></a></div>
 				    <div class="BadgeLabel"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl04_HyperLink1" href="Badges.aspx#Badge12">Veteran</a></div>
 			    </div>
 		    </td>
 	</tr><tr>
 		<td>
 			    <div class="Badge" class="notranslate">
-				    <div class="BadgeImage"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl05_hlHeader" href="Badges.aspx#Badge14"><img id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl05_iBadge" src="http://images.rbxcdn.com/216b8349596e3293affe6dada49cea6a.png" alt="The Ambassador Badge is earned by participating in the Roblox Ambassador Program. Submit at least 3 unique links to the program to win this badge. Spread the glory of Robloxia to the furthest corners of the known Internet!" style="height:75px;width:75px;border-width:0px;" /></a></div>
+				    <div class="BadgeImage"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl05_hlHeader" href="Badges.aspx#Badge14"><img id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl05_iBadge" src="//images.rbxcdn.com/216b8349596e3293affe6dada49cea6a.png" alt="The Ambassador Badge is earned by participating in the Roblox Ambassador Program. Submit at least 3 unique links to the program to win this badge. Spread the glory of Robloxia to the furthest corners of the known Internet!" style="height:75px;width:75px;border-width:0px;" /></a></div>
 				    <div class="BadgeLabel"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl05_HyperLink1" href="Badges.aspx#Badge14">Ambassador</a></div>
 			    </div>
 		    </td><td>
 			    <div class="Badge" class="notranslate">
-				    <div class="BadgeImage"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl06_hlHeader" href="Badges.aspx#Badge6"><img id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl06_iBadge" src="http://images.rbxcdn.com/26bdc9274d6c2520b3d72ebaa71e50f7.png" alt="The homestead badge is earned by having your personal place visited 100 times. Players who achieve this have demonstrated their ability to build cool things that other Robloxians were interested enough in to check out. Get a jump-start on earning this reward by inviting people to come visit your place." style="height:75px;width:75px;border-width:0px;" /></a></div>
+				    <div class="BadgeImage"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl06_hlHeader" href="Badges.aspx#Badge6"><img id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl06_iBadge" src="//images.rbxcdn.com/26bdc9274d6c2520b3d72ebaa71e50f7.png" alt="The homestead badge is earned by having your personal place visited 100 times. Players who achieve this have demonstrated their ability to build cool things that other Robloxians were interested enough in to check out. Get a jump-start on earning this reward by inviting people to come visit your place." style="height:75px;width:75px;border-width:0px;" /></a></div>
 				    <div class="BadgeLabel"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl06_HyperLink1" href="Badges.aspx#Badge6">Homestead</a></div>
 			    </div>
 		    </td><td></td><td></td><td></td>
@@ -402,7 +405,7 @@ $(function(){
                 
                          
                         <div class="TileBadges">
-                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl0_AssetThumbnailHyperLink" title="The Last Egg (Creator: Games)" href="/The-Last-Egg-item?id=76680134" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="http://t5.rbxcdn.com/ae84e241a7ffd439c412704d0c2e041f" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="The Last Egg (Creator: Games)" /></a>
+                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl0_AssetThumbnailHyperLink" title="The Last Egg (Creator: Games)" href="/The-Last-Egg-item?id=76680134" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="//t5.rbxcdn.com/ae84e241a7ffd439c412704d0c2e041f" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="The Last Egg (Creator: Games)" /></a>
                         
                     
                             <div class="AssetDetails" style="display:none;" id="badgeInfo1013329633">
@@ -412,7 +415,7 @@ $(function(){
                         </div>
                     
                         <div class="TileBadges">
-                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl1_AssetThumbnailHyperLink" title="50k Visits PARTY (Creator: Wehttam664)" href="/50k-Visits-PARTY-item?id=25561737" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="http://t6.rbxcdn.com/981ae810c69a167527e6da81fcbe1c86" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="50k Visits PARTY (Creator: Wehttam664)" /></a>
+                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl1_AssetThumbnailHyperLink" title="50k Visits PARTY (Creator: Wehttam664)" href="/50k-Visits-PARTY-item?id=25561737" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="//t6.rbxcdn.com/981ae810c69a167527e6da81fcbe1c86" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="50k Visits PARTY (Creator: Wehttam664)" /></a>
                         
                     
                             <div class="AssetDetails" style="display:none;" id="badgeInfo754505320">
@@ -422,7 +425,7 @@ $(function(){
                         </div>
                     
                         <div class="TileBadges">
-                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl2_AssetThumbnailHyperLink" title="Skilled Knight (Creator: stickmasterluke)" href="/Skilled-Knight-item?id=27414750" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="http://t2.rbxcdn.com/97e58afda1eb6b9adfce024b5c88c446" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Skilled Knight (Creator: stickmasterluke)" /></a>
+                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl2_AssetThumbnailHyperLink" title="Skilled Knight (Creator: stickmasterluke)" href="/Skilled-Knight-item?id=27414750" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="//t2.rbxcdn.com/97e58afda1eb6b9adfce024b5c88c446" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Skilled Knight (Creator: stickmasterluke)" /></a>
                         
                     
                             <div class="AssetDetails" style="display:none;" id="badgeInfo562522755">
@@ -432,7 +435,7 @@ $(function(){
                         </div>
                     
                         <div class="TileBadges">
-                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl3_AssetThumbnailHyperLink" title="Thanks for coming! (Creator: bl0wmeup)" href="/Thanks-for-coming-item?id=32211757" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="http://t7.rbxcdn.com/4c46606b237cbf326ac7d3dcf36b4a08" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Thanks for coming! (Creator: bl0wmeup)" /></a>
+                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl3_AssetThumbnailHyperLink" title="Thanks for coming! (Creator: bl0wmeup)" href="/Thanks-for-coming-item?id=32211757" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="//t7.rbxcdn.com/4c46606b237cbf326ac7d3dcf36b4a08" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Thanks for coming! (Creator: bl0wmeup)" /></a>
                         
                     
                             <div class="AssetDetails" style="display:none;" id="badgeInfo516248131">
@@ -442,7 +445,7 @@ $(function(){
                         </div>
                     
                         <div class="TileBadges">
-                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl4_AssetThumbnailHyperLink" title="Gateway to the stars! (Creator: dragonare)" href="/Gateway-to-the-stars-item?id=14444640" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="http://t4.rbxcdn.com/de89044a2726207908b76094d711b63e" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Gateway to the stars! (Creator: dragonare)" /></a>
+                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl4_AssetThumbnailHyperLink" title="Gateway to the stars! (Creator: dragonare)" href="/Gateway-to-the-stars-item?id=14444640" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="//t4.rbxcdn.com/de89044a2726207908b76094d711b63e" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Gateway to the stars! (Creator: dragonare)" /></a>
                         
                     
                             <div class="AssetDetails" style="display:none;" id="badgeInfo508023265">
@@ -452,7 +455,7 @@ $(function(){
                         </div>
                     
                         <div class="TileBadges">
-                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl5_AssetThumbnailHyperLink" title="The Bandit Cave (Creator: Nawtz)" href="/The-Bandit-Cave-item?id=35648350" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="http://t0.rbxcdn.com/ea3abac8378c9ece75c80990500371e0" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="The Bandit Cave (Creator: Nawtz)" /></a>
+                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl5_AssetThumbnailHyperLink" title="The Bandit Cave (Creator: Nawtz)" href="/The-Bandit-Cave-item?id=35648350" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="//t0.rbxcdn.com/ea3abac8378c9ece75c80990500371e0" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="The Bandit Cave (Creator: Nawtz)" /></a>
                         
                     
                             <div class="AssetDetails" style="display:none;" id="badgeInfo504748967">
@@ -462,7 +465,7 @@ $(function(){
                         </div>
                     
                         <div class="TileBadges">
-                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl6_AssetThumbnailHyperLink" title="Woah you was rich! (Creator: Infinitive)" href="/Woah-you-was-rich-item?id=28897121" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="http://t6.rbxcdn.com/13d68a53759427f282d3ec8cafc1585e" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Woah you was rich! (Creator: Infinitive)" /></a>
+                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl6_AssetThumbnailHyperLink" title="Woah you was rich! (Creator: Infinitive)" href="/Woah-you-was-rich-item?id=28897121" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="//t6.rbxcdn.com/13d68a53759427f282d3ec8cafc1585e" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Woah you was rich! (Creator: Infinitive)" /></a>
                         
                     
                             <div class="AssetDetails" style="display:none;" id="badgeInfo503785783">
@@ -472,7 +475,7 @@ $(function(){
                         </div>
                     
                         <div class="TileBadges">
-                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl7_AssetThumbnailHyperLink" title="1,000,000 Visits! (Creator: ZamSonGod)" href="/1-000-000-Visits-item?id=42306045" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="http://t6.rbxcdn.com/47d1af21b59c8eef032be6320c85637e" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="1,000,000 Visits! (Creator: ZamSonGod)" /></a>
+                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl7_AssetThumbnailHyperLink" title="1,000,000 Visits! (Creator: ZamSonGod)" href="/1-000-000-Visits-item?id=42306045" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="//t6.rbxcdn.com/47d1af21b59c8eef032be6320c85637e" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="1,000,000 Visits! (Creator: ZamSonGod)" /></a>
                         
                     
                             <div class="AssetDetails" style="display:none;" id="badgeInfo464669362">
@@ -482,7 +485,7 @@ $(function(){
                         </div>
                     
                         <div class="TileBadges">
-                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl8_AssetThumbnailHyperLink" title="Traveller (Creator: ZamSonGod)" href="/Traveller-item?id=36145315" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="http://t1.rbxcdn.com/3165ac9f3e6514251630b43fd1e6d822" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Traveller (Creator: ZamSonGod)" /></a>
+                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl8_AssetThumbnailHyperLink" title="Traveller (Creator: ZamSonGod)" href="/Traveller-item?id=36145315" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="//t1.rbxcdn.com/3165ac9f3e6514251630b43fd1e6d822" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Traveller (Creator: ZamSonGod)" /></a>
                         
                     
                             <div class="AssetDetails" style="display:none;" id="badgeInfo464669358">
@@ -492,7 +495,7 @@ $(function(){
                         </div>
                     
                         <div class="TileBadges">
-                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl9_AssetThumbnailHyperLink" title="I Played RainyDude&#39;s Obstical Course  (Creator: RainyDude)" href="/I-Played-RainyDudes-Obstical-Course-item?id=32291378" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="http://t6.rbxcdn.com/5f937dd6468a468ba9cdd1f720d99c37" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="I Played RainyDude&#39;s Obstical Course  (Creator: RainyDude)" /></a>
+                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl9_AssetThumbnailHyperLink" title="I Played RainyDude&#39;s Obstical Course  (Creator: RainyDude)" href="/I-Played-RainyDudes-Obstical-Course-item?id=32291378" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="//t6.rbxcdn.com/5f937dd6468a468ba9cdd1f720d99c37" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="I Played RainyDude&#39;s Obstical Course  (Creator: RainyDude)" /></a>
                         
                     
                             <div class="AssetDetails" style="display:none;" id="badgeInfo384328727">
@@ -502,7 +505,7 @@ $(function(){
                         </div>
                     
                         <div class="TileBadges">
-                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl10_AssetThumbnailHyperLink" title="Your now a Knight! (Creator: JonnyRockz)" href="/Your-now-a-Knight-item?id=21070811" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="http://t6.rbxcdn.com/7a0f1c3d1814840c3abc76453969c3e4" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Your now a Knight! (Creator: JonnyRockz)" /></a>
+                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl10_AssetThumbnailHyperLink" title="Your now a Knight! (Creator: JonnyRockz)" href="/Your-now-a-Knight-item?id=21070811" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="//t6.rbxcdn.com/7a0f1c3d1814840c3abc76453969c3e4" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Your now a Knight! (Creator: JonnyRockz)" /></a>
                         
                     
                             <div class="AssetDetails" style="display:none;" id="badgeInfo382516022">
@@ -512,7 +515,7 @@ $(function(){
                         </div>
                     
                         <div class="TileBadges">
-                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl11_AssetThumbnailHyperLink" title="Rainbow (Creator: sanchez002)" href="/Rainbow-item?id=32455022" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="http://t7.rbxcdn.com/81fdea28d42affc8078221f4d06e1b58" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Rainbow (Creator: sanchez002)" /></a>
+                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl11_AssetThumbnailHyperLink" title="Rainbow (Creator: sanchez002)" href="/Rainbow-item?id=32455022" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="//t7.rbxcdn.com/81fdea28d42affc8078221f4d06e1b58" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Rainbow (Creator: sanchez002)" /></a>
                         
                     
                             <div class="AssetDetails" style="display:none;" id="badgeInfo382016814">
@@ -522,7 +525,7 @@ $(function(){
                         </div>
                     
                         <div class="TileBadges">
-                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl12_AssetThumbnailHyperLink" title="Welcome (Creator: sanchez002)" href="/Welcome-item?id=31177718" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="http://t4.rbxcdn.com/f47b36958cd2c639dd93ddc2d0949073" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Welcome (Creator: sanchez002)" /></a>
+                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl12_AssetThumbnailHyperLink" title="Welcome (Creator: sanchez002)" href="/Welcome-item?id=31177718" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="//t4.rbxcdn.com/f47b36958cd2c639dd93ddc2d0949073" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Welcome (Creator: sanchez002)" /></a>
                         
                     
                             <div class="AssetDetails" style="display:none;" id="badgeInfo382016630">
@@ -532,7 +535,7 @@ $(function(){
                         </div>
                     
                         <div class="TileBadges">
-                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl13_AssetThumbnailHyperLink" title="Pyramid (Creator: Aurarus)" href="/Pyramid-item?id=18268422" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="http://t7.rbxcdn.com/01c6657e722a4be5faa8417bdee78697" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Pyramid (Creator: Aurarus)" /></a>
+                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl13_AssetThumbnailHyperLink" title="Pyramid (Creator: Aurarus)" href="/Pyramid-item?id=18268422" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="//t7.rbxcdn.com/01c6657e722a4be5faa8417bdee78697" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Pyramid (Creator: Aurarus)" /></a>
                         
                     
                             <div class="AssetDetails" style="display:none;" id="badgeInfo380745946">
@@ -542,7 +545,7 @@ $(function(){
                         </div>
                     
                         <div class="TileBadges">
-                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl14_AssetThumbnailHyperLink" title="Thank You For Playing! (Creator: Aurarus)" href="/Thank-You-For-Playing-item?id=18267740" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="http://t7.rbxcdn.com/ab1cc5909594a4799f506eded1e05ce7" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Thank You For Playing! (Creator: Aurarus)" /></a>
+                                <a id="ctl00_cphRoblox_rbxBadgesDisplay_BadgeListView_ctrl14_AssetThumbnailHyperLink" title="Thank You For Playing! (Creator: Aurarus)" href="/Thank-You-For-Playing-item?id=18267740" style="display:inline-block;height:75px;width:75px;cursor:pointer;"><img src="//t7.rbxcdn.com/ab1cc5909594a4799f506eded1e05ce7" height="75" width="75" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Thank You For Playing! (Creator: Aurarus)" /></a>
                         
                     
                             <div class="AssetDetails" style="display:none;" id="badgeInfo380743751">
@@ -695,7 +698,7 @@ $(function(){
     }
 
     $(function () {
-        Roblox.SetsPaneObject = Roblox.SetsPane('http://www.roblox.com/', 1025053);
+        Roblox.SetsPaneObject = Roblox.SetsPane('//www.roblox.com/', 1025053);
 
         var options = { Paging_PageNumbers_AreLinks: false };
         Roblox.OwnedSetsJSDataPager = new DataPager(0, 9, 'SetsItemContainer', 'SetsPagerContainer',
@@ -761,7 +764,7 @@ $(function(){
     <div class="Statistics" style="color: #999; font-size: 14px; letter-spacing: normal">
         <span id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_lStatistics">Visited 589 times (6 last week)</span></div>
     <div class="Thumbnail" style="width:414px;overflow:hidden;position: relative;">
-        <a id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_rbxPlaceThumbnail" title="Create Stuff, Including Weapons" href="/Create-Stuff-Including-Weapons-place?id=34459309" style="display:inline-block;height:230px;width:420px;cursor:pointer;"><img src="http://t6.rbxcdn.com/11072470efdbf5067d9b4029ed4c4813" height="230" width="420" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Create Stuff, Including Weapons" /></a>
+        <a id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_rbxPlaceThumbnail" title="Create Stuff, Including Weapons" href="/Create-Stuff-Including-Weapons-place?id=34459309" style="display:inline-block;height:230px;width:420px;cursor:pointer;"><img src="//t6.rbxcdn.com/11072470efdbf5067d9b4029ed4c4813" height="230" width="420" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Create Stuff, Including Weapons" /></a>
         
     </div>
     <div id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_pDescription">
@@ -810,7 +813,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
     </div>
     <div class="unifiedModalContent" style="padding-top:5px; margin-bottom: 3px; margin-left: 3px; margin-right: 3px">
         <div class="ImageContainer" >
-            <img class="GenericModalImage BCModalImage" alt="Builder's Club" src="http://images.rbxcdn.com/ae345c0d59b00329758518edc104d573.png" />
+            <img class="GenericModalImage BCModalImage" alt="Builder's Club" src="//images.rbxcdn.com/ae345c0d59b00329758518edc104d573.png" />
             <div id="BCMessageDiv" class="BCMessage Message">
                 Builders Club membership is required to play in this place.
             </div>
@@ -895,12 +898,12 @@ If you've visited this place, you're probably wondering "Is this place complete?
         data-user-bc="0"
         data-continueshopping-url=""
         data-imageurl="" 
-        data-alerturl="http://images.rbxcdn.com/cbb24e0c0f1fb97381a065bd1e056fcb.png"
-        data-builderscluburl="http://images.rbxcdn.com/ae345c0d59b00329758518edc104d573.png"></div>
+        data-alerturl="//images.rbxcdn.com/cbb24e0c0f1fb97381a065bd1e056fcb.png"
+        data-builderscluburl="//images.rbxcdn.com/ae345c0d59b00329758518edc104d573.png"></div>
 
     <div id="ProcessingView" style="display:none">
         <div class="ProcessingModalBody">
-            <p style="margin:0px"><img src='http://images.rbxcdn.com/ec4e85b0c4396cf753a06fade0a8d8af.gif' alt="Processing..." /></p>
+            <p style="margin:0px"><img src='//images.rbxcdn.com/ec4e85b0c4396cf753a06fade0a8d8af.gif' alt="Processing..." /></p>
             <p style="margin:7px 0px">Processing Transaction</p>
         </div>
     </div>
@@ -960,7 +963,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
 	<tr>
 		<td>
 			<div class="Friend notranslate">
-				<div class="Avatar"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl00_hlAvatar" class=" notranslate" title="jeroentje153" class=" notranslate" href="/User.aspx?ID=994676" style="display:inline-block;height:100px;width:100px;cursor:pointer;"><img src="http://t4.rbxcdn.com/2cd49458b64bcf6b72c6e0a9472b103e" height="100" width="100" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="jeroentje153" class=" notranslate" /></a></div>
+				<div class="Avatar"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl00_hlAvatar" class=" notranslate" title="jeroentje153" class=" notranslate" href="/User.aspx?ID=994676" style="display:inline-block;height:100px;width:100px;cursor:pointer;"><img src="//t4.rbxcdn.com/2cd49458b64bcf6b72c6e0a9472b103e" height="100" width="100" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="jeroentje153" class=" notranslate" /></a></div>
 				<div class="Summary">
 					<span class="OnlineStatus"><img id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl00_iOnlineStatus" src="images/offline.png" alt="jeroentje153 is offline (last seen at 5/24/2014 4:32:46 PM." style="border-width:0px;" /></span>
 					<span class="Name"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl00_hlFriend" href="User.aspx?ID=994676">jeroentje153</a></span>
@@ -968,7 +971,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
 			</div>
 		</td><td>
 			<div class="Friend notranslate">
-				<div class="Avatar"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl01_hlAvatar" class=" notranslate" title="buddy4550" class=" notranslate" href="/User.aspx?ID=932650" style="display:inline-block;height:100px;width:100px;cursor:pointer;"><img src="http://t7.rbxcdn.com/b6418e6bdabc83b41c87ae0a7afe5b7d" height="100" width="100" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="buddy4550" class=" notranslate" /></a></div>
+				<div class="Avatar"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl01_hlAvatar" class=" notranslate" title="buddy4550" class=" notranslate" href="/User.aspx?ID=932650" style="display:inline-block;height:100px;width:100px;cursor:pointer;"><img src="//t7.rbxcdn.com/b6418e6bdabc83b41c87ae0a7afe5b7d" height="100" width="100" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="buddy4550" class=" notranslate" /></a></div>
 				<div class="Summary">
 					<span class="OnlineStatus"><img id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl01_iOnlineStatus" src="images/offline.png" alt="buddy4550 is offline (last seen at 5/4/2014 6:39:57 PM." style="border-width:0px;" /></span>
 					<span class="Name"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl01_hlFriend" href="User.aspx?ID=932650">buddy4550</a></span>
@@ -976,7 +979,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
 			</div>
 		</td><td>
 			<div class="Friend notranslate">
-				<div class="Avatar"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl02_hlAvatar" class=" notranslate" title="TaroDark" class=" notranslate" href="/User.aspx?ID=1095527" style="display:inline-block;height:100px;width:100px;cursor:pointer;"><img src="http://t3.rbxcdn.com/c370531b35d2067f850abbdd078bb80b" height="100" width="100" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="TaroDark" class=" notranslate" /></a></div>
+				<div class="Avatar"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl02_hlAvatar" class=" notranslate" title="TaroDark" class=" notranslate" href="/User.aspx?ID=1095527" style="display:inline-block;height:100px;width:100px;cursor:pointer;"><img src="//t3.rbxcdn.com/c370531b35d2067f850abbdd078bb80b" height="100" width="100" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="TaroDark" class=" notranslate" /></a></div>
 				<div class="Summary">
 					<span class="OnlineStatus"><img id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl02_iOnlineStatus" src="images/offline.png" alt="TaroDark is offline (last seen at 4/4/2014 7:40:26 AM." style="border-width:0px;" /></span>
 					<span class="Name"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl02_hlFriend" href="User.aspx?ID=1095527">TaroDark</a></span>
@@ -986,7 +989,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
 	</tr><tr>
 		<td>
 			<div class="Friend notranslate">
-				<div class="Avatar"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl03_hlAvatar" class=" notranslate" title="Shedletsky" class=" notranslate" href="/User.aspx?ID=261" style="display:inline-block;height:100px;width:100px;cursor:pointer;"><img src="http://t3.rbxcdn.com/a3aa397148447f9c9550e43baa884189" height="100" width="100" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Shedletsky" class=" notranslate" /><img src="/images/icons/overlay_obcOnly.png" align="left" style="position:relative;top:-19px;" /></a></div>
+				<div class="Avatar"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl03_hlAvatar" class=" notranslate" title="Shedletsky" class=" notranslate" href="/User.aspx?ID=261" style="display:inline-block;height:100px;width:100px;cursor:pointer;"><img src="//t3.rbxcdn.com/a3aa397148447f9c9550e43baa884189" height="100" width="100" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Shedletsky" class=" notranslate" /><img src="/images/icons/overlay_obcOnly.png" align="left" style="position:relative;top:-19px;" /></a></div>
 				<div class="Summary">
 					<span class="OnlineStatus"><img id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl03_iOnlineStatus" src="images/offline.png" alt="Shedletsky is offline (last seen at 5/24/2014 11:58:41 AM." style="border-width:0px;" /></span>
 					<span class="Name"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl03_hlFriend" href="User.aspx?ID=261">Shedletsky</a></span>
@@ -994,7 +997,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
 			</div>
 		</td><td>
 			<div class="Friend notranslate">
-				<div class="Avatar"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl04_hlAvatar" class=" notranslate" title="lego802" class=" notranslate" href="/User.aspx?ID=1259027" style="display:inline-block;height:100px;width:100px;cursor:pointer;"><img src="http://t5.rbxcdn.com/f0babcb474272d512c577a95f2fcacce" height="100" width="100" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="lego802" class=" notranslate" /></a></div>
+				<div class="Avatar"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl04_hlAvatar" class=" notranslate" title="lego802" class=" notranslate" href="/User.aspx?ID=1259027" style="display:inline-block;height:100px;width:100px;cursor:pointer;"><img src="//t5.rbxcdn.com/f0babcb474272d512c577a95f2fcacce" height="100" width="100" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="lego802" class=" notranslate" /></a></div>
 				<div class="Summary">
 					<span class="OnlineStatus"><img id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl04_iOnlineStatus" src="images/offline.png" alt="lego802 is offline (last seen at 10/12/2008 6:58:38 AM." style="border-width:0px;" /></span>
 					<span class="Name"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl04_hlFriend" href="User.aspx?ID=1259027">lego802</a></span>
@@ -1002,7 +1005,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
 			</div>
 		</td><td>
 			<div class="Friend notranslate">
-				<div class="Avatar"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl05_hlAvatar" class=" notranslate" title="okama" class=" notranslate" href="/User.aspx?ID=1179539" style="display:inline-block;height:100px;width:100px;cursor:pointer;"><img src="http://t7.rbxcdn.com/f9a1aa45f1b310eb23d4b54dfa6d0401" height="100" width="100" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="okama" class=" notranslate" /></a></div>
+				<div class="Avatar"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl05_hlAvatar" class=" notranslate" title="okama" class=" notranslate" href="/User.aspx?ID=1179539" style="display:inline-block;height:100px;width:100px;cursor:pointer;"><img src="//t7.rbxcdn.com/f9a1aa45f1b310eb23d4b54dfa6d0401" height="100" width="100" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="okama" class=" notranslate" /></a></div>
 				<div class="Summary">
 					<span class="OnlineStatus"><img id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl05_iOnlineStatus" src="images/offline.png" alt="okama is offline (last seen at 9/30/2008 10:23:18 AM." style="border-width:0px;" /></span>
 					<span class="Name"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl05_hlFriend" href="User.aspx?ID=1179539">okama</a></span>
@@ -1047,7 +1050,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
 			<td class="Asset" valign="top">
 					        <div style="padding:5px; margin-right: 30px; margin-left: 10px">
 						        <div class="AssetThumbnail notranslate" >
-							        <a id="ctl00_cphRoblox_rbxFavoritesPane_FavoritesDataList_ctl00_AssetThumbnailHyperLink" class=" notranslate" title="Stargate: Final War" class=" notranslate" href="/Stargate-Final-War-place?id=4123204" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t6.rbxcdn.com/6d148d814a629005bbed2eb2c65a4782" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Stargate: Final War" class=" notranslate" /></a>
+							        <a id="ctl00_cphRoblox_rbxFavoritesPane_FavoritesDataList_ctl00_AssetThumbnailHyperLink" class=" notranslate" title="Stargate: Final War" class=" notranslate" href="/Stargate-Final-War-place?id=4123204" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t6.rbxcdn.com/6d148d814a629005bbed2eb2c65a4782" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Stargate: Final War" class=" notranslate" /></a>
 							    
 						        </div>
 						        <div class="AssetDetails notranslate" style="clear:both;">
@@ -1059,7 +1062,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
 					    </td><td class="Asset" valign="top">
 					        <div style="padding:5px; margin-right: 30px; margin-left: 10px">
 						        <div class="AssetThumbnail notranslate" >
-							        <a id="ctl00_cphRoblox_rbxFavoritesPane_FavoritesDataList_ctl01_AssetThumbnailHyperLink" class=" notranslate" title="Survival 303 (Paid Access due to exploits)" class=" notranslate" href="/Survival-303-Paid-Access-due-to-exploits-place?id=4321846" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t6.rbxcdn.com/ab6d2909ba2abfc866d983c94b0b355f" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Survival 303 (Paid Access due to exploits)" class=" notranslate" /></a>
+							        <a id="ctl00_cphRoblox_rbxFavoritesPane_FavoritesDataList_ctl01_AssetThumbnailHyperLink" class=" notranslate" title="Survival 303 (Paid Access due to exploits)" class=" notranslate" href="/Survival-303-Paid-Access-due-to-exploits-place?id=4321846" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t6.rbxcdn.com/ab6d2909ba2abfc866d983c94b0b355f" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Survival 303 (Paid Access due to exploits)" class=" notranslate" /></a>
 							    
 						        </div>
 						        <div class="AssetDetails notranslate" style="clear:both;">
@@ -1071,7 +1074,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
 					    </td><td class="Asset" valign="top">
 					        <div style="padding:5px; margin-right: 30px; margin-left: 10px">
 						        <div class="AssetThumbnail notranslate" >
-							        <a id="ctl00_cphRoblox_rbxFavoritesPane_FavoritesDataList_ctl02_AssetThumbnailHyperLink" class=" notranslate" title="Create Stuff, Including Weapons" class=" notranslate" href="/Create-Stuff-Including-Weapons-place?id=34459309" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t3.rbxcdn.com/f8fa8311b6b422faabf7e959424e94ab" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Create Stuff, Including Weapons" class=" notranslate" /></a>
+							        <a id="ctl00_cphRoblox_rbxFavoritesPane_FavoritesDataList_ctl02_AssetThumbnailHyperLink" class=" notranslate" title="Create Stuff, Including Weapons" class=" notranslate" href="/Create-Stuff-Including-Weapons-place?id=34459309" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t3.rbxcdn.com/f8fa8311b6b422faabf7e959424e94ab" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Create Stuff, Including Weapons" class=" notranslate" /></a>
 							    
 						        </div>
 						        <div class="AssetDetails notranslate" style="clear:both;">
@@ -1085,7 +1088,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
 			<td class="Asset" valign="top">
 					        <div style="padding:5px; margin-right: 30px; margin-left: 10px">
 						        <div class="AssetThumbnail notranslate" >
-							        <a id="ctl00_cphRoblox_rbxFavoritesPane_FavoritesDataList_ctl03_AssetThumbnailHyperLink" class=" notranslate" title="THE Disaster Lobby! [22]" class=" notranslate" href="/THE-Disaster-Lobby-22-place?id=19138408" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t0.rbxcdn.com/a4a288b775e1793079e173d3fac10af4" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="THE Disaster Lobby! [22]" class=" notranslate" /></a>
+							        <a id="ctl00_cphRoblox_rbxFavoritesPane_FavoritesDataList_ctl03_AssetThumbnailHyperLink" class=" notranslate" title="THE Disaster Lobby! [22]" class=" notranslate" href="/THE-Disaster-Lobby-22-place?id=19138408" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t0.rbxcdn.com/a4a288b775e1793079e173d3fac10af4" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="THE Disaster Lobby! [22]" class=" notranslate" /></a>
 							    
 						        </div>
 						        <div class="AssetDetails notranslate" style="clear:both;">
@@ -1097,7 +1100,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
 					    </td><td class="Asset" valign="top">
 					        <div style="padding:5px; margin-right: 30px; margin-left: 10px">
 						        <div class="AssetThumbnail notranslate" >
-							        <a id="ctl00_cphRoblox_rbxFavoritesPane_FavoritesDataList_ctl04_AssetThumbnailHyperLink" class=" notranslate" title="Bawxing! -Classic-" class=" notranslate" href="/Bawxing-Classic-place?id=2543590" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t5.rbxcdn.com/aa7db5ebe2b0bc1023d70c333183ce82" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Bawxing! -Classic-" class=" notranslate" /></a>
+							        <a id="ctl00_cphRoblox_rbxFavoritesPane_FavoritesDataList_ctl04_AssetThumbnailHyperLink" class=" notranslate" title="Bawxing! -Classic-" class=" notranslate" href="/Bawxing-Classic-place?id=2543590" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t5.rbxcdn.com/aa7db5ebe2b0bc1023d70c333183ce82" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Bawxing! -Classic-" class=" notranslate" /></a>
 							    
 						        </div>
 						        <div class="AssetDetails notranslate" style="clear:both;">
@@ -1109,7 +1112,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
 					    </td><td class="Asset" valign="top">
 					        <div style="padding:5px; margin-right: 30px; margin-left: 10px">
 						        <div class="AssetThumbnail notranslate" >
-							        <a id="ctl00_cphRoblox_rbxFavoritesPane_FavoritesDataList_ctl05_AssetThumbnailHyperLink" class=" notranslate" title="Grow-a-brick v1.3" class=" notranslate" href="/Grow-a-brick-v1-3-place?id=249214" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t6.rbxcdn.com/ad1a1153958d7b58da9d0635f758def1" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Grow-a-brick v1.3" class=" notranslate" /></a>
+							        <a id="ctl00_cphRoblox_rbxFavoritesPane_FavoritesDataList_ctl05_AssetThumbnailHyperLink" class=" notranslate" title="Grow-a-brick v1.3" class=" notranslate" href="/Grow-a-brick-v1-3-place?id=249214" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t6.rbxcdn.com/ad1a1153958d7b58da9d0635f758def1" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Grow-a-brick v1.3" class=" notranslate" /></a>
 							    
 						        </div>
 						        <div class="AssetDetails notranslate" style="clear:both;">
@@ -1278,7 +1281,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
 			<td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl00_AssetThumbnailHyperLink" class=" notranslate" title="The Last Egg" class=" notranslate" href="/The-Last-Egg-item?id=76692407" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t2.rbxcdn.com/963a5a43c76036fe02eb981e16181312" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="The Last Egg" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl00_AssetThumbnailHyperLink" class=" notranslate" title="The Last Egg" class=" notranslate" href="/The-Last-Egg-item?id=76692407" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t2.rbxcdn.com/963a5a43c76036fe02eb981e16181312" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="The Last Egg" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1295,7 +1298,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl01_AssetThumbnailHyperLink" class=" notranslate" title="Cowl" class=" notranslate" href="/Cowl-item?id=21754986" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t2.rbxcdn.com/7f98b65d6e59b64c9b7bc9261e9684b9" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Cowl" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl01_AssetThumbnailHyperLink" class=" notranslate" title="Cowl" class=" notranslate" href="/Cowl-item?id=21754986" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t2.rbxcdn.com/7f98b65d6e59b64c9b7bc9261e9684b9" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Cowl" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1314,7 +1317,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl02_AssetThumbnailHyperLink" class=" notranslate" title="Messenger Boy" class=" notranslate" href="/Messenger-Boy-item?id=53035233" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t7.rbxcdn.com/c83083f3c4d5f24f35c79428185edb37" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Messenger Boy" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl02_AssetThumbnailHyperLink" class=" notranslate" title="Messenger Boy" class=" notranslate" href="/Messenger-Boy-item?id=53035233" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t7.rbxcdn.com/c83083f3c4d5f24f35c79428185edb37" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Messenger Boy" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1333,7 +1336,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl03_AssetThumbnailHyperLink" class=" notranslate" title="ROBLOX Veteran&#39;s Medal" class=" notranslate" href="/ROBLOX-Veterans-Medal-item?id=42839214" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t1.rbxcdn.com/17a5c24fb789b7615917503c0185fab7" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="ROBLOX Veteran&#39;s Medal" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl03_AssetThumbnailHyperLink" class=" notranslate" title="ROBLOX Veteran&#39;s Medal" class=" notranslate" href="/ROBLOX-Veterans-Medal-item?id=42839214" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t1.rbxcdn.com/17a5c24fb789b7615917503c0185fab7" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="ROBLOX Veteran&#39;s Medal" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1350,7 +1353,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl04_AssetThumbnailHyperLink" class=" notranslate" title="Ghost of ROBLOX Past" class=" notranslate" href="/Ghost-of-ROBLOX-Past-item?id=42800983" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t6.rbxcdn.com/880c10399981a4ad9a45c5c283cef70b" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Ghost of ROBLOX Past" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl04_AssetThumbnailHyperLink" class=" notranslate" title="Ghost of ROBLOX Past" class=" notranslate" href="/Ghost-of-ROBLOX-Past-item?id=42800983" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t6.rbxcdn.com/880c10399981a4ad9a45c5c283cef70b" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Ghost of ROBLOX Past" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1367,7 +1370,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl05_AssetThumbnailHyperLink" class=" notranslate" title="Opened Forest Camo Gift of Veterans" class=" notranslate" href="/Opened-Forest-Camo-Gift-of-Veterans-item?id=42141207" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t2.rbxcdn.com/e5a10286628a0c93095d3ddf1317293d" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Opened Forest Camo Gift of Veterans" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl05_AssetThumbnailHyperLink" class=" notranslate" title="Opened Forest Camo Gift of Veterans" class=" notranslate" href="/Opened-Forest-Camo-Gift-of-Veterans-item?id=42141207" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t2.rbxcdn.com/e5a10286628a0c93095d3ddf1317293d" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Opened Forest Camo Gift of Veterans" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1386,7 +1389,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
 			<td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl06_AssetThumbnailHyperLink" class=" notranslate" title="Opened Retro ROBLOXian Gift of Yesteryore" class=" notranslate" href="/Opened-Retro-ROBLOXian-Gift-of-Yesteryore-item?id=41453949" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t7.rbxcdn.com/84196ff6d62f90d368367cbb13eacae2" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Opened Retro ROBLOXian Gift of Yesteryore" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl06_AssetThumbnailHyperLink" class=" notranslate" title="Opened Retro ROBLOXian Gift of Yesteryore" class=" notranslate" href="/Opened-Retro-ROBLOXian-Gift-of-Yesteryore-item?id=41453949" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t7.rbxcdn.com/84196ff6d62f90d368367cbb13eacae2" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Opened Retro ROBLOXian Gift of Yesteryore" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1403,7 +1406,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl07_AssetThumbnailHyperLink" class=" notranslate" title="Autumn Leaves" class=" notranslate" href="/Autumn-Leaves-item?id=35631125" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t1.rbxcdn.com/4816f9a0a9e68e513057c54bc688e5fc" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Autumn Leaves" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl07_AssetThumbnailHyperLink" class=" notranslate" title="Autumn Leaves" class=" notranslate" href="/Autumn-Leaves-item?id=35631125" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t1.rbxcdn.com/4816f9a0a9e68e513057c54bc688e5fc" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Autumn Leaves" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1420,7 +1423,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl08_AssetThumbnailHyperLink" class=" notranslate" title="Train Conductor" class=" notranslate" href="/Train-Conductor-item?id=12436561" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t0.rbxcdn.com/2ea722a6c82e1dabaf5578c2bf8e879e" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Train Conductor" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl08_AssetThumbnailHyperLink" class=" notranslate" title="Train Conductor" class=" notranslate" href="/Train-Conductor-item?id=12436561" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t0.rbxcdn.com/2ea722a6c82e1dabaf5578c2bf8e879e" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Train Conductor" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1437,7 +1440,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl09_AssetThumbnailHyperLink" class=" notranslate" title="Fire Ant" class=" notranslate" href="/Fire-Ant-item?id=23635380" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t4.rbxcdn.com/fefe4c52592afac99fc2334d5463bc4f" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Fire Ant" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl09_AssetThumbnailHyperLink" class=" notranslate" title="Fire Ant" class=" notranslate" href="/Fire-Ant-item?id=23635380" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t4.rbxcdn.com/fefe4c52592afac99fc2334d5463bc4f" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Fire Ant" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1454,7 +1457,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl10_AssetThumbnailHyperLink" class=" notranslate" title="Ancient Tribal Foot Soldier" class=" notranslate" href="/Ancient-Tribal-Foot-Soldier-item?id=34763413" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t6.rbxcdn.com/b4a1123b9efc54198c42f7803644888d" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Ancient Tribal Foot Soldier" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl10_AssetThumbnailHyperLink" class=" notranslate" title="Ancient Tribal Foot Soldier" class=" notranslate" href="/Ancient-Tribal-Foot-Soldier-item?id=34763413" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t6.rbxcdn.com/b4a1123b9efc54198c42f7803644888d" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Ancient Tribal Foot Soldier" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1473,7 +1476,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl11_AssetThumbnailHyperLink" class=" notranslate" title="Pikeman Helmet" class=" notranslate" href="/Pikeman-Helmet-item?id=11421585" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t5.rbxcdn.com/475b4dc6a4adc294d7ad6c7a89396f81" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Pikeman Helmet" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl11_AssetThumbnailHyperLink" class=" notranslate" title="Pikeman Helmet" class=" notranslate" href="/Pikeman-Helmet-item?id=11421585" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t5.rbxcdn.com/475b4dc6a4adc294d7ad6c7a89396f81" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Pikeman Helmet" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1492,7 +1495,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
 			<td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl12_AssetThumbnailHyperLink" class=" notranslate" title="Chainmail Helmet" class=" notranslate" href="/Chainmail-Helmet-item?id=17640922" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t2.rbxcdn.com/ca95211b6e54bfeb0686cb7dd64f1de0" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Chainmail Helmet" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl12_AssetThumbnailHyperLink" class=" notranslate" title="Chainmail Helmet" class=" notranslate" href="/Chainmail-Helmet-item?id=17640922" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t2.rbxcdn.com/ca95211b6e54bfeb0686cb7dd64f1de0" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Chainmail Helmet" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1509,7 +1512,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl13_AssetThumbnailHyperLink" class=" notranslate" title="Opened Gift of Birthday Fun" class=" notranslate" href="/Opened-Gift-of-Birthday-Fun-item?id=34115865" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t3.rbxcdn.com/6234ca962be66aaaafa6d83bde060664" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Opened Gift of Birthday Fun" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl13_AssetThumbnailHyperLink" class=" notranslate" title="Opened Gift of Birthday Fun" class=" notranslate" href="/Opened-Gift-of-Birthday-Fun-item?id=34115865" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t3.rbxcdn.com/6234ca962be66aaaafa6d83bde060664" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Opened Gift of Birthday Fun" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1526,7 +1529,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl14_AssetThumbnailHyperLink" class=" notranslate" title="Ninja Mask of Light" class=" notranslate" href="/Ninja-Mask-of-Light-item?id=5808672" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t3.rbxcdn.com/e9e18c77c7203dc9ad307737a57031f9" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Ninja Mask of Light" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl14_AssetThumbnailHyperLink" class=" notranslate" title="Ninja Mask of Light" class=" notranslate" href="/Ninja-Mask-of-Light-item?id=5808672" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t3.rbxcdn.com/e9e18c77c7203dc9ad307737a57031f9" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Ninja Mask of Light" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1545,7 +1548,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl15_AssetThumbnailHyperLink" class=" notranslate" title="Bandit" class=" notranslate" href="/Bandit-item?id=20642008" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t1.rbxcdn.com/ccc7953ecf1c30dc9a591eb8b50b61ab" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Bandit" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl15_AssetThumbnailHyperLink" class=" notranslate" title="Bandit" class=" notranslate" href="/Bandit-item?id=20642008" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t1.rbxcdn.com/ccc7953ecf1c30dc9a591eb8b50b61ab" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Bandit" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1564,7 +1567,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl16_AssetThumbnailHyperLink" class=" notranslate" title="Comedy" class=" notranslate" href="/Comedy-item?id=13702134" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t5.rbxcdn.com/57a364b75a55444e91ebc94cfabc6f73" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Comedy" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl16_AssetThumbnailHyperLink" class=" notranslate" title="Comedy" class=" notranslate" href="/Comedy-item?id=13702134" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t5.rbxcdn.com/57a364b75a55444e91ebc94cfabc6f73" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Comedy" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1583,7 +1586,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl17_AssetThumbnailHyperLink" class=" notranslate" title="Golden Egg Beaters" class=" notranslate" href="/Golden-Egg-Beaters-item?id=25090182" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t3.rbxcdn.com/7357363c92c9f22694ebf47a47fd4926" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Golden Egg Beaters" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl17_AssetThumbnailHyperLink" class=" notranslate" title="Golden Egg Beaters" class=" notranslate" href="/Golden-Egg-Beaters-item?id=25090182" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t3.rbxcdn.com/7357363c92c9f22694ebf47a47fd4926" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Golden Egg Beaters" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1622,7 +1625,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
 			<td>
             <div class="PortraitDiv" style="width: 140px;overflow: hidden;margin:auto;" visible="True" data-se="recommended-items-0">
                 <div class="AssetThumbnail">
-                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl00_AssetThumbnailHyperLink" class=" notranslate" title="Electro Hood" class=" notranslate" href="/Electro-Hood-item?id=151679909" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t0.rbxcdn.com/3408a044964ac768c9bba859816b49ec" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Electro Hood" class=" notranslate" /></a>
+                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl00_AssetThumbnailHyperLink" class=" notranslate" title="Electro Hood" class=" notranslate" href="/Electro-Hood-item?id=151679909" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t0.rbxcdn.com/3408a044964ac768c9bba859816b49ec" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Electro Hood" class=" notranslate" /></a>
                 </div>
                 <div class="AssetDetails">
                     <div class="AssetName noTranslate">
@@ -1636,7 +1639,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
         </td><td>
             <div class="PortraitDiv" style="width: 140px;overflow: hidden;margin:auto;" visible="True" data-se="recommended-items-1">
                 <div class="AssetThumbnail">
-                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl01_AssetThumbnailHyperLink" class=" notranslate" title="Extreme Sports Helmet: BASE Jump Black" class=" notranslate" href="/Extreme-Sports-Helmet-BASE-Jump-Black-item?id=9466840" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t5.rbxcdn.com/c2b5f7a6239c673e99ccd1bd7b8bcc7e" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Extreme Sports Helmet: BASE Jump Black" class=" notranslate" /></a>
+                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl01_AssetThumbnailHyperLink" class=" notranslate" title="Extreme Sports Helmet: BASE Jump Black" class=" notranslate" href="/Extreme-Sports-Helmet-BASE-Jump-Black-item?id=9466840" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t5.rbxcdn.com/c2b5f7a6239c673e99ccd1bd7b8bcc7e" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Extreme Sports Helmet: BASE Jump Black" class=" notranslate" /></a>
                 </div>
                 <div class="AssetDetails">
                     <div class="AssetName noTranslate">
@@ -1650,7 +1653,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
         </td><td>
             <div class="PortraitDiv" style="width: 140px;overflow: hidden;margin:auto;" visible="True" data-se="recommended-items-2">
                 <div class="AssetThumbnail">
-                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl02_AssetThumbnailHyperLink" class=" notranslate" title="Aussie Slouch" class=" notranslate" href="/Aussie-Slouch-item?id=10860590" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t5.rbxcdn.com/366091e5f6ae9e25779dc8bb5d13b62e" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Aussie Slouch" class=" notranslate" /></a>
+                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl02_AssetThumbnailHyperLink" class=" notranslate" title="Aussie Slouch" class=" notranslate" href="/Aussie-Slouch-item?id=10860590" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t5.rbxcdn.com/366091e5f6ae9e25779dc8bb5d13b62e" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Aussie Slouch" class=" notranslate" /></a>
                 </div>
                 <div class="AssetDetails">
                     <div class="AssetName noTranslate">
@@ -1664,7 +1667,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
         </td><td>
             <div class="PortraitDiv" style="width: 140px;overflow: hidden;margin:auto;" visible="True" data-se="recommended-items-3">
                 <div class="AssetThumbnail">
-                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl03_AssetThumbnailHyperLink" class=" notranslate" title="Opened Gift of Birthday Fun" class=" notranslate" href="/Opened-Gift-of-Birthday-Fun-item?id=34115865" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t3.rbxcdn.com/a1bd828ea1acf7bffe682d2d3d358134" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Opened Gift of Birthday Fun" class=" notranslate" /></a>
+                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl03_AssetThumbnailHyperLink" class=" notranslate" title="Opened Gift of Birthday Fun" class=" notranslate" href="/Opened-Gift-of-Birthday-Fun-item?id=34115865" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t3.rbxcdn.com/a1bd828ea1acf7bffe682d2d3d358134" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Opened Gift of Birthday Fun" class=" notranslate" /></a>
                 </div>
                 <div class="AssetDetails">
                     <div class="AssetName noTranslate">
@@ -1678,7 +1681,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
         </td><td>
             <div class="PortraitDiv" style="width: 140px;overflow: hidden;margin:auto;" visible="True" data-se="recommended-items-4">
                 <div class="AssetThumbnail">
-                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl04_AssetThumbnailHyperLink" class=" notranslate" title="Beautiful Hair for Beautiful People" class=" notranslate" href="/Beautiful-Hair-for-Beautiful-People-item?id=16630147" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t3.rbxcdn.com/53c09c7102cb2390fb88151fb49b76d9" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Beautiful Hair for Beautiful People" class=" notranslate" /></a>
+                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl04_AssetThumbnailHyperLink" class=" notranslate" title="Beautiful Hair for Beautiful People" class=" notranslate" href="/Beautiful-Hair-for-Beautiful-People-item?id=16630147" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t3.rbxcdn.com/53c09c7102cb2390fb88151fb49b76d9" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Beautiful Hair for Beautiful People" class=" notranslate" /></a>
                 </div>
                 <div class="AssetDetails">
                     <div class="AssetName noTranslate">
@@ -1694,7 +1697,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
 			<td>
             <div class="PortraitDiv" style="width: 140px;overflow: hidden;margin:auto;" visible="True" data-se="recommended-items-5">
                 <div class="AssetThumbnail">
-                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl05_AssetThumbnailHyperLink" class=" notranslate" title="LOL Day Cap" class=" notranslate" href="/LOL-Day-Cap-item?id=96678344" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t1.rbxcdn.com/c06f353c6ecf900c94813cfff5b11129" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="LOL Day Cap" class=" notranslate" /></a>
+                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl05_AssetThumbnailHyperLink" class=" notranslate" title="LOL Day Cap" class=" notranslate" href="/LOL-Day-Cap-item?id=96678344" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t1.rbxcdn.com/c06f353c6ecf900c94813cfff5b11129" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="LOL Day Cap" class=" notranslate" /></a>
                 </div>
                 <div class="AssetDetails">
                     <div class="AssetName noTranslate">
@@ -1708,7 +1711,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
         </td><td>
             <div class="PortraitDiv" style="width: 140px;overflow: hidden;margin:auto;" visible="True" data-se="recommended-items-6">
                 <div class="AssetThumbnail">
-                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl06_AssetThumbnailHyperLink" class=" notranslate" title="ROBLOX Visor 2011" class=" notranslate" href="/ROBLOX-Visor-2011-item?id=42900214" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t4.rbxcdn.com/7f556690677430023d5c48e6e74fea6d" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="ROBLOX Visor 2011" class=" notranslate" /></a>
+                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl06_AssetThumbnailHyperLink" class=" notranslate" title="ROBLOX Visor 2011" class=" notranslate" href="/ROBLOX-Visor-2011-item?id=42900214" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t4.rbxcdn.com/7f556690677430023d5c48e6e74fea6d" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="ROBLOX Visor 2011" class=" notranslate" /></a>
                 </div>
                 <div class="AssetDetails">
                     <div class="AssetName noTranslate">
@@ -1722,7 +1725,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
         </td><td>
             <div class="PortraitDiv" style="width: 140px;overflow: hidden;margin:auto;" visible="True" data-se="recommended-items-7">
                 <div class="AssetThumbnail">
-                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl07_AssetThumbnailHyperLink" class=" notranslate" title="ROBLOX Cadet" class=" notranslate" href="/ROBLOX-Cadet-item?id=113332797" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t5.rbxcdn.com/d827c93bf76ed36c4c98597f1c96a135" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="ROBLOX Cadet" class=" notranslate" /></a>
+                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl07_AssetThumbnailHyperLink" class=" notranslate" title="ROBLOX Cadet" class=" notranslate" href="/ROBLOX-Cadet-item?id=113332797" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t5.rbxcdn.com/d827c93bf76ed36c4c98597f1c96a135" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="ROBLOX Cadet" class=" notranslate" /></a>
                 </div>
                 <div class="AssetDetails">
                     <div class="AssetName noTranslate">
@@ -1736,7 +1739,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
         </td><td>
             <div class="PortraitDiv" style="width: 140px;overflow: hidden;margin:auto;" visible="True" data-se="recommended-items-8">
                 <div class="AssetThumbnail">
-                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl08_AssetThumbnailHyperLink" class=" notranslate" title="Firefighter Helmet" class=" notranslate" href="/Firefighter-Helmet-item?id=1081381" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t6.rbxcdn.com/73193b02c611b63d1b89614f6b6bc4a1" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Firefighter Helmet" class=" notranslate" /></a>
+                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl08_AssetThumbnailHyperLink" class=" notranslate" title="Firefighter Helmet" class=" notranslate" href="/Firefighter-Helmet-item?id=1081381" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t6.rbxcdn.com/73193b02c611b63d1b89614f6b6bc4a1" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Firefighter Helmet" class=" notranslate" /></a>
                 </div>
                 <div class="AssetDetails">
                     <div class="AssetName noTranslate">
@@ -1750,7 +1753,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
         </td><td>
             <div class="PortraitDiv" style="width: 140px;overflow: hidden;margin:auto;" visible="True" data-se="recommended-items-9">
                 <div class="AssetThumbnail">
-                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl09_AssetThumbnailHyperLink" class=" notranslate" title="Backwards &#39;R&#39; Cap" class=" notranslate" href="/Backwards-R-Cap-item?id=17903982" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="http://t2.rbxcdn.com/0ce41ae726e1037f385bddc5efffca26" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Backwards &#39;R&#39; Cap" class=" notranslate" /></a>
+                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl09_AssetThumbnailHyperLink" class=" notranslate" title="Backwards &#39;R&#39; Cap" class=" notranslate" href="/Backwards-R-Cap-item?id=17903982" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t2.rbxcdn.com/0ce41ae726e1037f385bddc5efffca26" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Backwards &#39;R&#39; Cap" class=" notranslate" /></a>
                 </div>
                 <div class="AssetDetails">
                     <div class="AssetName noTranslate">
@@ -1806,7 +1809,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
             </div>
             <div class="place-selector template" title="Place" style="display: none">
                 <div class="place-image" data-retry-url-template="/asset-thumbnail/json?height=100&amp;width=160&amp;format=jpeg">
-                    <img alt="^_^" class="item-image" src="http://images.rbxcdn.com/ec5c01d220bf1b73403fa51519267742.gif"/>
+                    <img alt="^_^" class="item-image" src="//images.rbxcdn.com/ec5c01d220bf1b73403fa51519267742.gif"/>
                 </div>
                 <div class="InfoContainer">
                     <div class="place-name"></div>
@@ -1840,19 +1843,19 @@ If you've visited this place, you're probably wondering "Is this place complete?
     <div class="FooterNav">
         <a href="/info/Privacy.aspx">Privacy Policy</a>
         &nbsp;|&nbsp; 
-        <a href="http://corp.roblox.com/advertise-on-roblox" class="roblox-interstitial">Advertise with Us</a>
+        <a href="//corp.roblox.com/advertise-on-roblox" class="roblox-interstitial">Advertise with Us</a>
         &nbsp;|&nbsp; 
-        <a href="http://corp.roblox.com/roblox-press" class="roblox-interstitial">Press</a>
+        <a href="//corp.roblox.com/roblox-press" class="roblox-interstitial">Press</a>
         &nbsp;|&nbsp; 
-        <a href="http://corp.roblox.com/contact-us" class="roblox-interstitial">Contact Us</a>
+        <a href="//corp.roblox.com/contact-us" class="roblox-interstitial">Contact Us</a>
         &nbsp;|&nbsp;
-        <a href="http://corp.roblox.com/" class="roblox-interstitial">About Us</a>
+        <a href="//corp.roblox.com/" class="roblox-interstitial">About Us</a>
         &nbsp;|&nbsp;
-        <a href="http://blog.roblox.com" class="roblox-interstitial">Blog</a>
+        <a href="//blog.roblox.com" class="roblox-interstitial">Blog</a>
         &nbsp;|&nbsp;
-        <a href="http://corp.roblox.com/jobs" class="roblox-interstitial">Jobs</a>
+        <a href="//corp.roblox.com/jobs" class="roblox-interstitial">Jobs</a>
         &nbsp;|&nbsp;
-        <a href="http://corp.roblox.com/parents" class="roblox-interstitial">Parents</a>
+        <a href="//corp.roblox.com/parents" class="roblox-interstitial">Parents</a>
             <span class="LanguageOptionElement">&nbsp;|&nbsp;</span>
             <span ref="footer-parents" class="LanguageOptionElement LanguageTrigger roblox-interstitial" drop-down-nav-button="LanguageTrigger">English&nbsp;<span class="FooterArrow">▼</span>
                 <div class="dropuplanguagecontainer" style="display:none;" data-drop-down-nav-container="LanguageTrigger">
@@ -1906,7 +1909,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
         </div>
         <div class="right">
             <p class="Legalese">
-    ROBLOX, "Online Building Toy", characters, logos, names, and all related indicia are trademarks of <a href="http://corp.roblox.com/" ref="footer-smallabout" class="roblox-interstitial">ROBLOX Corporation</a>, ©2014. Patents pending.
+    ROBLOX, "Online Building Toy", characters, logos, names, and all related indicia are trademarks of <a href="//corp.roblox.com/" ref="footer-smallabout" class="roblox-interstitial">ROBLOX Corporation</a>, ©2014. Patents pending.
     ROBLOX is not sponsored, authorized or endorsed by any producer of plastic building bricks, including The LEGO Group, MEGA Brands, and K'Nex, and no resemblance to the products of these companies is intended. Use of this site signifies your acceptance of the <a href="/info/terms-of-service" ref="footer-terms">Terms and Conditions</a>.
 </p>
         </div>
@@ -1922,7 +1925,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
     </div>
 
         
-        <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+        <script src="//www.google-analytics.com/urchin.js" type="text/javascript"></script>
         <script type="text/javascript">
             _uacct = "UA-486632-1";
             _udn = "roblox.com";
@@ -1938,7 +1941,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
 
 <script type="text/javascript">
 //<![CDATA[
-if(typeof __utmSetVar !== 'undefined'){ __utmSetVar(''); }if(typeof __utmSetVar !== 'undefined'){ __utmSetVar('Roblox_User_Top_728x90'); }Roblox.Controls.Image.ErrorUrl = "http://www.roblox.com/Analytics/BadHtmlImage.ashx";$(function () { $('.VisitButtonPlay').click(function () {play_placeId=$(this).attr('placeid');Roblox.CharacterSelect.placeid = play_placeId;Roblox.CharacterSelect.show();});$('.VisitButtonPersonalServer').click(function () {play_placeId=$(this).attr('placeid');Roblox.CharacterSelect.placeid = play_placeId;Roblox.CharacterSelect.show();});$('.VisitButtonBuild').click(function () {RobloxLaunch._GoogleAnalyticsCallback = function() { var isInsideRobloxIDE = 'website'; if (Roblox && Roblox.Client && Roblox.Client.isIDE && Roblox.Client.isIDE()) { isInsideRobloxIDE = 'Studio'; };GoogleAnalyticsEvents.FireEvent(['Build Location', 'Guest', isInsideRobloxIDE]);GoogleAnalyticsEvents.FireEvent(['Build', 'Guest', '']); }; play_placeId = (typeof $(this).attr('placeid') === 'undefined') ? play_placeId : $(this).attr('placeid'); Roblox.Client.WaitForRoblox(function() { window.location = '/Login/Default.aspx?ReturnUrl=http%3a%2f%2fwww.roblox.com%2fUser.aspx%3fID%3d1025053' }); return false;});$('.VisitButtonEdit').click(function () {RobloxLaunch._GoogleAnalyticsCallback = function() { var isInsideRobloxIDE = 'website'; if (Roblox && Roblox.Client && Roblox.Client.isIDE && Roblox.Client.isIDE()) { isInsideRobloxIDE = 'Studio'; };GoogleAnalyticsEvents.FireEvent(['Edit Location', 'Guest', isInsideRobloxIDE]);GoogleAnalyticsEvents.FireEvent(['Edit', 'Guest', '']); }; play_placeId = (typeof $(this).attr('placeid') === 'undefined') ? play_placeId : $(this).attr('placeid'); Roblox.Client.WaitForRoblox(function() { RobloxLaunch.StartGame('http://www.roblox.com//Game/edit.ashx?PlaceID='+play_placeId+'&upload=', 'edit.ashx', 'https://www.roblox.com//Login/Negotiate.ashx', 'FETCH', true) }); return false;});Roblox.CharacterSelect.robloxLaunchFunction = function (genderTypeID) { if (genderTypeID == 3) { var isInsideRobloxIDE = 'website'; if (Roblox && Roblox.Client && Roblox.Client.isIDE && Roblox.Client.isIDE()) { isInsideRobloxIDE = 'Studio'; };GoogleAnalyticsEvents.FireEvent(['Play Location', 'Guest', isInsideRobloxIDE]);GoogleAnalyticsEvents.FireEvent(['Play', 'Guest', '', 0]);$(function(){ RobloxEventManager.triggerEvent('rbx_evt_play_guest', {age:'Unknown',gender:'Female'});});} else { var isInsideRobloxIDE = 'website'; if (Roblox && Roblox.Client && Roblox.Client.isIDE && Roblox.Client.isIDE()) { isInsideRobloxIDE = 'Studio'; };GoogleAnalyticsEvents.FireEvent(['Play Location', 'Guest', isInsideRobloxIDE]);GoogleAnalyticsEvents.FireEvent(['Play', 'Guest', '', 1]);$(function(){ RobloxEventManager.triggerEvent('rbx_evt_play_guest', {age:'Unknown',gender:'Male'});});}play_placeId = (typeof $(this).attr('placeid') === 'undefined') ? play_placeId : $(this).attr('placeid'); Roblox.Client.WaitForRoblox(function() { RobloxLaunch.RequestGame('PlaceLauncherStatusPanel', play_placeId, genderTypeID); }); return false;};});;(function() {var fn = function() {Roblox.Thumbs.AvatarImage.updateUrl('ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl02_hlAvatar');Sys.Application.remove_load(fn);};Sys.Application.add_load(fn);})();if(typeof __utmSetVar !== 'undefined'){ __utmSetVar('Roblox_User_Middle_300x250'); }Sys.Application.add_init(function() {
+if(typeof __utmSetVar !== 'undefined'){ __utmSetVar(''); }if(typeof __utmSetVar !== 'undefined'){ __utmSetVar('Roblox_User_Top_728x90'); }Roblox.Controls.Image.ErrorUrl = "//www.roblox.com/Analytics/BadHtmlImage.ashx";$(function () { $('.VisitButtonPlay').click(function () {play_placeId=$(this).attr('placeid');Roblox.CharacterSelect.placeid = play_placeId;Roblox.CharacterSelect.show();});$('.VisitButtonPersonalServer').click(function () {play_placeId=$(this).attr('placeid');Roblox.CharacterSelect.placeid = play_placeId;Roblox.CharacterSelect.show();});$('.VisitButtonBuild').click(function () {RobloxLaunch._GoogleAnalyticsCallback = function() { var isInsideRobloxIDE = 'website'; if (Roblox && Roblox.Client && Roblox.Client.isIDE && Roblox.Client.isIDE()) { isInsideRobloxIDE = 'Studio'; };GoogleAnalyticsEvents.FireEvent(['Build Location', 'Guest', isInsideRobloxIDE]);GoogleAnalyticsEvents.FireEvent(['Build', 'Guest', '']); }; play_placeId = (typeof $(this).attr('placeid') === 'undefined') ? play_placeId : $(this).attr('placeid'); Roblox.Client.WaitForRoblox(function() { window.location = '/Login/Default.aspx?ReturnUrl=http%3a%2f%2fwww.roblox.com%2fUser.aspx%3fID%3d1025053' }); return false;});$('.VisitButtonEdit').click(function () {RobloxLaunch._GoogleAnalyticsCallback = function() { var isInsideRobloxIDE = 'website'; if (Roblox && Roblox.Client && Roblox.Client.isIDE && Roblox.Client.isIDE()) { isInsideRobloxIDE = 'Studio'; };GoogleAnalyticsEvents.FireEvent(['Edit Location', 'Guest', isInsideRobloxIDE]);GoogleAnalyticsEvents.FireEvent(['Edit', 'Guest', '']); }; play_placeId = (typeof $(this).attr('placeid') === 'undefined') ? play_placeId : $(this).attr('placeid'); Roblox.Client.WaitForRoblox(function() { RobloxLaunch.StartGame('//www.roblox.com//Game/edit.ashx?PlaceID='+play_placeId+'&upload=', 'edit.ashx', 'https://www.roblox.com//Login/Negotiate.ashx', 'FETCH', true) }); return false;});Roblox.CharacterSelect.robloxLaunchFunction = function (genderTypeID) { if (genderTypeID == 3) { var isInsideRobloxIDE = 'website'; if (Roblox && Roblox.Client && Roblox.Client.isIDE && Roblox.Client.isIDE()) { isInsideRobloxIDE = 'Studio'; };GoogleAnalyticsEvents.FireEvent(['Play Location', 'Guest', isInsideRobloxIDE]);GoogleAnalyticsEvents.FireEvent(['Play', 'Guest', '', 0]);$(function(){ RobloxEventManager.triggerEvent('rbx_evt_play_guest', {age:'Unknown',gender:'Female'});});} else { var isInsideRobloxIDE = 'website'; if (Roblox && Roblox.Client && Roblox.Client.isIDE && Roblox.Client.isIDE()) { isInsideRobloxIDE = 'Studio'; };GoogleAnalyticsEvents.FireEvent(['Play Location', 'Guest', isInsideRobloxIDE]);GoogleAnalyticsEvents.FireEvent(['Play', 'Guest', '', 1]);$(function(){ RobloxEventManager.triggerEvent('rbx_evt_play_guest', {age:'Unknown',gender:'Male'});});}play_placeId = (typeof $(this).attr('placeid') === 'undefined') ? play_placeId : $(this).attr('placeid'); Roblox.Client.WaitForRoblox(function() { RobloxLaunch.RequestGame('PlaceLauncherStatusPanel', play_placeId, genderTypeID); }); return false;};});;(function() {var fn = function() {Roblox.Thumbs.AvatarImage.updateUrl('ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl02_hlAvatar');Sys.Application.remove_load(fn);};Sys.Application.add_load(fn);})();if(typeof __utmSetVar !== 'undefined'){ __utmSetVar('Roblox_User_Middle_300x250'); }Sys.Application.add_init(function() {
     $create(Roblox.Thumbs.AvatarImage, {"fileExtension":"Png","pollTime":"6000","spinnerUrl":"/Thumbs/ProgressIndicator.gif","thumbnailFormatID":41,"userID":1095527}, null, null, $get("ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl02_hlAvatar"));
 });
 //]]>
@@ -1961,7 +1964,7 @@ if(typeof __utmSetVar !== 'undefined'){ __utmSetVar(''); }if(typeof __utmSetVar 
 <iframe id="downloadInstallerIFrame" style="visibility:hidden;height:0;width:1px;position:absolute"></iframe>
 
 
-<script type='text/javascript' src='http://js.rbxcdn.com/d387e54149ead170a1a8d204d0e7f1ed.js'></script>
+<script type='text/javascript' src='//js.rbxcdn.com/d387e54149ead170a1a8d204d0e7f1ed.js'></script>
 
 <script type="text/javascript">
     Roblox.Client._skip = null;
@@ -1978,7 +1981,7 @@ if(typeof __utmSetVar !== 'undefined'){ __utmSetVar(''); }if(typeof __utmSetVar 
 <div id="PlaceLauncherStatusPanel" style="display:none;width:300px">
     <div class="modalPopup blueAndWhite PlaceLauncherModal" style="min-height: 160px">
         <div id="Spinner" class="Spinner" style="margin:0 1em 1em 0; padding:20px 0;">
-            <img src="http://images.rbxcdn.com/e998fb4c03e8c2e30792f2f3436e9416.gif" height="32" width="32" alt="Progress" />
+            <img src="//images.rbxcdn.com/e998fb4c03e8c2e30792f2f3436e9416.gif" height="32" width="32" alt="Progress" />
         </div>
         <div id="status" style="min-height:40px;text-align:center;margin:5px 20px">
             <div id="Starting" class="PlaceLauncherStatus MadStatusStarting" style="display:block">
@@ -1995,7 +1998,7 @@ if(typeof __utmSetVar !== 'undefined'){ __utmSetVar(''); }if(typeof __utmSetVar 
 
 
 
-<script type='text/javascript' src='http://js.rbxcdn.com/507606ba77acf2ff29dd3ec7cb668f06.js'></script>
+<script type='text/javascript' src='//js.rbxcdn.com/507606ba77acf2ff29dd3ec7cb668f06.js'></script>
 
     <div id="videoPrerollPanel" style="display:none">
         <div id="videoPrerollTitleDiv">
