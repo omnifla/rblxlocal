@@ -16,6 +16,7 @@ An Open Source 2014 Roblox Revival using a ported PHP version of ROBLOX's backen
 
 - [Waylon](https://github.com/WayloFunk)
 - [floof](https://github.com/verify-stack)
+- [omnifla](https://github.com/omnifla)
 
 ## Deployment
 

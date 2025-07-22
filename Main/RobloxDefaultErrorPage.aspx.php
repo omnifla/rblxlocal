@@ -9,12 +9,13 @@ use Roblox\Web\SiteFooter;
 
 $code = $_GET['code'] ?? null;
 if (!in_array($code, ['404', '403', '500'])) {
-    header("Location: /RobloxDefaultErrorPage.aspx?code=404");
-    exit();
+  header("Location: /RobloxDefaultErrorPage.aspx?code=404");
+  exit();
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -64,6 +65,7 @@ if (!in_array($code, ['404', '403', '500'])) {
     });
   </script>
 </head>
+
 <body>
   <div>
     <?= SiteHeader::render() ?>
@@ -121,4 +123,5 @@ HTML;
     <?= SiteFooter::render() ?>
   </div>
 </body>
+
 </html>

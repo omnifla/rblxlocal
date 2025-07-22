@@ -5,9 +5,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use Roblox\Authentication as Auth;
 header("Content-Type: application/json");
 $username = $_GET["username"];
-try{
+try {
    Auth::ValidateUsername($username);
-}catch(\Exception $e){
+} catch (\Exception $e) {
    exit('{"success": false}');
 }
 exit('{"success": true}');

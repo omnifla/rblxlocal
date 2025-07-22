@@ -15,14 +15,14 @@ REFERENCE DATA:
 
 */
 $check = $filter->filter($username);
-if($check->isFiltered()) {
+if ($check->isFiltered()) {
     exit('{"data": 2}');
 }
 
 try {
     Auth::ValidateUsername($username);
 } catch (\InvalidArgumentException $e) {
-   exit('{"data": 1}');
+    exit('{"data": 1}');
 }
 exit('{"data": 0}');
 ?>

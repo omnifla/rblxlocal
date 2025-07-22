@@ -1902,8 +1902,8 @@ If you've visited this place, you're probably wondering "Is this place complete?
     <div class="legal">
         <div class="left">
             <div id="a15b1695-1a5a-49a9-94f0-9cd25ae6c3b2">
-    <a href="//privacy.truste.com/privacy-seal/Roblox-Corporation/validation?rid=2428aa2a-f278-4b6d-9095-98c4a2954215" title="TRUSTe Children privacy certification" target="_blank">
-        <img style="border: none" src="//privacy-policy.truste.com/privacy-seal/Roblox-Corporation/seal?rid=2428aa2a-f278-4b6d-9095-98c4a2954215" width="133" height="45" alt="TRUSTe Children privacy certification"/>
+    <a href="https://privacy.truste.com/privacy-seal/Roblox-Corporation/validation?rid=2428aa2a-f278-4b6d-9095-98c4a2954215" title="TRUSTe Children privacy certification" target="_blank">
+        <img style="border: none" src="https://privacy-policy.truste.com/privacy-seal/Roblox-Corporation/seal?rid=2428aa2a-f278-4b6d-9095-98c4a2954215" width="133" height="45" alt="TRUSTe Children privacy certification"/>
     </a>
 </div>
         </div>
@@ -1981,7 +1981,7 @@ if(typeof __utmSetVar !== 'undefined'){ __utmSetVar(''); }if(typeof __utmSetVar 
 <div id="PlaceLauncherStatusPanel" style="display:none;width:300px">
     <div class="modalPopup blueAndWhite PlaceLauncherModal" style="min-height: 160px">
         <div id="Spinner" class="Spinner" style="margin:0 1em 1em 0; padding:20px 0;">
-            <img src="//images.rbxcdn.com/e998fb4c03e8c2e30792f2f3436e9416.gif" height="32" width="32" alt="Progress" />
+            <img src="https://images.rbxcdn.com/e998fb4c03e8c2e30792f2f3436e9416.gif" height="32" width="32" alt="Progress" />
         </div>
         <div id="status" style="min-height:40px;text-align:center;margin:5px 20px">
             <div id="Starting" class="PlaceLauncherStatus MadStatusStarting" style="display:block">
@@ -1998,7 +1998,7 @@ if(typeof __utmSetVar !== 'undefined'){ __utmSetVar(''); }if(typeof __utmSetVar 
 
 
 
-<script type='text/javascript' src='//js.rbxcdn.com/507606ba77acf2ff29dd3ec7cb668f06.js'></script>
+<script type='text/javascript' src='https://js.rbxcdn.com/507606ba77acf2ff29dd3ec7cb668f06.js'></script>
 
     <div id="videoPrerollPanel" style="display:none">
         <div id="videoPrerollTitleDiv">
