@@ -1,6 +1,5 @@
 <?php
 // written by meditext & SkylerClock
-// alr brb
 namespace Roblox\Web;
 use Roblox\Authentication as Auth;
 
@@ -289,8 +288,8 @@ class SiteFooter{
         </div>
         <div class="right">
             <p class="Legalese">
-            ROBLOX, "Online Building Toy", characters, logos, names, and all related indicia are trademarks of <a href="http://corp.' . host . '/" ref="footer-smallabout" class="roblox-interstitial">ROBLOX Corporation</a>, ©2014. Patents pending.
-           ROBLOX is not sponsored, authorized or endorsed by any producer of plastic building bricks, including The LEGO Group, MEGA Brands, and K'Nex, and no resemblance to the products of these companies is intended. Use of this site signifies your acceptance of the <a href="/info/terms-of-service" ref="footer-terms">Terms and Conditions</a>.
+            RBLXLocal, "Online Building Toy", characters, logos, names, and all related indicia are trademarks of <a href="http://corp.roblox.com/" ref="footer-smallabout" class="roblox-interstitial">ROBLOX Corporation</a>, ©2025. Patents pending.
+           RBLXLocal is not sponsored, authorized or endorsed by any producer of plastic building bricks, including The LEGO Group, MEGA Brands, and K'Nex, even the Roblox Platform. Use of this site signifies your acceptance of the <a href="/info/terms-of-service" ref="footer-terms">Terms and Conditions</a>.
         </p>
         </div>
         <div class="clear"></div>
