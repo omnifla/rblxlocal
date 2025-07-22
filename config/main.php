@@ -1,5 +1,6 @@
 <?php
-// written by meditext
+// yeah im NOT adding 
+// written by meditext 
 // database connection
 $host = 'localhost';
 $dbname = 'roblox';
@@ -142,6 +143,7 @@ $properties = [
   "TBCUserGroupCreateLimit" => 20,
   "UserGroupCreateLimit" => 5,
   "DatabaseMaxUsernameLength" => 64, // Roblox's max username length is 20, but the database allows 64.
+  "SiteMaintenaceMode" => false,
 ];
 // load composer vendor autoload
 require_once $_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php';
