@@ -22,13 +22,13 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 		    _gaq.push(['_setCampSourceKey', 'rbx_source']);
 		    _gaq.push(['_setCampMediumKey', 'rbx_medium']);
 		    _gaq.push(['_setCampContentKey', 'rbx_campaign']);
-		        _gaq.push(['_setDomainName', 'roblox.com']);
+		        _gaq.push(['_setDomainName', '<?= $site_properties['hostname'] ?>']);
 		_gaq.push(['b._setAccount', 'UA-486632-1']);
 		_gaq.push(['b._setCampSourceKey', 'rbx_source']);
 		_gaq.push(['b._setCampMediumKey', 'rbx_medium']);
 		_gaq.push(['b._setCampContentKey', 'rbx_campaign']);
 
-		_gaq.push(['b._setDomainName', 'roblox.com']);
+		_gaq.push(['b._setDomainName', '<?= $site_properties['hostname'] ?>']);
         
             _gaq.push(['b._setCustomVar', 1, 'Visitor', 'Anonymous', 2]);
             _gaq.push(['b._trackPageview']);    
@@ -37,7 +37,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
         
 
 		_gaq.push(['c._setAccount', 'UA-26810151-2']);
-		_gaq.push(['c._setDomainName', 'roblox.com']);
+		_gaq.push(['c._setDomainName', '<?= $site_properties['hostname'] ?>']);
 
 		(function() {
 			var ga = document.createElement('script');
