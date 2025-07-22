@@ -1,12 +1,6 @@
-
-
 # RBLX.local
 
-An Open Source 2014 Roblox Revival 
-
-## Notice
-
-
+An Open Source 2014 Roblox Revival using a ported PHP version of ROBLOX's backend 
 
 ## Authors
 
