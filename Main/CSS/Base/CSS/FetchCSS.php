@@ -55,7 +55,7 @@ if (isset($css_bundle_hashes[$path])) {
         }
         if (file_exists($realPath) && is_readable($realPath)) {
             $content = file_get_contents($realPath);
-            $cssContents .= "/* ".$cssPath . " */\n". $content . "\n";
+            $cssContents .= "/* ".$cssPath . " */\n". trim($content, "\xEF\xBB\xBF") . "\n";
             $commentPath = extractCssPath($content);
             if ($commentPath) {
                 $cssFiles[] = trim($commentPath);
