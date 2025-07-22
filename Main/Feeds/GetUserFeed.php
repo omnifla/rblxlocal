@@ -20,7 +20,7 @@ foreach ($feeds as $feed) {
     $username = htmlspecialchars($user['username']);
 $html = <<<HTML
     	        <div class="divider-top feed-container"><div class="feed-image-container notranslate">
-                <a href="http://{$site_properties['hostname']}/user.aspx?id={$user['id']}"><span class="feed-user-avatar"><img alt="{$username}" class="feed-user-avatar-image" src="/Images/Placeholder1024x1024.png"></span>
+                <a href="http://{$site_properties['hostname']}/user.aspx?id={$user['id']}"><span class="feed-user-avatar"><img alt="{$username}" class="feed-user-avatar-image" src="/Images/Placeholder1024x1024.png" width=50 height=50></span>
                     </a></div><div class="feed-text-container text"><span class="notranslate"><a href="http://{$site_properties['hostname']}/User.aspx?ID={$user['id']}">{$username}</a><br><div class="Feedtext">"{$feed_content}"</div></span><span style="display: block; padding-top: 5px; color: #AAA; font-size: 11px;">{$feed_date}</span> </div><div class="feed-report-abuse"><a href="http://{$site_properties['hostname']}/AbuseReport/Feed.aspx?ID=64045715&RedirectUrl=/home"><img src="//images.rbxcdn.com/1ea8de3b0f71a67b032b67ddc1770c78.png" alt="Report abuse" id="reportAbuseButton"> </a></div><div class="clear"></div></div>
     HTML;
     echo $html;

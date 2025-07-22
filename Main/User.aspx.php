@@ -13,8 +13,8 @@ if(!$user){
     http_response_code(404);
     exit;
 }
-//$user['username'] = htmlspecialchars($user['username']);
-// $user['description'] = htmlspecialchars($user['description']);
+$user['username'] = htmlspecialchars($user['username']);
+$user['description'] = htmlspecialchars($user['description'] ?? $user['username']." has no description");
 ?>
 
 
@@ -22,12 +22,12 @@ if(!$user){
 <html xmlns="//www.w3.org/1999/xhtml" xml:lang="en" xmlns:fb="//www.facebook.com/2008/fbml">
 <!-- MachineID: WEB37 -->
 <head id="ctl00_Head1"><meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true" /><title>
-	<?= $user['username'] ." - " .$site_properties['title'] ?>
+	<?= $user['username'] ." - " .$site_properties['Title'] ?>
 </title>
 <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=main___dac4a444950639c02cc831a484c826f5_m.css' />
 
 <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=page___1b22aeedd7f4e73ab0700a149f589336_m.css' />
-<link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Language" content="en-us" /><meta name="author" content="ROBLOX Corporation" /><meta id="ctl00_metadescription" name="description" content="View stamina&#39;s profile on ROBLOX.  ROBLOX is the place for free games online, where people like stamina imagine, build, and share their creations with their friends in a kid-safe environment.  There are millions of free games on ROBLOX.  10 of them are stamina&#39;s pics on ROBLOX for best free games.  stamina is the creator of 8 free games.  Visit ROBLOX now to play stamina&#39;s free games and discover thousands of others!" /><meta id="ctl00_metakeywords" name="keywords" content="free games, online games, building games, virtual worlds, free mmo, gaming cloud, physics engine" />	<script type="text/javascript">
+<link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Language" content="en-us" /><meta name="author" content="ROBLOX Corporation" /><meta id="ctl00_metadescription" name="description" content="View <?= $user['username'] ?>&#39;s profile on ROBLOX.  ROBLOX is the place for free games online, where people like <?= $user['username'] ?> imagine, build, and share their creations with their friends in a kid-safe environment.  There are millions of free games on ROBLOX.  10 of them are <?= $user['username'] ?>&#39;s pics on ROBLOX for best free games.  <?= $user['username'] ?> is the creator of 8 free games.  Visit ROBLOX now to play <?= $user['username'] ?>&#39;s free games and discover thousands of others!" /><meta id="ctl00_metakeywords" name="keywords" content="free games, online games, building games, virtual worlds, free mmo, gaming cloud, physics engine" />	<script type="text/javascript">
 
         var _gaq = _gaq || [];
 
@@ -243,7 +243,7 @@ $(function(){
     <div>
         
 <div style="width:900px;height:30px;clear:both; display:none;">
-    <span id="ctl00_cphRoblox_rbxHeaderPane_nameRegion" style="font-size:20px; font-weight:bold;">stamina</span>
+    <span id="ctl00_cphRoblox_rbxHeaderPane_nameRegion" style="font-size:20px; font-weight:bold;"><?= $user['username'] ?></span>
 </div>
 
 
@@ -255,7 +255,7 @@ $(function(){
             
 
 <h2 class="title">
-    <span id="ctl00_cphRoblox_rbxUserPane_lUserRobloxURL">stamina's Profile</span></h2>
+    <span id="ctl00_cphRoblox_rbxUserPane_lUserRobloxURL"><?= $user['username'] ?>'s Profile</span></h2>
 <div class="divider-bottom" style="position: relative;z-index:3;padding-bottom: 20px">
     <div style="width: 100%">
         <div id="ctl00_cphRoblox_rbxUserPane_onlineStatusRow">
@@ -271,7 +271,7 @@ $(function(){
                     <div style="margin-bottom: 10px;">
                         
                     </div>
-                    <a id="ctl00_cphRoblox_rbxUserPane_AvatarImage" disabled="disabled" class=" notranslate" title="stamina" class=" notranslate" onclick="return false" style="display:inline-block;height:352px;width:352px;"><img src="//t4.rbxcdn.com/e67152f976636dd89429613befbe7f45" height="352" width="352" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="stamina" class=" notranslate" /></a>
+                    <a id="ctl00_cphRoblox_rbxUserPane_AvatarImage" disabled="disabled" class=" notranslate" title="<?= $user['username'] ?>" class=" notranslate" onclick="return false" style="display:inline-block;height:352px;width:352px;"><img src="//t4.rbxcdn.com/e67152f976636dd89429613befbe7f45" height="352" width="352" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="<?= $user['username'] ?>" class=" notranslate" /></a>
                     <br />
                     <div class="PointsContainer">
                         
@@ -282,7 +282,7 @@ $(function(){
                     
 
 <div class="UserBlurb" style="margin-top: 10px; overflow-y: auto; max-height: 450px; ">
-    Turn good ideas into great ideas.
+    <?= $user['description'] ?>
 </div>
 <div id="ProfileButtons" style="margin:10px auto;">
     
@@ -596,7 +596,7 @@ $(function(){
 <div class="divider-bottom" style="clear:both; padding-bottom: 20px;">
     <div id="ctl00_cphRoblox_rbxUserGroupsPane_pNoResults">
 	
-		<p class="NoResults"><span id="ctl00_cphRoblox_rbxUserGroupsPane_lNoResults">stamina is not in any groups.</span></p>
+		<p class="NoResults"><span id="ctl00_cphRoblox_rbxUserGroupsPane_lNoResults"><?= $user['username'] ?> is not in any groups.</span></p>
 	
 </div>
     <div id="ctl00_cphRoblox_rbxUserGroupsPane_ctl00">
@@ -654,7 +654,7 @@ $(function(){
 <div style="padding-bottom: 20px">
     <div>
         <h2 class="title" style="display:block;float: left;">
-            <span class="notranslate">stamina</span>'s Sets
+            <span class="notranslate"><?= $user['username'] ?></span>'s Sets
         </h2>
         <a data-js-my-button href class="btn-small btn-neutral" id="ToggleBetweenOwnedSubscribedSets" style="float: right; margin-right: 20px; margin-top: 25px" onclick="Roblox.SetsPaneObject.toggleBetweenSetsOwnedSubscribed();return false;" >View Subscribed<span class="btn-text" id="SetsToggleSpan">View Subscribed</span></a>
         <div class="clear"></div>
@@ -952,7 +952,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
                 
 
 <div style="margin: 12px 0 20px; overflow:visible">
-    <h2 style="float: left">stamina's Friends</h2>
+    <h2 style="float: left"><?= $user['username'] ?>'s Friends</h2>
     
     <a data-js-my-button style="float: right" href="Friends.aspx?UserID=1025053" class="btn-small btn-neutral" id="HeaderButton">See All 97<span class="btn-text">See All 97</span></a>
     
@@ -1079,7 +1079,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
 						        </div>
 						        <div class="AssetDetails notranslate" style="clear:both;">
 							        <div class="AssetName"><a id="ctl00_cphRoblox_rbxFavoritesPane_FavoritesDataList_ctl02_AssetNameHyperLink" href="/Create-Stuff-Including-Weapons-place?id=34459309">Create Stuff, Including Weapons</a></div>
-							        <div class="AssetCreator"><span class="Label">Creator:</span> <span class="Detail"><a id="ctl00_cphRoblox_rbxFavoritesPane_FavoritesDataList_ctl02_AssetCreatorHyperLink" href="User.aspx?ID=1025053">stamina</a></span></div>
+							        <div class="AssetCreator"><span class="Label">Creator:</span> <span class="Detail"><a id="ctl00_cphRoblox_rbxFavoritesPane_FavoritesDataList_ctl02_AssetCreatorHyperLink" href="User.aspx?ID=1025053"><?= $user['username'] ?></a></span></div>
 						            
 						        </div>
 						    </div>
