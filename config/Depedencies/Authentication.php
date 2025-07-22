@@ -71,7 +71,7 @@ class Authentication {
         }
         return true;
     }
-    public static function Register(string $username, string $password, int $gender, ?string $email = null, ?string $birthdate = null) {
+    public static function Register(string $username, string $password, ?int $gender = 1, ?string $email = "", ?string $birthdate = "1970-01-01") {
         global $conn;
         $filter = new BasicTextFilter();
         $jwt_secret = 'EIJ3ITGJANGHIANSGOIJ';
