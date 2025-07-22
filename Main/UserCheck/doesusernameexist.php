@@ -1,16 +1,14 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/config/main.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/config/miscfunctions.php';
+// rewritten by medtext
+// why the hell did i put AW code here before :sob:
+include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
+use Roblox\Authentication as Auth;
 header("Content-Type: application/json");
 $username = $_GET["username"];
-// Securely prepare the SQL query
-$FindUser = $pdo->prepare('SELECT * FROM users WHERE Username = :username');
-$FindUser->execute(['username' => htmlspecialchars($username)]);
-$row = $FindUser->fetch(PDO::FETCH_ASSOC);
-
-// Check if the row was retrieved
-if ($row) {
-   exit('{"success": true}');
+try{
+   Auth::ValidateUsername($username);
+}catch(\Exception $e){
+   exit('{"success": false}');
 }
-exit('{"success": false}');
+exit('{"success": true}');
 ?>

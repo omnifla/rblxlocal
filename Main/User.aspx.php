@@ -625,7 +625,7 @@ $(function(){
         <acronym title="The number of this user's friends.">Friends</acronym>:
         </td>
         <td class="statsValue">
-        <span id="ctl00_cphRoblox_rbxUserStatisticsPane_lFriendsStatistics">97</span>
+        <span id="ctl00_cphRoblox_rbxUserStatisticsPane_lFriendsStatistics">0</span>
         </td>
     </tr>
     
@@ -635,16 +635,16 @@ $(function(){
     </tr>
     <tr>
         <td class="statsLabel"><acronym title="The number of times this user's place has been visited.">Place Visits</acronym>:</td>
-        <td class="statsValue"><span id="ctl00_cphRoblox_rbxUserStatisticsPane_lPlaceVisitsStatistics" class="notranslate">589</span></td>
+        <td class="statsValue"><span id="ctl00_cphRoblox_rbxUserStatisticsPane_lPlaceVisitsStatistics" class="notranslate">0</span></td>
     </tr>
     <tr>
         <td class="statsLabel"><acronym title="The number of times this user's character has destroyed another user's character in-game.">Knockouts</acronym>:</td>
-        <td class="statsValue"><span id="ctl00_cphRoblox_rbxUserStatisticsPane_lKillsStatistics" class="notranslate">2,593</span></td>
+        <td class="statsValue"><span id="ctl00_cphRoblox_rbxUserStatisticsPane_lKillsStatistics" class="notranslate"><?= number_format($user['knockouts']) ?></span></td>
     </tr>
     
      <tr>
         <td class="statsLabel"><acronym title="The all-time highest voting accuracy this user has achieved when voting in contests.">Highest Ever Voting Accuracy</acronym>:</td>
-        <td class="statsValue"><span id="ctl00_cphRoblox_rbxUserStatisticsPane_lHighestEverVotingAccuracyStatistics">74</span>%</td>
+        <td class="statsValue"><span id="ctl00_cphRoblox_rbxUserStatisticsPane_lHighestEverVotingAccuracyStatistics">100</span>%</td>
     </tr>
      
 </table>    
