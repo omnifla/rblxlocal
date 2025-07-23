@@ -2,11 +2,15 @@
 // yeah im NOT adding 
 // written by meditext 
 // database connection
-$host = 'localhost';
-$dbname = 'roblox';
-$user = 'postgres';
-$password = 'ROOTPSWRPRJ-AFW1241'; // TODO: make it environment variable
-$port = 5432;
+use Dotenv\Dotenv;
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+// made this use an environment variable instead of just storing shit on main.php already
+$host = $_ENV['DB_HOST'];
+$dbname = $_ENV['DB_NAME'];
+$user = $_ENV['DB_USER'];
+$password = $_ENV['DB_PASS'];
+$port = $_ENV['DB_PORT'];
 try {
     $conn = new PDO("pgsql:host=$host;port=$port;dbname=$dbname", $user, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
