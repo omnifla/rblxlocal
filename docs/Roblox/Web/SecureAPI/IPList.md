@@ -1,5 +1,5 @@
 # APIKey
-IPList is the prefered method to process private requests. It uses hashed IP addresses and comare
+IPList is the prefered method to process private requests. It uses hashed IP addresses and compares the ones in the list to the one given.
 
 ## API
 ```PHP
