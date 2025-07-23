@@ -32,18 +32,16 @@ If you have any feedback & issues, please put it in Issues
 
 ## Features
 
-- 
-- 
-- 
-- 
+- Working Feeds
+-  Working User Profiles (i think)
 
 ## Roadmap
 
-- Additional browser support
-- Add more integrations
-
+- Add forums 
+- Add working launcher
+- Add renders
+- Admin panel
 ## License
-
 Coming soon...
 Carbone
 
