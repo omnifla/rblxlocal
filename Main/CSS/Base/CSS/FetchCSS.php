@@ -19,8 +19,8 @@ $allowedExtensions = ['css']; // only allow .css since theree is a weird ass bug
 function fetchRemoteCss($cssPath) {
     $cssName = basename($cssPath);
     $urls = [
-        "https://www.roblox.com$cssPath",
-        "https://web.archive.org/web/0id_/https://www.roblox.com$cssPath"
+        "http://www.roblox.com$cssPath",
+        "http://web.archive.org/web/0id_/https://www.roblox.com$cssPath"
     ];
     foreach ($urls as $url) {
         $data = @file_get_contents($url);
@@ -114,8 +114,8 @@ if (isset($css_bundle_hashes[$path])) {
 }
 
 $bundleUrls = [
-    "https://www.roblox.com/CSS/Base/CSS/FetchCSS?path=$path",
-    "https://web.archive.org/web/0id_/https://www.roblox.com/CSS/Base/CSS/FetchCSS?path=$path"
+    "http://www.roblox.com/CSS/Base/CSS/FetchCSS?path=$path",
+    "http://web.archive.org/web/0id_/https://www.roblox.com/CSS/Base/CSS/FetchCSS?path=$path"
 ];
 foreach ($bundleUrls as $url) {
     // I HAD SO MUCH PAIN TO FIX THIS, TOOK ME 3 HOURS TO FIX THIS.
