@@ -271,7 +271,7 @@ $(function(){
                     <div style="margin-bottom: 10px;">
                         
                     </div>
-                    <a id="ctl00_cphRoblox_rbxUserPane_AvatarImage" disabled="disabled" class=" notranslate" title="<?= $user['username'] ?>" class=" notranslate" onclick="return false" style="display:inline-block;height:352px;width:352px;"><img src="//t4.rbxcdn.com/e67152f976636dd89429613befbe7f45" height="352" width="352" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="<?= $user['username'] ?>" class=" notranslate" /></a>
+                    <a id="ctl00_cphRoblox_rbxUserPane_AvatarImage" disabled="disabled" class=" notranslate" title="<?= $user['username'] ?>" class=" notranslate" onclick="return false" style="display:inline-block;height:352px;width:352px;"><img src="/Images/Placeholder1024x1024.png" height="352" width="352" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="<?= $user['username'] ?>" class=" notranslate" /></a>
                     <br />
                     <div class="PointsContainer">
                         
