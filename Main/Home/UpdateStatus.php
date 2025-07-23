@@ -10,7 +10,7 @@ if(!Auth::GetAuthenticatedUser()) {
     exit('{"success": false, "message": "You must be logged in to update your status."}');
 }
 $user = Auth::GetAuthenticatedUserInfo();
-if ($status === null) {
+if ($status === null || trim($status) === '') {
     exit('{"success": false, "message": "Status cannot be empty."}');
 }
 $status = $filter->filter($status)->getFilteredText();
