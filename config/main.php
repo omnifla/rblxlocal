@@ -1,9 +1,10 @@
 <?php
 // yeah im NOT adding 
 // written by meditext 
-// database connection
 // load composer vendor autoload
+// note from skyler: autoload.php should be ALWAYS required from the start or else composer packages will fail like dotenv
 require_once $_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php';
+// database connection
 // load dotenv
 use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
