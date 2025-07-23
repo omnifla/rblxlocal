@@ -15,6 +15,19 @@ if(!$user){
 }
 $user['username'] = htmlspecialchars($user['username']);
 $user['description'] = htmlspecialchars($user['description'] ?? $user['username']." has no description");
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $target = $_POST['__EVENTTARGET'] ?? '';
+    $argument = $_POST['__EVENTARGUMENT'] ?? '';
+
+    switch ($target) {
+        case 'ctl00$cphRoblox$rbxFavoritesPane$FooterPageSelector_Next':
+            echo "<p> what's expected? </p>";
+            break;
+        default:
+            echo "<p>placeholder sheib</p>";
+            break;
+    }
+}
 ?>
 
 
@@ -92,9 +105,42 @@ $user['description'] = htmlspecialchars($user['description'] ?? $user['username'
 <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
 </div>
 
+<script>
+// simple WebForm recreation
+function __doPostBack(eventTarget, eventArgument) {
+    var form = document.forms[0];
+    if (!form) return;
+    form.__EVENTTARGET.value = eventTarget;
+    form.__EVENTARGUMENT.value = eventArgument;
+    form.submit();
+}
 
-<script src="/ScriptResource.axd?d=X-TGQ30F3VnfxHT9dWyG6yFJmtQD69Lm0eMwV4hQ-4u73uhB13Z4lp0qZjro2ATlpkRt7sEIhrNm4kB289hR5VL1-bhwNKnyUwm6Yp9fujxJnuEfrMYY69rJmjL-XdUywFdCFaG6KTG_r0XoTinnN_0S_b1X4UTdOePMr-RmMKN3vwsODseIVwn5n0dNyRgA5D2c_HAtb0uMI5TiE_DOprkfUUn629e2kfv5sldecSQ6Uj7OsCFXlg4YRliZ1bOuRp4b3YS4z2F4u86nuai70E-4LRNOepYZy9pwSfDxj3Cica589eh5xFXs5E45lsZ8IqBMA9jJ1PnDXm8BoT-m0c9QxukCHWM5jLiXTpaH98VzwsmEOkqwjPQV2TZtbPLyS6CWC54zBRPJuAOluEkSRM8eN5DWjpI2VNbcsg0Pv746s7ZHJlIr66YJdaZEV45kgUqgNA2" type="text/javascript"></script>
-<script src="/ScriptResource.axd?d=CWoArlWjS2F1NydwJXSK8DrL-Br5fSxfzoxqcyFnTH6sXzR_KNm7Ob_9tcNfPOuLB7mC_TJu_en6ERB3wotdQ_yMei5oFAkmUKI8QYyjuz7JlJrgNMjOtPmBXR84Q_u3iwsz1g2&amp;t=ffffffffa10097f3" type="text/javascript"></script>
+function WebForm_PostBackOptions(target, argument, causesValidation, validationGroup, actionUrl, trackFocus, clientSubmit) {
+    this.target = target;
+    this.argument = argument;
+    this.causesValidation = causesValidation;
+    this.validationGroup = validationGroup;
+    this.actionUrl = actionUrl;
+    this.trackFocus = trackFocus;
+    this.clientSubmit = clientSubmit;
+}
+
+function WebForm_DoPostBackWithOptions(options) {
+    var form = document.forms[0];
+    if (!form) return false;
+
+    if (options.actionUrl) {
+        form.action = options.actionUrl;
+    }
+
+    form.__EVENTTARGET.value = options.target;
+    form.__EVENTARGUMENT.value = options.argument;
+    
+    form.submit();
+    return false;
+}
+</script>
+
 <script src="Thumbs/Avatar.asmx/js" type="text/javascript"></script>
 <div>
 
