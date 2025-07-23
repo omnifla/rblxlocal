@@ -712,7 +712,7 @@ $(function(){
 
             
         </div>
-        <div class="divider-left" style="width: 484px; float: left; position: relative; left: -1px">
+        <div class="divider-left" style="width: 478px; float: left; position: relative; left: -1px">
             <div class="divider-bottom" style="padding-bottom: 20px; padding-left: 20px">
                 <h2 class="title" style="float: left">
                     <span>Active Places</span>
