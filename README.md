@@ -20,7 +20,15 @@ An Open Source 2014 Roblox Revival using a ported PHP version of ROBLOX's backen
 
 ## Deployment
 
-we haven done this yet.....
+Before you deploy this on your main hardware, make sure you have installed the following stuff
+- [PostgreSQL](https://www.postgresql.org/download/)
+- IIS (Enable it on Windows Features)
+- [Composer](https://getcomposer.org/download/)
+- [PHP 8.x+](https://www.php.net/manual/en/install.php)
+
+The site can run on Apache but you need to rewrite web.confing and turn it into .htaccess
+
+medi work on ts shit
 
 ## FAQ
 
