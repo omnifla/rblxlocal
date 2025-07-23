@@ -2,6 +2,9 @@
 // yeah im NOT adding 
 // written by meditext 
 // database connection
+// load composer vendor autoload
+require_once $_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php';
+// load dotenv
 use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
@@ -149,8 +152,6 @@ $properties = [
   "DatabaseMaxUsernameLength" => 64, // Roblox's max username length is 20, but the database allows 64.
   "SiteMaintenaceMode" => false,
 ];
-// load composer vendor autoload
-require_once $_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php';
 // autoload all classes from /Depedencies
 spl_autoload_register(function ($class) {
     $prefix = 'Roblox\\';
