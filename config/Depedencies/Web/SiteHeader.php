@@ -235,14 +235,6 @@ class SiteFooter{
         <a href="http://corp.' . host . '/jobs" class="roblox-interstitial">Jobs</a>
         &nbsp;|&nbsp;
         <a href="http://corp.' . host . '/parents" class="roblox-interstitial">Parents</a>
-            <span class="LanguageOptionElement">&nbsp;|&nbsp;</span>
-            <span ref="footer-parents" class="LanguageOptionElement LanguageTrigger roblox-interstitial" drop-down-nav-button="LanguageTrigger">English&nbsp;<span class="FooterArrow">▼</span>
-                <div class="dropuplanguagecontainer" style="display:none;" data-drop-down-nav-container="LanguageTrigger">
-                    <div class="dropdownmainnav" style="z-index:1023">
-                            <a href="/UserLanguage/LanguageRedirect?languageCode=de&amp;relativePath=%2fNewLogin"class="LanguageOption js-lang" data-js-langcode="de"><span class="notranslate">Deutsch</span>&nbsp;(German) </a>
-                    </div>
-                </div>
-            </span>
             </div>
             <div class="FooterNav">
         <div id="SEOGenreLinks" class="SEOGenreLinks">
@@ -282,7 +274,7 @@ class SiteFooter{
                 <div class="left">
                     <div id="a15b1695-1a5a-49a9-94f0-9cd25ae6c3b2">
             <a href="//privacy.truste.com/privacy-seal/Roblox-Corporation/validation?rid=2428aa2a-f278-4b6d-9095-98c4a2954215" title="TRUSTe Children privacy certification" target="_blank">
-                <img style="border: none" src="//privacy-policy.truste.com/privacy-seal/Roblox-Corporation/seal?rid=2428aa2a-f278-4b6d-9095-98c4a2954215" width="133" height="45" alt="TRUSTe Children privacy certification"/>
+                <img style="border: none" src="/Images/TRUSTe/seal.png" width="133" height="45" alt="TRUSTe Children privacy certification"/>
             </a>
         </div>
         </div>
@@ -557,14 +549,6 @@ $html = <<<HTML
                         <a href="http://www.roblox.com/Parents.aspx">Parents</a>
                         &nbsp;|&nbsp;
                         <a href="http://shop.roblox.com/" class="roblox-interstitial">Shop</a>
-                            <span class="LanguageOptionElement">&nbsp;|&nbsp;</span> 
-                            <span runat="server" navigateurl="/Parents.aspx" ref="footer-parents" class="LanguageOptionElement LanguageTrigger" drop-down-nav-button="LanguageTrigger">English&nbsp;<span class="FooterArrow">▼</span>
-                                    <div class="dropuplanguagecontainer" style="display:none;" drop-down-nav-container="LanguageTrigger">
-                                        <div class="dropdownmainnav" style="z-index:1023">
-                                                <a href="http://www.roblox.com/UserLanguage/LanguageRedirect?languageCode=de&relativePath=%2fhome%3fnl%3dtrue" class="LanguageOption js-lang" data-js-langcode="de"><span class="notranslate">Deutsch</span>&nbsp;(German) </a>
-                                            </div>  
-                                    </div>
-                            </span> 
                     </div>
                     <div class="FooterNav">
                         <div id="SEOGenreLinks" class="SEOGenreLinks">
@@ -603,14 +587,14 @@ $html = <<<HTML
                         <div class="left">
                             <div id="a15b1695-1a5a-49a9-94f0-9cd25ae6c3b2">
                     <a href="http://privacy.truste.com/privacy-seal/Roblox-Corporation/validation?rid=2428aa2a-f278-4b6d-9095-98c4a2954215" title="TRUSTe Children privacy certification" target="_blank">
-                        <img style="border: none" src="./ROBLOX.com_files/seal" alt="TRUSTe Children privacy certification">
+                        <img style="border: none" src="/Images/TRUSTe/seal.png" alt="TRUSTe Children privacy certification">
                     </a>
                 </div>
                         </div>
                         <div class="right">
                             <p class="Legalese">
-                    ROBLOX, "Online Building Toy", characters, logos, names, and all related indicia are trademarks of <a href="http://corp.roblox.com/" ref="footer-smallabout" class="roblox-interstitial">ROBLOX Corporation</a>, ©2013. Patents pending.
-                    ROBLOX is not sponsored, authorized or endorsed by any producer of plastic building bricks, including The LEGO Group, MEGA Brands, and K'Nex, and no resemblance to the products of these companies is intended. Use of this site signifies your acceptance of the <a href="http://www.roblox.com/info/terms-of-service" ref="footer-terms">Terms and Conditions</a>.
+            RBLXLocal, "Online Building Toy", characters, logos, names, and all related indicia are trademarks of <a href="http://corp.roblox.com/" ref="footer-smallabout" class="roblox-interstitial">ROBLOX Corporation</a>, ©2025. Patents pending.
+            RBLXLocal is not sponsored, authorized or endorsed by any producer of plastic building bricks, including The LEGO Group, MEGA Brands, and K'Nex, even the Roblox Platform. Use of this site signifies your acceptance of the <a href="/info/terms-of-service" ref="footer-terms">Terms and Conditions</a>.
                 </p>
                         </div>
                         <div class="clear"></div>
