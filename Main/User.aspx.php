@@ -728,7 +728,7 @@ $(function(){
         <div class="accord-section accord-section-open">
             <div class="accord-header notranslate">
                 <div class="accord-arrow">&#x25b6;</div>
-			    Create Stuff, Including Weapons
+			    Test
             </div>
             <div class="accord-content notranslate">
 			    
@@ -762,17 +762,15 @@ $(function(){
     </div>
     <br>
     <div class="Statistics" style="color: #999; font-size: 14px; letter-spacing: normal">
-        <span id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_lStatistics">Visited 589 times (6 last week)</span></div>
+        <span id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_lStatistics">Visited N/A times (N/A last week)</span></div>
     <div class="Thumbnail" style="width:414px;overflow:hidden;position: relative;">
-        <a id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_rbxPlaceThumbnail" title="Create Stuff, Including Weapons" href="/Create-Stuff-Including-Weapons-place?id=34459309" style="display:inline-block;height:230px;width:420px;cursor:pointer;"><img src="//t6.rbxcdn.com/11072470efdbf5067d9b4029ed4c4813" height="230" width="420" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Create Stuff, Including Weapons" /></a>
+        <a id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_rbxPlaceThumbnail" title="Test" href="/Test-place?id=0" style="display:inline-block;height:230px;width:420px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="230" width="420" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Test" /></a>
         
     </div>
     <div id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_pDescription">
 		
         <div class="Description" style="overflow-y: auto; max-height: 160px; font-family: arial; color: #666; font-size: 12px;">
-            <span id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_lDescription">Further information about building weapons can be found in the server.
-
-If you've visited this place, you're probably wondering "Is this place complete?" The answer is no... I couldn't build anything because Roblox went trough an update while the server was under construction.</span>
+            <span id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_lDescription">Hey, don't ask any questions, i've putten placeholder shit in here for no reason since this is wip.</span>
         </div>
     
 	</div>
@@ -963,7 +961,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
 	<tr>
 		<td>
 			<div class="Friend notranslate">
-				<div class="Avatar"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl00_hlAvatar" class=" notranslate" title="jeroentje153" class=" notranslate" href="/User.aspx?ID=994676" style="display:inline-block;height:100px;width:100px;cursor:pointer;"><img src="//t4.rbxcdn.com/2cd49458b64bcf6b72c6e0a9472b103e" height="100" width="100" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="jeroentje153" class=" notranslate" /></a></div>
+				<div class="Avatar"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl00_hlAvatar" class=" notranslate" title="jeroentje153" class=" notranslate" href="/User.aspx?ID=994676" style="display:inline-block;height:100px;width:100px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="100" width="100" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="jeroentje153" class=" notranslate" /></a></div>
 				<div class="Summary">
 					<span class="OnlineStatus"><img id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl00_iOnlineStatus" src="images/offline.png" alt="jeroentje153 is offline (last seen at 5/24/2014 4:32:46 PM." style="border-width:0px;" /></span>
 					<span class="Name"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl00_hlFriend" href="User.aspx?ID=994676">jeroentje153</a></span>
@@ -971,15 +969,15 @@ If you've visited this place, you're probably wondering "Is this place complete?
 			</div>
 		</td><td>
 			<div class="Friend notranslate">
-				<div class="Avatar"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl01_hlAvatar" class=" notranslate" title="buddy4550" class=" notranslate" href="/User.aspx?ID=932650" style="display:inline-block;height:100px;width:100px;cursor:pointer;"><img src="//t7.rbxcdn.com/b6418e6bdabc83b41c87ae0a7afe5b7d" height="100" width="100" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="buddy4550" class=" notranslate" /></a></div>
+				<div class="Avatar"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl01_hlAvatar" class=" notranslate" title="buddy4550" class=" notranslate" href="/User.aspx?ID=932650" style="display:inline-block;height:100px;width:100px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="100" width="100" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="buddy4550" class=" notranslate" /></a></div>
 				<div class="Summary">
-					<span class="OnlineStatus"><img id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl01_iOnlineStatus" src="images/offline.png" alt="buddy4550 is offline (last seen at 5/4/2014 6:39:57 PM." style="border-width:0px;" /></span>
+					<span class="OnlineStatus"><img id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl01_iOnlineStatus" src="images/online.png" alt="buddy4550 is offline (last seen at 5/4/2014 6:39:57 PM." style="border-width:0px;" /></span>
 					<span class="Name"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl01_hlFriend" href="User.aspx?ID=932650">buddy4550</a></span>
 				</div>
 			</div>
 		</td><td>
 			<div class="Friend notranslate">
-				<div class="Avatar"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl02_hlAvatar" class=" notranslate" title="TaroDark" class=" notranslate" href="/User.aspx?ID=1095527" style="display:inline-block;height:100px;width:100px;cursor:pointer;"><img src="//t3.rbxcdn.com/c370531b35d2067f850abbdd078bb80b" height="100" width="100" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="TaroDark" class=" notranslate" /></a></div>
+				<div class="Avatar"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl02_hlAvatar" class=" notranslate" title="TaroDark" class=" notranslate" href="/User.aspx?ID=1095527" style="display:inline-block;height:100px;width:100px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="100" width="100" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="TaroDark" class=" notranslate" /></a></div>
 				<div class="Summary">
 					<span class="OnlineStatus"><img id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl02_iOnlineStatus" src="images/offline.png" alt="TaroDark is offline (last seen at 4/4/2014 7:40:26 AM." style="border-width:0px;" /></span>
 					<span class="Name"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl02_hlFriend" href="User.aspx?ID=1095527">TaroDark</a></span>
@@ -989,7 +987,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
 	</tr><tr>
 		<td>
 			<div class="Friend notranslate">
-				<div class="Avatar"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl03_hlAvatar" class=" notranslate" title="Shedletsky" class=" notranslate" href="/User.aspx?ID=261" style="display:inline-block;height:100px;width:100px;cursor:pointer;"><img src="//t3.rbxcdn.com/a3aa397148447f9c9550e43baa884189" height="100" width="100" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Shedletsky" class=" notranslate" /><img src="/images/icons/overlay_obcOnly.png" align="left" style="position:relative;top:-19px;" /></a></div>
+				<div class="Avatar"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl03_hlAvatar" class=" notranslate" title="Shedletsky" class=" notranslate" href="/User.aspx?ID=261" style="display:inline-block;height:100px;width:100px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="100" width="100" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Shedletsky" class=" notranslate" /><img src="/images/icons/overlay_obcOnly.png" align="left" style="position:relative;top:-19px;" /></a></div>
 				<div class="Summary">
 					<span class="OnlineStatus"><img id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl03_iOnlineStatus" src="images/offline.png" alt="Shedletsky is offline (last seen at 5/24/2014 11:58:41 AM." style="border-width:0px;" /></span>
 					<span class="Name"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl03_hlFriend" href="User.aspx?ID=261">Shedletsky</a></span>
@@ -997,7 +995,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
 			</div>
 		</td><td>
 			<div class="Friend notranslate">
-				<div class="Avatar"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl04_hlAvatar" class=" notranslate" title="lego802" class=" notranslate" href="/User.aspx?ID=1259027" style="display:inline-block;height:100px;width:100px;cursor:pointer;"><img src="//t5.rbxcdn.com/f0babcb474272d512c577a95f2fcacce" height="100" width="100" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="lego802" class=" notranslate" /></a></div>
+				<div class="Avatar"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl04_hlAvatar" class=" notranslate" title="lego802" class=" notranslate" href="/User.aspx?ID=1259027" style="display:inline-block;height:100px;width:100px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="100" width="100" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="lego802" class=" notranslate" /></a></div>
 				<div class="Summary">
 					<span class="OnlineStatus"><img id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl04_iOnlineStatus" src="images/offline.png" alt="lego802 is offline (last seen at 10/12/2008 6:58:38 AM." style="border-width:0px;" /></span>
 					<span class="Name"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl04_hlFriend" href="User.aspx?ID=1259027">lego802</a></span>
@@ -1005,7 +1003,7 @@ If you've visited this place, you're probably wondering "Is this place complete?
 			</div>
 		</td><td>
 			<div class="Friend notranslate">
-				<div class="Avatar"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl05_hlAvatar" class=" notranslate" title="okama" class=" notranslate" href="/User.aspx?ID=1179539" style="display:inline-block;height:100px;width:100px;cursor:pointer;"><img src="//t7.rbxcdn.com/f9a1aa45f1b310eb23d4b54dfa6d0401" height="100" width="100" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="okama" class=" notranslate" /></a></div>
+				<div class="Avatar"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl05_hlAvatar" class=" notranslate" title="okama" class=" notranslate" href="/User.aspx?ID=1179539" style="display:inline-block;height:100px;width:100px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="100" width="100" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="okama" class=" notranslate" /></a></div>
 				<div class="Summary">
 					<span class="OnlineStatus"><img id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl05_iOnlineStatus" src="images/offline.png" alt="okama is offline (last seen at 9/30/2008 10:23:18 AM." style="border-width:0px;" /></span>
 					<span class="Name"><a id="ctl00_cphRoblox_rbxFriendsPane_dlFriends_ctl05_hlFriend" href="User.aspx?ID=1179539">okama</a></span>
