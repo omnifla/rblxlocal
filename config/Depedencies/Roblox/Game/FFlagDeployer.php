@@ -10,17 +10,18 @@ class FFlagDeployer {
     private array $nameToJSONMapping = [
         'ClientSharedSettings' => 'ClientAppSettings.json'
     ];
-    private string $apiKey = 'test';
+    private string $apiKey;
     private APIKey $authHandler;
 
     private const BASEPATH = '/json/%s';
 
     function __construct() {
+        $this->apiKey = $_ENV['CLIENT_APIKEY'];
         $this->authHandler = new APIKey($this->apiKey);
     }
 
     private function returnTextResult(string $result) {
-        header('Content-Type: text/plain');
+        header('Content-Type: application/json');
         exit($result);
     }
 
