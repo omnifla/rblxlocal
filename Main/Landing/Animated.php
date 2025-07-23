@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
     try {
-        Auth::Register($form_data["username"], $form_data["password"], null, $form_data["birthdate"], $form_data['gender']);
+        Auth::Register($form_data["username"], $form_data["password"], $form_data['gender'], null, $form_data["birthdate"]);
     } catch(\InvalidArgumentException $e) {
         echo json_encode([
             "success" => false,
