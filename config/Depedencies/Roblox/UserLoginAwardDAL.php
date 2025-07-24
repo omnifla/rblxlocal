@@ -57,4 +57,7 @@ class UserLoginAwardDAL
         $dal->updated = new DateTime($row['updated']);
         return $dal;
     }
+    public function getLastAwarded(): ?DateTime {
+        return $this->lastAwarded;
+    }
 }
