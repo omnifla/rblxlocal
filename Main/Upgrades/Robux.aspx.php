@@ -5,7 +5,8 @@ use Roblox\Authentication as Auth;
 use Roblox\Web\SiteHeader;
 use Roblox\Web\SiteFooter;
 ?>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:fb="http://www.facebook.com/2008/fbml" style="--wm-toolbar-height: 67px;"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:fb="http://www.facebook.com/2008/fbml" style="--wm-toolbar-height: 67px;">
+<head>
     <title>ROBLOX</title>
     <link rel="stylesheet" href="/CSS/Base/CSS/FetchCSS?path=main___3f022c119bae81d03158987f73441ea8_m.css">
     <link rel="stylesheet" href="/CSS/Base/CSS/FetchCSS?path=reset___90041b2af2fb6b9b7864ee66001ba812_m.css"> 
