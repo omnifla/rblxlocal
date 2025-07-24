@@ -1,5 +1,5 @@
 <?php
-// written by meditext
+// written by denied_id
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use Roblox\Authentication as Auth;
 use Roblox\Web\SiteHeader;
@@ -31,7 +31,7 @@ use Roblox\Web\SiteFooter;
 	<style type="text/css">
 
 	</style>
-	<form name="aspnetForm" method="post" action="https://<?= $site_properties['hostname'] ?>/Upgrades/BuildersClubMemberships.php" id="aspnetForm">
+	<form name="aspnetForm" method="post" action="https://<?= $site_properties['hostname'] ?>/Upgrades/BuildersClubMemberships.aspx" id="aspnetForm">
 		<div>
 			<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTQwMzUyMDY4Mg9kFgJmD2QWAgIBEBYCHgZhY3Rpb24FJi9VcGdyYWRlcy9CdWlsZGVyc0NsdWJNZW1iZXJzaGlwcy5hc3B4ZBYGAgIPDxYCHgdWaXNpYmxlaGRkAggPDxYCHwFoZGQCCw9kFgJmD2QWAgIDD2QWAmYPZBYGAgIPZBYGAgEPZBYEAgEPZBYCZg8VAQROb25lZAICD2QWAmYPFQEAZAICD2QWBAIBD2QWAmYPFQECTm9kAgIPZBYCZg8VAQJOb2QCAw9kFgQCAQ9kFgJmDxUBCHh4L3h4L3h4ZAICD2QWAmYPFQEIeHgveHgveHhkAgMPFQEIeHgveHgveHhkAgQPFgIeBGhyZWYFI34vVXBncmFkZXMvUGF5bWVudE1ldGhvZHMuYXNweD9hcD0wZBgDBSNjdGwwMCRyYnhHb29nbGVBbmFseXRpY3MkTXVsdGlWaWV3MQ8PZAIBZAUkY3RsMDAkUmlnaHRHdXR0ZXJBZCRBc3luY0FkTXVsdGlWaWV3Dw9kAgNkBSNjdGwwMCRMZWZ0R3V0dGVyQWQkQXN5bmNBZE11bHRpVmlldw8PZAIDZEqB3GAPF8DTfRovy/2YZLGboDBD"> </div>
 		<script src="https://<?= $site_properties['hostname'] ?>/ScriptResource.axd?d=_N1An8P2Pkfqm0X7bY0tY0ki9xzgFypv5XL8mPznGn9mcEJLpfhxHl5AvGIlRMAwalUsTdfObbcA6d8S8g33JgCKUyRFCB8PIkSKNK21-sMDwtebHfJmgaFkZfKdfZEQJYR6-QwQcq_x1MUisWKPJ88g33mdHav3djd7uC8lOBiwWdwgwFC6DHvXu-r9kGKTXJktytLicDqAyb9do-a4xfckbkupkIuxFCIr-ShCbtDfTALAYKaxR0bLULmU1FMNBT3thYW1LAQxatc_F1BU8SOVKlf860nn_RVseQEqiL7Bl7Un65p2A8dletaTL48z6XnXAxW57byQq5dn-UP1Efz42vBchxvOwXmDJJrrRfUv4r7TYH9PLhW9mzzPCB213OHhSc5Fs1cGF_ptwDeWeAEg117xhw7fSMWyqNw4zULpUX6iMc-rW0QWVD9VmO26jFUf_w2" type="text/javascript"></script>
@@ -412,7 +412,7 @@ use Roblox\Web\SiteFooter;
 										<div id="ctl00_cphRoblox_BCCompareModal_BCCompareModalUpdatePanel" class="BCCompareModalUpdatePanel">
 											<div id="BuyBCComparePanelTopInfo" style="width:390px;">
 												<div id="ComparePanelImg" style="margin-bottom:15px;text-align: center;margin-top:-10px;"> <span style="font-weight:bold;font-size:13px;">Product Selected</span>
-													<br> <img id="ctl00_cphRoblox_BCCompareModal_BuyBCComparePanelImage" src="/web/20140124075241im_/https://<?= $site_properties['hostname'] ?>/Upgrades/BuildersClubMemberships.php" style="border-width:0px;margin-top:5px;"> </div> <span id="ctl00_cphRoblox_BCCompareModal_BCCompareConversionInfo"></span> </div>
+													<br> <img id="ctl00_cphRoblox_BCCompareModal_BuyBCComparePanelImage" src="/web/20140124075241im_/https://<?= $site_properties['hostname'] ?>/Upgrades/BuildersClubMemberships.aspx" style="border-width:0px;margin-top:5px;"> </div> <span id="ctl00_cphRoblox_BCCompareModal_BCCompareConversionInfo"></span> </div>
 											<div style="border:1px solid #D3D3D3;">
 												<br>
 												<table id="ctl00_cphRoblox_BCCompareModal_verid" class="BuyBCComparePanelTable" cellspacing="0" cellpadding="0" align="Center" border="0" style="border-collapse:collapse;margin-left:auto;margin-right:auto;width:450px;">
@@ -551,7 +551,7 @@ use Roblox\Web\SiteFooter;
 			</div>
 		</div>
 		<div id="videoPrerollJoinBC"> <span>Get more with Builders Club!</span>
-			<a href="https://<?= $site_properties['hostname'] ?>/Upgrades/BuildersClubMemberships.php?ref=vpr" target="_blank" id="videoPrerollJoinBCButton"></a>
+			<a href="https://<?= $site_properties['hostname'] ?>/Upgrades/BuildersClubMemberships.aspx?ref=vpr" target="_blank" id="videoPrerollJoinBCButton"></a>
 		</div>
 	</div>
 	<script type="text/javascript">
