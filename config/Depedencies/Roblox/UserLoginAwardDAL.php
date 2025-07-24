@@ -2,7 +2,8 @@
 // ported by meditext,
 // trimmed anyways.
 namespace Roblox;
-
+use PDO;
+use DateTime;
 class UserLoginAwardDAL
 {
     public int $id;
