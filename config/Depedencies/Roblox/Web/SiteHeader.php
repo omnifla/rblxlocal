@@ -21,7 +21,7 @@ class SiteHeader{
                 
                 <li><a data-se="nav-leaderboards" href="/leaderboards" title="Leaderboards" ref="nav-leaderboards">Leaderboards</a></li>
                 
-                <li><a data-se="nav-upgrade" href="/Upgrades/BuildersClubMemberships.php" title="Builders Club" ref="nav-buildersclub">Builders Club</a></li>
+                <li><a data-se="nav-upgrade" href="/Upgrades/BuildersClubMemberships.aspx" title="Builders Club" ref="nav-buildersclub">Builders Club</a></li>
                 <li><a data-se="nav-forum" onclick=''  href="/Forum/Default.aspx" style='' title="Forum" ref="nav-forum">Forum</a></li>
                 <li class="more-list-item" drop-down-nav-button="more-list-item">
                     <div class="more-link-container">
@@ -71,7 +71,7 @@ $html = <<<HTML
 
                                 <li><a data-se="nav-develop" href="/develop" title="Develop" ref="nav-develop">Develop</a></li>
 
-                            <li><a data-se="nav-upgrade" href="/Upgrades/BuildersClubMemberships.php" title="Builders Club" ref="nav-buildersclub">Builders Club</a></li>
+                            <li><a data-se="nav-upgrade" href="/Upgrades/BuildersClubMemberships.aspx" title="Builders Club" ref="nav-buildersclub">Builders Club</a></li>
                             <li><a data-se="nav-forum" onclick="" href="/Forum/Default.aspx" style="" title="Forum" ref="nav-forum">Forum</a></li>
                             <li class="more-list-item" drop-down-nav-button="more-list-item">
                                 <div class="more-link-container">
