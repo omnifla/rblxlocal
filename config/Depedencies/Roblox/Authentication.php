@@ -5,18 +5,24 @@ use \Firebase\JWT\JWT;
 use \Firebase\JWT\Key;
 use Roblox\BrickColor as BrickColor;
 use Roblox\TextFilter\BasicTextFilter;
+use Roblox\UserLoginAward;
 
 class Authentication {
     public static function GetAuthenticatedUser() {
-        $jwt_secret = 'EIJ3ITGJANGHIANSGOIJ';
+        global $conn;
         if (empty($_COOKIE['_ROBLOSECURITY'])) {
             return null;
         }
-        try {
-            $decoded = \Firebase\JWT\JWT::decode($_COOKIE['_ROBLOSECURITY'], new Key($jwt_secret, 'HS256'));
-            return $decoded;
-        } catch (\Exception $e) {
+        $userinfo = self::GetAuthenticatedUserInfo();
+        if(!$userinfo){
             return null;
+        }
+        $award = UserLoginAward::getOrCreate($userinfo['id']);
+        if ($award->tryAward()) {
+            // ticket incrementation
+            // TODO: add Roblox.Economy
+            $stmt = $db->prepare("UPDATE users SET tickets = tickets + :amt WHERE id = :uid");
+            $stmt->execute([':amt' => 10, ':uid' => $userinfo['id']]);
         }
     }
     public static function Login(string $username, string $password) {
