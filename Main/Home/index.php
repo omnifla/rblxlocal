@@ -261,18 +261,21 @@ $(function(){
 	    </div>
             <div class="left-column-boxes text">
                 	
-<div id="fbNotLoggedIn">
-    <img border="0" alt="Facebook Connect" src="//images.rbxcdn.com/4ec0c6c40a454f2f6537946d00f09b56.png">
-    <div style="text-align: left; margin: 5px">
-        Link your ROBLOX account with your Facebook account to let your Facebook friends see what you're doing on RBXL.local !<br>
-    </div>
-    <a class="facebook-login" href="http://<?= $site_properties['hostname'] ?>/facebook/authorize?ReturnTo=%2Fmy%2Fhome.aspx">
-        <span class="left"></span>
-        <span class="middle">Connect with Facebook<span>Connect with Facebook</span></span>
-        <span class="right"></span>
-    </a>
-</div>
-
+	<div id="fbNotLoggedIn">
+			<img border="0" alt="Facebook Connect" src="//images.rbxcdn.com/4ec0c6c40a454f2f6537946d00f09b56.png">
+			<div style="text-align: left; margin: 5px">
+				Link your ROBLOX account with your Facebook account to let your Facebook friends see what you're doing on RBXL.local !<br>
+			</div>
+		<a class="facebook-login" href="http://<?= $site_properties['hostname'] ?>/facebook/authorize?ReturnTo=%2Fmy%2Fhome.aspx">
+			<span class="left"></span>
+			<span class="middle">Connect with Facebook<span>Connect with Facebook</span></span>
+			<span class="right"></span>
+		</a>
+			<div class="facepile">
+				<iframe src="./<?= $site_properties['hostname'] ?>_files/facepile.htm" scrolling="yes" frameborder="0" style="border: none; overflow: hidden; width: 210px;"></iframe>
+				<p style="color: Gray; font-size: smaller">Only your Facebook friends can see this.</p>
+			</div>
+	</div>
 
             </div>
 	</div>
