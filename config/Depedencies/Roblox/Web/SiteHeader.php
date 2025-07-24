@@ -43,7 +43,7 @@ class SiteHeader{
                         <a id="header-signup" href="/Login/NewAge.aspx">Sign Up</a>
                         <span id="header-or">or</span>
                         <span id="login-span">
-                            <a id="header-login" class="btn-control btn-control-large">Login <span class="grey-arrow">▼</span></a>
+                            <a id="header-login" class="btn-control btn-control-large" href="#" onclick="window.location.href='/newlogin?redirect=' + encodeURIComponent(window.location.href); return false;">Login <span class="grey-arrow">▼</span></a>
                         </span>
                         <div id="iFrameLogin"  style="display:none">
                             <iframe class="login-frame" src="/Login/iFrameLogin.aspx?loginRedirect=False&amp;parentUrl=https%3a%2f%2fwww.{$site_properties["hostname"]}>%2fNewLogin" scrolling="no" frameborder="0"></iframe>
@@ -340,7 +340,7 @@ class SiteFooter{
                 </div>
                 <div id="videoPrerollJoinBC">
                     <span>Get more with Builders Club!</span>
-                    <a href="/Upgrades/BuildersClubMemberships.php?ref=vpr" target="_blank" id="videoPrerollJoinBCButton"></a>
+                    <a href="/Upgrades/BuildersClubMemberships.aspx?ref=vpr" target="_blank" id="videoPrerollJoinBCButton"></a>
                 </div>
             </div>
             <script type="text/javascript">
@@ -990,7 +990,7 @@ $html = <<<HTML
                         </div>
                         <div id="videoPrerollJoinBC">
                             <span>Get more with Builders Club!</span>
-                            <a href="http://www.roblox.com/Upgrades/BuildersClubMemberships.php?ref=vpr" target="_blank" id="videoPrerollJoinBCButton"></a>
+                            <a href="http://www.roblox.com/Upgrades/BuildersClubMemberships.aspx?ref=vpr" target="_blank" id="videoPrerollJoinBCButton"></a>
                         </div>
                     </div>
                     <script type="text/javascript">
@@ -1144,7 +1144,7 @@ $html = <<<HTML
                 </script>
                     
                 <script type="text/javascript" src="https://js.rbxcdn.com/97bbdd6b901e1c791015f9c39e786455.js.gzip"></script>
-                    
+                
                 <div id="InstallationInstructions" class="modalPopup blueAndWhite" style="display:none;overflow:hidden">
                     <a id="CancelButton2" onclick="return Roblox.Client._onCancel();" class="ImageButton closeBtnCircle_35h ABCloseCircle"></a>
                     <div style="padding-bottom:10px;text-align:center">
