@@ -333,7 +333,7 @@ end
 
 -- called when the client connection fails
 function onConnectionFailed(_, error)
-	showErrorWindow("Failed to connect to the Game. (ID=" .. error .. ")", "ID" .. error, "Other")
+	showErrorWindow("Failed to connect to the Game, Maybe RBLXLocal is down. (ID=" .. error .. ")", "ID" .. error, "Other")
 end
 
 -- called when the client connection is rejected
@@ -365,7 +365,7 @@ local success, err = pcall(function()
 
 	game:SetRemoteBuildMode(true)
 	
-	setMessage("Connecting to Server")
+	setMessage("Connecting to RBLXLocal Server")
 	client.ConnectionAccepted:connect(onConnectionAccepted)
 	client.ConnectionRejected:connect(onConnectionRejected)
 	connectionFailed = client.ConnectionFailed:connect(onConnectionFailed)
@@ -398,8 +398,8 @@ local success, err = pcall(function()
 		end)
 	end
 
-	player:SetSuperSafeChat(true)
-	pcall(function() player:SetUnder13(true) end)
+	player:SetSuperSafeChat(false)
+	pcall(function() player:SetUnder13(false) end)
 	pcall(function() player:SetMembershipType(Enum.MembershipType.None) end)
 	pcall(function() player:SetAccountAge(0) end)
 	player.Idled:connect(onPlayerIdled)
