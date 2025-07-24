@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         Auth::Login($username, $password);
     } catch (\Exception $e) {
-        exit($e);
+        exit($e->getMessage());
     }
     header("Location: " . $returnUrl);
     exit;
