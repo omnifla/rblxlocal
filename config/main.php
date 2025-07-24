@@ -7,6 +7,10 @@ $dotenv = Dotenv::createImmutable(__DIR__ . '/../..');
 $dotenv->load();
 // autoload all classes from /Depedencies
 spl_autoload_register(function ($class) {
+    // the SPL autoload is for some odd reason registering PDO, so lets add this here.
+    if (class_exists($class, false) || interface_exists($class, false)) {
+        return;
+    }
     $prefix = 'Roblox\\';
     $base_dir = __DIR__ . '/Depedencies/';
 
