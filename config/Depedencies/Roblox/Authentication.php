@@ -23,6 +23,20 @@ class Authentication {
             // TODO: add Roblox.Economy
             $stmt = $conn->prepare("UPDATE users SET tickets = tickets + :amt WHERE id = :uid");
             $stmt->execute([':amt' => 10, ':uid' => $userinfo['id']]);
+            switch($userinfo['membership_type']){
+                case 1:
+                    $stmt = $conn->prepare("UPDATE users SET robux = robux + :amt WHERE id = :uid");
+                    $stmt->execute([':amt' => 15, ':uid' => $userinfo['id']]);
+                    break;
+                case 2:
+                    $stmt = $conn->prepare("UPDATE users SET robux = robux + :amt WHERE id = :uid");
+                    $stmt->execute([':amt' => 35, ':uid' => $userinfo['id']]);
+                    break;
+                case 3:
+                    $stmt = $conn->prepare("UPDATE users SET robux = robux + :amt WHERE id = :uid");
+                    $stmt->execute([':amt' => 60, ':uid' => $userinfo['id']]);
+                    break;
+            }
         }
         return $userinfo;
     }
