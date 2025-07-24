@@ -22,7 +22,7 @@
 	<style type="text/css">
 
 	</style>
-	<form name="aspnetForm" method="post" action="/web/20140124075241/https://www.roblox.com/Upgrades/BuildersClubMemberships.aspx" id="aspnetForm">
+	<form name="aspnetForm" method="post" action="/web/20140124075241/https://www.roblox.com/Upgrades/BuildersClubMemberships.php" id="aspnetForm">
 		<div>
 			<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTQwMzUyMDY4Mg9kFgJmD2QWAgIBEBYCHgZhY3Rpb24FJi9VcGdyYWRlcy9CdWlsZGVyc0NsdWJNZW1iZXJzaGlwcy5hc3B4ZBYGAgIPDxYCHgdWaXNpYmxlaGRkAggPDxYCHwFoZGQCCw9kFgJmD2QWAgIDD2QWAmYPZBYGAgIPZBYGAgEPZBYEAgEPZBYCZg8VAQROb25lZAICD2QWAmYPFQEAZAICD2QWBAIBD2QWAmYPFQECTm9kAgIPZBYCZg8VAQJOb2QCAw9kFgQCAQ9kFgJmDxUBCHh4L3h4L3h4ZAICD2QWAmYPFQEIeHgveHgveHhkAgMPFQEIeHgveHgveHhkAgQPFgIeBGhyZWYFI34vVXBncmFkZXMvUGF5bWVudE1ldGhvZHMuYXNweD9hcD0wZBgDBSNjdGwwMCRyYnhHb29nbGVBbmFseXRpY3MkTXVsdGlWaWV3MQ8PZAIBZAUkY3RsMDAkUmlnaHRHdXR0ZXJBZCRBc3luY0FkTXVsdGlWaWV3Dw9kAgNkBSNjdGwwMCRMZWZ0R3V0dGVyQWQkQXN5bmNBZE11bHRpVmlldw8PZAIDZEqB3GAPF8DTfRovy/2YZLGboDBD"> </div>
 		<script src="/web/20140124075241js_/https://www.roblox.com/ScriptResource.axd?d=_N1An8P2Pkfqm0X7bY0tY0ki9xzgFypv5XL8mPznGn9mcEJLpfhxHl5AvGIlRMAwalUsTdfObbcA6d8S8g33JgCKUyRFCB8PIkSKNK21-sMDwtebHfJmgaFkZfKdfZEQJYR6-QwQcq_x1MUisWKPJ88g33mdHav3djd7uC8lOBiwWdwgwFC6DHvXu-r9kGKTXJktytLicDqAyb9do-a4xfckbkupkIuxFCIr-ShCbtDfTALAYKaxR0bLULmU1FMNBT3thYW1LAQxatc_F1BU8SOVKlf860nn_RVseQEqiL7Bl7Un65p2A8dletaTL48z6XnXAxW57byQq5dn-UP1Efz42vBchxvOwXmDJJrrRfUv4r7TYH9PLhW9mzzPCB213OHhSc5Fs1cGF_ptwDeWeAEg117xhw7fSMWyqNw4zULpUX6iMc-rW0QWVD9VmO26jFUf_w2" type="text/javascript"></script>
@@ -85,7 +85,7 @@
 										<li><a data-se="nav-games" href="/web/20140124075241/https://www.roblox.com/games" ref="nav-games" title="Games">Games</a> </li>
 										<li><a data-se="nav-catalog" href="/web/20140124075241/https://www.roblox.com/Catalog" ref="nav-catalog" title="Catalog">Catalog</a></li>
 										<li><a data-se="nav-develop" href="/web/20140124075241/https://www.roblox.com/develop" title="Develop" ref="nav-develop">Develop</a></li>
-										<li><a data-se="nav-upgrade" href="/web/20140124075241/https://www.roblox.com/Upgrades/BuildersClubMemberships.aspx" title="Upgrade" ref="nav-buildersclub">Upgrade</a></li>
+										<li><a data-se="nav-upgrade" href="/web/20140124075241/https://www.roblox.com/Upgrades/BuildersClubMemberships.php" title="Upgrade" ref="nav-buildersclub">Upgrade</a></li>
 										<li><a data-se="nav-forum" onclick="" href="/web/20140124075241/https://www.roblox.com/Forum/Default.aspx" style="" title="Forum" ref="nav-forum">Forum</a></li>
 										<li class="more-list-item" drop-down-nav-button="more-list-item">
 											<div class="more-link-container"> <a id="nav-more" title="More" data-se="nav-more" ref="nav-more">More<span id="more-menu-toggle"></span></a> </div>
@@ -102,7 +102,7 @@
                             <a id="header-login" class="btn-control btn-control-large">Login <span class="grey-arrow">▼</span></a>
 										</span>
 										<div id="iFrameLogin" style="display: none; height: 128px;">
-											<iframe class="login-frame" src="https://web.archive.org/web/20140124075241if_/https://www.roblox.com/Login/iFrameLogin.aspx?loginRedirect=False&amp;parentUrl=https%3a%2f%2fwww.roblox.com%2fUpgrades%2fBuildersClubMemberships.aspx" scrolling="no" frameborder="0" data-ruffle-polyfilled=""></iframe>
+											<iframe class="login-frame" src="https://web.archive.org/web/20140124075241if_/https://www.roblox.com/Login/iFrameLogin.aspx?loginRedirect=False&amp;parentUrl=https%3a%2f%2fwww.roblox.com%2fUpgrades%2fBuildersClubMemberships.php" scrolling="no" frameborder="0" data-ruffle-polyfilled=""></iframe>
 										</div>
 									</div>
 								</div>
@@ -460,7 +460,7 @@
 										<div id="ctl00_cphRoblox_BCCompareModal_BCCompareModalUpdatePanel" class="BCCompareModalUpdatePanel">
 											<div id="BuyBCComparePanelTopInfo" style="width:390px;">
 												<div id="ComparePanelImg" style="margin-bottom:15px;text-align: center;margin-top:-10px;"> <span style="font-weight:bold;font-size:13px;">Product Selected</span>
-													<br> <img id="ctl00_cphRoblox_BCCompareModal_BuyBCComparePanelImage" src="/web/20140124075241im_/https://www.roblox.com/Upgrades/BuildersClubMemberships.aspx" style="border-width:0px;margin-top:5px;"> </div> <span id="ctl00_cphRoblox_BCCompareModal_BCCompareConversionInfo"></span> </div>
+													<br> <img id="ctl00_cphRoblox_BCCompareModal_BuyBCComparePanelImage" src="/web/20140124075241im_/https://www.roblox.com/Upgrades/BuildersClubMemberships.php" style="border-width:0px;margin-top:5px;"> </div> <span id="ctl00_cphRoblox_BCCompareModal_BCCompareConversionInfo"></span> </div>
 											<div style="border:1px solid #D3D3D3;">
 												<br>
 												<table id="ctl00_cphRoblox_BCCompareModal_verid" class="BuyBCComparePanelTable" cellspacing="0" cellpadding="0" align="Center" border="0" style="border-collapse:collapse;margin-left:auto;margin-right:auto;width:450px;">
@@ -530,7 +530,7 @@
 				<div id="Footer" class="footer-container unfixed">
 					<div class="FooterNav"> <a href="/web/20140124075241/https://www.roblox.com/info/Privacy.aspx">Privacy Policy</a> &nbsp;|&nbsp; <a href="https://web.archive.org/web/20140124075241/http://corp.roblox.com/advertise-on-roblox" class="roblox-interstitial">Advertise with Us</a> &nbsp;|&nbsp; <a href="https://web.archive.org/web/20140124075241/http://corp.roblox.com/roblox-press" class="roblox-interstitial">Press</a> &nbsp;|&nbsp; <a href="https://web.archive.org/web/20140124075241/http://corp.roblox.com/contact-us" class="roblox-interstitial">Contact Us</a> &nbsp;|&nbsp; <a href="https://web.archive.org/web/20140124075241/http://corp.roblox.com/" class="roblox-interstitial">About Us</a> &nbsp;|&nbsp; <a href="https://web.archive.org/web/20140124075241/http://blog.roblox.com/" class="roblox-interstitial">Blog</a> &nbsp;|&nbsp; <a href="https://web.archive.org/web/20140124075241/http://corp.roblox.com/jobs" class="roblox-interstitial">Jobs</a> &nbsp;|&nbsp; <a href="https://web.archive.org/web/20140124075241/http://corp.roblox.com/parents" class="roblox-interstitial">Parents</a> &nbsp;|&nbsp; <a href="https://web.archive.org/web/20140124075241/http://shop.roblox.com/" class="roblox-interstitial">Shop</a> <span class="LanguageOptionElement">&nbsp;|&nbsp;</span> <span runat="server" navigateurl="http://corp.roblox.com/parents" ref="footer-parents" class="LanguageOptionElement LanguageTrigger roblox-interstitial" drop-down-nav-button="LanguageTrigger">English&nbsp;<span class="FooterArrow">▼</span>
 						<div class="dropuplanguagecontainer" style="display:none;" drop-down-nav-container="LanguageTrigger">
-							<div class="dropdownmainnav" style="z-index:1023"> <a href="/web/20140124075241/https://www.roblox.com/UserLanguage/LanguageRedirect?languageCode=de&amp;relativePath=%2fUpgrades%2fBuildersClubMemberships.aspx" class="LanguageOption js-lang" data-js-langcode="de"><span class="notranslate">Deutsch</span>&nbsp;(German) </a> </div>
+							<div class="dropdownmainnav" style="z-index:1023"> <a href="/web/20140124075241/https://www.roblox.com/UserLanguage/LanguageRedirect?languageCode=de&amp;relativePath=%2fUpgrades%2fBuildersClubMemberships.php" class="LanguageOption js-lang" data-js-langcode="de"><span class="notranslate">Deutsch</span>&nbsp;(German) </a> </div>
 						</div>
 						</span>
 					</div>
@@ -622,7 +622,7 @@
 			</div>
 		</div>
 		<div id="videoPrerollJoinBC"> <span>Get more with Builders Club!</span>
-			<a href="/web/20140124075241/https://www.roblox.com/Upgrades/BuildersClubMemberships.aspx?ref=vpr" target="_blank" id="videoPrerollJoinBCButton"></a>
+			<a href="/web/20140124075241/https://www.roblox.com/Upgrades/BuildersClubMemberships.php?ref=vpr" target="_blank" id="videoPrerollJoinBCButton"></a>
 		</div>
 	</div>
 	<script type="text/javascript">

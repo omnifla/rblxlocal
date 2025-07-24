@@ -794,12 +794,12 @@ $(function(){
         <a class="iLocked tooltip" title="Locked"></a>
         <span class="invisible">&nbsp;Your Outrageous Builders Club, Turbo Builders Club, or Builders Club membership has expired, so you can
         only have one open place. Your places will not be deleted, and you can <a id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_rbxPlaceAccessIndicator_RBXLDownloadLink">download the RBXL here.</a> To unlock all of your places,
-        please <a href="/upgrades/BuildersClubMemberships.aspx">re-order Outrageous Builders Club, Turbo Builders Club, or Builders
+        please <a href="/upgrades/BuildersClubMemberships.php">re-order Outrageous Builders Club, Turbo Builders Club, or Builders
             Club </a>.<br /></span>
     </span>
     <span id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_rbxPlaceAccessIndicator_ExpiredOther" style="display: none">
         <a class="iLocked tooltip" title="Locked"></a>
-        <span class="invisible">This place is locked because the creator's <a href="/upgrades/BuildersClubMemberships.aspx">Builders
+        <span class="invisible">This place is locked because the creator's <a href="/upgrades/BuildersClubMemberships.php">Builders
             Club / Turbo Builders Club / Outrageous Builders Club </a>has expired.
 		</span>
 	</span>	
@@ -866,7 +866,7 @@ $(function(){
         <div style="clear:both;"></div>
         <div class="GenericModalButtonContainer" style="padding-bottom: 13px">
             <div style="text-align:center">
-                <a id="BClink" href="/Upgrades/BuildersClubMemberships.aspx" class="btn-primary btn-large">Upgrade Now</a>
+                <a id="BClink" href="/Upgrades/BuildersClubMemberships.php" class="btn-primary btn-large">Upgrade Now</a>
             </div>
             <div style="clear:both;"></div>
         </div>
@@ -2059,7 +2059,7 @@ if(typeof __utmSetVar !== 'undefined'){ __utmSetVar(''); }if(typeof __utmSetVar 
         </div>
         <div id="videoPrerollJoinBC">
             <span>Get more with Builders Club!</span>
-            <a href="/Upgrades/BuildersClubMemberships.aspx?ref=vpr" target="_blank" id="videoPrerollJoinBCButton"></a>
+            <a href="/Upgrades/BuildersClubMemberships.php?ref=vpr" target="_blank" id="videoPrerollJoinBCButton"></a>
         </div>
     </div>
     <script type="text/javascript">
