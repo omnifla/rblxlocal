@@ -164,14 +164,14 @@ $(function(){
         RobloxListener.init();
     
     
-        GoogleListener.init();
+        GoogleListener.init(); 
     
     
     
     
         RobloxEventManager.initialize(true);
         RobloxEventManager.triggerEvent('rbx_evt_pageview');
-        trackReturns();
+        trackReturns(); // trapz was here mewmewomeowmeow
     
     
     
