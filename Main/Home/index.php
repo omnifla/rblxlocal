@@ -241,34 +241,22 @@ $(function(){
 	        <div id="bestFriendsContainer" class="best-friends-container">
 <div class="best-friends">
     <div class="user">
-        <div class="roblox-avatar-image" data-user-id="20658082" data-image-size="tiny"><div style="position: relative;"><a href="http://<?= $site_properties['hostname'] ?>/user.aspx?id=20658082"><img title="acraw" alt="acraw" border="0" src="./<?= $site_properties['hostname'] ?>_files/045d304a6d5dc78e3bcfa6f64b2c780d"></a></div></div>
-        <div class="info">
-                <img src="./<?= $site_properties['hostname'] ?>_files/3a3aa21b169be06d20de7586e56e3739.png" title="Offline">
-            <a class="name" href="http://<?= $site_properties['hostname'] ?>/User.aspx?ID=20658082">acraw</a>
-                <div class="status">"minecraft is better"</div>
+        <div class="roblox-avatar-image" data-user-id="6570505" data-image-size="tiny">
+            <div style="position: relative;">
+                <a href="http://<?= $site_properties['hostname'] ?>/user.aspx?id=6570505">
+                    <img title="bibman4000" alt="bibman4000" border="0" src="./<?= $site_properties['hostname'] ?>_files/f9d6953aebf90492ba912e4e62a860ed">
+                </a>
+            </div>
         </div>
-        <div class="clear"></div>
-    </div>
-    <div class="user">
-        <div class="roblox-avatar-image" data-user-id="6570505" data-image-size="tiny"><div style="position: relative;"><a href="http://<?= $site_properties['hostname'] ?>/user.aspx?id=6570505"><img title="bibman4000" alt="bibman4000" border="0" src="./<?= $site_properties['hostname'] ?>_files/f9d6953aebf90492ba912e4e62a860ed"></a></div></div>
         <div class="info">
-                <img src="./<?= $site_properties['hostname'] ?>_files/3a3aa21b169be06d20de7586e56e3739.png" title="Offline">
+            <img src="./<?= $site_properties['hostname'] ?>_files/3a3aa21b169be06d20de7586e56e3739.png" title="Offline">
             <a class="name" href="http://<?= $site_properties['hostname'] ?>/User.aspx?ID=6570505">bibman4000</a>
-                <div class="status">"no more training???"</div>
-        </div>
-        <div class="clear"></div>
-    </div>
-    <div class="user">
-        <div class="roblox-avatar-image" data-user-id="1394055" data-image-size="tiny"><div style="position: relative;"><a href="http://<?= $site_properties['hostname'] ?>/user.aspx?id=1394055"><img title="bigboy100" alt="bigboy100" border="0" src="./<?= $site_properties['hostname'] ?>_files/ff153e9e7c36ff977858edc942083051"></a></div></div>
-        <div class="info">
-                <img src="./<?= $site_properties['hostname'] ?>_files/3a3aa21b169be06d20de7586e56e3739.png" title="Offline">
-            <a class="name" href="http://<?= $site_properties['hostname'] ?>/User.aspx?ID=1394055">bigboy100</a>
-                <div class="status">"bc gone.:["</div>
+            <div class="status">" Trapz is my hero tbh"</div>
         </div>
         <div class="clear"></div>
     </div>
 </div>
-</div>
+
 	        <div style="clear:both;"></div>
 	    </div>
             <div class="left-column-boxes text">
