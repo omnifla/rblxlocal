@@ -280,7 +280,7 @@ $(function(){
 
             </div>
 	</div>
-
+</div>
 	<div class="middle-column">
 		<div id="statusUpdateBox" class="middle-column-box status-update">
 		    <div>
