@@ -21,7 +21,7 @@ class Authentication {
         if ($award->tryAward()) {
             // ticket incrementation
             // TODO: add Roblox.Economy
-            $stmt = $db->prepare("UPDATE users SET tickets = tickets + :amt WHERE id = :uid");
+            $stmt = $conn->prepare("UPDATE users SET tickets = tickets + :amt WHERE id = :uid");
             $stmt->execute([':amt' => 10, ':uid' => $userinfo['id']]);
         }
     }
