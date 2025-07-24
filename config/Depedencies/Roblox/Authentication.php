@@ -24,6 +24,7 @@ class Authentication {
             $stmt = $conn->prepare("UPDATE users SET tickets = tickets + :amt WHERE id = :uid");
             $stmt->execute([':amt' => 10, ':uid' => $userinfo['id']]);
         }
+        return $userinfo;
     }
     public static function Login(string $username, string $password) {
         global $conn;
