@@ -1,7 +1,16 @@
+<?php
+// written by meditext
+include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
+use Roblox\Authentication as Auth;
+use Roblox\Web\SiteHeader;
+use Roblox\Web\SiteFooter;
+?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:fb="http://www.facebook.com/2008/fbml" style="--wm-toolbar-height: 67px;">
 <!-- MachineID: WEB203 -->
-
-<!-- TODO: Add proper functionality for this page. -->
+<!-- MachineID: WEB79 -->
+<head id="ctl00_Head1"><meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true" /><title>
+	<?= $site_properties['Title'] ?> - Builders Club
+</title>
 
 <head id="ctl00_Head1">
     <link rel="stylesheet" href="/CSS/Base/CSS/FetchCSS?path=main___3f022c119bae81d03158987f73441ea8_m.css" />
@@ -22,10 +31,10 @@
 	<style type="text/css">
 
 	</style>
-	<form name="aspnetForm" method="post" action="/web/20140124075241/https://www.roblox.com/Upgrades/BuildersClubMemberships.php" id="aspnetForm">
+	<form name="aspnetForm" method="post" action="https://<?= $site_properties['hostname'] ?>/Upgrades/BuildersClubMemberships.php" id="aspnetForm">
 		<div>
 			<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTQwMzUyMDY4Mg9kFgJmD2QWAgIBEBYCHgZhY3Rpb24FJi9VcGdyYWRlcy9CdWlsZGVyc0NsdWJNZW1iZXJzaGlwcy5hc3B4ZBYGAgIPDxYCHgdWaXNpYmxlaGRkAggPDxYCHwFoZGQCCw9kFgJmD2QWAgIDD2QWAmYPZBYGAgIPZBYGAgEPZBYEAgEPZBYCZg8VAQROb25lZAICD2QWAmYPFQEAZAICD2QWBAIBD2QWAmYPFQECTm9kAgIPZBYCZg8VAQJOb2QCAw9kFgQCAQ9kFgJmDxUBCHh4L3h4L3h4ZAICD2QWAmYPFQEIeHgveHgveHhkAgMPFQEIeHgveHgveHhkAgQPFgIeBGhyZWYFI34vVXBncmFkZXMvUGF5bWVudE1ldGhvZHMuYXNweD9hcD0wZBgDBSNjdGwwMCRyYnhHb29nbGVBbmFseXRpY3MkTXVsdGlWaWV3MQ8PZAIBZAUkY3RsMDAkUmlnaHRHdXR0ZXJBZCRBc3luY0FkTXVsdGlWaWV3Dw9kAgNkBSNjdGwwMCRMZWZ0R3V0dGVyQWQkQXN5bmNBZE11bHRpVmlldw8PZAIDZEqB3GAPF8DTfRovy/2YZLGboDBD"> </div>
-		<script src="/web/20140124075241js_/https://www.roblox.com/ScriptResource.axd?d=_N1An8P2Pkfqm0X7bY0tY0ki9xzgFypv5XL8mPznGn9mcEJLpfhxHl5AvGIlRMAwalUsTdfObbcA6d8S8g33JgCKUyRFCB8PIkSKNK21-sMDwtebHfJmgaFkZfKdfZEQJYR6-QwQcq_x1MUisWKPJ88g33mdHav3djd7uC8lOBiwWdwgwFC6DHvXu-r9kGKTXJktytLicDqAyb9do-a4xfckbkupkIuxFCIr-ShCbtDfTALAYKaxR0bLULmU1FMNBT3thYW1LAQxatc_F1BU8SOVKlf860nn_RVseQEqiL7Bl7Un65p2A8dletaTL48z6XnXAxW57byQq5dn-UP1Efz42vBchxvOwXmDJJrrRfUv4r7TYH9PLhW9mzzPCB213OHhSc5Fs1cGF_ptwDeWeAEg117xhw7fSMWyqNw4zULpUX6iMc-rW0QWVD9VmO26jFUf_w2" type="text/javascript"></script>
+		<script src="https://<?= $site_properties['hostname'] ?>/ScriptResource.axd?d=_N1An8P2Pkfqm0X7bY0tY0ki9xzgFypv5XL8mPznGn9mcEJLpfhxHl5AvGIlRMAwalUsTdfObbcA6d8S8g33JgCKUyRFCB8PIkSKNK21-sMDwtebHfJmgaFkZfKdfZEQJYR6-QwQcq_x1MUisWKPJ88g33mdHav3djd7uC8lOBiwWdwgwFC6DHvXu-r9kGKTXJktytLicDqAyb9do-a4xfckbkupkIuxFCIr-ShCbtDfTALAYKaxR0bLULmU1FMNBT3thYW1LAQxatc_F1BU8SOVKlf860nn_RVseQEqiL7Bl7Un65p2A8dletaTL48z6XnXAxW57byQq5dn-UP1Efz42vBchxvOwXmDJJrrRfUv4r7TYH9PLhW9mzzPCB213OHhSc5Fs1cGF_ptwDeWeAEg117xhw7fSMWyqNw4zULpUX6iMc-rW0QWVD9VmO26jFUf_w2" type="text/javascript"></script>
 		<div id="fb-root"> </div>
 		<div class="">
 			<div class="">
@@ -76,64 +85,7 @@
 					Roblox.FixedUI.gutterAdsEnabled = false;
 					</script>
 					<div id="Container" class="unfixed">
-						<div class="site-header unfixed">
-							<div id="navigation-container">
-								<a href="/web/20140124075241/https://www.roblox.com/Default.aspx" class="btn-logo" data-se="nav-logo"></a>
-								<div id="navigation-menu">
-									<ul>
-										<li><a href="/web/20140124075241/https://www.roblox.com/home" ref="nav-myroblox" data-se="nav-myhome">Home</a></li>
-										<li><a data-se="nav-games" href="/web/20140124075241/https://www.roblox.com/games" ref="nav-games" title="Games">Games</a> </li>
-										<li><a data-se="nav-catalog" href="/web/20140124075241/https://www.roblox.com/Catalog" ref="nav-catalog" title="Catalog">Catalog</a></li>
-										<li><a data-se="nav-develop" href="/web/20140124075241/https://www.roblox.com/develop" title="Develop" ref="nav-develop">Develop</a></li>
-										<li><a data-se="nav-upgrade" href="/web/20140124075241/https://www.roblox.com/Upgrades/BuildersClubMemberships.php" title="Upgrade" ref="nav-buildersclub">Upgrade</a></li>
-										<li><a data-se="nav-forum" onclick="" href="/web/20140124075241/https://www.roblox.com/Forum/Default.aspx" style="" title="Forum" ref="nav-forum">Forum</a></li>
-										<li class="more-list-item" drop-down-nav-button="more-list-item">
-											<div class="more-link-container"> <a id="nav-more" title="More" data-se="nav-more" ref="nav-more">More<span id="more-menu-toggle"></span></a> </div>
-											<div class="dropdownnavcontainer" style="display:none;" drop-down-nav-container="more-list-item">
-												<div class="dropdownmainnav" style="z-index:1023"> <a class="dropdownoption" data-se="nav-more-browse" href="/web/20140124075241/https://www.roblox.com/Browse.aspx" title="People" ref="nav-people"><span>People</span></a> <a class="dropdownoption roblox-interstitial" data-se="nav-more-blog" href="https://web.archive.org/web/20140124075241/http://blog.roblox.com/" title="Blog" ref="nav-news"><span>Blog</span></a> <a class="dropdownoption" data-se="nav-more-help" href="/web/20140124075241/https://www.roblox.com/Help/Builderman.aspx" title="Help" ref="nav-help"><span>Help</span></a>
-													<div style="clear:both;"></div>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
-								<div id="header-login-container">
-									<div id="header-login-wrapper" class="iframe-login-signup" data-display-opened=""> <a id="header-signup" href="/web/20140124075241/https://www.roblox.com/Login/NewAge.aspx">Sign Up</a> <span id="header-or">or</span> <span id="login-span">
-                            <a id="header-login" class="btn-control btn-control-large">Login <span class="grey-arrow">▼</span></a>
-										</span>
-										<div id="iFrameLogin" style="display: none; height: 128px;">
-											<iframe class="login-frame" src="https://web.archive.org/web/20140124075241if_/https://www.roblox.com/Login/iFrameLogin.aspx?loginRedirect=False&amp;parentUrl=https%3a%2f%2fwww.roblox.com%2fUpgrades%2fBuildersClubMemberships.php" scrolling="no" frameborder="0" data-ruffle-polyfilled=""></iframe>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<script type="text/javascript">
-						$(function() {
-							$('.more-list-item').bind('showDropDown', function() {
-								var maxWidth = $('#navigation-menu .dropdownnavcontainer').width();
-								$('a.dropdownoption span').each(function(index, elem) {
-									elem = $(elem);
-									if(elem.outerWidth() > maxWidth) {
-										maxWidth = elem.outerWidth();
-									}
-								});
-								maxWidth = maxWidth + 5;
-								$('#navigation-menu .dropdownoption').each(function(index, elem) {
-									elem = $(elem);
-									if(elem.width() < maxWidth) {
-										elem.width(maxWidth);
-									}
-								});
-							});
-						});
-						</script>
-						<style>
-						html {
-							background: #123f83;
-						}
-						</style>
-					</div>
+					<?= SiteHeader::render() ?>
 					<div class="forceSpace unfixed">&nbsp;</div>
 					<noscript>
 						<div class="SystemAlert">
@@ -391,7 +343,7 @@
 									</div>
 									<div class="right-column">
 										<div id="RightColumnWrapper">
-											<div class="cell cellDivider"> For billing and payment questions: <span class="SL_swap" id="CsEmailLink"><a href="https://web.archive.org/web/20140124075241/mailto:info@roblox.com">info@roblox.com</a></span> </div>
+											<div class="cell cellDivider"> For billing and payment questions: <span class="SL_swap" id="CsEmailLink"><a href="https://web.archive.orgmailto:info@roblox.com">info@roblox.com</a></span> </div>
 											<div class="">
 												<div class="GenericModal modalPopup unifiedModal smallModal" style="display:none;">
 													<div class="Title"></div>
@@ -408,43 +360,43 @@
 											<div class="cell cellDivider">
 												<h3>Buy ROBUX</h3>
 												<p>Use ROBUX to buy virtual goods for your character - shirts, pants, hats, faces, and even heads! You can also buy gear, like hammers, potions, jet boots, swords, and BLOXI Cola.</p>
-												<p> <a href="/web/20140124075241/https://www.roblox.com/upgrades/robux.aspx" class="btn-medium btn-primary">Buy ROBUX</a> </p>
+												<p> <a href="https://<?= $site_properties['hostname'] ?>/upgrades/robux.aspx" class="btn-medium btn-primary">Buy ROBUX</a> </p>
 												<h3>Buy ROBUX with</h3>
 												<br>
 												<br>
-												<a href="/web/20140124075241/https://www.roblox.com/micropay"><img src="https://web.archive.org/web/20140124075241im_/https://s3.amazonaws.com/images.roblox.com/d3ac0f6384162cef74cfd79f7692612e.png" alt="boku"></a>
+												<a href="https://<?= $site_properties['hostname'] ?>/micropay"><img src="https://web.archive.org/web/20140124075241im_/https://s3.amazonaws.com/images.roblox.com/d3ac0f6384162cef74cfd79f7692612e.png" alt="boku"></a>
 												<br>
 												<br>
-												<a href="/web/20140124075241/https://www.roblox.com/rixtypin"><img src="https://web.archive.org/web/20140124075241im_/https://s3.amazonaws.com/images.roblox.com/93e037df4111777c7463d97eadebc59e.png" alt="rixty"></a>
+												<a href="https://<?= $site_properties['hostname'] ?>/rixtypin"><img src="https://web.archive.org/web/20140124075241im_/https://s3.amazonaws.com/images.roblox.com/93e037df4111777c7463d97eadebc59e.png" alt="rixty"></a>
 												<br>
 												<br>
-												<a href="https://web.archive.org/web/20140124075241/http://itunes.apple.com/us/app/roblox-mobile/id431946152?mt=8"><img src="https://web.archive.org/web/20140124075241im_/https://s3.amazonaws.com/images.roblox.com/70deff83e869746b0bbc41a86f420844.png" alt="itunes"></a>
+												<a href="https://web.archive.orghttp://itunes.apple.com/us/app/roblox-mobile/id431946152?mt=8"><img src="https://web.archive.org/web/20140124075241im_/https://s3.amazonaws.com/images.roblox.com/70deff83e869746b0bbc41a86f420844.png" alt="itunes"></a>
 											</div>
 											<div class="cell cellDivider">
 												<h3>Gift Cards</h3>
 												<br>
-												<a href="/web/20140124075241/https://www.roblox.com/upgrades/giftcards.aspx" class="giftCardImage"><img src="https://web.archive.org/web/20140124075241im_/https://s3.amazonaws.com/images.roblox.com/bf9f4b65f937ad01f07ae6714eaba723.png" alt="giftcard"></a>
+												<a href="https://<?= $site_properties['hostname'] ?>/upgrades/giftcards.aspx" class="giftCardImage"><img src="https://web.archive.org/web/20140124075241im_/https://s3.amazonaws.com/images.roblox.com/bf9f4b65f937ad01f07ae6714eaba723.png" alt="giftcard"></a>
 												<div>
-													<div class="giftCardButton"> <a href="/web/20140124075241/https://www.roblox.com/upgrades/giftcards.aspx" class="btn-small btn-primary">Buy Card</a> </div>
-													<div><a href="/web/20140124075241/https://www.roblox.com/gamecard" class="redeemLink">Redeem card</a></div>
+													<div class="giftCardButton"> <a href="https://<?= $site_properties['hostname'] ?>/upgrades/giftcards.aspx" class="btn-small btn-primary">Buy Card</a> </div>
+													<div><a href="https://<?= $site_properties['hostname'] ?>/gamecard" class="redeemLink">Redeem card</a></div>
 													<div style="clear: both"></div>
 												</div>
 											</div>
 											<div class="cell cellDivider">
 												<h3>Game Cards</h3>
-												<a href="/web/20140124075241/https://www.roblox.com/gamecards"><img alt="ROBLOX Gamecards" src="https://web.archive.org/web/20140124075241im_/https://s3.amazonaws.com/images.roblox.com/863c65342816d665de28411cf47cde42.png"></a>
+												<a href="https://<?= $site_properties['hostname'] ?>/gamecards"><img alt="ROBLOX Gamecards" src="https://web.archive.org/web/20140124075241im_/https://s3.amazonaws.com/images.roblox.com/863c65342816d665de28411cf47cde42.png"></a>
 												<div class="gameCardControls">
-													<div class="gameCardButton"> <a href="/web/20140124075241/https://www.roblox.com/gamecards" class="btn-small btn-primary">Where to Buy</a> </div>
-													<div><a href="/web/20140124075241/https://www.roblox.com/gamecard" class="redeemLink">Redeem Card</a></div>
+													<div class="gameCardButton"> <a href="https://<?= $site_properties['hostname'] ?>/gamecards" class="btn-small btn-primary">Where to Buy</a> </div>
+													<div><a href="https://<?= $site_properties['hostname'] ?>/gamecard" class="redeemLink">Redeem Card</a></div>
 													<div style="clear: both"></div>
 												</div>
 											</div>
 											<div class="cell">
 												<h3>Need Builders Club Now?</h3>
-												<p>Fill out our fun, interactive form, and print it out or send it your friends and family!</p> <a href="/web/20140124075241/https://www.roblox.com/my/share/pleaseupgrademe.aspx" class="btn-small btn-primary">Please Upgrade Me!</a>
+												<p>Fill out our fun, interactive form, and print it out or send it your friends and family!</p> <a href="https://<?= $site_properties['hostname'] ?>/my/share/pleaseupgrademe.aspx" class="btn-small btn-primary">Please Upgrade Me!</a>
 												<p>Warning: "Please Upgrade Me!" may be very convincing.</p>
 												<h3>Parents</h3>
-												<p>Learn more about builders club and how we help <a href="https://web.archive.org/web/20140124075241/http://corp.roblox.com/parents/builders-club" class="roblox-interstitial">keep kids safe.</a></p>
+												<p>Learn more about builders club and how we help <a href="https://web.archive.orghttp://corp.roblox.com/parents/builders-club" class="roblox-interstitial">keep kids safe.</a></p>
 												<h3>Other Accounts</h3>
 												<p>To cancel the memberships for one or more other accounts, please contact customer service at info@Roblox.com. Please Note: You can cancel monthly recurring memberships any time before the renewal date. 6 and 12 month memberships cannot be canceled. Memberships are not refundable.</p>
 											</div>
@@ -460,7 +412,7 @@
 										<div id="ctl00_cphRoblox_BCCompareModal_BCCompareModalUpdatePanel" class="BCCompareModalUpdatePanel">
 											<div id="BuyBCComparePanelTopInfo" style="width:390px;">
 												<div id="ComparePanelImg" style="margin-bottom:15px;text-align: center;margin-top:-10px;"> <span style="font-weight:bold;font-size:13px;">Product Selected</span>
-													<br> <img id="ctl00_cphRoblox_BCCompareModal_BuyBCComparePanelImage" src="/web/20140124075241im_/https://www.roblox.com/Upgrades/BuildersClubMemberships.php" style="border-width:0px;margin-top:5px;"> </div> <span id="ctl00_cphRoblox_BCCompareModal_BCCompareConversionInfo"></span> </div>
+													<br> <img id="ctl00_cphRoblox_BCCompareModal_BuyBCComparePanelImage" src="/web/20140124075241im_/https://<?= $site_properties['hostname'] ?>/Upgrades/BuildersClubMemberships.php" style="border-width:0px;margin-top:5px;"> </div> <span id="ctl00_cphRoblox_BCCompareModal_BCCompareConversionInfo"></span> </div>
 											<div style="border:1px solid #D3D3D3;">
 												<br>
 												<table id="ctl00_cphRoblox_BCCompareModal_verid" class="BuyBCComparePanelTable" cellspacing="0" cellpadding="0" align="Center" border="0" style="border-collapse:collapse;margin-left:auto;margin-right:auto;width:450px;">
@@ -527,32 +479,9 @@
 						</div>
 					</div>
 				</div>
-				<div id="Footer" class="footer-container unfixed">
-					<div class="FooterNav"> <a href="/web/20140124075241/https://www.roblox.com/info/Privacy.aspx">Privacy Policy</a> &nbsp;|&nbsp; <a href="https://web.archive.org/web/20140124075241/http://corp.roblox.com/advertise-on-roblox" class="roblox-interstitial">Advertise with Us</a> &nbsp;|&nbsp; <a href="https://web.archive.org/web/20140124075241/http://corp.roblox.com/roblox-press" class="roblox-interstitial">Press</a> &nbsp;|&nbsp; <a href="https://web.archive.org/web/20140124075241/http://corp.roblox.com/contact-us" class="roblox-interstitial">Contact Us</a> &nbsp;|&nbsp; <a href="https://web.archive.org/web/20140124075241/http://corp.roblox.com/" class="roblox-interstitial">About Us</a> &nbsp;|&nbsp; <a href="https://web.archive.org/web/20140124075241/http://blog.roblox.com/" class="roblox-interstitial">Blog</a> &nbsp;|&nbsp; <a href="https://web.archive.org/web/20140124075241/http://corp.roblox.com/jobs" class="roblox-interstitial">Jobs</a> &nbsp;|&nbsp; <a href="https://web.archive.org/web/20140124075241/http://corp.roblox.com/parents" class="roblox-interstitial">Parents</a> &nbsp;|&nbsp; <a href="https://web.archive.org/web/20140124075241/http://shop.roblox.com/" class="roblox-interstitial">Shop</a> <span class="LanguageOptionElement">&nbsp;|&nbsp;</span> <span runat="server" navigateurl="http://corp.roblox.com/parents" ref="footer-parents" class="LanguageOptionElement LanguageTrigger roblox-interstitial" drop-down-nav-button="LanguageTrigger">English&nbsp;<span class="FooterArrow">▼</span>
-						<div class="dropuplanguagecontainer" style="display:none;" drop-down-nav-container="LanguageTrigger">
-							<div class="dropdownmainnav" style="z-index:1023"> <a href="/web/20140124075241/https://www.roblox.com/UserLanguage/LanguageRedirect?languageCode=de&amp;relativePath=%2fUpgrades%2fBuildersClubMemberships.php" class="LanguageOption js-lang" data-js-langcode="de"><span class="notranslate">Deutsch</span>&nbsp;(German) </a> </div>
-						</div>
-						</span>
-					</div>
-					<div class="FooterNav">
-						<div id="SEOGenreLinks" class="SEOGenreLinks"> <a href="/web/20140124075241/https://www.roblox.com/all-games">All Games</a> <span>|</span> <a href="/web/20140124075241/https://www.roblox.com/building-games">Building</a> <span>|</span> <a href="/web/20140124075241/https://www.roblox.com/horror-games">Horror</a> <span>|</span> <a href="/web/20140124075241/https://www.roblox.com/town-and-city-games">Town and City</a> <span>|</span> <a href="/web/20140124075241/https://www.roblox.com/military-games">Military</a> <span>|</span> <a href="/web/20140124075241/https://www.roblox.com/comedy-games">Comedy</a> <span>|</span> <a href="/web/20140124075241/https://www.roblox.com/medieval-games">Medieval</a> <span>|</span> <a href="/web/20140124075241/https://www.roblox.com/adventure-games">Adventure</a> <span>|</span> <a href="/web/20140124075241/https://www.roblox.com/sci-fi-games">Sci-Fi</a> <span>|</span> <a href="/web/20140124075241/https://www.roblox.com/naval-games">Naval</a> <span>|</span> <a href="/web/20140124075241/https://www.roblox.com/fps-games">FPS</a> <span>|</span> <a href="/web/20140124075241/https://www.roblox.com/rpg-games">RPG</a> <span>|</span> <a href="/web/20140124075241/https://www.roblox.com/sports-games">Sports</a> <span>|</span> <a href="/web/20140124075241/https://www.roblox.com/fighting-games">Fighting</a> <span>|</span> <a href="/web/20140124075241/https://www.roblox.com/western-games">Western</a> </div>
-					</div>
-					<div class="legal">
-						<div class="left">
-							<div id="a15b1695-1a5a-49a9-94f0-9cd25ae6c3b2">
-								<a href="//web.archive.org/web/20140124075241/https://privacy.truste.com/privacy-seal/Roblox-Corporation/validation?rid=2428aa2a-f278-4b6d-9095-98c4a2954215" title="TRUSTe Children privacy certification" target="_blank"> <img style="border: none" src="//web.archive.org/web/20140124075241im_/https://privacy-policy.truste.com/privacy-seal/Roblox-Corporation/seal?rid=2428aa2a-f278-4b6d-9095-98c4a2954215" alt="TRUSTe Children privacy certification"> </a>
-							</div>
-						</div>
-						<div class="right">
-							<p class="Legalese"> ROBLOX, "Online Building Toy", characters, logos, names, and all related indicia are trademarks of <a href="https://web.archive.org/web/20140124075241/http://corp.roblox.com/" ref="footer-smallabout" class="roblox-interstitial">ROBLOX Corporation</a>, ©2014. Patents pending. ROBLOX is not sponsored, authorized or endorsed by any producer of plastic building bricks, including The LEGO Group, MEGA Brands, and K'Nex, and no resemblance to the products of these companies is intended. Use of this site signifies your acceptance of the <a href="/web/20140124075241/https://www.roblox.com/info/terms-of-service" ref="footer-terms">Terms and Conditions</a>. </p>
-						</div>
-						<div class="clear"></div>
-					</div>
-				</div>
-			</div>
-		</div>
+				<?= SiteFooter::render() ?>
 		<div id="ChatContainer" style="position: fixed; bottom: 0; right: 0; z-index: 10020"> </div>
-		<script src="https://web.archive.org/web/20140124075241js_/https://ssl.google-analytics.com/urchin.js" type="text/javascript"></script>
+		<script src="https://web.archive.orghttps://ssl.google-analytics.com/urchin.js" type="text/javascript"></script>
 		<script type="text/javascript">
 		_uacct = "UA-486632-1";
 		_udn = "roblox.com";
@@ -577,7 +506,7 @@
 	</div>
 	<div id="pluginObjDiv" style="height:1px;width:1px;visibility:hidden;position: absolute;top: 0;"></div>
 	<iframe id="downloadInstallerIFrame" style="visibility:hidden;height:0;width:1px;position:absolute" data-ruffle-polyfilled=""></iframe>
-	<script type="text/javascript" src="https://web.archive.org/web/20140124075241js_/https://s3.amazonaws.com/js.roblox.com/8bcdddfb9aa61c2e1d92e5b8b5afff52.js"></script>
+	<script type="text/javascript" src="https://web.archive.orghttps://s3.amazonaws.com/js.roblox.com/8bcdddfb9aa61c2e1d92e5b8b5afff52.js"></script>
 	<script type="text/javascript">
 	Roblox.Client._skip = '/install/unsupported.aspx';
 	Roblox.Client._CLSID = '';
@@ -611,7 +540,7 @@
 				<input type="button" class="Button CancelPlaceLauncherButton translate" value="Cancel"> </div>
 		</div>
 	</div>
-	<script type="text/javascript" src="https://web.archive.org/web/20140124075241js_/https://s3.amazonaws.com/js.roblox.com/507606ba77acf2ff29dd3ec7cb668f06.js"></script>
+	<script type="text/javascript" src="https://web.archive.orghttps://s3.amazonaws.com/js.roblox.com/507606ba77acf2ff29dd3ec7cb668f06.js"></script>
 	<div id="videoPrerollPanel" style="display:none">
 		<div id="videoPrerollTitleDiv"> Gameplay sponsored by: </div>
 		<div id="videoPrerollMainDiv"></div>
@@ -622,7 +551,7 @@
 			</div>
 		</div>
 		<div id="videoPrerollJoinBC"> <span>Get more with Builders Club!</span>
-			<a href="/web/20140124075241/https://www.roblox.com/Upgrades/BuildersClubMemberships.php?ref=vpr" target="_blank" id="videoPrerollJoinBCButton"></a>
+			<a href="https://<?= $site_properties['hostname'] ?>/Upgrades/BuildersClubMemberships.php?ref=vpr" target="_blank" id="videoPrerollJoinBCButton"></a>
 		</div>
 	</div>
 	<script type="text/javascript">
