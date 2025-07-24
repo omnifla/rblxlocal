@@ -23,7 +23,8 @@ spl_autoload_register(function ($class) {
     if (file_exists($file)) { 
         require $file;
     } else {
-        throw new \Exception("File not found: $file");
+        return;
+        //throw new \Exception("File not found: $file");
     }
 });
 use Roblox\Settings as Settings;
