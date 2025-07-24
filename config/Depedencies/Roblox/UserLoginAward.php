@@ -3,6 +3,7 @@
 // this is a trimmed down version of UserLoginAward.cs, as it lack some of the other necessary feautres, yet having the necessary ones.
 namespace Roblox;
 use Roblox\UserLoginAwardDAL;
+use DateTime;
 
 class UserLoginAward
 {
