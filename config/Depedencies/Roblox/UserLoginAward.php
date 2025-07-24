@@ -1,20 +1,19 @@
 <?php
 // ported by meditext
-// this is a trimmed down version of UserLoginAward.cs, as it lack some of the other necessary feautres, yet having the necessary ones.
+// this is a trimmed-down version of UserLoginAward.cs with only the necessary features
+
 namespace Roblox;
-use Roblox\UserLoginAwardDAL;
+
 use DateTime;
+use Roblox\UserLoginAwardDAL;
 
 class UserLoginAward
 {
-    private UserLoginAwardDAL $dal;
+    public function __construct(
+        private UserLoginAwardDAL $dal
+    ) {}
 
-    public function __construct(UserLoginAwardDAL $dal)
-    {
-        $this->dal = $dal;
-    }
-
-    public static function getOrCreate(int $userId): ?UserLoginAward
+    public static function getOrCreate(int $userId): ?self
     {
         $dal = UserLoginAwardDAL::getOrCreate($userId);
         return $dal ? new self($dal) : null;
@@ -24,7 +23,7 @@ class UserLoginAward
     {
         $lastAwarded = $this->dal->getLastAwarded();
 
-        if ($lastAwarded && $lastAwarded > (new DateTime())->modify('-1 day')) {
+        if ($lastAwarded instanceof DateTime && $lastAwarded > (new DateTime('-1 day'))) {
             return false;
         }
 
