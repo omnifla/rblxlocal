@@ -45,4 +45,5 @@ $site_properties = [
 ];
 
 // global variables ripped from the Settings.cs in the Roblox Source code.
-$properties = Settings->$settings;
+$settingsInstance = new Settings();
+$properties = $settingsInstance->settings;
