@@ -12,10 +12,10 @@ $user = Auth::GetAuthenticatedUserInfo();
 if ($status === null || trim($status) === '') {
     exit('{"success": false, "message": "Status cannot be empty."}');
 }
+$status = $filter->filter($status)->getFilteredText();
 if (mb_strlen($status) > 280) {
     exit('{"success": false, "message": "Status must be 280 characters or less."}');
 }
-$status = $filter->filter($status)->getFilteredText();
 $time_posted = time();
 $insert_stmt = $conn->prepare("INSERT INTO feeds (author_id, content, posted_at) VALUES (:user_id, :status, :created_at)");
 $insert_stmt->bindParam(':user_id', $user['id'], PDO::PARAM_INT);
