@@ -22,7 +22,7 @@ spl_autoload_register(function ($class) {
         throw new \Exception("File not found: $file");
     }
 });
-use Roblox\Settings;
+use Roblox\Settings as Settings;
 // database connection
 $host = $_ENV['DB_HOST'];
 $dbname = $_ENV['DB_NAME'];
@@ -45,4 +45,4 @@ $site_properties = [
 ];
 
 // global variables ripped from the Settings.cs in the Roblox Source code.
-$properties = Settings::settings;
+$properties = Settings->$settings;
