@@ -47,7 +47,7 @@ class Badge
         if (!$badgeId) {
             return null;
         }
-        self::AwardBadge($badgeId)
+        self::AwardBadge($badgeId);
 
         return self::Get($badgeId);
     }
