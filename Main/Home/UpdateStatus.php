@@ -10,6 +10,8 @@ $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $filter = new BasicTextFilter();
 $rawStatus = $_POST['status'] ?? null;
 
+exit('{"success": false, "message": "Feeds have been disabled temporarily."}');
+
 if (!Auth::GetAuthenticatedUser()) {
     echo '{"success": false, "message": "You must be logged in to update your status."}';
     exit;
