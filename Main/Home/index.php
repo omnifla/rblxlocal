@@ -244,12 +244,12 @@ $(function(){
         <div class="roblox-avatar-image" data-user-id="6570505" data-image-size="tiny">
             <div style="position: relative;">
                 <a href="http://<?= $site_properties['hostname'] ?>/user.aspx?id=6570505">
-                    <img title="Rootless" alt="Rootless" border="0" src="/Images/Placeholder1024x1024.png">
+                    <img title="Rootless" alt="Rootless" border="0" src="">
                 </a>
             </div>
         </div>
         <div class="info">
-            <img src="/Images/Placeholder1024x1024.png" title="Offline">
+            <img src="" title="Offline">
             <a class="name" href="http://<?= $site_properties['hostname'] ?>/User.aspx?ID=1">ROBLOX</a>
             <div class="status">"Still in the works"</div>
         </div>
