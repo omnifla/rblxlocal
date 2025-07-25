@@ -203,7 +203,7 @@ class Authentication {
     }
     public static function GetAuthenticatedUserInfo() {
         global $conn;
-        $jwt_secret = 'EIJ3ITGJANGHIANSGOIJ';
+        $jwt_secret = $_ENV['JWT_SECRET'];
         if (empty($_COOKIE['_ROBLOSECURITY'])) {
             return null;
         }
