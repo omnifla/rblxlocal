@@ -250,4 +250,15 @@ class Authentication {
             return null;
         }
     }
+    public static function SearchUserTerm(string $username) {
+        global $conn;
+        $searchTerm = '%' . $username . '%';
+
+        $stmt = $conn->prepare("SELECT * FROM users WHERE username ILIKE :searchTerm");
+        $stmt->bindParam(':searchTerm', $searchTerm, \PDO::PARAM_STR);
+        $stmt->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
 }  
