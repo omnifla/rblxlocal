@@ -71,6 +71,7 @@ class Authentication {
     public static function Login(string $username, string $password) {
         global $conn;
         $jwt_secret = $_ENV['JWT_SECRET'];
+        self::verifyCaptcha();
 
         if (empty($username) || empty($password)) {
             throw new \InvalidArgumentException("Username and password are required.");
@@ -127,8 +128,9 @@ class Authentication {
     }
     public static function Register(string $username, string $password, ?int $gender = 1, ?string $email = "", ?string $birthdate = "1970-01-01") {
         global $conn;
-       
         $jwt_secret = $_ENV['JWT_SECRET'];
+        self::verifyCaptcha();
+        
         if($_ENV['CAN_MAKE_ACC'] == "false"){
             throw new \InvalidArgumentException("Could not register your account, please try again later.");
         }
