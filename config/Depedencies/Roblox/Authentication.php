@@ -9,20 +9,19 @@ use Roblox\UserLoginAward;
 
 class Authentication {
     public static function isGlobalFlooding(): bool { // added this global flood checker because HOLY CRAP ITS JUST TO MUCH ACCOUNTS BEING CREATED.
-        global $conn;
-        global $properties;
-
-        $stmt = $conn->prepare("
-            SELECT COUNT(*) FROM users
-            WHERE created >= (NOW() - INTERVAL ':minutes MINUTES')
-        ");
-        $stmt->execute([
-            'minutes' => $properties['AccountCreationFloodCheckTimeInMinutes']
-        ]);
-
-        $count = (int) $stmt->fetchColumn();
-
-        return $count >= $properties['AccountCreationFloodCheckLimit'];
+       global $conn;
+       global $properties;
+        
+       $minutesAgo = (new \DateTime())->modify('-' . (int)$properties['AccountCreationFloodCheckTimeInMinutes'] . ' minutes')->format('Y-m-d H:i:s');
+       $stmt = $conn->prepare("
+           SELECT COUNT(*) FROM users
+           WHERE created >= :cutoff
+       ");
+       $stmt->execute([':cutoff' => $minutesAgo]);
+        
+       $count = (int) $stmt->fetchColumn();
+        
+       return $count >= $properties['AccountCreationFloodCheckLimit'];
     }
     public static function GetAuthenticatedUser() {
         global $conn;
