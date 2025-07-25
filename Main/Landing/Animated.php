@@ -220,7 +220,7 @@ if(Auth::GetAuthenticatedUser()){
                                 </div>
                             </div>
 			    <div class="sign-up-row">
-                                <div class="h-captcha" data-sitekey="e36ad4e6-536c-4f1a-baba-d2cc9804c9de" data-size="compact"></div>
+                                <div class="h-captcha" data-sitekey="e36ad4e6-536c-4f1a-baba-d2cc9804c9de"></div>
                             </div>
                             <div>
                                 <a  onclick="return Roblox.AnimatedLoginFormValidator.validateLoginForm();" tabindex="3" class="btn-large btn-primary" id="login-button">Login</a>
@@ -359,7 +359,7 @@ for ($i = $currentYear; $i >= $startYear; $i--) {
                                 </div>
                             </div>
 			    <div class="sign-up-row">
-                                <div class="h-captcha" data-sitekey="e36ad4e6-536c-4f1a-baba-d2cc9804c9de" data-size="compact"></div>
+                                <div class="h-captcha" data-sitekey="e36ad4e6-536c-4f1a-baba-d2cc9804c9de"></div>
                             </div>
                             
 
