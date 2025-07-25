@@ -30,29 +30,14 @@ if (mb_strlen($status, 'UTF-8') > 150) {
     exit;
 }
 
-$cooldownSeconds = 10;
 
-$sql = "
-    INSERT INTO feeds (author_id, content, posted_at)
-    SELECT :user_id, :status, NOW()
-    FROM dual
-    WHERE NOT EXISTS (
-        SELECT 1 FROM feeds
-        WHERE author_id = :user_id
-        AND posted_at > NOW() - INTERVAL :cooldown SECOND
-    )
-    LIMIT 1
-";
+$insert_stmt = $conn->prepare("INSERT INTO feeds (author_id, content, posted_at) VALUES (:user_id, :status, :created_at)");
+$insert_stmt->bindParam(':user_id', $user['id'], PDO::PARAM_INT);
+$insert_stmt->bindParam(':status', $status, PDO::PARAM_STR);
+$insert_stmt->bindParam(':created_at', $time_posted, PDO::PARAM_STR);
 
-$stmt = $conn->prepare($sql);
-$stmt->bindValue(':user_id', $user['id'], PDO::PARAM_INT);
-$stmt->bindValue(':status', $status, PDO::PARAM_STR);
-$stmt->bindValue(':cooldown', $cooldownSeconds, PDO::PARAM_INT);
-
-$stmt->execute();
-
-if ($stmt->rowCount() > 0) {
-    echo '{"success": true, "message": "Status updated successfully."}';
+if ($insert_stmt->execute()) { 
+    exit('{"success": true, "message": "Status updated successfully."}');
 } else {
-    echo '{"success": false, "message": "You are on a cooldown!"}';
+    exit('{"success": false, "message": "Could not update status. Please try again later."}');
 }
