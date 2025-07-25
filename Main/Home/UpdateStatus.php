@@ -39,7 +39,7 @@ $sql = "
     WHERE NOT EXISTS (
         SELECT 1 FROM feeds
         WHERE author_id = :user_id
-        AND posted_at > NOW() - INTERVAL :cooldown SECOND
+        AND TO_TIMESTAMP(posted_at) > NOW() - INTERVAL :cooldown SECOND
     )
     LIMIT 1
 ";
