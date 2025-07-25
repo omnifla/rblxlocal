@@ -1,1 +1,3 @@
-enter todo stuff here
+Find cached HTMLs for pages like Settings.
+Fix /User.aspx page using an integrated footer and header, and replace it with the proper ones.
+Fix /User.aspx page using other unneeded integrated stuff such as the chat and Roblox launcher things to free up HTML space.
