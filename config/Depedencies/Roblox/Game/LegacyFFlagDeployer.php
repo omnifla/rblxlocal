@@ -1,12 +1,12 @@
 <?php
 // pretty much the api controller for /Setting/QuietGet/ServiceHere/
-// TODO: create a node.js service that handles this, much better than this.
+// node.js service created, do not use this anymore
 
 namespace Roblox\Game;
 use Roblox\Web\SecureAPI\APIKey;
 use IncludeHelper;
 
-class FFlagDeployer {
+class LegacyFFlagDeployer {
     private array $nameToJSONMapping = [
         'ClientSharedSettings' => 'ClientAppSettings.json'
     ];
