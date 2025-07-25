@@ -39,7 +39,7 @@ if($username !== ""){
                                     <span class="OfflineStatus">
                                         <img id="ctl00_cphRoblox_gvUsersSearched_ctl02_iOfflineStatus" class="notranslate" src="/images/offline.png" alt="{$username_filt} is offline." style="border-width:0px;"></span>
                                 </td><td>
-                                    <a id="ctl00_cphRoblox_gvUsersSearched_ctl02_hlName" class="notranslate" href="User.aspx?ID=292871">{$username_filt}</a>
+                                    <a id="ctl00_cphRoblox_gvUsersSearched_ctl02_hlName" class="notranslate" href="User.aspx?ID={$useri['id']}">{$username_filt}</a>
                                 </td><td>
                                     <div style="width:400px;overflow:hidden;word-wrap:break-word;">
                                         <span id="ctl00_cphRoblox_gvUsersSearched_ctl02_lBlurb" class="notranslate">{$description_filt}</span>
