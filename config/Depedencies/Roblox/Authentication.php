@@ -55,6 +55,19 @@ class Authentication {
         }
         return $userinfo;
     }
+    // used for captcha verification on the site
+    private static function ValidateCaptcha(): void {
+        $secret = $_ENV['HCAPTCHA_SECRET'];
+        $response = $_POST['h-captcha-response'] ?? null;
+        if (!$response) {
+            throw new \InvalidArgumentException("Captcha is required")
+        }
+        $verify = file_get_contents("https://hcaptcha.com/siteverify?secret=" . urlencode($secret) . "&response=" . urlencode($response) . "&remoteip=" . $_SERVER['REMOTE_ADDR']);
+        $success = json_decode($verify, true);
+        if (!isset($success['success']) || $success['success'] !== true) {
+            throw new \InvalidArgumentException("Captcha validation failed.");
+        }
+    }
     public static function Login(string $username, string $password) {
         global $conn;
         $jwt_secret = $_ENV['JWT_SECRET'];
