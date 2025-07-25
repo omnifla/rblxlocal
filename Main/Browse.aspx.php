@@ -380,7 +380,7 @@ $(function(){
                 <span class="form-label" style="margin-right: 30px;">Search: </span>
                 <span>
                     <span class="SearchBox">
-                        <input name="ctl00$cphRoblox$SearchTextBox" type="text" maxlength="100" id="ctl00_cphRoblox_SearchTextBox" style="width: 400px;" /></span>
+                        <input name="ctl00$cphRoblox$SearchTextBox" type="text" maxlength="100" id="ctl00_cphRoblox_SearchTextBox" <?php if($username !== ""){ echo "value='{$username}'";}?>style="width: 400px;" /></span>
                     <span class="SearchButton">
                         <input type="submit" name="ctl00$cphRoblox$SearchButton" value="Search Users" id="ctl00_cphRoblox_SearchButton" class="translate" /></span>
                     <input name="ctl00$cphRoblox$Button1" type="button" id="ctl00_cphRoblox_Button1" class="translate" value="Search Groups" onclick="GroupsSearch()" onkeypress="GroupsSearch()" />
