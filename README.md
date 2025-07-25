@@ -17,6 +17,7 @@ An open source 2014M ROBLOX clone, using ROBLOX's source as a guidance.
 - [Waylon](https://github.com/WayloFunk)
 - [floof](https://github.com/verify-stack)
 - [omnifla](https://github.com/omnifla)
+- [Denied_ID](https://github.com/denied-id)
 
 ## Deployment
 
