@@ -249,7 +249,7 @@ $(function(){
             </div>
         </div>
         <div class="info">
-            <img src="/Images/Placeholder1024x1024.png" title="Offline">
+            <img src="" title="Offline">
             <a class="name" href="http://<?= $site_properties['hostname'] ?>/User.aspx?ID=1">ROBLOX</a>
             <div class="status">"Still in the works"</div>
         </div>
