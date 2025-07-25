@@ -219,6 +219,9 @@ if(Auth::GetAuthenticatedUser()){
                                     <input type="password" id="loginPassword" name="password" class="text-box text-box-large" tabindex="2" placeholder="Password" />
                                 </div>
                             </div>
+			    <div class="sign-up-row">
+                                <div class="h-captcha" data-sitekey="e36ad4e6-536c-4f1a-baba-d2cc9804c9de"></div>
+                            </div>
                             <div>
                                 <a  onclick="return Roblox.AnimatedLoginFormValidator.validateLoginForm();" tabindex="3" class="btn-large btn-primary" id="login-button">Login</a>
                             </div>
@@ -355,6 +358,9 @@ for ($i = $currentYear; $i >= $startYear; $i--) {
                                     <input name="passwordConfirm" id="passwordConfirm" class="text-box text-box-large" tabindex="8" type="password" onkeyup="Roblox.AnimatedSignupFormValidator.checkPasswordConfirm();" />
                                 </div>
                             </div>
+			    <div class="sign-up-row">
+                                <div class="h-captcha" data-sitekey="e36ad4e6-536c-4f1a-baba-d2cc9804c9de"></div>
+                            </div>
                             
 
                                                         <div>
@@ -488,7 +494,7 @@ $(function(){
 </script>
         
 <script type='text/javascript' src='http://js.rbxcdn.com/cb1ec1a0a286c244299bc3bb8994a1b9.js'></script>
-
+<script src="https://hcaptcha.com/1/api.js" async defer></script>
         
 <script type='text/javascript' src='http://js.rbxcdn.com/d208b1311ce3085f5824e4de9046878e.js'></script>
 
