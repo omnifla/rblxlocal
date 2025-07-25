@@ -60,7 +60,7 @@ class Authentication {
         $secret = $_ENV['HCAPTCHA_SECRET'];
         $response = $_POST['h-captcha-response'] ?? null;
         if (!$response) {
-            throw new \InvalidArgumentException("Captcha is required")
+            throw new \InvalidArgumentException("Captcha is required");
         }
         $verify = file_get_contents("https://hcaptcha.com/siteverify?secret=" . urlencode($secret) . "&response=" . urlencode($response) . "&remoteip=" . $_SERVER['REMOTE_ADDR']);
         $success = json_decode($verify, true);
