@@ -186,7 +186,6 @@ $(function(){
 
                 <div>
                                                             <noscript><div class="SystemAlert"><div class="SystemAlertText">Please enable Javascript to use all the features on this site.</div></div></noscript>
-                                                                    <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/config/Alert.php'; ?>
                                                             
                                                             <div class="container-main    ">
             <script type="text/javascript">
