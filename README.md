@@ -1,12 +1,10 @@
 # RBLX.local
-
-An Open Source 2014 Roblox Revival using a ported PHP version of ROBLOX's backend
-
 > [!WARNING]
 > RBLXLocal is still incomplete, report bugs on the Issues tab.
 
-## Authors
+An open source 2014M ROBLOX clone, using ROBLOX's source as a guidance.
 
+## Authors
 - [meditext](https://github.com/TheGuyWhoIsIdiot)
 - [Carbon](https://github.com/Carbonapi)
 - [SkylerClock](https://github.com/SkylerClockYT)
@@ -16,7 +14,6 @@ An Open Source 2014 Roblox Revival using a ported PHP version of ROBLOX's backen
 - [watrabi](https://github.com/watrabi)
 
 ## Contributors
-
 - [Waylon](https://github.com/WayloFunk)
 - [floof](https://github.com/verify-stack)
 - [omnifla](https://github.com/omnifla)
@@ -27,35 +24,26 @@ Before you deploy this on your main hardware, make sure you have installed the f
 - [PostgreSQL](https://www.postgresql.org/download/)
 - IIS (Enable it on Windows Features)
 - [Composer](https://getcomposer.org/download/)
-- [PHP 8.x+](https://www.php.net/manual/en/install.php)
+- [PHP 8.3+](https://www.php.net/manual/en/install.php)
+---------
+This isn't required really, but makes your life easier as it provides very important resources.
+- [rbx-api-service](https://github.com/verify-stack/rbx-api-service)
+- [node.js v20+](https://nodejs.org/en)
 
-The site can run on Apache but you need to rewrite web.confing and turn it into .htaccess
+Now you've gotten everything installed, go into `rbx-api-service` and run `npm run createEnv`. It'll give you a wizard which creates the `.env` required for pretty much everything.
 
-medi work on ts shit
+Afterwards, you need to run the migrations on the database via `npm run migrate`.
 
 ## FAQ
-
 Coming soon...
 
-## Feedback & Issues
-
-If you have any feedback & issues, please put it in Issues
-
 ## Features
-
-- Working Feeds
--  Working User Profiles (i think)
+- Working feeds (but overall shitty, we will redo this)
+- Working user profiles (i think)
 
 ## Roadmap
-
 - Add forums 
 - Add working launcher
 - Add renders
 - Admin panel
-## License
-Coming soon...
-Carbone
-
-## Extended Support 
- 
-as of now no versions of the source code will receive extended support
+- Add api.site.com apis other than /Setting/QuietGet
