@@ -26,6 +26,7 @@ Before you deploy this on your main hardware, make sure you have installed the f
 - IIS (Enable it on Windows Features)
 - [Composer](https://getcomposer.org/download/)
 - [PHP 8.3+](https://www.php.net/manual/en/install.php)
+- Apache support soon
 ---------
 This isn't required really, but makes your life easier as it provides very important resources.
 - [rbx-api-service](https://github.com/verify-stack/rbx-api-service)
