@@ -16,6 +16,7 @@ exit;
 
 <body>
     <p>This page was intentionally left empty.</p>
+    <h2>Your Probably looking for Landing/animated.php</h2>
 </body>
 
 </html>
