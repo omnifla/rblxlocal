@@ -8,6 +8,22 @@ use Roblox\TextFilter\BasicTextFilter;
 use Roblox\UserLoginAward;
 
 class Authentication {
+    public static function isGlobalFlooding(): bool { // added this global flood checker because HOLY CRAP ITS JUST TO MUCH ACCOUNTS BEING CREATED.
+        global $conn;
+        global $properties;
+
+        $stmt = $conn->prepare("
+            SELECT COUNT(*) FROM users
+            WHERE created >= (NOW() - INTERVAL ':minutes MINUTES')
+        ");
+        $stmt->execute([
+            'minutes' => $properties['AccountCreationFloodCheckTimeInMinutes']
+        ]);
+
+        $count = (int) $stmt->fetchColumn();
+
+        return $count >= $properties['AccountCreationFloodCheckLimit'];
+    }
     public static function GetAuthenticatedUser() {
         global $conn;
         if (empty($_COOKIE['_ROBLOSECURITY'])) {
@@ -42,7 +58,7 @@ class Authentication {
     }
     public static function Login(string $username, string $password) {
         global $conn;
-        $jwt_secret = 'EIJ3ITGJANGHIANSGOIJ';
+        $jwt_secret = $_ENV['JWT_SECRET'];
 
         if (empty($username) || empty($password)) {
             throw new \InvalidArgumentException("Username and password are required.");
@@ -75,6 +91,7 @@ class Authentication {
     }
     public static function ValidateUsername(string $username) {
         global $conn;
+        $filter = new BasicTextFilter();
         if(empty($username)) {
             throw new \InvalidArgumentException("Please enter a username.");
         }
@@ -90,18 +107,29 @@ class Authentication {
         if($check->fetchColumn() > 0) {
             throw new \InvalidArgumentException("This username is already in use.");
         }
+        $check2 = $filter->filter($username);
+        if($check2->isFiltered()) {
+            throw new \InvalidArgumentException("Can't be used as username.");
+        }
         return true;
     }
     public static function Register(string $username, string $password, ?int $gender = 1, ?string $email = "", ?string $birthdate = "1970-01-01") {
         global $conn;
-        $filter = new BasicTextFilter();
-        $jwt_secret = 'EIJ3ITGJANGHIANSGOIJ';
-
+       
+        $jwt_secret = $_ENV['JWT_SECRET'];
+        if($_ENV['CAN_MAKE_ACC'] == "false"){
+            throw new \InvalidArgumentException("Could not register your account, please try again later.");
+        }
         if(empty($birthdate)) {
             throw new \InvalidArgumentException("Birthday must be set first.");
         }
         if(!in_array($gender, [1, 2])) {
             throw new \InvalidArgumentException("Invalid Gender provided.");
+        }
+       
+        $check = self::isGlobalFlooding();
+        if($check) {
+            throw new \InvalidArgumentException("Could not register your account, please try again later.");
         }
         self::ValidateUsername($username); // user validation
         $torsoColor = BrickColor::GetRandom(); 
@@ -120,10 +148,7 @@ class Authentication {
         if(!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw new \InvalidArgumentException("Please enter a valid email address.");
         }
-        $check = $filter->filter($username);
-        if($check->isFiltered()) {
-            throw new \InvalidArgumentException("Can't be used as username.");
-        }
+        
         $created = $updated = date('Y-m-d H:i:s');
         $passwordHash = password_hash($password, PASSWORD_BCRYPT);
 

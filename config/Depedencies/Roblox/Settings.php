@@ -86,8 +86,9 @@ class Settings {
         "JavaScriptS3Bucket" => "", // empty by default.
         "CssS3Bucket" => "",
         "ImagesS3Bucket" => "",
-        "AccountCreationFloodCheckTimeLimitInHours" => 1,
-        "AccountCreationFloodCheckLimit" => 2,
+        // "AccountCreationFloodCheckTimeLimitInHours" => 1,
+        "AccountCreationFloodCheckTimeInMinutes" => 5, // recommended, LimitInHours is deprecated.
+        "AccountCreationFloodCheckLimit" => 10, // original value: 2
         "JavaScriptGZipS3Bucket" => "",
         "CssGZipS3Bucket" => "",
         "RobuxStipendBonusTerminationDate" => "", // unix format i dont know
