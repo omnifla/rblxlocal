@@ -10,12 +10,12 @@ An open source 2014M ROBLOX clone, using ROBLOX's source as a guidance.
 - [newuser](https://github.com/therealestnewuser)
 - [Kqsane](https://github.com/kqsane)
 - [watrabi](https://github.com/watrabi)
+- [Denied_ID](https://github.com/denied-id)
 
 ## Contributors
 - [Waylon](https://github.com/WayloFunk)
 - [floof](https://github.com/verify-stack)
 - [omnifla](https://github.com/omnifla)
-- [Denied_ID](https://github.com/denied-id)
 
 ## Deployment
 
