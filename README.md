@@ -38,7 +38,7 @@ Before you deploy this on your main hardware, make sure you have installed the f
 RBLXLocal API Service
 ---------
 This isn't required really, but makes your life easier as it provides very important resources.
-- [rbx-api-service](https://github.com/verify-stack/rbx-api-service)
+- [rbx-api-service](https://github.com/rblx-local/rbx-api-service)
 - [node.js v20+](https://nodejs.org/en)
 
 Now you've gotten everything installed, go into `rbx-api-service` and run `npm run createEnv`. It'll give you a wizard which creates the `.env` required for pretty much everything.
