@@ -27,12 +27,19 @@ $cooldownSeconds = 10;
 $stmtCooldown = $conn->prepare("SELECT posted_at FROM feeds WHERE author_id = :user_id ORDER BY posted_at DESC LIMIT 1");
 $stmtCooldown->bindParam(':user_id', $user['id'], PDO::PARAM_INT);
 $stmtCooldown->execute();
-$lastPost = $stmtCooldown->fetchColumn();
+$lastPostDate = $stmtCooldown->fetchColumn();
 
-if ($lastPost !== false && (time() - $lastPost) < $cooldownSeconds) {
-    echo '{"success": false, "message": "You are on a cooldown!"}';
-    exit;
+if ($lastPostDate !== false) {
+    $lastPostTimestamp = strtotime($lastPostDate);
+    $now = time();
+    $diff = $now - $lastPostTimestamp;
+
+    if ($diff < $cooldownSeconds) {
+        echo '{"success": false, "message": "You are on a cooldown!"}';
+        exit;
+    }
 }
+
 
 $filtered = $filter->filter($rawStatus)->getFilteredText();
 $status = mb_substr((string) $filtered, 0, 1000, 'UTF-8');
