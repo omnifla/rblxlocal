@@ -4,16 +4,16 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/../config/main.php";
 use Roblox\Authentication as Auth;
 use Roblox\Web\SiteHeader;
 use Roblox\Web\SiteFooter;
-$username = $_GET['name'] ?? $_GET['Name'] ?? null;
+$username = urldecode($_GET['name'] ?? $_GET['Name'] ?? "");
 if(isset($_POST['ctl00$cphRoblox$SearchTextBox'])){
     header("Location: /Browse.aspx?name=".$_POST['ctl00$cphRoblox$SearchTextBox']);
     exit;
 }
 $html_result = '';
-if($username){
+if($username !== ""){
     $search_result = Auth::SearchUserTerm($username);
 
-    $html_result .= `<style type="text/css">
+    $html_result .= '<style type="text/css">
                         .table-header th {
                              border-left: none;
                              border-right:none;
@@ -26,15 +26,15 @@ if($username){
 		<table class="table" cellspacing="0" cellpadding="4" border="0" id="ctl00_cphRoblox_gvUsersSearched" style="width:720px;border-collapse:collapse;">
 			<tbody><tr class="table-header">
 				<th scope="col">Avatar</th><th scope="col">&nbsp;</th><th scope="col">Name</th><th scope="col">Blurb</th><th scope="col">Last Seen</th>
-			</tr>`;
+			</tr>';
     
-    foreach($search_result as $user){
-        $username_filt = htmlspecialchars($user['username']);
-        $description_filt = htmlspecialchars(($user['description'] ?? "No description"));
+    foreach($search_result as $useri){
+        $username_filt = htmlspecialchars($useri['username']);
+        $description_filt = htmlspecialchars(($useri['description'] ?? "No description"));
         
-        $html_result .= `<tr>
-				<td class="first" style="width:50px;">
-                                    <a id="ctl00_cphRoblox_gvUsersSearched_ctl02_hlAvatar" class=" notranslate" title="{$username_filt}" href="/User.aspx?ID={$user['id']}" style="display:inline-block;height:48px;width:48px;cursor:pointer;"><img src="https://web.archive.org/web/20140723064714im_/http://t6.rbxcdn.com/9b457370ed1ee59775682bec00e2ac5a" height="48" width="48" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="{$username_filt}" class=" notranslate"><img src="/images/icons/overlay_bc_small.png" class="bcOverlay" align="left" style="position:relative;top:-12px;"></a>
+        $html_result .= <<<HTML
+                        <tr><td class="first" style="width:50px;">
+                                    <a id="ctl00_cphRoblox_gvUsersSearched_ctl02_hlAvatar" class=" notranslate" title="{$username_filt}" href="/User.aspx?ID={$useri['id']}" style="display:inline-block;height:48px;width:48px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="48" width="48" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="{$username_filt}" class=" notranslate"><img src="/images/icons/overlay_bc_small.png" class="bcOverlay" align="left" style="position:relative;top:-12px;"></a>
                                 </td><td class="first" style="width:7px;">
                                     <span class="OfflineStatus">
                                         <img id="ctl00_cphRoblox_gvUsersSearched_ctl02_iOfflineStatus" class="notranslate" src="/images/offline.png" alt="{$username_filt} is offline." style="border-width:0px;"></span>
@@ -49,8 +49,13 @@ if($username){
                                     </div>
                                 </td><td>
                                     <span id="ctl00_cphRoblox_gvUsersSearched_ctl02_lblUserLocationOrLastSeen" class="notranslate">Website</span>
-                                </td>
-			</tr>`;
+                                </td></tr>
+                        HTML;
+    }
+    if(count($search_result) <= 1){
+        $html_result .= '<tr><td class="first">
+        <center><span>No Result Found</span></center>
+        </td></tr>'; 
     }
     $html_result .= "</tbody></table>
 	</div>";
