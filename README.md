@@ -1,6 +1,4 @@
 # RBLX.local
-> [!WARNING]
-> RBLXLocal is still incomplete, report bugs on the Issues tab.
 
 An open source 2014M ROBLOX clone, using ROBLOX's source as a guidance.
 
@@ -9,7 +7,7 @@ An open source 2014M ROBLOX clone, using ROBLOX's source as a guidance.
 - [Carbon](https://github.com/Carbonapi)
 - [SkylerClock](https://github.com/SkylerClockYT)
 - [exrand](https://github.com/randomyaps)
-- [newuser](https://github.com/randomyaps)
+- [newuser](https://github.com/therealestnewuser)
 - [Kqsane](https://github.com/kqsane)
 - [watrabi](https://github.com/watrabi)
 
@@ -27,7 +25,19 @@ Before you deploy this on your main hardware, make sure you have installed the f
 - [Composer](https://getcomposer.org/download/)
 - [PHP 8.3+](https://www.php.net/manual/en/install.php)
 - Apache support soon
+
+1. Setup IIS and PostgreSQL
+2. Extract PHP and put it on C:\PHP
+3. Go to PHP.ini (dev or prod) and enable PDO_pgsql and also enable openssl and other shit if the site requires that
+4. Go to IIS and create a new CGI handle on Module Mapping with the request path being *.php and Module being FastCGIModule and the executable being C:\php\php-cgi.exe (this will allow IIS to use PHP and if u don't have FastCGIModule enable it on windows features it should be called CGI there)
+5. In Default Documents add index.php there.
+6. Make a new website on IIS and port it to C:\rblxlocalwebsitefile\Main (if something fails then u didn't give IUSR permission to use the website files)
+7. Time for the website stuff, go to the site files and rename .env-example to .env only, put your PostgreSQL database credentials there aswell as other shit
+8. Start the site and you should see the landing page, if you do then congrats but you're still not done yet as you will need to import schema.sql onto the database you chose and you should be good to go.
+
+Congrats you have set up the site!
 ---------
+RBLXLocal API Service tutorial:
 This isn't required really, but makes your life easier as it provides very important resources.
 - [rbx-api-service](https://github.com/verify-stack/rbx-api-service)
 - [node.js v20+](https://nodejs.org/en)
