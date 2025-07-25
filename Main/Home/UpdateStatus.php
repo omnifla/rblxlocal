@@ -51,17 +51,27 @@ $cooldownSeconds = 10;
 $stmtCooldown = $conn->prepare("SELECT posted_at FROM feeds WHERE author_id = :user_id ORDER BY posted_at DESC LIMIT 1");
 $stmtCooldown->bindParam(':user_id', $user['id'], PDO::PARAM_INT);
 $stmtCooldown->execute();
-$lastPostDate = $stmtCooldown->fetchColumn();
+$lastPostTimestamp = $stmtCooldown->fetchColumn();
 
-if ($lastPostDate !== false) {
-    $lastPostTimestamp = strtotime($lastPostDate);
+if ($lastPostTimestamp !== false) {
+    $lastPostTimestamp = (int)$lastPostTimestamp;
     $now = time();
     $diff = $now - $lastPostTimestamp;
+
     if ($diff < $cooldownSeconds) {
         echo '{"success": false, "message": "You are on a cooldown!"}';
         exit;
     }
 }
+
+$time_posted = time();
+
+$stmt = $conn->prepare("INSERT INTO feeds (author_id, content, posted_at) VALUES (:user_id, :status, :created_at)");
+$stmt->bindParam(':user_id', $user['id'], PDO::PARAM_INT);
+$stmt->bindParam(':status', $status, PDO::PARAM_STR);
+$stmt->bindParam(':created_at', $time_posted, PDO::PARAM_INT);
+$stmt->execute();
+
 
 $filtered = $filter->filter($rawStatus)->getFilteredText();
 $status = mb_substr((string) $filtered, 0, 1000, 'UTF-8');
