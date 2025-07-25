@@ -1,7 +1,6 @@
 <?php
 // written by meditext
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
-use Roblox\Authentication as Auth;
 use Roblox\Web\SiteHeader;
 use Roblox\Web\SiteFooter;
 
