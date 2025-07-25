@@ -262,6 +262,7 @@ $(function(){
                                 <td><label class="form-label" for="Password">Password:</label></td>
                                 <td><input class="text-box text-box-medium" data-val="true" data-val-required="The Password field is required." id="Password" name="Password" type="password" /></td>
                             </tr>
+			    <div class="h-captcha" data-sitekey="e36ad4e6-536c-4f1a-baba-d2cc9804c9de"></div>
                         </table>
                         <div>
                         </div>
