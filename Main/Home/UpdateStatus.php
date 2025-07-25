@@ -34,7 +34,7 @@ if (mb_strlen($status, 'UTF-8') > 150) {
 $insert_stmt = $conn->prepare("INSERT INTO feeds (author_id, content, posted_at) VALUES (:user_id, :status, :created_at)");
 $insert_stmt->bindParam(':user_id', $user['id'], PDO::PARAM_INT);
 $insert_stmt->bindParam(':status', $status, PDO::PARAM_STR);
-$insert_stmt->bindParam(':created_at', $time_posted, PDO::PARAM_STR);
+$insert_stmt->bindParam(':created_at', time(), PDO::PARAM_STR);
 
 if ($insert_stmt->execute()) { 
     exit('{"success": true, "message": "Status updated successfully."}');
