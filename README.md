@@ -35,9 +35,8 @@ Before you deploy this on your main hardware, make sure you have installed the f
 7. Time for the website stuff, go to the site files and rename .env-example to .env only, put your PostgreSQL database credentials there aswell as other shit
 8. Start the site and you should see the landing page, if you do then congrats but you're still not done yet as you will need to import schema.sql onto the database you chose and you should be good to go.
 
-Congrats you have set up the site!
+RBLXLocal API Service
 ---------
-RBLXLocal API Service tutorial:
 This isn't required really, but makes your life easier as it provides very important resources.
 - [rbx-api-service](https://github.com/verify-stack/rbx-api-service)
 - [node.js v20+](https://nodejs.org/en)
