@@ -195,7 +195,6 @@ $(function(){
 <div class="forceSpaceUnderSubmenu">&nbsp;</div> 
             <div class="forceSpace">&nbsp;</div>
         <noscript>&lt;div class="SystemAlert"&gt;&lt;div class="SystemAlertText"&gt;Please enable Javascript to use all the features on this site.&lt;/div&gt;&lt;/div&gt;</noscript>
-        <div class="SystemAlert" style="background-color: green;"><div class="SystemAlertText">hello chat -Skyler</div></div>
         <div id="BodyWrapper">
             <div id="RepositionBody">
                 <div id="Body" style="width:970px">
@@ -215,7 +214,7 @@ $(function(){
 	</div>
 </div>	    </div>
 		<div class="left-column-boxes">
-			<h3>Rbxl.local News</h3>
+			<h3>RBLX.local News</h3>
 			<div class="notranslate text news-container">
 				<div id="RobloxNews">
     <div class="roblox-news-feed">
@@ -245,14 +244,14 @@ $(function(){
         <div class="roblox-avatar-image" data-user-id="6570505" data-image-size="tiny">
             <div style="position: relative;">
                 <a href="http://<?= $site_properties['hostname'] ?>/user.aspx?id=6570505">
-                    <img title="Rootless" alt="Rootless" border="0" src="./<?= $site_properties['hostname'] ?>_files/f9d6953aebf90492ba912e4e62a860ed">
+                    <img title="Rootless" alt="Rootless" border="0" src="/Images/Placeholder1024x1024.png">
                 </a>
             </div>
         </div>
         <div class="info">
-            <img src="./<?= $site_properties['hostname'] ?>_files/3a3aa21b169be06d20de7586e56e3739.png" title="Offline">
-            <a class="name" href="http://<?= $site_properties['hostname'] ?>/User.aspx?ID=6570505">bibman4000</a>
-            <div class="status">" Trapz is my hero tbh"</div>
+            <img src="/Images/Placeholder1024x1024.png" title="Offline">
+            <a class="name" href="http://<?= $site_properties['hostname'] ?>/User.aspx?ID=1">ROBLOX</a>
+            <div class="status">"Still in the works"</div>
         </div>
         <div class="clear"></div>
     </div>
@@ -265,17 +264,13 @@ $(function(){
 	<div id="fbNotLoggedIn">
 			<img border="0" alt="Facebook Connect" src="//images.rbxcdn.com/4ec0c6c40a454f2f6537946d00f09b56.png">
 			<div style="text-align: left; margin: 5px">
-				Link your ROBLOX account with your Facebook account to let your Facebook friends see what you're doing on RBXL.local !<br>
+				Link your ROBLOX account with your Facebook account to let your Facebook friends see what you're doing on RBLX.local !<br>
 			</div>
 		<a class="facebook-login" href="http://<?= $site_properties['hostname'] ?>/facebook/authorize?ReturnTo=%2Fmy%2Fhome.aspx">
 			<span class="left"></span>
 			<span class="middle">Connect with Facebook<span>Connect with Facebook</span></span>
 			<span class="right"></span>
 		</a>
-			<div class="facepile">
-				<iframe src="./<?= $site_properties['hostname'] ?>_files/facepile.htm" scrolling="yes" frameborder="0" style="border: none; overflow: hidden; width: 210px;"></iframe>
-				<p style="color: Gray; font-size: smaller">Only your Facebook friends can see this.</p>
-			</div>
 	</div>
 
             </div>

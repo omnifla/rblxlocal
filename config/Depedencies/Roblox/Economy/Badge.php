@@ -24,12 +24,7 @@ class Badge
     {
         global $conn;
 
-        $stmt = $conn->prepare("
-            SELECT b.* FROM user_badges ub
-            INNER JOIN badges b ON b.id = ub.badge_id
-            WHERE ub.user_id = :user_id AND b.badge_type_id = :badge_type
-            LIMIT 1
-        ");
+        $stmt = $conn->prepare("SELECT b.* FROM user_badges ub INNER JOIN badges b ON b.id = ub.badge_id WHERE ub.user_id = :user_id AND b.badge_type_id = :badge_type LIMIT 1");
         $stmt->execute([
             'user_id' => $userId,
             'badge_type' => $badgeTypeId
