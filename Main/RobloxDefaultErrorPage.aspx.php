@@ -2,7 +2,7 @@
 $code = $_GET['code'] ?? 500;
 $code = intval($code);
 http_response_code($code);
-include_once $_SERVER['DOCUMENT_ROOT'].'/config/main.php'; 
+include_once $_SERVER['DOCUMENT_ROOT'].'/../config/main.php'; 
 use Roblox\Authentication as Auth;
 use Roblox\Web\SiteHeader;
 use Roblox\Web\SiteFooter;
@@ -18,11 +18,9 @@ use Roblox\Web\SiteFooter;
     <meta name="keywords" content="free games, online games, building games, virtual worlds, free mmo, gaming cloud, physics engine" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>
-		rblx.local
+		RBLX.local
 	</title>
     <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
-	<link rel='stylesheet' href='/CSS/Base/CSS/main___d7f658c4695ed776947e7d072c17ef0f_m.css' />
-	<link rel='stylesheet' href='/CSS/Base/CSS/page___bf085a0aa25ce4df4c0be2fa1dc7e79a_m.css' />
 	<link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=main___dac4a444950639c02cc831a484c826f5_m.css	' />
         
 	<script type="text/javascript">
@@ -186,7 +184,6 @@ $(function(){
 
                 <div>
                                                             <noscript><div class="SystemAlert"><div class="SystemAlertText">Please enable Javascript to use all the features on this site.</div></div></noscript>
-                                                                    <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/config/Alert.php'; ?>
                                                             
                                                             <div class="container-main    ">
             <script type="text/javascript">
@@ -256,43 +253,4 @@ HTML;
 </div>
 
         </div>
-        <div id="Footer" class="footer-container">
-    <div class="FooterNav">
-        <a href="http://www.roblox.com/info/Privacy.aspx">Privacy Policy</a>
-        &nbsp;|&nbsp;
-        <a href="http://corp.roblox.com/advertise-on-roblox" class="roblox-interstitial">Advertise with Us</a>
-        &nbsp;|&nbsp;
-        <a href="http://corp.roblox.com/press" class="roblox-interstitial">Press</a>
-        &nbsp;|&nbsp;
-        <a href="http://corp.roblox.com/contact-us" class="roblox-interstitial">Contact Us</a>
-        &nbsp;|&nbsp;
-            <a href="http://corp.roblox.com/about" class="roblox-interstitial">About Us</a>
-&nbsp;|&nbsp;        <a href="http://blog.roblox.com">Blog</a>
-        &nbsp;|&nbsp;
-            <a href="http://corp.roblox.com/careers" class="roblox-interstitial">Jobs</a>
-&nbsp;|&nbsp;        <a href="http://corp.roblox.com/parents" class="roblox-interstitial">Parents</a>
-    </div>
-    <div class="legal">
-            <div class="left">
-                <div id="a15b1695-1a5a-49a9-94f0-9cd25ae6c3b2">
-    <a href="https://privacy.truste.com/privacy-seal/Roblox-Corporation/validation?rid=2428aa2a-f278-4b6d-9095-98c4a2954215" title="TRUSTe Children privacy certification" target="_blank">
-        <img style="border: none" src="https:/images/seal.png" width="133" height="45" alt="TRUSTe Children privacy certification">
-    </a>
-</div>
-            </div>
-            <div class="right">
-                <p class="Legalese">
-    ROBLOX, "Online Building Toy", characters, logos, names, and all related indicia are trademarks of <a href="http://corp.roblox.com/" ref="footer-smallabout" class="roblox-interstitial">ROBLOX Corporation</a>, ©2015. Patents pending.
-    ROBLOX is not sponsored, authorized or endorsed by any producer of plastic building bricks, including The LEGO Group, MEGA Brands, and K'Nex, and no resemblance to the products of these companies is intended.
-    Use of this site signifies your acceptance of the <a href="http://www.roblox.com/info/terms-of-service" ref="footer-terms">Terms and Conditions</a>.
-</p>
-            </div>
-        <div class="clear"></div>
-    </div>
-
-</div>
-    </div>
-	
-	
-</body>
-</html>
+        <?= SiteFooter::render() ?>
