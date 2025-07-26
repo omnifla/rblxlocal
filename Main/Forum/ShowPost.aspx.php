@@ -81,6 +81,7 @@ SiteHeader::render(["pageTitle" => $page_title]);
     <div id="BodyWrapper">
         <div id="RepositionBody">
             <?= SiteHeader::render() ?>
+            <div class="forceSpace">&nbsp;</div>
             <div id="Body" style="width:970px;">
                 <table width="100%" height="100%" cellspacing="0" cellpadding="0" border="0">
                     <tbody>
@@ -110,7 +111,7 @@ SiteHeader::render(["pageTitle" => $page_title]);
                                             </td>
                                             <td align="right">
                                                 <span>
-                                                    <div id="forum-nav" style="text-align: right">
+                                                    <div id="forum-nav" style="text-align: right; font-size: 14px">
                                                         <a class="menuTextLink first" href="/Forum/Default.aspx.php">Home</a>
                                                         <a class="menuTextLink" href="/Forum/Search/default.aspx.php">Search</a>
                                                     </div>
@@ -202,6 +203,7 @@ SiteHeader::render(["pageTitle" => $page_title]);
                                         <?php endforeach; ?>
                                                     </tbody>
                                                 </table>
+                                                <br>
                                                 <span>
                                                     <table cellspacing="0" cellpadding="0" border="0" style="width:100%;border-collapse:collapse;">
                                                         <tbody>
