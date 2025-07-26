@@ -7,6 +7,7 @@ use Roblox\Web\SiteFooter;
 
 $id = $_GET['id'] ?? $_GET['Id'] ?? $_GET["ID"] ?? 1;
 $user = Auth::GetUserInfo(intval($id));
+
 //var_dump($user);
 //exit;
 if(!$user){
@@ -15,6 +16,7 @@ if(!$user){
 }
 $user['username'] = htmlspecialchars($user['username']);
 $user['description'] = htmlspecialchars($user['description'] ?? $user['username']." has no description");
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $target = $_POST['__EVENTTARGET'] ?? '';
     $argument = $_POST['__EVENTARGUMENT'] ?? '';
@@ -30,6 +32,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
+<?php
+// badges script written by Chloe
+$uid = intval($user['id']);
+$k = intval($user['knockouts']);
+$m = intval($user['moderation_status']);
+$db = $conn;
+
+function giveBadge($db, $userId, $badgeId) {
+    $check = $db->prepare("SELECT 1 FROM user_badges WHERE user_id = :uid AND badge_id = :bid");
+    $check->execute([':uid' => $userId, ':bid' => $badgeId]);
+    if (!$check->fetch()) {
+        $stmt = $db->prepare("INSERT INTO user_badges (user_id, badge_id) VALUES (:uid, :bid)");
+        $stmt->execute([':uid' => $userId, ':bid' => $badgeId]);
+    }
+}
+
+if ($k > 10) giveBadge($db, $uid, 3);
+if ($k > 100) giveBadge($db, $uid, 4);
+if ($k > 250) giveBadge($db, $uid, 5);
+
+if ($m === 1) giveBadge($db, $uid, 11);
+if ($m === 2) giveBadge($db, $uid, 15);
+if ($m === 3) giveBadge($db, $uid, 16);
+?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "//www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="//www.w3.org/1999/xhtml" xml:lang="en" xmlns:fb="//www.facebook.com/2008/fbml">
@@ -390,48 +416,63 @@ $(function(){
 
 <div class="divider-bottom" style="padding-bottom: 20px">
     <div style="display: inline-block">
-	    <table id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges" cellspacing="0" align="Left" border="0" style="border-collapse:collapse;">
-	<tr>
-		<td>
-			    <div class="Badge" class="notranslate">
-				    <div class="BadgeImage"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl00_hlHeader" href="Badges.aspx#Badge3"><img id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl00_iBadge" src="//images.rbxcdn.com/d111059fca163b9824716cff2fe4aec5.png" alt="This badge is given to any player who has proven his or her combat abilities by accumulating 10 victories in battle. Players who have this badge are not complete newbies and probably know how to handle their weapons." style="height:75px;width:75px;border-width:0px;" /></a></div>
-				    <div class="BadgeLabel"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl00_HyperLink1" href="Badges.aspx#Badge3">Combat Initiation</a></div>
-			    </div>
-		    </td><td>
-			    <div class="Badge" class="notranslate">
-				    <div class="BadgeImage"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl01_hlHeader" href="Badges.aspx#Badge4"><img id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl01_iBadge" src="//images.rbxcdn.com/14652f1598ba5520515965b4038214c0.png" alt="This badge is given to the warriors of Robloxia, who have time and time again overwhelmed their foes in battle. To earn this badge, you must rack up 100 knockouts. Anyone with this badge knows what to do in a fight!" style="height:75px;width:75px;border-width:0px;" /></a></div>
-				    <div class="BadgeLabel"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl01_HyperLink1" href="Badges.aspx#Badge4">Warrior</a></div>
-			    </div>
-		    </td><td>
-			    <div class="Badge" class="notranslate">
-				    <div class="BadgeImage"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl02_hlHeader" href="Badges.aspx#Badge2"><img id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl02_iBadge" src="//images.rbxcdn.com/46c15f2030a8c68ab1ff4329765e515a.png" alt="This badge is given to players who have embraced the Roblox community and have made at least 20 friends. People who have this badge are good people to know and can probably help you out if you are having trouble." style="height:75px;width:75px;border-width:0px;" /></a></div>
-				    <div class="BadgeLabel"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl02_HyperLink1" href="Badges.aspx#Badge2">Friendship</a></div>
-			    </div>
-		    </td><td>
-			    <div class="Badge" class="notranslate">
-				    <div class="BadgeImage"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl03_hlHeader" href="Badges.aspx#Badge5"><img id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl03_iBadge" src="//images.rbxcdn.com/4cb4d69560f1f3478c314b24a52d2644.png" alt="Anyone who has earned this badge is a very dangerous player indeed. Those Robloxians who excel at combat can one day hope to achieve this honor, the Bloxxer Badge. It is given to the warrior who has bloxxed at least 250 enemies and who has tasted victory more times than he or she has suffered defeat. Salute!" style="height:75px;width:75px;border-width:0px;" /></a></div>
-				    <div class="BadgeLabel"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl03_HyperLink1" href="Badges.aspx#Badge5">Bloxxer</a></div>
-			    </div>
-		    </td><td>
-			    <div class="Badge" class="notranslate">
-				    <div class="BadgeImage"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl04_hlHeader" href="Badges.aspx#Badge12"><img id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl04_iBadge" src="//images.rbxcdn.com/088451f70609387491bbf8e85f285065.png" alt="This decoration is awarded to all citizens who have played ROBLOX for at least a year. It recognizes stalwart community members who have stuck with us over countless releases and have helped shape ROBLOX into the game that it is today. These medalists are the true steel, the core of the Robloxian history ... and its future." style="height:75px;width:75px;border-width:0px;" /></a></div>
-				    <div class="BadgeLabel"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl04_HyperLink1" href="Badges.aspx#Badge12">Veteran</a></div>
-			    </div>
-		    </td>
-	</tr><tr>
-		<td>
-			    <div class="Badge" class="notranslate">
-				    <div class="BadgeImage"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl05_hlHeader" href="Badges.aspx#Badge14"><img id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl05_iBadge" src="//images.rbxcdn.com/216b8349596e3293affe6dada49cea6a.png" alt="The Ambassador Badge is earned by participating in the Roblox Ambassador Program. Submit at least 3 unique links to the program to win this badge. Spread the glory of Robloxia to the furthest corners of the known Internet!" style="height:75px;width:75px;border-width:0px;" /></a></div>
-				    <div class="BadgeLabel"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl05_HyperLink1" href="Badges.aspx#Badge14">Ambassador</a></div>
-			    </div>
-		    </td><td>
-			    <div class="Badge" class="notranslate">
-				    <div class="BadgeImage"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl06_hlHeader" href="Badges.aspx#Badge6"><img id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl06_iBadge" src="//images.rbxcdn.com/26bdc9274d6c2520b3d72ebaa71e50f7.png" alt="The homestead badge is earned by having your personal place visited 100 times. Players who achieve this have demonstrated their ability to build cool things that other Robloxians were interested enough in to check out. Get a jump-start on earning this reward by inviting people to come visit your place." style="height:75px;width:75px;border-width:0px;" /></a></div>
-				    <div class="BadgeLabel"><a id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges_ctl06_HyperLink1" href="Badges.aspx#Badge6">Homestead</a></div>
-			    </div>
-		    </td><td></td><td></td><td></td>
-	</tr>
-</table>
+	    <?php
+$badgeMap = [
+    1 => ['name' => 'Administrator', 'img' => '/Images/Badges/Administrator2-75x75.png'],
+    2 => ['name' => 'Friendship', 'img' => '/Images/Badges/Friendship-75x75.png'],
+    3 => ['name' => 'Combat Initiation', 'img' => '/Images/Badges/CombatInitiation-75x75.png'],
+    4 => ['name' => 'Warrior', 'img' => '/Images/Badges/Warrior-75x75.png'],
+    5 => ['name' => 'Bloxxer', 'img' => '/Images/Badges/Bloxxer-75x75.png'],
+    6 => ['name' => 'Homestead', 'img' => '/Images/Badges/Homestead-70x75.png'],
+    7 => ['name' => 'Bricksmith', 'img' => '/Images/Badges/Bricksmith-54x75.png'],
+    8 => ['name' => 'Inviter', 'img' => '/Images/Badges/Inviter-75x75.png'],
+    9 => ['name' => 'Forum Moderator', 'img' => '/Images/Badges/ForumModerator-75x75.png'],
+    10 => ['name' => 'Image Moderator', 'img' => '/Images/Badges/ImageModerator-75x75.png'],
+    11 => ['name' => 'Builders Club', 'img' => '/Images/Badges/BuildersClub-75x75.png'],
+    12 => ['name' => 'Veteran', 'img' => '/Images/Badges/Veteran-75x75.png'],
+    14 => ['name' => 'Ambassador', 'img' => '/Images/Badges/Ambassador-75x75.png'],  // You had this in example
+    15 => ['name' => 'Turbo Builders Club', 'img' => '/Images/Badges/TurboBuildersClub-75x75.png'],
+    16 => ['name' => 'Outrageous Builders Club', 'img' => '/Images/Badges/OutrageousBuildersClub-75x75.png'],
+];
+
+$stmt = $conn->prepare("SELECT badge_id FROM user_badges WHERE user_id = :uid ORDER BY awarded_at ASC");
+$stmt->execute([':uid' => $uid]);
+$badges = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+echo '<table id="ctl00_cphRoblox_rbxUserBadgesPane_dlBadges" cellspacing="0" align="Left" border="0" style="border-collapse:collapse;"><tbody><tr>';
+
+$colCount = 0;
+
+foreach ($badges as $index => $badgeId) {
+    if (!isset($badgeMap[$badgeId])) continue;
+
+    if ($colCount >= 5) {
+        echo '</tr><tr>';
+        $colCount = 0;
+    }
+
+    $badge = $badgeMap[$badgeId];
+    $badgeAnchor = "Badges.aspx#Badge" . htmlspecialchars($badgeId);
+    $imgSrc = htmlspecialchars($badge['img']);
+    $badgeName = htmlspecialchars($badge['name']);
+
+    echo '<td>
+        <div class="Badge">
+            <div class="BadgeImage"><a href="' . $badgeAnchor . '"><img src="' . $imgSrc . '" alt="' . $badgeName . '" style="height:75px;width:75px;border-width:0px;"></a></div>
+            <div class="BadgeLabel"><a href="' . $badgeAnchor . '">' . $badgeName . '</a></div>
+        </div>
+    </td>';
+
+    $colCount++;
+}
+
+while ($colCount > 0 && $colCount < 5) {
+    echo '<td></td>';
+    $colCount++;
+}
+
+echo '</tr></tbody></table>';
+?>
 	    
     </div>
 </div>
