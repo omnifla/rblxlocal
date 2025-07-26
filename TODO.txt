@@ -10,3 +10,4 @@ Fix the GenericConfirmationModals not showing modals when clicking a button (sor
     at minimalModal (GenericConfirmationModals/:146:51)
     at HTMLInputElement.onclick (GenericConfirmationModals/:112:123)
 Add the /userads/(AdvertisementId) page for ad viewing (/reference/ads/).
+Add proper login functionality to /Default.aspx.php.
