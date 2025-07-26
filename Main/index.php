@@ -7,6 +7,8 @@ if (Roblox\Authentication::GetAuthenticatedUser()) {
     exit;
 }
 header("Location: /Landing/Animated");
+// header("Location: /Default.aspx.php");
+// Don't uncomment the above line until proper signup/login is implemented.
 exit;
 ?>
 <!DOCTYPE html>
