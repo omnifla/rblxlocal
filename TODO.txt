@@ -4,3 +4,9 @@ Fix /User.aspx page using other unneeded integrated stuff such as the chat and R
 Code .htaccess 
 Fix login/signup not redirecting after signin
 Fix profile page to show the users actual name and render
+Fix the GenericConfirmationModals not showing modals when clicking a button (sorry I'm not good with JS).
+ - Uncaught ReferenceError: $ is not defined
+    at Object.open (GenericConfirmation.js:65:13)
+    at minimalModal (GenericConfirmationModals/:146:51)
+    at HTMLInputElement.onclick (GenericConfirmationModals/:112:123)
+Add the /userads/(AdvertisementId) page for ad viewing (/reference/ads/).
