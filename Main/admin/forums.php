@@ -8,20 +8,11 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/../config/main.php";
 use Roblox\Authentication as Auth;
 use Roblox\Web\SiteHeader;
 use Roblox\Web\SiteFooter;
+use Roblox\Admin\AdminHelper;
 
 // Check if user is authenticated and has admin privileges
+AdminHelper::requireAdmin();
 $current_user = Auth::GetAuthenticatedUser();
-if (!$current_user || $current_user['account_status_id'] != 1) {
-    header("Location: /newlogin");
-    exit;
-}
-
-// Check if user has admin privileges - using user ID 1 as admin or specific usernames
-$admin_usernames = ['admin', 'administrator', 'roblox']; // Add your admin usernames here
-if ($current_user['id'] != 1 && !in_array(strtolower($current_user['username']), $admin_usernames)) {
-    header("Location: /");
-    exit;
-}
 
 // Get all forum groups with their forums
 $forum_groups_stmt = $conn->prepare("
