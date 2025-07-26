@@ -137,7 +137,7 @@ $html = <<<HTML
                         <div id="AuthenticatedUserName">
 
                             <span class="login-span notranslate">
-                                <img id="over13icon" src="./ROBLOX.com_files/8ed6b064a35786706f738c0858345c11.png" alt="" style="vertical-align:middle;padding-right:5px;padding-left:0px;" original-title="This is a 13+ account.">
+                                <img id="over13icon" src="/Images/8ed6b064a35786706f738c0858345c11.png" alt="" style="vertical-align:middle;padding-right:5px;padding-left:0px;" original-title="This is a 13+ account.">
                                 {$username}
                             </span>
                         </div>
