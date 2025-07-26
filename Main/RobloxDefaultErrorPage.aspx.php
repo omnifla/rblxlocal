@@ -234,8 +234,7 @@ HTML;
  }
  else{
 	 echo <<<HTML
-    <img src="https://media.discordapp.net/attachments/1388547484426440815/1394470954268233790/496zogut51f61.webp?ex=6876edc7&is=68759c47&hm=7dbdb74edbcc17a5cfff5eaec934a488fe54148ecf9ac29e6b46c464c0cedfb8&=&format=webp&width=994&height=707" id="ctl00_cphRoblox_ErrorImage" alt="Alert" class="ErrorAlert">
-    
+    <img src="/Images/UI/error/exclamation.png" id="ctl00_cphRoblox_ErrorImage" alt="Alert" class="ErrorAlert">
     <h1><span id="ctl00_cphRoblox_ErrorTitle">Unexpected error with your request</span></h1>
     <h3><span id="ctl00_cphRoblox_ErrorMessage">Please try again after a few moments.</span></h3>
     <p><span id="ctl00_cphRoblox_CustomerServiceMessage">If you continue to receive this page, please contact the developers.</span></p>
