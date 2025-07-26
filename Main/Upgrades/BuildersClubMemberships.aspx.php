@@ -13,6 +13,7 @@ use Roblox\Web\SiteFooter;
 </title>
 
 <head id="ctl00_Head1">
+	<script type="text/javascript" src="/js/roblox.js"></script>
     <link rel="stylesheet" href="/CSS/Base/CSS/FetchCSS?path=main___3f022c119bae81d03158987f73441ea8_m.css" />
     <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=reset___90041b2af2fb6b9b7864ee66001ba812_m.css' /> 
     <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=main___97cad0883768f57f1b3c21ecbc1579e1_m.css' />

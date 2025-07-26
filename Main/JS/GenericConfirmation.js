@@ -1,4 +1,5 @@
-﻿if (typeof Roblox === "undefined") {
+﻿
+if (typeof Roblox === "undefined") {
     Roblox = {};
 }
 if (typeof Roblox.GenericConfirmation === "undefined") {
