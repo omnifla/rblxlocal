@@ -81,7 +81,7 @@ $threads = $threads_stmt->fetchAll(PDO::FETCH_ASSOC);
                         <br>
                         <tr style="padding-bottom:5px;">
                             <td valign="bottom" align="left">
-                                <a id="ctl00_cphRoblox_ThreadView1_ctl00_NewThreadLinkTop" class="btn-control btn-control-medium verified-email-act" href="/web/20140706055037/http://roblox.com/Forum/AddPost.aspx?ForumID=46">
+                                <a id="ctl00_cphRoblox_ThreadView1_ctl00_NewThreadLinkTop" class="btn-control btn-control-medium verified-email-act" href="/Forum/AddPost.aspx.php?ForumID=<?= $forum_id ?>">
                                     New Thread<span class="btn-text">New Thread</span>
                                 </a>
                             </td>

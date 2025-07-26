@@ -9,6 +9,20 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use Roblox\Web\SiteHeader;
 use Roblox\Web\SiteFooter;
 
+/**
+ * Basic sanitization for forum post HTML. Removes any <script> tags and their content
+ * to protect against malicious injections while still allowing safe HTML tags
+ * that users previewed when creating their post.
+ *
+ * @param string $html Raw HTML from database
+ * @return string Sanitized HTML safe for output
+ */
+function sanitize_forum_html($html) {
+    // Remove <script> tags and their content (case-insensitive, multi-line)
+    return preg_replace('#<script\b[^>]*>(.*?)</script>#is', '', $html);
+}
+
+
 // Get thread ID from URL
 $thread_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
@@ -176,7 +190,7 @@ SiteHeader::render(["pageTitle" => $page_title]);
                                                                 <td colspan="2"><span class="normalTextSmaller"><?= date("d M Y h:i A", strtotime($post['created_at'])) ?></span></td>
                                                             </tr>
                                                             <tr>
-                                                                <td valign="top" colspan="2" style="height:125px;"><span class="normalTextSmall notranslate"><?= nl2br(htmlspecialchars($post['body'])) ?></span></td>
+                                                                <td valign="top" colspan="2" style="height:125px;"><span class="normalTextSmall notranslate"><?= nl2br(sanitize_forum_html($post['body'])) ?></span></td>
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="2"><span class="normalTextSmaller notranslate"></span></td>
