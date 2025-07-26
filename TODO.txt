@@ -11,3 +11,6 @@ Fix the GenericConfirmationModals not showing modals when clicking a button (sor
     at HTMLInputElement.onclick (GenericConfirmationModals/:112:123)
 Add the /userads/(AdvertisementId) page for ad viewing (/reference/ads/).
 Add proper login functionality to /Default.aspx.php.
+Improve the admin detection functionality on admin pages (/admin/*) for proper use and safety.
+Add the proper password update functionality to /admin/user.php. It might not be set correctly, or not encrypt properly. The admin panel is largely untested.
+Make the forums actually allow you to create new threads, and create replies under those threads with proper authentication checks.
