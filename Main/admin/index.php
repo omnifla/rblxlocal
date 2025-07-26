@@ -1,6 +1,6 @@
 <?php
 // written by denied_id
-
+// bro, this is so obviously written by gpt
 // admin.php - Main admin panel
 
 include_once $_SERVER["DOCUMENT_ROOT"] . "/../config/main.php";
