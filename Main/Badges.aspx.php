@@ -277,7 +277,7 @@ $(function(){
                         <div class="BadgePadding">&nbsp;</div>
                         <div class="BadgeContent">
                             <div class="BadgeImage">
-                                <img src="http://images.rbxcdn.com/ae42d1c6cd258306303423a69b1ed7bf.png" alt="Administrator" width="75" height="75" />
+                                <img src="/Images/Badges/Administrator2-75x75.png" alt="Administrator" width="75" height="75" />
                             </div>
                             <div class="BadgeDescription">
                                 <h3>Administrator Badge</h3>
@@ -290,7 +290,7 @@ $(function(){
                         <div class="BadgePadding">&nbsp;</div>
                         <div class="BadgeContent">
                             <div class="BadgeImage">
-                                <img src="http://images.rbxcdn.com/088451f70609387491bbf8e85f285065.png" alt="Veteran" width="75" height="75" />
+                                <img src="/Images/Badges/Veteran-75x75.png" alt="Veteran" width="75" height="75" />
                             </div>
                             <div class="BadgeDescription">
                                 <h3>Veteran Badge</h3>
@@ -303,7 +303,7 @@ $(function(){
                         <div class="BadgePadding">&nbsp;</div>
                         <div class="BadgeContent">
                             <div class="BadgeImage">
-                                <img src="http://images.rbxcdn.com/df659818025cdf3422da7e04475656ac.png" alt="Forum Moderator" width="75" height="75" />
+                                <img src="/Images/Badges/ForumModerator-75x75.png" alt="Forum Moderator" width="75" height="75" />
                             </div>
                             <div class="BadgeDescription">
                                 <h3>Forum Moderator Badge</h3>
@@ -316,7 +316,7 @@ $(function(){
                         <div class="BadgePadding">&nbsp;</div>
                         <div class="BadgeContent">
                             <div class="BadgeImage">
-                                <img src="http://images.rbxcdn.com/ca460efad9ffdbce1f982672d0bf5e2a.png" alt="Image Moderator" width="75" height="75" />
+                                <img src="/Images/Badges/ImageModerator-75x75.png" alt="Image Moderator" width="75" height="75" />
                             </div>
                             <div class="BadgeDescription">
                                 <h3>Image Moderator Badge</h3>
@@ -334,7 +334,7 @@ $(function(){
                         <div class="BadgePadding">&nbsp;</div>
                         <div class="BadgeContent">
                             <div class="BadgeImage">
-                                <img src="http://images.rbxcdn.com/049d72ade1586da1cfe2e48618cc3959.png" alt="Builders Club" width="75" height="75" />
+                                <img src="/Images/Badges/BuildersClub-75x75.png" alt="Builders Club" width="75" height="75" />
                             </div>
                             <div class="BadgeDescription">
                                 <h3>Builders Club Badge</h3>
@@ -347,7 +347,7 @@ $(function(){
                         <div class="BadgePadding">&nbsp;</div>
                         <div class="BadgeContent">
                             <div class="BadgeImage">
-                                <img src="http://images.rbxcdn.com/709c584f36286157c955ffcbb8dbfe36.png" alt="Turbo Builders Club" width="75" height="75" />
+                                <img src="/Images/Badges/TurboBuildersClub-75x75.png" alt="Turbo Builders Club" width="75" height="75" />
                             </div>
                             <div class="BadgeDescription">
                                 <h3>Turbo Builders Club Badge</h3>
@@ -360,7 +360,7 @@ $(function(){
                         <div class="BadgePadding">&nbsp;</div>
                         <div class="BadgeContent">
                             <div class="BadgeImage">
-                                <img src="http://images.rbxcdn.com/50e4f48e4007754b55c82fc3d50c9c12.png" alt="Outrageous Builders Club" width="75" height="75" />
+                                <img src="/Images/Badges/OutrageousBuildersClub-75x75.png" alt="Outrageous Builders Club" width="75" height="75" />
                             </div>
                             <div class="BadgeDescription">
                                 <h3>Outrageous Builders Club Badge</h3>
@@ -378,7 +378,7 @@ $(function(){
                         <div class="BadgePadding">&nbsp;</div>
                         <div class="BadgeContent">
                             <div class="BadgeImage">
-                                <img src="http://images.rbxcdn.com/26bdc9274d6c2520b3d72ebaa71e50f7.png" alt="Homestead" width="75" height="75" />
+                                <img src="/Images/Badges/Homestead-70x75.png" alt="Homestead" width="75" height="75" />
                             </div>
                             <div class="BadgeDescription">
                                 <h3>Homestead Badge</h3>
@@ -391,7 +391,7 @@ $(function(){
                         <div class="BadgePadding">&nbsp;</div>
                         <div class="BadgeContent">
                             <div class="BadgeImage">
-                                <img src="http://images.rbxcdn.com/4e483c695695b47c92591825929d1059.png" alt="Bricksmith" width="75" height="75" />
+                                <img src="/Images/Badges/Bricksmith-54x75.png" alt="Bricksmith" width="75" height="75" />
                             </div>
                             <div class="BadgeDescription">
                                 <h3>Bricksmith Badge</h3>
@@ -409,7 +409,7 @@ $(function(){
                         <div class="BadgePadding">&nbsp;</div>
                         <div class="BadgeContent">
                             <div class="BadgeImage">
-                                <img src="http://images.rbxcdn.com/46c15f2030a8c68ab1ff4329765e515a.png" alt="Friendship" width="75" height="75" />
+                                <img src="/Images/Badges/Friendship-75x75.png" alt="Friendship" width="75" height="75" />
                             </div>
                             <div class="BadgeDescription">
                                 <h3>Friendship Badge</h3>
@@ -422,7 +422,7 @@ $(function(){
                         <div class="BadgePadding">&nbsp;</div>
                         <div class="BadgeContent">
                             <div class="BadgeImage">
-                                <img src="http://images.rbxcdn.com/156b077267b7848d38df4471e2a2c540.png" alt="Inviter" width="75" height="75" />
+                                <img src="/Images/Badges/Inviter-75x75.png" alt="Inviter" width="75" height="75" />
                             </div>
                             <div class="BadgeDescription">
                                 <h3>Inviter Badge</h3>
@@ -440,7 +440,7 @@ $(function(){
                         <div class="BadgePadding">&nbsp;</div>
                         <div class="BadgeContent">
                             <div class="BadgeImage">
-                                <img src="http://images.rbxcdn.com/d111059fca163b9824716cff2fe4aec5.png" alt="Combat Initiation" width="75" height="75" />
+                                <img src="/Images/Badges/CombatInitiation-75x75.png" alt="Combat Initiation" width="75" height="75" />
                             </div>
                             <div class="BadgeDescription">
                                 <h3>Combat Initiation Badge</h3>
@@ -453,7 +453,7 @@ $(function(){
                         <div class="BadgePadding">&nbsp;</div>
                         <div class="BadgeContent">
                             <div class="BadgeImage">
-                                <img src="http://images.rbxcdn.com/14652f1598ba5520515965b4038214c0.png" alt="Warrior" width="75" height="75" />
+                                <img src="/Images/Badges/Warrior-75x75.png" alt="Warrior" width="75" height="75" />
                             </div>
                             <div class="BadgeDescription">
                                 <h3>Warrior Badge</h3>
@@ -466,7 +466,7 @@ $(function(){
                         <div class="BadgePadding">&nbsp;</div>
                         <div class="BadgeContent">
                             <div class="BadgeImage">
-                                <img src="http://images.rbxcdn.com/4cb4d69560f1f3478c314b24a52d2644.png" alt="Bloxxer" width="75" height="75" />
+                                <img src="/Images/Badges/Bloxxer-75x75.png" alt="Bloxxer" width="75" height="75" />
                             </div>
                             <div class="BadgeDescription">
                                 <h3>Bloxxer Badge</h3>
