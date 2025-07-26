@@ -2,24 +2,6 @@
 /*****************************************************
 General Anchor
 *****************************************************/
-a.linkSmallBold, a.linkMenuSink
-{
-    font-weight: bold;
-    color: #095fb5;
-}
-
-a.linkSmall, a.LinkSmallBold, a.linkMenuSink
-{
-    color: #095fb5;
-    font-size: 0.9em;
-}
-
-/*
-a.linkSmallBold:Hover, a.linkMenuSink:Hover
-{
-    color: #DD6900;
-}
-*/
 .CenterColumn a.btn-control
 {
     margin-right: 5px;
@@ -71,26 +53,6 @@ Text and anchors used in the navigation menu
 {
     font-weight: bold;
     color: #FFFFFF;
-}
-
-a.menuTextLink {
-    padding: 0px 5px;
-    border-left: 1px solid black;
-}
-
-#forum-nav a.menuTextLink
-{
-    text-decoration: none;
-    font-weight: 600;
-    color: #343434;
-}
-
-#forum-nav a.menuTextLink.first {
-    border-left: none;
-}
-
-#forum-nav a.menuTextLink:hover {
-    text-decoration: underline;
 }
 
 .thread-link-outer-wrapper {
@@ -291,6 +253,16 @@ a.forumTitle:visited, a.forumTitle:link
     display: inline;
 }
 
+.forum-post {
+    padding: 18px;
+    margin-bottom: -1px;
+    display: inline-block;
+    background-color: #f3f3f3;
+    border-top: 1px solid #d8d8d8;
+    border-bottom: 1px solid #d8d8d8;
+    zoom: 1;
+}
+
 .search-post-title:hover
 {
     text-decoration: underline;
@@ -327,10 +299,6 @@ Menu Controls
 *****************************************************/
 .btn-control.forum-btn-control-medium {
     line-height: 20px;
-}
-A.linkMenuSink
-{
-    position: relative;
 }
 DIV.popupMenu
 {
