@@ -11,7 +11,7 @@ use Roblox\Web\SiteFooter;
 <head id="ctl00_Head1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true" />
     <title>
-        <?= $site_properties["Title"] ?>.com
+        Free Games at <?= $site_properties["Title"] ?>.com
     </title>
 
     <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=main___97cad0883768f57f1b3c21ecbc1579e1_m.css' />
