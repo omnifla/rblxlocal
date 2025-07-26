@@ -1325,7 +1325,7 @@ $(function(){
 			<td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl00_AssetThumbnailHyperLink" class=" notranslate" title="The Last Egg" class=" notranslate" href="/The-Last-Egg-item?id=76692407" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t2.rbxcdn.com/963a5a43c76036fe02eb981e16181312" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="The Last Egg" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl00_AssetThumbnailHyperLink" class=" notranslate" title="The Last Egg" class=" notranslate" href="/The-Last-Egg-item?id=76692407" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="The Last Egg" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1342,7 +1342,7 @@ $(function(){
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl01_AssetThumbnailHyperLink" class=" notranslate" title="Cowl" class=" notranslate" href="/Cowl-item?id=21754986" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t2.rbxcdn.com/7f98b65d6e59b64c9b7bc9261e9684b9" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Cowl" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl01_AssetThumbnailHyperLink" class=" notranslate" title="Cowl" class=" notranslate" href="/Cowl-item?id=21754986" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Cowl" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1361,7 +1361,7 @@ $(function(){
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl02_AssetThumbnailHyperLink" class=" notranslate" title="Messenger Boy" class=" notranslate" href="/Messenger-Boy-item?id=53035233" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t7.rbxcdn.com/c83083f3c4d5f24f35c79428185edb37" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Messenger Boy" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl02_AssetThumbnailHyperLink" class=" notranslate" title="Messenger Boy" class=" notranslate" href="/Messenger-Boy-item?id=53035233" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Messenger Boy" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1380,7 +1380,7 @@ $(function(){
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl03_AssetThumbnailHyperLink" class=" notranslate" title="ROBLOX Veteran&#39;s Medal" class=" notranslate" href="/ROBLOX-Veterans-Medal-item?id=42839214" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t1.rbxcdn.com/17a5c24fb789b7615917503c0185fab7" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="ROBLOX Veteran&#39;s Medal" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl03_AssetThumbnailHyperLink" class=" notranslate" title="ROBLOX Veteran&#39;s Medal" class=" notranslate" href="/ROBLOX-Veterans-Medal-item?id=42839214" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="ROBLOX Veteran&#39;s Medal" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1397,7 +1397,7 @@ $(function(){
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl04_AssetThumbnailHyperLink" class=" notranslate" title="Ghost of ROBLOX Past" class=" notranslate" href="/Ghost-of-ROBLOX-Past-item?id=42800983" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t6.rbxcdn.com/880c10399981a4ad9a45c5c283cef70b" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Ghost of ROBLOX Past" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl04_AssetThumbnailHyperLink" class=" notranslate" title="Ghost of ROBLOX Past" class=" notranslate" href="/Ghost-of-ROBLOX-Past-item?id=42800983" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Ghost of ROBLOX Past" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1414,7 +1414,7 @@ $(function(){
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl05_AssetThumbnailHyperLink" class=" notranslate" title="Opened Forest Camo Gift of Veterans" class=" notranslate" href="/Opened-Forest-Camo-Gift-of-Veterans-item?id=42141207" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t2.rbxcdn.com/e5a10286628a0c93095d3ddf1317293d" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Opened Forest Camo Gift of Veterans" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl05_AssetThumbnailHyperLink" class=" notranslate" title="Opened Forest Camo Gift of Veterans" class=" notranslate" href="/Opened-Forest-Camo-Gift-of-Veterans-item?id=42141207" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Opened Forest Camo Gift of Veterans" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1433,7 +1433,7 @@ $(function(){
 			<td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl06_AssetThumbnailHyperLink" class=" notranslate" title="Opened Retro ROBLOXian Gift of Yesteryore" class=" notranslate" href="/Opened-Retro-ROBLOXian-Gift-of-Yesteryore-item?id=41453949" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t7.rbxcdn.com/84196ff6d62f90d368367cbb13eacae2" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Opened Retro ROBLOXian Gift of Yesteryore" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl06_AssetThumbnailHyperLink" class=" notranslate" title="Opened Retro ROBLOXian Gift of Yesteryore" class=" notranslate" href="/Opened-Retro-ROBLOXian-Gift-of-Yesteryore-item?id=41453949" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Opened Retro ROBLOXian Gift of Yesteryore" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1450,7 +1450,7 @@ $(function(){
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl07_AssetThumbnailHyperLink" class=" notranslate" title="Autumn Leaves" class=" notranslate" href="/Autumn-Leaves-item?id=35631125" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t1.rbxcdn.com/4816f9a0a9e68e513057c54bc688e5fc" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Autumn Leaves" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl07_AssetThumbnailHyperLink" class=" notranslate" title="Autumn Leaves" class=" notranslate" href="/Autumn-Leaves-item?id=35631125" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Autumn Leaves" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1467,7 +1467,7 @@ $(function(){
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl08_AssetThumbnailHyperLink" class=" notranslate" title="Train Conductor" class=" notranslate" href="/Train-Conductor-item?id=12436561" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t0.rbxcdn.com/2ea722a6c82e1dabaf5578c2bf8e879e" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Train Conductor" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl08_AssetThumbnailHyperLink" class=" notranslate" title="Train Conductor" class=" notranslate" href="/Train-Conductor-item?id=12436561" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Train Conductor" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1484,7 +1484,7 @@ $(function(){
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl09_AssetThumbnailHyperLink" class=" notranslate" title="Fire Ant" class=" notranslate" href="/Fire-Ant-item?id=23635380" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t4.rbxcdn.com/fefe4c52592afac99fc2334d5463bc4f" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Fire Ant" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl09_AssetThumbnailHyperLink" class=" notranslate" title="Fire Ant" class=" notranslate" href="/Fire-Ant-item?id=23635380" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Fire Ant" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1501,7 +1501,7 @@ $(function(){
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl10_AssetThumbnailHyperLink" class=" notranslate" title="Ancient Tribal Foot Soldier" class=" notranslate" href="/Ancient-Tribal-Foot-Soldier-item?id=34763413" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t6.rbxcdn.com/b4a1123b9efc54198c42f7803644888d" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Ancient Tribal Foot Soldier" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl10_AssetThumbnailHyperLink" class=" notranslate" title="Ancient Tribal Foot Soldier" class=" notranslate" href="/Ancient-Tribal-Foot-Soldier-item?id=34763413" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Ancient Tribal Foot Soldier" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1520,7 +1520,7 @@ $(function(){
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl11_AssetThumbnailHyperLink" class=" notranslate" title="Pikeman Helmet" class=" notranslate" href="/Pikeman-Helmet-item?id=11421585" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t5.rbxcdn.com/475b4dc6a4adc294d7ad6c7a89396f81" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Pikeman Helmet" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl11_AssetThumbnailHyperLink" class=" notranslate" title="Pikeman Helmet" class=" notranslate" href="/Pikeman-Helmet-item?id=11421585" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Pikeman Helmet" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1539,7 +1539,7 @@ $(function(){
 			<td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl12_AssetThumbnailHyperLink" class=" notranslate" title="Chainmail Helmet" class=" notranslate" href="/Chainmail-Helmet-item?id=17640922" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t2.rbxcdn.com/ca95211b6e54bfeb0686cb7dd64f1de0" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Chainmail Helmet" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl12_AssetThumbnailHyperLink" class=" notranslate" title="Chainmail Helmet" class=" notranslate" href="/Chainmail-Helmet-item?id=17640922" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Chainmail Helmet" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1556,7 +1556,7 @@ $(function(){
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl13_AssetThumbnailHyperLink" class=" notranslate" title="Opened Gift of Birthday Fun" class=" notranslate" href="/Opened-Gift-of-Birthday-Fun-item?id=34115865" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t3.rbxcdn.com/6234ca962be66aaaafa6d83bde060664" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Opened Gift of Birthday Fun" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl13_AssetThumbnailHyperLink" class=" notranslate" title="Opened Gift of Birthday Fun" class=" notranslate" href="/Opened-Gift-of-Birthday-Fun-item?id=34115865" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Opened Gift of Birthday Fun" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1573,7 +1573,7 @@ $(function(){
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl14_AssetThumbnailHyperLink" class=" notranslate" title="Ninja Mask of Light" class=" notranslate" href="/Ninja-Mask-of-Light-item?id=5808672" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t3.rbxcdn.com/e9e18c77c7203dc9ad307737a57031f9" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Ninja Mask of Light" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl14_AssetThumbnailHyperLink" class=" notranslate" title="Ninja Mask of Light" class=" notranslate" href="/Ninja-Mask-of-Light-item?id=5808672" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Ninja Mask of Light" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1592,7 +1592,7 @@ $(function(){
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl15_AssetThumbnailHyperLink" class=" notranslate" title="Bandit" class=" notranslate" href="/Bandit-item?id=20642008" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t1.rbxcdn.com/ccc7953ecf1c30dc9a591eb8b50b61ab" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Bandit" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl15_AssetThumbnailHyperLink" class=" notranslate" title="Bandit" class=" notranslate" href="/Bandit-item?id=20642008" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Bandit" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1611,7 +1611,7 @@ $(function(){
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl16_AssetThumbnailHyperLink" class=" notranslate" title="Comedy" class=" notranslate" href="/Comedy-item?id=13702134" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t5.rbxcdn.com/57a364b75a55444e91ebc94cfabc6f73" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Comedy" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl16_AssetThumbnailHyperLink" class=" notranslate" title="Comedy" class=" notranslate" href="/Comedy-item?id=13702134" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Comedy" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1630,7 +1630,7 @@ $(function(){
                     </td><td class="Asset" valign="top">
                         <div style="padding: 5px">
                             <div class="AssetThumbnail">
-                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl17_AssetThumbnailHyperLink" class=" notranslate" title="Golden Egg Beaters" class=" notranslate" href="/Golden-Egg-Beaters-item?id=25090182" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t3.rbxcdn.com/7357363c92c9f22694ebf47a47fd4926" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Golden Egg Beaters" class=" notranslate" /></a>
+                                <a id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl17_AssetThumbnailHyperLink" class=" notranslate" title="Golden Egg Beaters" class=" notranslate" href="/Golden-Egg-Beaters-item?id=25090182" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Golden Egg Beaters" class=" notranslate" /></a>
                                 
                             </div>
                             <div class="AssetDetails">
@@ -1669,7 +1669,7 @@ $(function(){
 			<td>
             <div class="PortraitDiv" style="width: 140px;overflow: hidden;margin:auto;" visible="True" data-se="recommended-items-0">
                 <div class="AssetThumbnail">
-                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl00_AssetThumbnailHyperLink" class=" notranslate" title="Electro Hood" class=" notranslate" href="/Electro-Hood-item?id=151679909" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t0.rbxcdn.com/3408a044964ac768c9bba859816b49ec" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Electro Hood" class=" notranslate" /></a>
+                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl00_AssetThumbnailHyperLink" class=" notranslate" title="Electro Hood" class=" notranslate" href="/Electro-Hood-item?id=151679909" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Electro Hood" class=" notranslate" /></a>
                 </div>
                 <div class="AssetDetails">
                     <div class="AssetName noTranslate">
@@ -1683,7 +1683,7 @@ $(function(){
         </td><td>
             <div class="PortraitDiv" style="width: 140px;overflow: hidden;margin:auto;" visible="True" data-se="recommended-items-1">
                 <div class="AssetThumbnail">
-                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl01_AssetThumbnailHyperLink" class=" notranslate" title="Extreme Sports Helmet: BASE Jump Black" class=" notranslate" href="/Extreme-Sports-Helmet-BASE-Jump-Black-item?id=9466840" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t5.rbxcdn.com/c2b5f7a6239c673e99ccd1bd7b8bcc7e" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Extreme Sports Helmet: BASE Jump Black" class=" notranslate" /></a>
+                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl01_AssetThumbnailHyperLink" class=" notranslate" title="Extreme Sports Helmet: BASE Jump Black" class=" notranslate" href="/Extreme-Sports-Helmet-BASE-Jump-Black-item?id=9466840" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Extreme Sports Helmet: BASE Jump Black" class=" notranslate" /></a>
                 </div>
                 <div class="AssetDetails">
                     <div class="AssetName noTranslate">
@@ -1697,7 +1697,7 @@ $(function(){
         </td><td>
             <div class="PortraitDiv" style="width: 140px;overflow: hidden;margin:auto;" visible="True" data-se="recommended-items-2">
                 <div class="AssetThumbnail">
-                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl02_AssetThumbnailHyperLink" class=" notranslate" title="Aussie Slouch" class=" notranslate" href="/Aussie-Slouch-item?id=10860590" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t5.rbxcdn.com/366091e5f6ae9e25779dc8bb5d13b62e" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Aussie Slouch" class=" notranslate" /></a>
+                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl02_AssetThumbnailHyperLink" class=" notranslate" title="Aussie Slouch" class=" notranslate" href="/Aussie-Slouch-item?id=10860590" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Aussie Slouch" class=" notranslate" /></a>
                 </div>
                 <div class="AssetDetails">
                     <div class="AssetName noTranslate">
@@ -1711,7 +1711,7 @@ $(function(){
         </td><td>
             <div class="PortraitDiv" style="width: 140px;overflow: hidden;margin:auto;" visible="True" data-se="recommended-items-3">
                 <div class="AssetThumbnail">
-                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl03_AssetThumbnailHyperLink" class=" notranslate" title="Opened Gift of Birthday Fun" class=" notranslate" href="/Opened-Gift-of-Birthday-Fun-item?id=34115865" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t3.rbxcdn.com/a1bd828ea1acf7bffe682d2d3d358134" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Opened Gift of Birthday Fun" class=" notranslate" /></a>
+                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl03_AssetThumbnailHyperLink" class=" notranslate" title="Opened Gift of Birthday Fun" class=" notranslate" href="/Opened-Gift-of-Birthday-Fun-item?id=34115865" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Opened Gift of Birthday Fun" class=" notranslate" /></a>
                 </div>
                 <div class="AssetDetails">
                     <div class="AssetName noTranslate">
@@ -1725,7 +1725,7 @@ $(function(){
         </td><td>
             <div class="PortraitDiv" style="width: 140px;overflow: hidden;margin:auto;" visible="True" data-se="recommended-items-4">
                 <div class="AssetThumbnail">
-                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl04_AssetThumbnailHyperLink" class=" notranslate" title="Beautiful Hair for Beautiful People" class=" notranslate" href="/Beautiful-Hair-for-Beautiful-People-item?id=16630147" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t3.rbxcdn.com/53c09c7102cb2390fb88151fb49b76d9" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Beautiful Hair for Beautiful People" class=" notranslate" /></a>
+                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl04_AssetThumbnailHyperLink" class=" notranslate" title="Beautiful Hair for Beautiful People" class=" notranslate" href="/Beautiful-Hair-for-Beautiful-People-item?id=16630147" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Beautiful Hair for Beautiful People" class=" notranslate" /></a>
                 </div>
                 <div class="AssetDetails">
                     <div class="AssetName noTranslate">
@@ -1741,7 +1741,7 @@ $(function(){
 			<td>
             <div class="PortraitDiv" style="width: 140px;overflow: hidden;margin:auto;" visible="True" data-se="recommended-items-5">
                 <div class="AssetThumbnail">
-                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl05_AssetThumbnailHyperLink" class=" notranslate" title="LOL Day Cap" class=" notranslate" href="/LOL-Day-Cap-item?id=96678344" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t1.rbxcdn.com/c06f353c6ecf900c94813cfff5b11129" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="LOL Day Cap" class=" notranslate" /></a>
+                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl05_AssetThumbnailHyperLink" class=" notranslate" title="LOL Day Cap" class=" notranslate" href="/LOL-Day-Cap-item?id=96678344" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="LOL Day Cap" class=" notranslate" /></a>
                 </div>
                 <div class="AssetDetails">
                     <div class="AssetName noTranslate">
@@ -1755,7 +1755,7 @@ $(function(){
         </td><td>
             <div class="PortraitDiv" style="width: 140px;overflow: hidden;margin:auto;" visible="True" data-se="recommended-items-6">
                 <div class="AssetThumbnail">
-                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl06_AssetThumbnailHyperLink" class=" notranslate" title="ROBLOX Visor 2011" class=" notranslate" href="/ROBLOX-Visor-2011-item?id=42900214" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t4.rbxcdn.com/7f556690677430023d5c48e6e74fea6d" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="ROBLOX Visor 2011" class=" notranslate" /></a>
+                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl06_AssetThumbnailHyperLink" class=" notranslate" title="ROBLOX Visor 2011" class=" notranslate" href="/ROBLOX-Visor-2011-item?id=42900214" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="ROBLOX Visor 2011" class=" notranslate" /></a>
                 </div>
                 <div class="AssetDetails">
                     <div class="AssetName noTranslate">
@@ -1769,7 +1769,7 @@ $(function(){
         </td><td>
             <div class="PortraitDiv" style="width: 140px;overflow: hidden;margin:auto;" visible="True" data-se="recommended-items-7">
                 <div class="AssetThumbnail">
-                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl07_AssetThumbnailHyperLink" class=" notranslate" title="ROBLOX Cadet" class=" notranslate" href="/ROBLOX-Cadet-item?id=113332797" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t5.rbxcdn.com/d827c93bf76ed36c4c98597f1c96a135" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="ROBLOX Cadet" class=" notranslate" /></a>
+                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl07_AssetThumbnailHyperLink" class=" notranslate" title="ROBLOX Cadet" class=" notranslate" href="/ROBLOX-Cadet-item?id=113332797" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="ROBLOX Cadet" class=" notranslate" /></a>
                 </div>
                 <div class="AssetDetails">
                     <div class="AssetName noTranslate">
@@ -1783,7 +1783,7 @@ $(function(){
         </td><td>
             <div class="PortraitDiv" style="width: 140px;overflow: hidden;margin:auto;" visible="True" data-se="recommended-items-8">
                 <div class="AssetThumbnail">
-                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl08_AssetThumbnailHyperLink" class=" notranslate" title="Firefighter Helmet" class=" notranslate" href="/Firefighter-Helmet-item?id=1081381" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t6.rbxcdn.com/73193b02c611b63d1b89614f6b6bc4a1" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Firefighter Helmet" class=" notranslate" /></a>
+                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl08_AssetThumbnailHyperLink" class=" notranslate" title="Firefighter Helmet" class=" notranslate" href="/Firefighter-Helmet-item?id=1081381" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Firefighter Helmet" class=" notranslate" /></a>
                 </div>
                 <div class="AssetDetails">
                     <div class="AssetName noTranslate">
@@ -1797,7 +1797,7 @@ $(function(){
         </td><td>
             <div class="PortraitDiv" style="width: 140px;overflow: hidden;margin:auto;" visible="True" data-se="recommended-items-9">
                 <div class="AssetThumbnail">
-                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl09_AssetThumbnailHyperLink" class=" notranslate" title="Backwards &#39;R&#39; Cap" class=" notranslate" href="/Backwards-R-Cap-item?id=17903982" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="//t2.rbxcdn.com/0ce41ae726e1037f385bddc5efffca26" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Backwards &#39;R&#39; Cap" class=" notranslate" /></a>
+                    <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetRec_dlAssets_ctl09_AssetThumbnailHyperLink" class=" notranslate" title="Backwards &#39;R&#39; Cap" class=" notranslate" href="/Backwards-R-Cap-item?id=17903982" style="display:inline-block;height:110px;width:110px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Backwards &#39;R&#39; Cap" class=" notranslate" /></a>
                 </div>
                 <div class="AssetDetails">
                     <div class="AssetName noTranslate">
