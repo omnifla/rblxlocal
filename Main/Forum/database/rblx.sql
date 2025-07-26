@@ -4,7 +4,6 @@
 -- Drop tables if they exist to start fresh
 DROP TABLE IF EXISTS posts;
 DROP TABLE IF EXISTS threads;
-DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS forums;
 DROP TABLE IF EXISTS forum_groups;
 
@@ -26,13 +25,9 @@ CREATE TABLE forums (
     sort_order INT NOT NULL DEFAULT 0
 );
 
--- Table for users
-CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    username VARCHAR(255) NOT NULL UNIQUE,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    post_count INT NOT NULL DEFAULT 0
-);
+-- Add post_count column to users table
+ALTER TABLE users
+ADD COLUMN IF NOT EXISTS post_count INT NOT NULL DEFAULT 0;
 
 -- Table for threads
 CREATE TABLE threads (
