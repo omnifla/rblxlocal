@@ -1281,8 +1281,8 @@ echo '</tr></tbody></table>';
 				?>
 			</div>
 			
-			<div id="AssetsContent" style="width:100%; height:900px;">
-				<iframe id="inventory_iframe" style="width:100%; height:100%; border:none"
+			<div id="AssetsContent" style=width:0px; height:900px;">
+				<iframe id="inventory_iframe" style="width:745px; height:100%; border:none"
 					src="/Users/Inventory.php?id=<?php echo $id ?>&page=1&cat=<?php echo $currentCat ?>">
 				</iframe>
 			</div>
