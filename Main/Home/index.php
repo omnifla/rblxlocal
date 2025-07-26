@@ -241,13 +241,7 @@ $(function(){
 	        <div id="bestFriendsContainer" class="best-friends-container">
 <div class="best-friends">
     <div class="user">
-        <div class="roblox-avatar-image" data-user-id="6570505" data-image-size="tiny">
-            <div style="position: relative;">
-                <a href="http://<?= $site_properties['hostname'] ?>/user.aspx?id=6570505">
-                    <img title="Rootless" alt="Rootless" border="0" src="">
-                </a>
-            </div>
-        </div>
+        <div class="roblox-avatar-image" data-user-id="1" data-image-size="tiny">
         <div class="info">
             <img src="" title="Offline">
             <a class="name" href="http://<?= $site_properties['hostname'] ?>/User.aspx?ID=1">ROBLOX</a>
