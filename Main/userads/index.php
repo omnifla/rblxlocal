@@ -1,8 +1,21 @@
 <?php
+// writen by chloe
 $type = isset($_GET['type']) ? $_GET['type'] : null;
+
+function base64EncodeUserId4() {
+    return base64_encode('/User.aspx?ID=4');
+}
 
 switch ($type) {
     case '1':
+        $showDefault = (random_int(0, 1) === 0);
+        if ($showDefault) {
+            $href = "/userads/redirect?data=" . base64EncodeUserId4();
+            $imgSrc = "/Images/Ads/BuildersClubAd-728x90v4.jpg";
+        } else {
+            $href = "/userads/redirect?data=" . base64EncodeUserId4();
+            $imgSrc = "/Images/Ads/NeuroSama1.png";
+        }
         echo '<html style="--wm-toolbar-height: 68px;"><head>
         <title>ROBLOX - a kids, parents, and family activity site for building toy amusement parks, rc cars, clothing, and electronic devices out of construction blocks that are as realistic as a movie or tv show</title>
         <style type="text/css">
@@ -17,8 +30,8 @@ switch ($type) {
         <link rel="stylesheet" href="/CSS/Base/CSS/FetchCSS?path=page___6e7692e816ffb3c7713abf66d00c8ad7_m.css">
         </head>
         <body class="banner">
-            <a class="ad" target="_top" href="/userads/redirect?data=L1VwZ3JhZGVzL0J1aWxkZXJzQ2x1Yk1lbWJlcnNoaXBzLmFzcHg" title="Join Today">
-                <img height="90" width="728" src="/Images/Ads/BuildersClubAd-728x90v4.jpg" alt="Join Today">
+            <a class="ad" target="_top" href="' . $href . '" title="Join Today">
+                <img height="90" width="728" src="' . $imgSrc . '" alt="Join Today">
             </a>
             <div class="ad-annotations" style="width: 728px">
                 <span class="ad-identification">Advertisement</span>
@@ -29,6 +42,14 @@ switch ($type) {
         break;
 
     case '2':
+        $showDefault = (random_int(0, 1) === 0);
+        if ($showDefault) {
+            $href = "/userads/redirect?data=" . base64EncodeUserId4();
+            $imgSrc = "/Images/Ads/BuildersClubAd-160x600v4.jpg";
+        } else {
+            $href = "/userads/redirect?data=" . base64EncodeUserId4();
+            $imgSrc = "/Images/Ads/NeuroSama2.png";
+        }
         echo '<html style="--wm-toolbar-height: 68px;"><head>
         <title>ROBLOX - a kids, parents, and family activity site for building toy amusement parks, rc cars, clothing, and electronic devices out of construction blocks that are as realistic as a movie or tv show</title>
         <style type="text/css">
@@ -43,8 +64,8 @@ switch ($type) {
         <link rel="stylesheet" href="/CSS/Base/CSS/FetchCSS?path=page___6e7692e816ffb3c7713abf66d00c8ad7_m.css">
         </head>
         <body class="other">
-            <a class="ad" title="Join Today" target="_top" href="/userads/redirect?data=L1VwZ3JhZGVzL0J1aWxkZXJzQ2x1Yk1lbWJlcnNoaXBzLmFzcHg">
-                <img alt="Join Today" height="600" width="160" src="/Images/Ads/BuildersClubAd-160x600v4.jpg">
+            <a class="ad" title="Join Today" target="_top" href="' . $href . '">
+                <img alt="Join Today" height="600" width="160" src="' . $imgSrc . '">
             </a>
             <div class="ad-annotations" style="width: 160px">
                 <span class="ad-identification">Advertisement</span>
@@ -55,6 +76,7 @@ switch ($type) {
         break;
 
     case '3':
+        $href = "/userads/redirect?data=" . base64EncodeUserId4();
         echo '<html style="--wm-toolbar-height: 68px;"><head>
         <title>ROBLOX - a kids, parents, and family activity site for building toy amusement parks, rc cars, clothing, and electronic devices out of construction blocks that are as realistic as a movie or tv show</title>
         <style type="text/css">
@@ -69,7 +91,7 @@ switch ($type) {
         <link rel="stylesheet" href="/CSS/Base/CSS/FetchCSS?path=page___5bcb079cc22f40d09a57aa5c592fb7b4_m.css">
         </head>
         <body class="other">
-            <a class="ad" target="_top" href="/userads/redirect?data=L1VwZ3JhZGVzL0J1aWxkZXJzQ2x1Yk1lbWJlcnNoaXBzLmFzcHg" title="Join Today">
+            <a class="ad" target="_top" href="' . $href . '" title="Join Today">
                 <img height="250" width="300" src="/Images/Ads/BuildersClubAd-300x250v4.jpg" alt="Join Today">
             </a>
             <div class="ad-annotations" style="width: 300px">
