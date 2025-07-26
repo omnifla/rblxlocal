@@ -14,16 +14,18 @@ $offset = ($page - 1) * $itemsPerPage;
 
 $db = $conn;
 
-$catFilter = $cat !== null ? "AND a.AssetType = :cat" : "";
+$catFilter = $cat !== null ? 'AND a."AssetType" = :cat' : '';
 
-$sql = "SELECT i.UAID, i.Timestamp, a.AssetId, a.OwnerId, a.AssetType, a.Name, a.Description,
-        a.RobuxPrice, a.TixPrice, a.Offsale, a.Limited, a.LimitedUnique, a.Serials,
-        a.CreationDate, a.UpdatedDate
-        FROM inventory i
-        INNER JOIN assets a ON i.AssetId = a.AssetId
-        WHERE i.UserId = :userId $catFilter
-        ORDER BY i.Timestamp DESC
-        LIMIT :limit OFFSET :offset";
+$sql = '
+SELECT i."UAID", i."Timestamp", a."AssetId", a."OwnerId", a."AssetType", a."Name", a."Description",
+       a."RobuxPrice", a."TixPrice", a."Offsale", a."Limited", a."LimitedUnique", a."Serials",
+       a."CreationDate", a."UpdatedDate"
+FROM "inventory" i
+INNER JOIN "assets" a ON i."AssetId" = a."AssetId"
+WHERE i."UserId" = :userId ' . $catFilter . '
+ORDER BY i."Timestamp" DESC
+LIMIT :limit OFFSET :offset
+';
 
 $stmt = $db->prepare($sql);
 $stmt->bindValue(':userId', $id, PDO::PARAM_INT);
@@ -35,7 +37,6 @@ $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
 
 $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
 
 <!DOCTYPE html>
