@@ -1,4 +1,5 @@
 <?php
+// writen by chloe
 if (!isset($_GET['data'])) {
     header("Location: /RobloxDefaultErrorPage.aspx?code=404");
     exit();
