@@ -64,8 +64,8 @@ $threads = $threads_stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td align="right"><span id="ctl00_cphRoblox_ThreadView1_ctl00_Navigationmenu1">
 
                                 <div id="forum-nav" style="text-align: right">
-                                    <a id="ctl00_cphRoblox_ThreadView1_ctl00_Navigationmenu1_ctl00_HomeMenu" class="menuTextLink first" href="/web/20140706055037/http://roblox.com/Forum/Default.aspx">Home</a>
-                                    <a id="ctl00_cphRoblox_ThreadView1_ctl00_Navigationmenu1_ctl00_SearchMenu" class="menuTextLink" href="/web/20140706055037/http://roblox.com/Forum/Search/default.aspx">Search</a>
+                                    <a id="ctl00_cphRoblox_ThreadView1_ctl00_Navigationmenu1_ctl00_HomeMenu" class="menuTextLink first" href="/Forum/Default.aspx">Home</a>
+                                    <a id="ctl00_cphRoblox_ThreadView1_ctl00_Navigationmenu1_ctl00_SearchMenu" class="menuTextLink" href="/Forum/Search/default.aspx">Search</a>
 
 
 
