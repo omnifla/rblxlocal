@@ -15,7 +15,7 @@ $groups = $conn->query('SELECT id, name FROM forum_groups ORDER BY sort_order AS
 <head>
     <title><?= $site_properties['Title'] ?>.com</title>
     <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=main___3254191a0cea4af8e8a0fecd1a2685b0_m.css' />
-    <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=page___d0a32d7530b30a6f5d85fd297f8b6898_m.css' />
+    <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=page___09c4a1b67a03bbb716c6f0c4a2a425b4_m.css' />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 
