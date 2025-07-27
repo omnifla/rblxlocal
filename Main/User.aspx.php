@@ -26,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "<p> what's expected? </p>";
             break;
         default:
+  // what's the point of this? -randon
             echo "<p>placeholder sheib</p>";
             break;
     }
