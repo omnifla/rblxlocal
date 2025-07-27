@@ -34,7 +34,7 @@ $threads = $threads_stmt->fetchAll(PDO::FETCH_ASSOC);
     <title><?= $site_properties['Title'] ?>.com</title>
     <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=main___3254191a0cea4af8e8a0fecd1a2685b0_m.css' />
     <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=page___d0a32d7530b30a6f5d85fd297f8b6898_m.css' />
-    <link rel='stylesheet' href='https://web.archive.org/web/20140404152229id_/http://www.roblox.com/Forum/skins/default/style/default.css' />
+    <link rel='stylesheet' href='/Forum/skins/default/style/default.css' />
 </head>
 
 <body>
