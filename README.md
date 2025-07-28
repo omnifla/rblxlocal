@@ -20,7 +20,6 @@ An Open Source 2014 Roblox Revival using a ported PHP version of ROBLOX's backen
 - [watrabi](https://github.com/watrabi)
 
 ## Contributors
-- [Denied_ID](https://github.com/denied-id)
 - [Waylon](https://github.com/WayloFunk)
 - [floof](https://github.com/verify-stack)
 - [omnifla](https://github.com/omnifla)
