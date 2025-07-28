@@ -815,155 +815,75 @@ echo '</tr></tbody></table>';
 	
 <div id="UserPlaces" style="overflow: hidden">
 
-    <div id="accordion" class="accordion">
-    
-        <div class="accord-section accord-section-open">
-            <div class="accord-header notranslate">
-                <div class="accord-arrow">&#x25b6;</div>
-			    Test
-            </div>
-            <div class="accord-content notranslate">
-			    
-
-<div class="Place">
-    
-    <div class="PlayStatus">
-        
-<span class="PlaceAccessIndicator">
-	<span id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_rbxPlaceAccessIndicator_FriendsOnlyLocked" style="display: none">
-        <a class="iLocked tooltip" title="Friends Only"></a><span class="invisible">&nbsp;Friends-only</span>
-	</span>
-    <span id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_rbxPlaceAccessIndicator_FriendsOnlyUnlocked" style="display: none">
-        <a class="iUnlocked tooltip" title="Friends Only - You are friends"></a><span class="invisible">&nbsp;Friends-only: You are friends</span>
-	</span>
-	<span id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_rbxPlaceAccessIndicator_ExpiredSelf" style="display: none">
-        <a class="iLocked tooltip" title="Locked"></a>
-        <span class="invisible">&nbsp;Your Outrageous Builders Club, Turbo Builders Club, or Builders Club membership has expired, so you can
-        only have one open place. Your places will not be deleted, and you can <a id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_rbxPlaceAccessIndicator_RBXLDownloadLink">download the RBXL here.</a> To unlock all of your places,
-        please <a href="/upgrades/BuildersClubMemberships.aspx">re-order Outrageous Builders Club, Turbo Builders Club, or Builders
-            Club </a>.<br /></span>
-    </span>
-    <span id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_rbxPlaceAccessIndicator_ExpiredOther" style="display: none">
-        <a class="iLocked tooltip" title="Locked"></a>
-        <span class="invisible">This place is locked because the creator's <a href="/upgrades/BuildersClubMemberships.aspx">Builders
-            Club / Turbo Builders Club / Outrageous Builders Club </a>has expired.
-		</span>
-	</span>	
-</span>
+	<?php
+	$stmt = $db->prepare("SELECT * FROM assets WHERE AssetType = 9 AND OwnerId = :uid");
+	$stmt->execute([':uid' => $uid]);
+	$places = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	
-    </div>
-    <br>
-    <div class="Statistics" style="color: #999; font-size: 14px; letter-spacing: normal">
-        <span id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_lStatistics">Visited N/A times (N/A last week)</span></div>
-    <div class="Thumbnail" style="width:414px;overflow:hidden;position: relative;">
-        <a id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_rbxPlaceThumbnail" title="Test" href="/Test-place?id=0" style="display:inline-block;height:230px;width:420px;cursor:pointer;"><img src="/Images/Placeholder1024x1024.png" height="230" width="420" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="Test" /></a>
-        
-    </div>
-    <div id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_pDescription">
-		
-        <div class="Description" style="overflow-y: auto; max-height: 160px; font-family: arial; color: #666; font-size: 12px;">
-            <span id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_lDescription">Hey, don't ask any questions, i've putten placeholder shit in here for no reason since this is wip.</span>
-        </div>
-    
-	</div>
-    <div class="PlayOptions" style="display:block" >
-        
-        <div class="VisitButtonContainer"  data-item-id="34459309">
-            
-        <div class="VisitButtonsLeft Centered">
-            
-            <div id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_rbxVisitButtons_MultiplayerVisitButton" class="VisitButton VisitButtonPlay" placeid="34459309">
-                <a  class="btn-medium btn-primary">Play</a>
-            </div>  
-            
-            
-        </div>
-    
-
-    <script type="text/javascript">
-        var play_placeId = 34459309;
-        function redirectPlaceLauncherToLogin() {
-            location.href = "/login/default.aspx?ReturnUrl=" + encodeURIComponent("/User.aspx?ID=1025053");
-        }
-        function redirectPlaceLauncherToRegister() {
-            location.href = "/login/NewAge.aspx?ReturnUrl=" + encodeURIComponent("/User.aspx?ID=1025053");
-        }
-        function fireEventAction(action) {
-            RobloxEventManager.triggerEvent('rbx_evt_popup_action', { action: action });
-        }
-    </script>
-    
-
-<div id="BCOnlyModal" class="modalPopup unifiedModal smallModal" style="display:none;">
- 	<div style="margin:4px 0px;">
-        <span>Builders Club Only</span>
-    </div>
-    <div class="simplemodal-close">
-        <a class="ImageButton closeBtnCircle_20h" style="margin-left:400px;"></a>
-    </div>
-    <div class="unifiedModalContent" style="padding-top:5px; margin-bottom: 3px; margin-left: 3px; margin-right: 3px">
-        <div class="ImageContainer" >
-            <img class="GenericModalImage BCModalImage" alt="Builder's Club" src="//images.rbxcdn.com/ae345c0d59b00329758518edc104d573.png" />
-            <div id="BCMessageDiv" class="BCMessage Message">
-                Builders Club membership is required to play in this place.
-            </div>
-        </div>
-        <div style="clear:both;"></div>
-        <div style="clear:both;"></div>
-        <div class="GenericModalButtonContainer" style="padding-bottom: 13px">
-            <div style="text-align:center">
-                <a id="BClink" href="/Upgrades/BuildersClubMemberships.aspx" class="btn-primary btn-large">Upgrade Now</a>
-            </div>
-            <div style="clear:both;"></div>
-        </div>
-        <div style="clear:both;"></div>
-    </div>
-</div>
-
-<script type="text/javascript">
-    function showBCOnlyModal(modalId) {
-        var modalProperties = { overlayClose: true, escClose: true, opacity: 80, overlayCss: { backgroundColor: "#000" } };
-        if (typeof modalId === "undefined")
-            $("#BCOnlyModal").modal(modalProperties);
-        else
-            $("#" + modalId).modal(modalProperties);
-    }
-    $(document).ready(function () {
-        $('#VOID').click(function () {
-            showBCOnlyModal("BCOnlyModal");
-            return false;
-        });
-    });
-</script>
- 
-
-<div class="GenericModal modalPopup unifiedModal smallModal" style="display:none;">
-    <div class="Title"></div>
-    <div class="GenericModalBody">
-        <div>
-            <div class="ImageContainer roblox-item-image"  data-image-size="small" data-no-overlays data-no-click>
-                <img class="GenericModalImage" alt="generic image" />
-            </div>
-            <div class="Message"></div>  
-            <div style="clear:both"></div>
-        </div>
-        <div class="GenericModalButtonContainer">
-            <a class="ImageButton btn-neutral btn-large roblox-ok" >OK<span class="btn-text">OK</span></a> 
-        </div>  
-    </div>
-</div>
-
-
-
-        </div>
-    </div>
-</div>
-
-			    
-            </div>
-        </div>
-		
-    </div>
+	if (count($places) > 0) {
+	    echo '<div id="accordion" class="accordion">';
+	    foreach ($places as $place) {
+	        $placeId = (int)$place['AssetId'];
+	        $placeName = htmlspecialchars($place['Name']);
+	        $placeDescription = htmlspecialchars($place['Description'] ?? '');
+	        $placeUrl = "/{$placeName}-place?id={$placeId}";
+	        echo <<<HTML
+	        <div class="accord-section accord-section-open">
+	            <div class="accord-header notranslate">
+	                <div class="accord-arrow">&#x25b6;</div>
+	                {$placeName}
+	            </div>
+	            <div class="accord-content notranslate">
+	                <div class="Place">
+	                    <div class="PlayStatus">
+	                        <span class="PlaceAccessIndicator">
+	                            <span id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_rbxPlaceAccessIndicator_FriendsOnlyLocked" style="display: none">
+	                                <a class="iLocked tooltip" title="Friends Only"></a><span class="invisible">&nbsp;Friends-only</span>
+	                            </span>
+	                            <span id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_rbxPlaceAccessIndicator_FriendsOnlyUnlocked" style="display: none">
+	                                <a class="iUnlocked tooltip" title="Friends Only - You are friends"></a><span class="invisible">&nbsp;Friends-only: You are friends</span>
+	                            </span>
+	                            <span id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_rbxPlaceAccessIndicator_ExpiredSelf" style="display: none">
+	                                <a class="iLocked tooltip" title="Locked"></a>
+	                                <span class="invisible">&nbsp;Your Outrageous Builders Club, Turbo Builders Club, or Builders Club membership has expired, so you can only have one open place. Your places will not be deleted, and you can <a id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_rbxPlaceAccessIndicator_RBXLDownloadLink">download the RBXL here.</a> To unlock all of your places, please <a href="/upgrades/BuildersClubMemberships.aspx">re-order Outrageous Builders Club, Turbo Builders Club, or Builders Club </a>.<br /></span>
+	                            </span>
+	                            <span id="ctl00_cphRoblox_rbxUserPlacesPane_ShowcasePlaces_ctl00_rbxPlatform_rbxPlaceAccessIndicator_ExpiredOther" style="display: none">
+	                                <a class="iLocked tooltip" title="Locked"></a>
+	                                <span class="invisible">This place is locked because the creator's <a href="/upgrades/BuildersClubMemberships.aspx">Builders Club / Turbo Builders Club / Outrageous Builders Club </a>has expired.</span>
+	                            </span>
+	                        </span>
+	                    </div>
+	                    <br>
+	                    <div class="Statistics" style="color: #999; font-size: 14px; letter-spacing: normal">
+	                        <span>Visited N/A times (N/A last week)</span>
+	                    </div>
+	                    <div class="Thumbnail" style="width:414px;overflow:hidden;position: relative;">
+	                        <a title="{$placeName}" href="{$placeUrl}" style="display:inline-block;height:230px;width:420px;cursor:pointer;">
+	                            <img src="/Images/Placeholder1024x1024.png" height="230" width="420" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="{$placeName}" />
+	                        </a>
+	                    </div>
+	                    <div>
+	                        <div class="Description" style="overflow-y: auto; max-height: 160px; font-family: arial; color: #666; font-size: 12px;">
+	                            <span>{$placeDescription}</span>
+	                        </div>
+	                    </div>
+	                    <div class="PlayOptions" style="display:block">
+	                        <div class="VisitButtonContainer" data-item-id="{$placeId}">
+	                            <div class="VisitButtonsLeft Centered">
+	                                <div class="VisitButton VisitButtonPlay" placeid="{$placeId}">
+	                                    <a class="btn-medium btn-primary">Play</a>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	HTML;
+	    }
+	    echo '</div>';
+	}
+	?>
     
 
 
