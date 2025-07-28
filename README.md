@@ -68,4 +68,4 @@ Coming soon...
 - [ ] Admin panel
 - [ ] Add api.site.com apis other than /Setting/QuietGet
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">All rights go to RBLXLocal. All assets belong to ROBLOX Corporation</p>
