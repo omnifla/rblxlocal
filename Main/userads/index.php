@@ -1,6 +1,13 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 
+if (!$conn instanceof PDO) {
+    error_log("Database connection is not a valid PDO instance");
+    exit();
+}
+
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 $type = isset($_GET['type']) ? intval($_GET['type']) : 0;
 $now = new DateTime();
 $twentyFourHoursAgo = $now->sub(new DateInterval('PT24H'))->format('Y-m-d H:i:s');
@@ -73,17 +80,16 @@ function selectWeightedAd(array $ads) {
     return null;
 }
 
-if ($type < 1 || $type > 3) {
-    header("Location: /RobloxDefaultErrorPage.aspx?code=404");
+if ($type < 1 || $type > 3) {    
     exit();
 }
 
 try {
-    $stmt = $conn->prepare("SELECT * FROM ads WHERE AdType = :adtype AND BidDate > :cutoff");
+    $stmt = $conn->prepare("SELECT * FROM ads WHERE \"AdType\" = :adtype AND \"BidDate\" > :cutoff");
     $stmt->execute([':adtype' => $type, ':cutoff' => $twentyFourHoursAgo]);
     $ads = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (Exception $e) {
-    header("Location: /RobloxDefaultErrorPage.aspx?code=500");
+    error_log("Database query failed: " . $e->getMessage());
     exit();
 }
 
@@ -133,9 +139,10 @@ $imgSrc = "/userads/images/" . $adId . ".png";
 $title = htmlspecialchars($adToShow['AdName']);
 
 try {
-    $updateStmt = $conn->prepare("UPDATE ads SET Views = Views + 1, TotalViews = TotalViews + 1 WHERE AdId = :adid");
+    $updateStmt = $conn->prepare("UPDATE ads SET \"Views\" = \"Views\" + 1, \"TotalViews\" = \"TotalViews\" + 1 WHERE \"AdId\" = :adid");
     $updateStmt->execute([':adid' => $adId]);
 } catch (Exception $e) {
+    error_log("Failed to update ad views: " . $e->getMessage());
 }
 
 $width = 728;
