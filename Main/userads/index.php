@@ -38,7 +38,7 @@ function getBuilderClubAdImgSrc($type) {
 }
 
 function getAdHtml($href, $imgSrc, $width, $height, $title, $adId, $wrapperClass = "banner") {
-    $reportHref = "/AbuseReport/Asset.aspx?ID=" . intval($adId) . "&RedirectUrl=/home";
+    $reportHref = "/AbuseReport/Ad.aspx?ID=" . intval($adId) . "&RedirectUrl=/home";
     return '<html style="--wm-toolbar-height: 68px;"><head>
     <title>ROBLOX - a kids, parents, and family activity site for building toy amusement parks, rc cars, clothing, and electronic devices out of construction blocks that are as realistic as a movie or tv show</title>
     <style type="text/css">
