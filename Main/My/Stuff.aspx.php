@@ -32,11 +32,9 @@ $userId = (int)$user["id"];
 <div id="MasterContainer">
 <div id="BodyWrapper">
 <div id="RepositionBody">
-<div id="Body" style="width:970px;">
-
-<div id="Container">
-
 <?= SiteHeader::render() ?>
+<div id="Body" style="width:970px;">
+<div id="Container">
 <div id="UserContainer">
     <div id="UserAssetsPane" style="border-top: 1px solid #ccc;">
         <div id="ctl00_cphRoblox_rbxUserAssetsPane_upUserAssetsPane">
