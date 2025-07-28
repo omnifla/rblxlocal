@@ -1285,36 +1285,37 @@ echo '</tr></tbody></table>';
 				?>
 			</div>
 			
-			<div id="AssetsContent" style=width:0px; height:900px;">
-				<div id="iframe-loader" style="text-align: center; margin-top: 25px;">
-    					<img src="/images/ProgressIndicator4.gif" alt="Loading...">
-				</div>
-
-				<iframe id="inventory_iframe" style="width:745px; height:100%; border:none"
-					src="/Users/Inventory.php?id=<?php echo $id ?>&page=1&cat=<?php echo $currentCat ?>">
-				</iframe>
-
-				<script>
-				    const iframe = document.getElementById("inventory_iframe");
-				    const loader = document.getElementById("iframe-loader");
-				
-				    iframe.addEventListener("load", function() {
-				        loader.style.display = "none";
-				        iframe.style.display = "block";
-				    });
-				</script>
-			</div>
+			<div id="AssetsContent" style="width:745px; height:900px; position:relative;">
+			    <div id="iframe-loader" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 10;">
+			        <img src="/images/ProgressIndicator4.gif" alt="Loading...">
+			    </div>
 			
-			<script>
-			function setCategory(cat) {
-				const iframe = document.getElementById('inventory_iframe');
-				const urlParams = new URLSearchParams(window.location.search);
-				const userId = urlParams.get('id') || '<?php echo $id ?>';
-				iframe.src = `/Users/Inventory.php?id=${userId}&page=1&cat=${cat}`;
-				document.querySelectorAll('.verticaltab').forEach(tab => tab.classList.remove('selected'));
-				event.target.parentElement.classList.add('selected');
-			}
-			</script>
+			    <iframe id="inventory_iframe" style="width:745px; height:100%; border:none; display:none;"
+			        src="/Users/Inventory.php?id=<?php echo $id ?>&page=1&cat=<?php echo $currentCat ?>">
+			    </iframe>
+			
+			    <script>
+			        const iframe = document.getElementById("inventory_iframe");
+			        const loader = document.getElementById("iframe-loader");
+			
+			        iframe.addEventListener("load", function () {
+			            loader.style.display = "none";
+			            iframe.style.display = "block";
+			        });
+			
+			        function setCategory(cat) {
+			            const urlParams = new URLSearchParams(window.location.search);
+			            const userId = urlParams.get('id') || '<?php echo $id ?>';
+			
+			            loader.style.display = "block";
+			            iframe.style.display = "none";
+			            iframe.src = `/Users/Inventory.php?id=${userId}&page=1&cat=${cat}`;
+			
+			            document.querySelectorAll('.verticaltab').forEach(tab => tab.classList.remove('selected'));
+			            event.target.closest('.verticaltab').classList.add('selected');
+			        }
+			    </script>
+			</div>
 			
             <div style="clear: both;">
             </div>
