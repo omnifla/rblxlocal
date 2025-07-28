@@ -1286,9 +1286,23 @@ echo '</tr></tbody></table>';
 			</div>
 			
 			<div id="AssetsContent" style=width:0px; height:900px;">
+				<div id="iframe-loader" style="text-align: center; margin-top: 25px;">
+    					<img src="/images/ProgressIndicator4.gif" alt="Loading...">
+				</div>
+
 				<iframe id="inventory_iframe" style="width:745px; height:100%; border:none"
 					src="/Users/Inventory.php?id=<?php echo $id ?>&page=1&cat=<?php echo $currentCat ?>">
 				</iframe>
+
+				<script>
+				    const iframe = document.getElementById("inventory_iframe");
+				    const loader = document.getElementById("iframe-loader");
+				
+				    iframe.addEventListener("load", function() {
+				        loader.style.display = "none";
+				        iframe.style.display = "block";
+				    });
+				</script>
 			</div>
 			
 			<script>
