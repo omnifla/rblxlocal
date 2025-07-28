@@ -109,7 +109,7 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </tbody>
         </table>
 
-        <div id="ctl00_cphRoblox_rbxUserAssetsPane_FooterPagerPanel" class="FooterPager" style="width: 780px">
+        <div id="ctl00_cphRoblox_rbxUserAssetsPane_FooterPagerPanel" class="FooterPager" style="width: 780px; display: flex; justify-content: center; align-items: center; gap: 5px;">
             <?php if ($page > 1): ?>
                 <a href="javascript:void(0)" onclick="changePage(<?php echo $page - 1 ?>)"><span class="pager previous"></span></a>
             <?php else: ?>
