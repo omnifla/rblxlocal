@@ -1,5 +1,5 @@
 <?php
-// page written by chloe
+// writen by chloe
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 $id = intval($_GET['id'] ?? 0);
 $page = max(1, intval($_GET['page'] ?? 1));
