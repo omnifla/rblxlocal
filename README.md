@@ -1,9 +1,12 @@
 
 
-<div align="center">
-<h1><b>RBLX.local</b></h1>
+<p align="center">
+    <img src="https://github.com/rblx-local/rblxlocal/blob/main/n6a3dp.png#gh-dark-mode-only" width="420">
+    <img src="https://github.com/rblx-local/rblxlocal/blob/main/n6a3dp.png#gh-light-mode-only" width="420">
+</p>
 
-An open source 2014M ROBLOX clone, using ROBLOX's source as a guidance.
+<div align="center">
+test
 </div>
 
 ## Authors
