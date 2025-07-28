@@ -55,7 +55,7 @@ $badgeMap = [
 
 $uid = intval($user['id']);
 $k = intval($user['knockouts']);
-$m = intval($user['moderation_status']);
+$m = intval($user['membership_type']);
 $db = $conn;
 
 function giveBadge($db, $userId, $badgeId, $badgeMap) {
