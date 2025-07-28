@@ -30,6 +30,9 @@ $userId = (int)$user["id"];
 
 <div class=""><div class="">
 <div id="MasterContainer">
+<div id="BodyWrapper">
+<div id="RepositionBody">
+<div id="Body" style="width:970px;">
 
 <div id="Container">
 
@@ -117,6 +120,9 @@ $userId = (int)$user["id"];
 
 <?= SiteFooter::render() ?>
 
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
