@@ -8,11 +8,6 @@
 
 <div align="center">
 An Open Source 2014 Roblox Revival using a ported PHP version of ROBLOX's backend
-[![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)]([https://www.php.net/](https://www.php.net/manual/en/install.php))
-[![IIS](https://img.shields.io/badge/IIS-0078D7?style=for-the-badge&logo=microsoft&logoColor=white)](https://learn.microsoft.com/en-us/iis/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-![Composer](https://img.shields.io/badge/Composer-885630?style=for-the-badge&logo=composer&logoColor=white)](https://getcomposer.org/download/)
-
 </div>
 
 ## Authors
@@ -63,12 +58,14 @@ Afterwards, you need to run the migrations on the database via `npm run migrate`
 Coming soon...
 
 ## Features
-- Working feeds (but overall shitty, we will redo this)
-- Working user profiles (i think)
+- [x]Working feeds (but overall shitty, we will redo this)
+- [x]Working user profiles (i think)
 
 ## Roadmap
-- Add forums 
-- Add working launcher
-- Add renders
-- Admin panel
-- Add api.site.com apis other than /Setting/QuietGet
+- [ ]Add forums 
+- [ ]Add working launcher
+- [ ]Add renders
+- [ ]Admin panel
+- [ ]Add api.site.com apis other than /Setting/QuietGet
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
