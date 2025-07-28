@@ -1286,7 +1286,7 @@ echo '</tr></tbody></table>';
 			</div>
 			
 			<div id="AssetsContent" style="width:745px; height:900px; position:relative;">
-			    <div id="iframe-loader" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 10;">
+			    <div id="iframe-loader" style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); z-index: 10;">
 			        <img src="/images/ProgressIndicator4.gif" alt="Loading...">
 			    </div>
 			
