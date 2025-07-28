@@ -35,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <?php
 // badges script writen by chloe
-// this is broken and needs to be fixed
 $badgeMap = [
     1 => ['name' => 'Administrator', 'img' => '/Images/Badges/Administrator2-75x75.png'],
     2 => ['name' => 'Friendship', 'img' => '/Images/Badges/Friendship-75x75.png'],
@@ -365,7 +364,7 @@ $(function(){
                     <div style="margin-bottom: 10px;">
                         
                     </div>
-                    <a id="ctl00_cphRoblox_rbxUserPane_AvatarImage" disabled="disabled" class=" notranslate" title="<?= $user['username'] ?>" class=" notranslate" onclick="return false" style="display:inline-block;height:352px;width:352px;"><img src="/Images/Placeholder1024x1024.png" height="352" width="352" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="<?= $user['username'] ?>" class=" notranslate" /></a>
+                    <a id="ctl00_cphRoblox_rbxUserPane_AvatarImage" disabled="disabled" class=" notranslate" title="<?= $user['username'] ?>" class=" notranslate" onclick="return false" style="display:inline-block;height:352px;width:352px;"><img src="<?= $user['id'] == 3 ? 'https://tr.rbxcdn.com/30DAY-Avatar-92A405C24D72F2B78E5146142D137F82-Png/1024/1024/Avatar/png/noFilter' : '/Images/Placeholder1024x1024.png' ?>" height="352" width="352" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="<?= htmlspecialchars($user['username']) ?>" class="notranslate" /></a>
                     <br />
                     <div class="PointsContainer">
                         
