@@ -1,6 +1,10 @@
+
+
 # RBLX.local
 
 An open source 2014M ROBLOX clone, using ROBLOX's source as a guidance.
+
+<div align="center">
 
 ## Authors
 - [meditext](https://github.com/TheGuyWhoIsIdiot)
