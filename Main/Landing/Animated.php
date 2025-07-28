@@ -27,8 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 }
+$returnUrl = $_GET['ReturnUrl'] ?? '/Home/';
+
 if(Auth::GetAuthenticatedUser()){
-    header("Location: /Home");
+    header("Location: " . urldecode($returnUrl));
     exit;
 }
 ?>
