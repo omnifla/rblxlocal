@@ -84,7 +84,7 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <div style='padding: 5px'>
                                 <div class='AssetThumbnail'>
                                     <a class='notranslate' title='{$nameEscaped}' href='/Item?id={$assetId}' style='display:inline-block;height:110px;width:110px;cursor:pointer;'>
-                                        <img src='{$imgSrc}' height='110' width='110' border='0' alt='{$nameEscaped}' class='notranslate' onerror='return Roblox.Controls.Image.OnError(this)'>
+                                        <img src='/Images/Placeholder1024x1024.png' height='110' width='110' border='0' alt='{$nameEscaped}' class='notranslate' onerror='return Roblox.Controls.Image.OnError(this)'>
                                     </a>
                                     {$limitedIcon}
                                     {$serialDiv}
