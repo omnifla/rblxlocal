@@ -35,13 +35,13 @@ Before you deploy this on your main hardware, make sure you have installed the f
 - Apache support soon
 
 1. Setup IIS and PostgreSQL
-2. Extract PHP and put it on C:\PHP
-3. Go to PHP.ini (dev or prod) and enable PDO_pgsql and also enable openssl and other shit if the site requires that
-4. Go to IIS and create a new CGI handle on Module Mapping with the request path being *.php and Module being FastCGIModule and the executable being C:\php\php-cgi.exe (this will allow IIS to use PHP and if u don't have FastCGIModule enable it on windows features it should be called CGI there)
-5. In Default Documents add index.php there.
-6. Make a new website on IIS and port it to C:\rblxlocalwebsitefile\Main (if something fails then u didn't give IUSR permission to use the website files)
-7. Time for the website stuff, go to the site files and rename .env-example to .env only, put your PostgreSQL database credentials there aswell as other shit
-8. Start the site and you should see the landing page, if you do then congrats but you're still not done yet as you will need to import schema.sql onto the database you chose and you should be good to go.
+2. Extract PHP and put it on `C:\PHP`
+3. Go to `PHP.ini` (dev or prod) and enable `PDO_pgsql` and also enable `openssl` and other shit if the site requires that
+4. Go to IIS and create a new CGI handle on Module Mapping with the request path being *.php and Module being `FastCGIModule` and the executable being `C:\php\php-cgi.exe` (this will allow IIS to use PHP and if u don't have `FastCGIModule` enable it on windows features it should be called CGI there)
+5. In Default Documents add `index.php` there.
+6. Make a new website on IIS and port it to `C:\rblxlocalwebsitefile\Main` (if something fails then u didn't give IUSR permission to use the website files)
+7. Time for the website stuff, go to the site files and rename `.env-example` to `.env` only, put your PostgreSQL database credentials there aswell as other shit
+8. Start the site and you should see the landing page, if you do then congrats but you're still not done yet as you will need to import `schema.sql` onto the database you chose and you should be good to go.
 
 RBLXLocal API Service
 ---------
