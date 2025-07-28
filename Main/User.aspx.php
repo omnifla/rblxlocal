@@ -815,7 +815,7 @@ echo '</tr></tbody></table>';
 <div id="UserPlaces" style="overflow: hidden">
 
 	<?php
-	$stmt = $db->prepare("SELECT * FROM assets WHERE AssetType = 9 AND OwnerId = :uid");
+	$stmt = $db->prepare('SELECT * FROM assets WHERE "AssetType" = 9 AND "OwnerId" = :uid');
 	$stmt->execute([':uid' => $uid]);
 	$places = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	
