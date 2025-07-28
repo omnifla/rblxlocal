@@ -110,13 +110,13 @@ use Roblox\Web\SiteFooter;
 											<thead class="product-title">
 												<tr>
 													<td class="center-bold">
-														<h2 class="product-space">Free</h2> <img src="https://web.archive.org/web/20140124075241im_/https://s3.amazonaws.com/images.roblox.com/77add140640c3388e6c9603bc5983846.png" alt="bc"> </td>
+														<h2 class="product-space">Free</h2> <img src="/images/77add140640c3388e6c9603bc5983846.png" alt="bc"> </td>
 													<td class="center-bold">
-														<h2 class="product-space">Classic</h2> <img src="https://web.archive.org/web/20140124075241im_/https://s3.amazonaws.com/images.roblox.com/ba707f47bb20a1f4804da461fb5d3c31.png" alt="bc"> </td>
+														<h2 class="product-space">Classic</h2> <img src="/images/ba707f47bb20a1f4804da461fb5d3c31.png" alt="bc"> </td>
 													<td class="center-bold">
-														<h2 class="product-space">Turbo</h2> <img src="https://web.archive.org/web/20140124075241im_/https://s3.amazonaws.com/images.roblox.com/d7eb3ed186e351d99ce8c11503675721.png" alt="tbc"> </td>
+														<h2 class="product-space">Turbo</h2> <img src="/images/d7eb3ed186e351d99ce8c11503675721.png" alt="tbc"> </td>
 													<td class="center-bold">
-														<h2 class="product-space">Outrageous</h2> <img src="https://web.archive.org/web/20140124075241im_/https://s3.amazonaws.com/images.roblox.com/ca1d0aef06c5fc06a2d8b23aea5e20d2.png" alt="obc"> </td>
+														<h2 class="product-space">Outrageous</h2> <img src="/images/ca1d0aef06c5fc06a2d8b23aea5e20d2.png" alt="obc"> </td>
 												</tr>
 											</thead>
 											<tbody class="product-summary summary-big">
@@ -365,18 +365,18 @@ use Roblox\Web\SiteFooter;
 												<h3>Buy ROBUX with</h3>
 												<br>
 												<br>
-												<a href="https://<?= $site_properties['hostname'] ?>/micropay"><img src="https://web.archive.org/web/20140124075241im_/https://s3.amazonaws.com/images.roblox.com/d3ac0f6384162cef74cfd79f7692612e.png" alt="boku"></a>
+												<a href="https://<?= $site_properties['hostname'] ?>/micropay"><img src="/images/d3ac0f6384162cef74cfd79f7692612e.png" alt="boku"></a>
 												<br>
 												<br>
-												<a href="https://<?= $site_properties['hostname'] ?>/rixtypin"><img src="https://web.archive.org/web/20140124075241im_/https://s3.amazonaws.com/images.roblox.com/93e037df4111777c7463d97eadebc59e.png" alt="rixty"></a>
+												<a href="https://<?= $site_properties['hostname'] ?>/rixtypin"><img src="/images/93e037df4111777c7463d97eadebc59e.png" alt="rixty"></a>
 												<br>
 												<br>
-												<a href="https://web.archive.orghttp://itunes.apple.com/us/app/roblox-mobile/id431946152?mt=8"><img src="https://web.archive.org/web/20140124075241im_/https://s3.amazonaws.com/images.roblox.com/70deff83e869746b0bbc41a86f420844.png" alt="itunes"></a>
+												<a href="https://web.archive.orghttp://itunes.apple.com/us/app/roblox-mobile/id431946152?mt=8"><img src="/images/70deff83e869746b0bbc41a86f420844.png" alt="itunes"></a>
 											</div>
 											<div class="cell cellDivider">
 												<h3>Gift Cards</h3>
 												<br>
-												<a href="https://<?= $site_properties['hostname'] ?>/upgrades/giftcards.aspx" class="giftCardImage"><img src="https://web.archive.org/web/20140124075241im_/https://s3.amazonaws.com/images.roblox.com/bf9f4b65f937ad01f07ae6714eaba723.png" alt="giftcard"></a>
+												<a href="https://<?= $site_properties['hostname'] ?>/upgrades/giftcards.aspx" class="giftCardImage"><img src="/images/bf9f4b65f937ad01f07ae6714eaba723.png" alt="giftcard"></a>
 												<div>
 													<div class="giftCardButton"> <a href="https://<?= $site_properties['hostname'] ?>/upgrades/giftcards.aspx" class="btn-small btn-primary">Buy Card</a> </div>
 													<div><a href="https://<?= $site_properties['hostname'] ?>/gamecard" class="redeemLink">Redeem card</a></div>
@@ -385,7 +385,7 @@ use Roblox\Web\SiteFooter;
 											</div>
 											<div class="cell cellDivider">
 												<h3>Game Cards</h3>
-												<a href="https://<?= $site_properties['hostname'] ?>/gamecards"><img alt="ROBLOX Gamecards" src="https://web.archive.org/web/20140124075241im_/https://s3.amazonaws.com/images.roblox.com/863c65342816d665de28411cf47cde42.png"></a>
+												<a href="https://<?= $site_properties['hostname'] ?>/gamecards"><img alt="ROBLOX Gamecards" src="/images/863c65342816d665de28411cf47cde42.png"></a>
 												<div class="gameCardControls">
 													<div class="gameCardButton"> <a href="https://<?= $site_properties['hostname'] ?>/gamecards" class="btn-small btn-primary">Where to Buy</a> </div>
 													<div><a href="https://<?= $site_properties['hostname'] ?>/gamecard" class="redeemLink">Redeem Card</a></div>
@@ -531,7 +531,7 @@ use Roblox\Web\SiteFooter;
 	</script>
 	<div id="PlaceLauncherStatusPanel" style="display:none;width:300px">
 		<div class="modalPopup blueAndWhite PlaceLauncherModal" style="min-height: 160px">
-			<div id="Spinner" class="Spinner" style="margin:0 1em 1em 0; padding:20px 0;"> <img src="https://web.archive.org/web/20140124075241im_/https://s3.amazonaws.com/images.roblox.com/e998fb4c03e8c2e30792f2f3436e9416.gif" alt="Progress"> </div>
+			<div id="Spinner" class="Spinner" style="margin:0 1em 1em 0; padding:20px 0;"> <img src="/images/e998fb4c03e8c2e30792f2f3436e9416.gif" alt="Progress"> </div>
 			<div id="status" style="min-height:40px;text-align:center;margin:5px 20px">
 				<div id="Starting" class="PlaceLauncherStatus MadStatusStarting" style="display:block"> Starting Roblox... </div>
 				<div id="Waiting" class="PlaceLauncherStatus MadStatusField">Connecting to Players...</div>
