@@ -464,7 +464,7 @@ foreach ($badges as $index => $badgeId) {
     echo '<td>
         <div class="Badge">
             <div class="BadgeImage"><a href="' . $badgeAnchor . '"><img src="' . $imgSrc . '" alt="' . $badgeName . '" style="height:75px;width:75px;border-width:0px;"></a></div>
-            <div class="BadgeLabel"><a href="' . $badgeAnchor . '">' . $badgeName . '</a></div>
+            <div class="BadgeLabel" style="width: 75px; max-height: 28px; font-size: 12px; line-height: 14px; margin: 0 auto; overflow: hidden; word-wrap: break-word;"><a href="' . $badgeAnchor . '">' . $badgeName . '</a></div>
         </div>
     </td>';
 
