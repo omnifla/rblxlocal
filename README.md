@@ -1,7 +1,7 @@
 
 
 <div align="center">
-# RBLX.local
+<h1><b>RBLX.local</b></h1>
 
 An open source 2014M ROBLOX clone, using ROBLOX's source as a guidance.
 </div>
