@@ -1,4 +1,5 @@
 <?php
+// writen by chloe
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 
 if (!$conn instanceof PDO) {
