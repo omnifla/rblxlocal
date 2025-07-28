@@ -54,58 +54,74 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php else: ?>
         <table cellspacing="0" border="0" style="border-collapse:collapse;">
             <tbody>
-                <?php
-                $cols = 6;
-                $rows = 3;
-                $total = count($assets);
-                for ($r = 0; $r < $rows; $r++) {
-                    echo "<tr>";
-                    for ($c = 0; $c < $cols; $c++) {
-                        $index = $r * $cols + $c;
-                        if ($index >= $total) {
-                            echo "<td class='Asset'></td>";
-                            continue;
-                        }
-                        $a = $assets[$index];
-                        $imgSrc = "/Asset/Thumbs/{$a['AssetId']}.png";
-                        $nameEscaped = htmlspecialchars($a['Name']);
-                        $descEscaped = htmlspecialchars($a['Description'] ?? '');
-                        $ownerId = intval($a['OwnerId']);
-                        $assetId = intval($a['AssetId']);
-                        $limitedIcon = "";
-                        $serialDiv = "";
-                        if ($a['LimitedUnique']) {
-                            $limitedIcon = '<div style="position:relative;left:-22px;top:-13px;"><img src="/images/assetIcons/limitedunique.png"></div>';
-                            $serialDiv = '<div style="position:relative;text-align:center;width:95px;font-size:10px;left:0px;top:-124px;font-weight:bold;color:#003366">#' . ($a['Serials'] > 0 ? $a['Serials'] : 'N/A') . ' / ' . ($a['Serials'] > 0 ? $a['Serials'] : 'N/A') . '</div>';
-                        } elseif ($a['Limited']) {
-                            $limitedIcon = '<div style="position:relative;left:-22px;top:-13px;"><img src="/images/assetIcons/limited.png"></div>';
-                        }
-                        echo "<td class='Asset' valign='top'>
-                            <div style='padding: 5px'>
-                                <div class='AssetThumbnail'>
-                                    <a class='notranslate' title='{$nameEscaped}' href='/Item?id={$assetId}' style='display:inline-block;height:110px;width:110px;cursor:pointer;'>
-                                        <img src='/Images/Placeholder1024x1024.png' height='110' width='110' border='0' alt='{$nameEscaped}' class='notranslate' onerror='return Roblox.Controls.Image.OnError(this)'>
-                                    </a>
-                                    {$limitedIcon}
-                                    {$serialDiv}
+
+            <?php
+            $cols = 6;
+            $rows = 3;
+            $total = count($assets);
+            
+            $ownerIds = array_map(function($a) { return (int)$a['OwnerId']; }, $assets);
+            $ownerIds = array_unique($ownerIds);
+            $placeholders = implode(',', array_fill(0, count($ownerIds), '?'));
+            
+            $stmt = $db->prepare("SELECT id, username FROM users WHERE id IN ($placeholders)");
+            $stmt->execute($ownerIds);
+            $usernames = $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
+            
+            for ($r = 0; $r < $rows; $r++) {
+                echo "<tr>";
+                for ($c = 0; $c < $cols; $c++) {
+                    $index = $r * $cols + $c;
+                    if ($index >= $total) {
+                        echo "<td class='Asset'></td>";
+                        continue;
+                    }
+            
+                    $a = $assets[$index];
+                    $imgSrc = "/Asset/Thumbs/{$a['AssetId']}.png";
+                    $nameEscaped = htmlspecialchars($a['Name']);
+                    $descEscaped = htmlspecialchars($a['Description'] ?? '');
+                    $ownerId = (int)$a['OwnerId'];
+                    $assetId = (int)$a['AssetId'];
+                    $creatorName = isset($usernames[$ownerId]) ? htmlspecialchars($usernames[$ownerId]) : "User {$ownerId}";
+            
+                    $limitedIcon = "";
+                    $serialDiv = "";
+            
+                    if ($a['LimitedUnique']) {
+                        $limitedIcon = '<div style="position:relative;left:-22px;top:-13px;"><img src="/images/assetIcons/limitedunique.png"></div>';
+                        $serialDiv = '<div style="position:relative;text-align:center;width:95px;font-size:10px;left:0px;top:-124px;font-weight:bold;color:#003366">#' . ($a['Serials'] > 0 ? $a['Serials'] : 'N/A') . ' / ' . ($a['Serials'] > 0 ? $a['Serials'] : 'N/A') . '</div>';
+                    } elseif ($a['Limited']) {
+                        $limitedIcon = '<div style="position:relative;left:-22px;top:-13px;"><img src="/images/assetIcons/limited.png"></div>';
+                    }
+            
+                    echo "<td class='Asset' valign='top'>
+                        <div style='padding: 5px'>
+                            <div class='AssetThumbnail'>
+                                <a class='notranslate' title='{$nameEscaped}' href='/Item?id={$assetId}' style='display:inline-block;height:110px;width:110px;cursor:pointer;'>
+                                    <img src='/Images/Placeholder1024x1024.png' height='110' width='110' border='0' alt='{$nameEscaped}' class='notranslate' onerror='return Roblox.Controls.Image.OnError(this)'>
+                                </a>
+                                {$limitedIcon}
+                                {$serialDiv}
+                            </div>
+                            <div class='AssetDetails'>
+                                <div class='AssetName'>
+                                    <a class='noranslate' href='/Item?id={$assetId}'>{$nameEscaped}</a>
                                 </div>
-                                <div class='AssetDetails'>
-                                    <div class='AssetName'>
-                                        <a class='noranslate' href='/Item?id={$assetId}'>{$nameEscaped}</a>
-                                    </div>
-                                    <div class='AssetCreator'>
-                                        <span class='Label'>Creator: </span>
-                                        <span class='Detail notranslate'>
-                                            <a href='/User.aspx?ID={$ownerId}'>User {$ownerId}</a>
-                                        </span>
-                                    </div>
+                                <div class='AssetCreator'>
+                                    <span class='Label'>Creator: </span>
+                                    <span class='Detail notranslate'>
+                                        <a href='/User.aspx?ID={$ownerId}'>{$creatorName}</a>
+                                    </span>
                                 </div>
                             </div>
-                        </td>";
-                    }
-                    echo "</tr>";
+                        </div>
+                    </td>";
                 }
-                ?>
+                echo "</tr>";
+            }
+            ?>
+
             </tbody>
         </table>
 
