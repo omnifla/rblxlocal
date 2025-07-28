@@ -16,7 +16,7 @@ An Open Source 2014 Roblox Revival using a ported PHP version of ROBLOX's backen
 - [SkylerClock](https://github.com/SkylerClockYT)
 - [exrand](https://github.com/randomyaps)
 - [newuser](https://github.com/therealestnewuser)
-- [Kqsane](https://github.com/kqsane)
+- [Chloe](https://github.com/kqsane)
 - [watrabi](https://github.com/watrabi)
 
 ## Contributors
