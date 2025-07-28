@@ -31,46 +31,46 @@ class UserTheme implements IRobloxEntity, ICacheableObject
             'UserTheme',
             true
         );
-      
+
         register_tick_function(function () {
             while (!self::$activationQueue->isEmpty()) {
                 $msg = self::$activationQueue->dequeue();
-                try {
-                    if ($msg['value'] == PremiumFeatures::AccountAddOnType_OutrageousBuildersClubMembershipValue) {
-                        $user = User::getByAccountID($msg['key']);
-                        $userTheme = self::getByUserID($user->ID);
-                        if ($userTheme) {
-                            $userTheme->setThemeTypeID(ThemeType::OutrageousID);
-                        } else {
-                            $userTheme = new self();
-                            $userTheme->setUserID($user->ID);
-                            $userTheme->setThemeTypeID(ThemeType::OutrageousID);
-                        }
-                        $userTheme->save();
+                if ($msg['value'] === PremiumFeatures::AccountAddOnType_OutrageousBuildersClubMembershipValue) {
+                    $user = User::getByAccountID($msg['key']);
+                    if (!$user) {
+                        throw new \InvalidArgumentException("User not found for AccountID {$msg['key']}");
                     }
-                } catch (\Exception $ex) {
-                    ExceptionHandler::log($ex);
+
+                    $userTheme = self::getByUserID($user->ID);
+                    if ($userTheme) {
+                        $userTheme->setThemeTypeID(ThemeType::OutrageousID);
+                    } else {
+                        $userTheme = new self();
+                        $userTheme->setUserID($user->ID);
+                        $userTheme->setThemeTypeID(ThemeType::OutrageousID);
+                    }
+                    $userTheme->save();
                 }
             }
 
             while (!self::$expirationQueue->isEmpty()) {
                 $msg = self::$expirationQueue->dequeue();
-                try {
-                    if ($msg['value'] == PremiumFeatures::AccountAddOnType_OutrageousBuildersClubMembershipValue) {
-                        $user = User::getByAccountID($msg['key']);
-                        $userTheme = self::getByUserID($user->ID);
-                        if ($userTheme && $userTheme->getThemeTypeID() == self::getAuthenticatedUserDefaultThemeTypeID()) {
-                            $userTheme->setThemeTypeID(self::getAuthenticatedUserDefaultThemeTypeID());
-                            $userTheme->save();
-                        } elseif (!$userTheme) {
-                            $userTheme = new self();
-                            $userTheme->setUserID($user->ID);
-                            $userTheme->setThemeTypeID(self::getAuthenticatedUserDefaultThemeTypeID());
-                            $userTheme->save();
-                        }
+                if ($msg['value'] === PremiumFeatures::AccountAddOnType_OutrageousBuildersClubMembershipValue) {
+                    $user = User::getByAccountID($msg['key']);
+                    if (!$user) {
+                        throw new \InvalidArgumentException("User not found for AccountID {$msg['key']}");
                     }
-                } catch (\Exception $ex) {
-                    ExceptionHandler::log($ex);
+
+                    $userTheme = self::getByUserID($user->ID);
+                    if ($userTheme && $userTheme->getThemeTypeID() === ThemeType::OutrageousID) {
+                        $userTheme->setThemeTypeID(self::getAuthenticatedUserDefaultThemeTypeID());
+                        $userTheme->save();
+                    } elseif (!$userTheme) {
+                        $userTheme = new self();
+                        $userTheme->setUserID($user->ID);
+                        $userTheme->setThemeTypeID(self::getAuthenticatedUserDefaultThemeTypeID());
+                        $userTheme->save();
+                    }
                 }
             }
         });
