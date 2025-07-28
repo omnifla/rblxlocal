@@ -14,7 +14,7 @@ $user = Auth::GetUserInfo(intval($id));
 //var_dump($user);
 //exit;
 if(!$user){
-    http_response_code(404);
+    header("Location: /RobloxDefaultErrorPage.aspx?code=404", true, 302);
     exit;
 }
 $user['username'] = htmlspecialchars($user['username']);
