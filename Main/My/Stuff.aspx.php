@@ -13,7 +13,7 @@ $userId = (int)$user["id"];
 <head id="ctl00_Head1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true" />
   <title>
-    <?= $user['username'] ." - " .$site_properties['Title'] ?>
+    <?= "My Inventory" . " - " .$site_properties['Title'] ?>
   </title>
   <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=main___dac4a444950639c02cc831a484c826f5_m.css' />
   <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=page___1b22aeedd7f4e73ab0700a149f589336_m.css' />
