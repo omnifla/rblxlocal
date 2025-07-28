@@ -34,13 +34,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <?php
-// badges script written by Chloe
+// badges script writen by chloe
+$badgeMap = [
+    1 => ['name' => 'Administrator', 'img' => '/Images/Badges/Administrator2-75x75.png'],
+    2 => ['name' => 'Friendship', 'img' => '/Images/Badges/Friendship-75x75.png'],
+    3 => ['name' => 'Combat Initiation', 'img' => '/Images/Badges/CombatInitiation-75x75.png'],
+    4 => ['name' => 'Warrior', 'img' => '/Images/Badges/Warrior-75x75.png'],
+    5 => ['name' => 'Bloxxer', 'img' => '/Images/Badges/Bloxxer-75x75.png'],
+    6 => ['name' => 'Homestead', 'img' => '/Images/Badges/Homestead-70x75.png'],
+    7 => ['name' => 'Bricksmith', 'img' => '/Images/Badges/Bricksmith-54x75.png'],
+    8 => ['name' => 'Inviter', 'img' => '/Images/Badges/Inviter-75x75.png'],
+    9 => ['name' => 'Forum Moderator', 'img' => '/Images/Badges/ForumModerator-75x75.png'],
+    10 => ['name' => 'Image Moderator', 'img' => '/Images/Badges/ImageModerator-75x75.png'],
+    11 => ['name' => 'Builders Club', 'img' => '/Images/Badges/BuildersClub-75x75.png'],
+    12 => ['name' => 'Veteran', 'img' => '/Images/Badges/Veteran-75x75.png'],
+    14 => ['name' => 'Ambassador', 'img' => '/Images/Badges/Ambassador-75x75.png'],
+    15 => ['name' => 'Turbo Builders Club', 'img' => '/Images/Badges/TurboBuildersClub-75x75.png'],
+    16 => ['name' => 'Outrageous Builders Club', 'img' => '/Images/Badges/OutrageousBuildersClub-75x75.png'],
+];
+
 $uid = intval($user['id']);
 $k = intval($user['knockouts']);
 $m = intval($user['moderation_status']);
 $db = $conn;
 
-function giveBadge($db, $userId, $badgeId) {
+function giveBadge($db, $userId, $badgeId, $badgeMap) {
+    if (!isset($badgeMap[$badgeId])) return; // badge ID not in map, skip
+
     $check = $db->prepare("SELECT 1 FROM user_badges WHERE user_id = :uid AND badge_id = :bid");
     $check->execute([':uid' => $userId, ':bid' => $badgeId]);
     if (!$check->fetch()) {
@@ -49,13 +69,13 @@ function giveBadge($db, $userId, $badgeId) {
     }
 }
 
-if ($k > 10) giveBadge($db, $uid, 3);
-if ($k > 100) giveBadge($db, $uid, 4);
-if ($k > 250) giveBadge($db, $uid, 5);
+if ($k > 10) giveBadge($db, $uid, 3, $badgeMap);
+if ($k > 100) giveBadge($db, $uid, 4, $badgeMap);
+if ($k > 250) giveBadge($db, $uid, 5, $badgeMap);
 
-if ($m === 1) giveBadge($db, $uid, 11);
-if ($m === 2) giveBadge($db, $uid, 15);
-if ($m === 3) giveBadge($db, $uid, 16);
+if ($m === 1) giveBadge($db, $uid, 11, $badgeMap);
+if ($m === 2) giveBadge($db, $uid, 15, $badgeMap);
+if ($m === 3) giveBadge($db, $uid, 16, $badgeMap);
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "//www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -418,23 +438,6 @@ $(function(){
 <div class="divider-bottom" style="padding-bottom: 20px">
     <div style="display: inline-block">
 	    <?php
-$badgeMap = [
-    1 => ['name' => 'Administrator', 'img' => '/Images/Badges/Administrator2-75x75.png'],
-    2 => ['name' => 'Friendship', 'img' => '/Images/Badges/Friendship-75x75.png'],
-    3 => ['name' => 'Combat Initiation', 'img' => '/Images/Badges/CombatInitiation-75x75.png'],
-    4 => ['name' => 'Warrior', 'img' => '/Images/Badges/Warrior-75x75.png'],
-    5 => ['name' => 'Bloxxer', 'img' => '/Images/Badges/Bloxxer-75x75.png'],
-    6 => ['name' => 'Homestead', 'img' => '/Images/Badges/Homestead-70x75.png'],
-    7 => ['name' => 'Bricksmith', 'img' => '/Images/Badges/Bricksmith-54x75.png'],
-    8 => ['name' => 'Inviter', 'img' => '/Images/Badges/Inviter-75x75.png'],
-    9 => ['name' => 'Forum Moderator', 'img' => '/Images/Badges/ForumModerator-75x75.png'],
-    10 => ['name' => 'Image Moderator', 'img' => '/Images/Badges/ImageModerator-75x75.png'],
-    11 => ['name' => 'Builders Club', 'img' => '/Images/Badges/BuildersClub-75x75.png'],
-    12 => ['name' => 'Veteran', 'img' => '/Images/Badges/Veteran-75x75.png'],
-    14 => ['name' => 'Ambassador', 'img' => '/Images/Badges/Ambassador-75x75.png'],  // You had this in example
-    15 => ['name' => 'Turbo Builders Club', 'img' => '/Images/Badges/TurboBuildersClub-75x75.png'],
-    16 => ['name' => 'Outrageous Builders Club', 'img' => '/Images/Badges/OutrageousBuildersClub-75x75.png'],
-];
 
 $stmt = $conn->prepare("SELECT badge_id FROM user_badges WHERE user_id = :uid ORDER BY awarded_at ASC");
 $stmt->execute([':uid' => $uid]);
