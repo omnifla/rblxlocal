@@ -41,7 +41,7 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
-<html>
+<html style="background-color: #fff;">
 <head>
     <link rel="stylesheet" href="/CSS/Base/CSS/FetchCSS?path=main___dac4a444950639c02cc831a484c826f5_m.css">
     <link rel="stylesheet" href="/CSS/Base/CSS/FetchCSS?path=page___1b22aeedd7f4e73ab0700a149f589336_m.css">
