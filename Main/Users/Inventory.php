@@ -1,4 +1,5 @@
 <?php
+// page written by chloe
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 $id = intval($_GET['id'] ?? 0);
 $page = max(1, intval($_GET['page'] ?? 1));
@@ -48,6 +49,9 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
 <div id="AssetsContent">
     <div id="RepeatingUserAssetData">
+        <?php if (count($assets) === 0): ?>
+            <p>This user has no items in this category.</p>
+        <?php else: ?>
         <table cellspacing="0" border="0" style="border-collapse:collapse;">
             <tbody>
                 <?php
@@ -120,6 +124,7 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <span class="pager next disabled"></span>
             <?php endif; ?>
         </div>
+        <?php endif; ?>
     </div>
 </div>
 
