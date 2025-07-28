@@ -35,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <?php
 // badges script writen by chloe
+// this is broken and needs to be fixed
 $badgeMap = [
     1 => ['name' => 'Administrator', 'img' => '/Images/Badges/Administrator2-75x75.png'],
     2 => ['name' => 'Friendship', 'img' => '/Images/Badges/Friendship-75x75.png'],
