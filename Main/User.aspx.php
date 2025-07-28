@@ -5,7 +5,10 @@ use Roblox\Authentication as Auth;
 use Roblox\Web\SiteHeader;
 use Roblox\Web\SiteFooter;
 
-$id = $_GET['id'] ?? $_GET['Id'] ?? $_GET["ID"] ?? 1;
+$user = Auth::GetAuthenticatedUserInfo();
+$userId = (int)$user["id"];
+
+$id = $_GET['id'] ?? $_GET['Id'] ?? $_GET["ID"] ?? $userId;
 $user = Auth::GetUserInfo(intval($id));
 
 //var_dump($user);
