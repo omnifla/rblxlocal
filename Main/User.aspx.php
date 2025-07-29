@@ -1,13 +1,7 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
-use Roblox\Authentication as Auth;
-use Roblox\Web\SiteHeader;
-use Roblox\Web\SiteFooter;
 
 session_start();
-
-$user = Auth::GetAuthenticatedUserInfo();
-$userId = (int)$user["id"];
 
 $currentUser = null;
 if (isset($_SESSION['id'])) {
@@ -16,26 +10,25 @@ if (isset($_SESSION['id'])) {
     $currentUser = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-$id = intval($_GET['id'] ?? $_GET['Id'] ?? $_GET["ID"] ?? $userId);
-$profileUser = Auth::GetUserInfo($id);
-if (!$profileUser) {
-    header("Location: /RobloxDefaultErrorPage.aspx?code=404", true, 302);
+$id = intval($_GET['id'] ?? 0);
+$page = max(1, intval($_GET['page'] ?? 1));
+$cat = isset($_GET['cat']) ? intval($_GET['cat']) : null;
+
+if ($id <= 0) {
+    http_response_code(404);
     exit;
 }
-$profileUser['username'] = htmlspecialchars($profileUser['username']);
-$profileUser['description'] = htmlspecialchars($profileUser['description'] ?? $profileUser['username'] . " has no description");
 
 if (!$currentUser || $currentUser['InventoryPrivacy'] !== 'All') {
     echo '<!DOCTYPE html><html><head><title>Inventory</title></head><body><p>You cannot view this user\'s inventory.</p></body></html>';
     exit;
 }
 
-$page = max(1, intval($_GET['page'] ?? 1));
-$cat = isset($_GET['cat']) ? intval($_GET['cat']) : null;
 $itemsPerPage = 18;
 $offset = ($page - 1) * $itemsPerPage;
 
 $db = $conn;
+
 $catFilter = $cat !== null ? 'AND a."AssetType" = :cat' : '';
 
 $sql = '
@@ -51,12 +44,58 @@ LIMIT :limit OFFSET :offset
 
 $stmt = $db->prepare($sql);
 $stmt->bindValue(':userId', $id, PDO::PARAM_INT);
-if ($cat !== null) $stmt->bindValue(':cat', $cat, PDO::PARAM_INT);
+if ($cat !== null) {
+    $stmt->bindValue(':cat', $cat, PDO::PARAM_INT);
+}
 $stmt->bindValue(':limit', $itemsPerPage, PDO::PARAM_INT);
 $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
-$assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+$assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
+with both of these php scripts for one ultimate script with no comments apart from the ones in the areas they already are but no new ones
+
+<?php
+// written by meditext
+include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
+use Roblox\Authentication as Auth;
+use Roblox\Web\SiteHeader;
+use Roblox\Web\SiteFooter;
+
+$user = Auth::GetAuthenticatedUserInfo();
+$userId = (int)$user["id"];
+
+$id = $_GET['id'] ?? $_GET['Id'] ?? $_GET["ID"] ?? $userId;
+$user = Auth::GetUserInfo(intval($id));
+
+//var_dump($user);
+//exit;
+if(!$user){
+    header("Location: /RobloxDefaultErrorPage.aspx?code=404", true, 302);
+    exit;
+}
+$user['username'] = htmlspecialchars($user['username']);
+$user['description'] = htmlspecialchars($user['description'] ?? $user['username']." has no description");
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $target = $_POST['__EVENTTARGET'] ?? '';
+    $argument = $_POST['__EVENTARGUMENT'] ?? '';
+
+    switch ($target) {
+        case 'ctl00$cphRoblox$rbxFavoritesPane$FooterPageSelector_Next':
+            echo "<p> what's expected? </p>";
+            break;
+        default:
+  // what's the point of this? -randon
+            echo "<p>placeholder sheib</p>";
+            break;
+    }
+}
+?>
+
+<?php
+// badges script writen by chloe
 $badgeMap = [
     1 => ['name' => 'Administrator', 'img' => '/Images/Badges/Administrator2-75x75.png'],
     2 => ['name' => 'Friendship', 'img' => '/Images/Badges/Friendship-75x75.png'],
@@ -75,12 +114,14 @@ $badgeMap = [
     16 => ['name' => 'Outrageous Builders Club', 'img' => '/Images/Badges/OutrageousBuildersClub-75x75.png'],
 ];
 
-$uid = intval($profileUser['id']);
-$k = intval($profileUser['knockouts']);
-$m = intval($profileUser['membership_type']);
+$uid = intval($user['id']);
+$k = intval($user['knockouts']);
+$m = intval($user['membership_type']);
+$db = $conn;
 
 function giveBadge($db, $userId, $badgeId, $badgeMap) {
     if (!isset($badgeMap[$badgeId])) return;
+
     $check = $db->prepare("SELECT 1 FROM user_badges WHERE user_id = :uid AND badge_id = :bid");
     $check->execute([':uid' => $userId, ':bid' => $badgeId]);
     if (!$check->fetch()) {
@@ -92,6 +133,7 @@ function giveBadge($db, $userId, $badgeId, $badgeMap) {
 if ($k > 10) giveBadge($db, $uid, 3, $badgeMap);
 if ($k > 100) giveBadge($db, $uid, 4, $badgeMap);
 if ($k > 250) giveBadge($db, $uid, 5, $badgeMap);
+
 if ($m === 1) giveBadge($db, $uid, 11, $badgeMap);
 if ($m === 2) giveBadge($db, $uid, 15, $badgeMap);
 if ($m === 3) giveBadge($db, $uid, 16, $badgeMap);
