@@ -58,20 +58,19 @@ catch(PDOException $e) {
 }
 
 if ($properties['SiteMaintenanceMode'] ?? false) {
-    if (!isset($_SESSION['maintenance_bypass']) || $_SESSION['maintenance_bypass'] !== true) {
-        $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-        $excludedPaths = ['/Login/FulFulfillConstraint.aspx'];
-        $whitelistedIPs = ['127.0.0.1'];
-        $excluded = false;
-        foreach ($excludedPaths as $path) {
-            if (str_starts_with($currentPath, $path)) {
-                $excluded = true;
-                break;
-            }
+    $bypassCookie = $_COOKIE['MaintenanceBypass'] ?? null;
+    $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $excludedPaths = ['/Login/FulfillConstraint.aspx'];
+    $whitelistedIPs = ['127.0.0.1'];
+    $excluded = false;
+    foreach ($excludedPaths as $path) {
+        if (str_starts_with($currentPath, $path)) {
+            $excluded = true;
+            break;
         }
-        if (!$excluded && !in_array($_SERVER['REMOTE_ADDR'], $whitelistedIPs)) {
-            header('Location: /Login/FulfillConstraint.aspx');
-            exit;
-        }
+    }
+    if (!$excluded && $bypassCookie !== 'true' && !in_array($_SERVER['REMOTE_ADDR'], $whitelistedIPs, true)) {
+        header('Location: /offline');
+        exit;
     }
 }
