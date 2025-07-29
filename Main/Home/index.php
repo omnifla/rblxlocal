@@ -206,7 +206,7 @@ $(function(){
 	<div class="left-column">
 	    <div class="left-column-boxes user-avatar-container">
 <div id="UserAvatar" class="user-avatar-holder">
-    <span class="user-avatar"><img alt="<?= htmlspecialchars($user['username']) ?>" class="user-avatar-image" src="/Images/Placeholder1024x1024.png"></span>
+    <span class="user-avatar"><img alt="<?= htmlspecialchars($user['username']) ?>" class="user-avatar-image" src="/Thumbs/User.ashx?ID=<?= $user['id'] ?>&Width=210&Height=210"></span>
 </div>
 <div id="UserInfo" class="text">
 	<div>
