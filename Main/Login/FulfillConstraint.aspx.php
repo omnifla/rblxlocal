@@ -1,5 +1,17 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
+$correctPassword = $_ENV['MAINTENANCE_PASSWORD'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $enteredPassword = filter_input(INPUT_POST, 'ctl00$cphRoblox$Textbox1', FILTER_SANITIZE_STRING);
+    if (strcasecmp($enteredPassword, $correctPassword) === 0) {
+        $_SESSION['maintenance_bypass'] = true;
+        header('Location: /');
+        exit;
+    } else {
+        header("Location: " . $_SERVER['REQUEST_URI']);
+        exit;
+    }
+}
 ?>
 <!DOCTYPE html>
 <html id="www-roblox-com">
