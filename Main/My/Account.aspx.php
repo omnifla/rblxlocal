@@ -71,8 +71,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <title>My Account - <?= $site_properties['Title'] ?></title>
     <link href="/CSS/Accounts/AccountMVC.css" rel="stylesheet">
-    <link rel="stylesheet" href="/CSS/Base/CSS/FetchCSSpath=main___93d7b975be9106ab72cfa4deac3a5583_m.css">
-    <link href="/CSS/Base/CSS/FetchCSSpath=page___2ad765c3e4926df9c25fa00b92677eed_m.css" rel="stylesheet">
+    <link rel="stylesheet" href="/CSS/Base/CSS/FetchCSS?path=main___93d7b975be9106ab72cfa4deac3a5583_m.css">
+    <link href="/CSS/Base/CSS/FetchCSS?path=page___2ad765c3e4926df9c25fa00b92677eed_m.css" rel="stylesheet">
     <link href="/CSS/Pages/Character/Character.css" rel="stylesheet">
     <style>
     .closeBtnCircle_20h { width:20px; height:20px; cursor:pointer; position:absolute; top:5px; left:5px; background:url(/images/Buttons/btn-x.png); }
