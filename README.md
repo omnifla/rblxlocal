@@ -46,7 +46,8 @@ Before you deploy this on your main hardware, make sure you have installed the f
 
 RBLXLocal API Service
 ---------
-This isn't required really, but makes your life easier as it provides very important resources.
+> [!NOTE]
+> This isn't required really, but makes your life easier as it provides very important resources.
 - [rbx-api-service](https://github.com/rblx-local/rbx-api-service)
 - [node.js v20+](https://nodejs.org/en)
 
