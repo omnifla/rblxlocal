@@ -27,11 +27,12 @@ An Open Source 2014 Roblox Revival using a ported PHP version of ROBLOX's backen
 ## Deployment
 
 Before you deploy this on your main hardware, make sure you have installed the following stuff
+> [!NOTE]
+> *extra note for noobies: php 8.3+ required*
 - [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 - [![IIS](https://img.shields.io/badge/IIS-0078D7?style=for-the-badge&logo=microsoft&logoColor=white)](https://learn.microsoft.com/en-us/iis/)
 - [![Composer](https://img.shields.io/badge/Composer-885630?style=for-the-badge&logo=composer&logoColor=white)](https://getcomposer.org/download/)
 - [![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/manual/en/install.php)
-- *extra note for noobies: php 8.3+ required*
 - Apache support soon
 
 1. Setup IIS and PostgreSQL
