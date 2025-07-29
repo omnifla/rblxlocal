@@ -25,11 +25,6 @@ if (!$profileUser) {
 $profileUser['username'] = htmlspecialchars($profileUser['username']);
 $profileUser['description'] = htmlspecialchars($profileUser['description'] ?? $profileUser['username'] . " has no description");
 
-if (!$currentUser || $currentUser['InventoryPrivacy'] !== 'All') {
-    echo '<!DOCTYPE html><html><head><title>Inventory</title></head><body><p>You cannot view this user\'s inventory.</p></body></html>';
-    exit;
-}
-
 $page = max(1, intval($_GET['page'] ?? 1));
 $cat = isset($_GET['cat']) ? intval($_GET['cat']) : null;
 $itemsPerPage = 18;
