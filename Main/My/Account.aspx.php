@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
-<?php SiteHeader::render($site_properties); ?>
+<?php SiteHeader::render() ?>
 <div id="MasterContainer">
   <div id="BodyWrapper"><div id="RepositionBody"><div id="Body" style="width:970px">
     <div id="AccountPageContainer">
