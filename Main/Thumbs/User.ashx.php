@@ -1,4 +1,5 @@
 <?php
+// writen by chloe
 $id = $_GET['ID'] ?? '';
 $width = $_GET['Width'] ?? '';
 $height = $_GET['Height'] ?? '';
