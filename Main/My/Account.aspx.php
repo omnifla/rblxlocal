@@ -5,6 +5,12 @@ use Roblox\Authentication as Auth;
 use Roblox\Web\SiteHeader;
 use Roblox\Web\SiteFooter;
 $user = Auth::GetAuthenticatedUserInfo();
+if(!Auth::GetAuthenticatedUser()){
+    $url = $_SERVER['REQUEST_URI'];
+    $redirect = '/newlogin?redirect-url=' . urlencode($url);
+    header('Location: ' . $redirect);
+    exit;
+}
 $userId = (int)$user['id'];
 $errors = [];
 $success = false;
@@ -73,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
-<?php SiteHeader::render() ?>
+<?= SiteHeader::render() ?>
 <div id="MasterContainer">
   <div id="BodyWrapper"><div id="RepositionBody"><div id="Body" style="width:970px">
     <div id="AccountPageContainer">
@@ -161,6 +167,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
   </div></div></div>
 </div>
-<?php SiteFooter::render(); ?>
+<?= SiteFooter::render() ?>
 </body>
 </html>
