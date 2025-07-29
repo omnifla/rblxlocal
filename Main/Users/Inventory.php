@@ -1,12 +1,25 @@
 <?php
 // writen by chloe
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
+session_start();
+$currentUser = null;
+if (isset($_SESSION['id'])) {
+    $stmt = $conn->prepare('SELECT "InventoryPrivacy" FROM users WHERE id = :id');
+    $stmt->execute([':id' => $_SESSION['id']]);
+    $currentUser = $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
 $id = intval($_GET['id'] ?? 0);
 $page = max(1, intval($_GET['page'] ?? 1));
 $cat = isset($_GET['cat']) ? intval($_GET['cat']) : null;
 
 if ($id <= 0) {
     http_response_code(404);
+    exit;
+}
+
+if (!$currentUser || $currentUser['InventoryPrivacy'] !== 'All') {
+    echo '<!DOCTYPE html><html><head><title>Inventory</title></head><body><p>You cannot view this user\'s inventory.</p></body></html>';
     exit;
 }
 
@@ -54,7 +67,6 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php else: ?>
         <table cellspacing="0" border="0" style="border-collapse:collapse;">
             <tbody>
-
             <?php
             $cols = 6;
             $rows = 3;
@@ -121,7 +133,6 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 echo "</tr>";
             }
             ?>
-
             </tbody>
         </table>
 
