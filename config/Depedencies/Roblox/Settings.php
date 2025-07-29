@@ -126,7 +126,7 @@ class Settings {
         "TBCUserGroupCreateLimit" => 20,
         "UserGroupCreateLimit" => 5,
         "DatabaseMaxUsernameLength" => 64, // Roblox's max username length is 20, but the database allows 64.
-        "SiteMaintenaceMode" => false,
+        "SiteMaintenaceMode" => true,
         "LandingRedirect" => true, // Default.aspx to Landing/Animated.
     ];
 }
