@@ -4,11 +4,11 @@ $correctPassword = $_ENV['MAINTENANCE_PASSWORD'];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $enteredPassword = filter_input(INPUT_POST, 'ctl00$cphRoblox$Textbox1', FILTER_SANITIZE_STRING);
     if (strcasecmp($enteredPassword, $correctPassword) === 0) {
-        $_SESSION['maintenance_bypass'] = true;
+        setcookie('MaintenanceBypass', 'true', time() + 86400, '/');
         header('Location: /');
         exit;
     } else {
-        header("Location: " . $_SERVER['REQUEST_URI']);
+        header('Location: ' . $_SERVER['REQUEST_URI']);
         exit;
     }
 }
