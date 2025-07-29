@@ -337,6 +337,39 @@ $(function(){
         }
     </style>
     <div>
+<?php
+if (isset($user['membership_type'])) {
+    if ($user['membership_type'] == 1) {
+        echo '<div id="ctl00_cphRoblox_OBCmember" class="blank-box" style="margin-top: 10px; width: 951px; float: left; padding: 8px">
+                <div style="float: left; margin-right: 10px;">
+                    <img border="0" alt="BC" title="BC member" src="/images/1de063c8fb4572a6934ee0a971cbd65f.png">
+                </div>
+                <div style="float: left; line-height: 30px;">
+                    You are viewing the profile of an <a href="/Upgrades/BuildersClubMemberships.aspx">Builders Club</a> member..
+                </div>
+              </div>';
+    } elseif ($user['membership_type'] == 2) {
+        echo '<div id="ctl00_cphRoblox_OBCmember" class="blank-box" style="margin-top: 10px; width: 951px; float: left; padding: 8px">
+                <div style="float: left; margin-right: 10px;">
+                    <img border="0" alt="TBC" title="TBC member" src="/images/7f2a9e0d64b30e8dc319fab8792b451a.png">
+                </div>
+                <div style="float: left; line-height: 30px;">
+                    You are viewing the profile of an <a href="/Upgrades/BuildersClubMemberships.aspx">Turbo Builders Club</a> member..
+                </div>
+              </div>';
+    } elseif ($user['membership_type'] == 3) {
+        echo '<div id="ctl00_cphRoblox_OBCmember" class="blank-box" style="margin-top: 10px; width: 951px; float: left; padding: 8px">
+                <div style="float: left; margin-right: 10px;">
+                    <img border="0" alt="OBC" title="OBC member" src="/images/9cb3b66f03c1129835cc9f78d6e4c423.png">
+                </div>
+                <div style="float: left; line-height: 30px;">
+                    You are viewing the profile of an <a href="/Upgrades/BuildersClubMemberships.aspx">Outrageous Builders Club</a> member..
+                </div>
+              </div>';
+    }
+}
+?>
+
         
 <div style="width:900px;height:30px;clear:both; display:none;">
     <span id="ctl00_cphRoblox_rbxHeaderPane_nameRegion" style="font-size:20px; font-weight:bold;"><?= $user['username'] ?></span>
