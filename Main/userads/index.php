@@ -136,7 +136,7 @@ if ($adToShow === null) {
 $adId = intval($adToShow['AdId']);
 $decodedUrl = base64Decode($adToShow['AdUrl']);
 $href = "/userads/redirect?data=" . base64Encode($decodedUrl);
-$imgSrc = "/userads/images/" . $adId . ".png";
+$imgSrc = "/Thumbs/Ads/" . $adId . ".png";
 $title = htmlspecialchars($adToShow['AdName']);
 
 try {
