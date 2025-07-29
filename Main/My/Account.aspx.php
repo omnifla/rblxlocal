@@ -108,9 +108,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
               <div id="BirthdaySetting" class="SettingSubTitle">
                 <span class="settingLabel form-label">Birthday:</span>
-                <select name="BirthMonth"><?=for($i=1;$i<=12;$i++):?><!-- omitted --><?php endfor;?></select>
-                <select name="BirthDay"><?=for($i=1;$i<=31;$i++):?><!-- omitted --><?php endfor;?></select>
-                <select name="BirthYear"><?=for($i=date('Y');$i>=1914;$i--):?><!-- omitted --><?php endfor;?></select>
+                <select name="BirthMonth"><?php for($i=1;$i<=12;$i++):?><!-- omitted --><?php endfor;?></select>
+                <select name="BirthDay"><?php for($i=1;$i<=31;$i++):?><!-- omitted --><?php endfor;?></select>
+                <select name="BirthYear"><?php for($i=date('Y');$i>=1914;$i--):?><!-- omitted --><?php endfor;?></select>
               </div>
 
               <div id="GenderSetting" class="SettingSubTitle">
