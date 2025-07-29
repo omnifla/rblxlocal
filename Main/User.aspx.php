@@ -1,28 +1,7 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
-use Roblox\Authentication as Auth;
-use Roblox\Web\SiteHeader;
-use Roblox\Web\SiteFooter;
 
 session_start();
-
-$user = Auth::GetAuthenticatedUserInfo();
-$userId = (int)$user["id"];
-
-$id = $_GET['id'] ?? $_GET['Id'] ?? $_GET["ID"] ?? $userId;
-$id = intval($id);
-$user = Auth::GetUserInfo($id);
-
-if (!$user) {
-    header("Location: /RobloxDefaultErrorPage.aspx?code=404", true, 302);
-    exit;
-}
-
-$user['username'] = htmlspecialchars($user['username']);
-$user['description'] = htmlspecialchars($user['description'] ?? $user['username'] . " has no description");
-
-$page = max(1, intval($_GET['page'] ?? 1));
-$cat = isset($_GET['cat']) ? intval($_GET['cat']) : null;
 
 $currentUser = null;
 if (isset($_SESSION['id'])) {
@@ -31,12 +10,19 @@ if (isset($_SESSION['id'])) {
     $currentUser = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+$id = intval($_GET['id'] ?? 0);
+$page = max(1, intval($_GET['page'] ?? 1));
+$cat = isset($_GET['cat']) ? intval($_GET['cat']) : null;
+
 if ($id <= 0) {
     http_response_code(404);
     exit;
 }
 
-$canViewInventory = $currentUser && $currentUser['InventoryPrivacy'] === 'All';
+if (!$currentUser || $currentUser['InventoryPrivacy'] !== 'All') {
+    echo '<!DOCTYPE html><html><head><title>Inventory</title></head><body><p>You cannot view this user\'s inventory.</p></body></html>';
+    exit;
+}
 
 $itemsPerPage = 18;
 $offset = ($page - 1) * $itemsPerPage;
@@ -66,7 +52,49 @@ $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
 
 $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
 
+with both of these php scripts for one ultimate script with no comments apart from the ones in the areas they already are but no new ones
+
+<?php
+// written by meditext
+include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
+use Roblox\Authentication as Auth;
+use Roblox\Web\SiteHeader;
+use Roblox\Web\SiteFooter;
+
+$user = Auth::GetAuthenticatedUserInfo();
+$userId = (int)$user["id"];
+
+$id = $_GET['id'] ?? $_GET['Id'] ?? $_GET["ID"] ?? $userId;
+$user = Auth::GetUserInfo(intval($id));
+
+//var_dump($user);
+//exit;
+if(!$user){
+    header("Location: /RobloxDefaultErrorPage.aspx?code=404", true, 302);
+    exit;
+}
+$user['username'] = htmlspecialchars($user['username']);
+$user['description'] = htmlspecialchars($user['description'] ?? $user['username']." has no description");
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $target = $_POST['__EVENTTARGET'] ?? '';
+    $argument = $_POST['__EVENTARGUMENT'] ?? '';
+
+    switch ($target) {
+        case 'ctl00$cphRoblox$rbxFavoritesPane$FooterPageSelector_Next':
+            echo "<p> what's expected? </p>";
+            break;
+        default:
+  // what's the point of this? -randon
+            echo "<p>placeholder sheib</p>";
+            break;
+    }
+}
+?>
+
+<?php
 // badges script writen by chloe
 $badgeMap = [
     1 => ['name' => 'Administrator', 'img' => '/Images/Badges/Administrator2-75x75.png'],
@@ -87,11 +115,13 @@ $badgeMap = [
 ];
 
 $uid = intval($user['id']);
-$k = intval($user['knockouts'] ?? 0);
-$m = intval($user['membership_type'] ?? 0);
+$k = intval($user['knockouts']);
+$m = intval($user['membership_type']);
+$db = $conn;
 
 function giveBadge($db, $userId, $badgeId, $badgeMap) {
     if (!isset($badgeMap[$badgeId])) return;
+
     $check = $db->prepare("SELECT 1 FROM user_badges WHERE user_id = :uid AND badge_id = :bid");
     $check->execute([':uid' => $userId, ':bid' => $badgeId]);
     if (!$check->fetch()) {
@@ -107,15 +137,6 @@ if ($k > 250) giveBadge($db, $uid, 5, $badgeMap);
 if ($m === 1) giveBadge($db, $uid, 11, $badgeMap);
 if ($m === 2) giveBadge($db, $uid, 15, $badgeMap);
 if ($m === 3) giveBadge($db, $uid, 16, $badgeMap);
-
-// Example categories - replace with your real categories source
-$categories = [
-    1 => 'Hats',
-    2 => 'Shirts',
-    3 => 'Pants',
-    4 => 'Gear',
-];
-$currentCat = $cat ?? 0;
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "//www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
