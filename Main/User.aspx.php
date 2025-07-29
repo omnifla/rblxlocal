@@ -400,7 +400,7 @@ if (isset($user['membership_type'])) {
                     <div style="margin-bottom: 10px;">
                         
                     </div>
-                    <a id="ctl00_cphRoblox_rbxUserPane_AvatarImage" disabled="disabled" class=" notranslate" title="<?= $user['username'] ?>" class=" notranslate" onclick="return false" style="display:inline-block;height:352px;width:352px;"><img src="<?= $user['id'] == 3 ? 'https://tr.rbxcdn.com/30DAY-Avatar-92A405C24D72F2B78E5146142D137F82-Png/1024/1024/Avatar/png/noFilter' : '/Images/Placeholder1024x1024.png' ?>" height="352" width="352" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="<?= htmlspecialchars($user['username']) ?>" class="notranslate" /></a>
+                    <a id="ctl00_cphRoblox_rbxUserPane_AvatarImage" disabled="disabled" class=" notranslate" title="<?= $user['username'] ?>" class=" notranslate" onclick="return false" style="display:inline-block;height:352px;width:352px;"><img src="/Thumbs/user.ashx.php?ID=<?= $user['id'] ?>&Width=352&Height=352" height="352" width="352" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="<?= htmlspecialchars($user['username']) ?>" class="notranslate" /></a>
                     <br />
                     <div class="PointsContainer">
                         
