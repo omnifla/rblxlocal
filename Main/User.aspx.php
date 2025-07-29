@@ -1,43 +1,62 @@
 <?php
-// written by meditext
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use Roblox\Authentication as Auth;
 use Roblox\Web\SiteHeader;
 use Roblox\Web\SiteFooter;
 
+session_start();
+
 $user = Auth::GetAuthenticatedUserInfo();
 $userId = (int)$user["id"];
 
-$id = $_GET['id'] ?? $_GET['Id'] ?? $_GET["ID"] ?? $userId;
-$user = Auth::GetUserInfo(intval($id));
+$currentUser = null;
+if (isset($_SESSION['id'])) {
+    $stmt = $conn->prepare('SELECT "InventoryPrivacy" FROM users WHERE id = :id');
+    $stmt->execute([':id' => $_SESSION['id']]);
+    $currentUser = $stmt->fetch(PDO::FETCH_ASSOC);
+}
 
-//var_dump($user);
-//exit;
-if(!$user){
+$id = intval($_GET['id'] ?? $_GET['Id'] ?? $_GET["ID"] ?? $userId);
+$profileUser = Auth::GetUserInfo($id);
+if (!$profileUser) {
     header("Location: /RobloxDefaultErrorPage.aspx?code=404", true, 302);
     exit;
 }
-$user['username'] = htmlspecialchars($user['username']);
-$user['description'] = htmlspecialchars($user['description'] ?? $user['username']." has no description");
+$profileUser['username'] = htmlspecialchars($profileUser['username']);
+$profileUser['description'] = htmlspecialchars($profileUser['description'] ?? $profileUser['username'] . " has no description");
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $target = $_POST['__EVENTTARGET'] ?? '';
-    $argument = $_POST['__EVENTARGUMENT'] ?? '';
-
-    switch ($target) {
-        case 'ctl00$cphRoblox$rbxFavoritesPane$FooterPageSelector_Next':
-            echo "<p> what's expected? </p>";
-            break;
-        default:
-  // what's the point of this? -randon
-            echo "<p>placeholder sheib</p>";
-            break;
-    }
+if (!$currentUser || $currentUser['InventoryPrivacy'] !== 'All') {
+    echo '<!DOCTYPE html><html><head><title>Inventory</title></head><body><p>You cannot view this user\'s inventory.</p></body></html>';
+    exit;
 }
-?>
 
-<?php
-// badges script writen by chloe
+$page = max(1, intval($_GET['page'] ?? 1));
+$cat = isset($_GET['cat']) ? intval($_GET['cat']) : null;
+$itemsPerPage = 18;
+$offset = ($page - 1) * $itemsPerPage;
+
+$db = $conn;
+$catFilter = $cat !== null ? 'AND a."AssetType" = :cat' : '';
+
+$sql = '
+SELECT i."UAID", i."Timestamp", a."AssetId", a."OwnerId", a."AssetType", a."Name", a."Description",
+       a."RobuxPrice", a."TixPrice", a."Offsale", a."Limited", a."LimitedUnique", a."Serials",
+       a."CreationDate", a."UpdatedDate"
+FROM "inventory" i
+INNER JOIN "assets" a ON i."AssetId" = a."AssetId"
+WHERE i."UserId" = :userId ' . $catFilter . '
+ORDER BY i."Timestamp" DESC
+LIMIT :limit OFFSET :offset
+';
+
+$stmt = $db->prepare($sql);
+$stmt->bindValue(':userId', $id, PDO::PARAM_INT);
+if ($cat !== null) $stmt->bindValue(':cat', $cat, PDO::PARAM_INT);
+$stmt->bindValue(':limit', $itemsPerPage, PDO::PARAM_INT);
+$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+$stmt->execute();
+$assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 $badgeMap = [
     1 => ['name' => 'Administrator', 'img' => '/Images/Badges/Administrator2-75x75.png'],
     2 => ['name' => 'Friendship', 'img' => '/Images/Badges/Friendship-75x75.png'],
@@ -56,14 +75,12 @@ $badgeMap = [
     16 => ['name' => 'Outrageous Builders Club', 'img' => '/Images/Badges/OutrageousBuildersClub-75x75.png'],
 ];
 
-$uid = intval($user['id']);
-$k = intval($user['knockouts']);
-$m = intval($user['membership_type']);
-$db = $conn;
+$uid = intval($profileUser['id']);
+$k = intval($profileUser['knockouts']);
+$m = intval($profileUser['membership_type']);
 
 function giveBadge($db, $userId, $badgeId, $badgeMap) {
     if (!isset($badgeMap[$badgeId])) return;
-
     $check = $db->prepare("SELECT 1 FROM user_badges WHERE user_id = :uid AND badge_id = :bid");
     $check->execute([':uid' => $userId, ':bid' => $badgeId]);
     if (!$check->fetch()) {
@@ -75,47 +92,9 @@ function giveBadge($db, $userId, $badgeId, $badgeMap) {
 if ($k > 10) giveBadge($db, $uid, 3, $badgeMap);
 if ($k > 100) giveBadge($db, $uid, 4, $badgeMap);
 if ($k > 250) giveBadge($db, $uid, 5, $badgeMap);
-
 if ($m === 1) giveBadge($db, $uid, 11, $badgeMap);
 if ($m === 2) giveBadge($db, $uid, 15, $badgeMap);
 if ($m === 3) giveBadge($db, $uid, 16, $badgeMap);
-$itemsPerPage = 18;
-$offset = ($page - 1) * $itemsPerPage;
-
-$currentUserPrivacy = null;
-if (isset($_SESSION['id'])) {
-    $stmt = $db->prepare('SELECT "InventoryPrivacy" FROM users WHERE id = :id');
-    $stmt->execute([':id' => $_SESSION['id']]);
-    $currentUserPrivacy = $stmt->fetchColumn();
-}
-
-$canViewInventory = ($currentUserPrivacy === 'All');
-
-if ($canViewInventory) {
-    $catFilter = $currentCat !== null ? 'AND a."AssetType" = :cat' : '';
-    $sql = '
-        SELECT i."UAID", i."Timestamp", a."AssetId", a."OwnerId", a."AssetType", a."Name", a."Description",
-               a."RobuxPrice", a."TixPrice", a."Offsale", a."Limited", a."LimitedUnique", a."Serials",
-               a."CreationDate", a."UpdatedDate"
-        FROM "inventory" i
-        INNER JOIN "assets" a ON i."AssetId" = a."AssetId"
-        WHERE i."UserId" = :userId ' . $catFilter . '
-        ORDER BY i."Timestamp" DESC
-        LIMIT :limit OFFSET :offset
-    ';
-    $stmt = $db->prepare($sql);
-    $stmt->bindValue(':userId', $id, PDO::PARAM_INT);
-    if ($currentCat !== null) {
-        $stmt->bindValue(':cat', $currentCat, PDO::PARAM_INT);
-    }
-    $stmt->bindValue(':limit', $itemsPerPage, PDO::PARAM_INT);
-    $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-    $stmt->execute();
-    $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} else {
-    $assets = [];
-}
-?>
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "//www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
