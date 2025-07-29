@@ -1,8 +1,6 @@
 <?php
 // written and ported by SkylerClock
 // This is a ported version of Roblox.DataAccess.FeedDAL intended to be used for a new Feed System in the near future
-include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
-
 namespace Roblox.DataAccess;
 
 class FeedDAL
