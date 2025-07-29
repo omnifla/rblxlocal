@@ -7,7 +7,7 @@
 </p>
 
 <div align="center">
-An Open Source 2014 Roblox Revival using a ported PHP version of ROBLOX's backend
+An open source 2014M ROBLOX clone, using ROBLOX's source as a guidance.
 </div>
 
 ## Authors
