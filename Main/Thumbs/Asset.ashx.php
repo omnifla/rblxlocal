@@ -19,6 +19,6 @@ if (!preg_match('/^\d+$/', $id) || !preg_match('/^\d+$/', $width) || !preg_match
     $height = 352;
 }
 
-header('Content-Type: text/html');
-echo "<img src=\"$src\" width=\"$width\" height=\"$height\" />";
+header('Content-Type: image/png');
+readfile($_SERVER['DOCUMENT_ROOT'] . $src);
 ?>
