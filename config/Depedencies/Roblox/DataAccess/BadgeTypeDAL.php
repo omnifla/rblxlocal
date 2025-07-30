@@ -2,6 +2,7 @@
 // written and ported by SkylerClock
 // Roblox.DataAccess.BadgeTypeDAL is used to manage types of badges, meaning the category or classification of a badge
 namespace Roblox.DataAccess;
+use \DateTime;
 
 class BadgeTypeDAL
 {
