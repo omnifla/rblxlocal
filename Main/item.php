@@ -106,9 +106,11 @@ $genreLink = strtolower(str_replace(' ', '-', $genre)) . '-games';
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:fb="http://www.facebook.com/2008/fbml" style="--wm-toolbar-height: 1px;"><head id="ctl00_Head1">
 <head id="ctl00_Head1">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true"><title>
-	Perfectly Legitimate Business Hat, a Hat by <?php echo $user['user'];?> - <?php echo $site_properties['Title'] ?> (updated 6/27/2012 5:58:43 PM)
+<meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true">
+<title>
+    <?php echo htmlspecialchars($asset['Name'], ENT_QUOTES); ?>, a <?php echo htmlspecialchars($asset['AssetType'], ENT_QUOTES); ?> by <?php echo $userName; ?> - <?php echo $site_properties['Title']; ?> (updated <?php echo date("n/j/Y g:i:s A", strtotime($asset['UpdatedDate'])); ?>)
 </title>
+
 <link rel="stylesheet" href="/CSS/Base/CSS/FetchCSS?path=main___c1d3082f646e63bf22dab346e8648905_m.css">
 
 <link rel="stylesheet" href="/CSS/Base/CSS/FetchCSS?path=page___c8c5fc6ec88c1a359b92c484cdfa7fbe_m.css">
