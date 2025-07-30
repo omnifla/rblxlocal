@@ -22,7 +22,7 @@ if (!$user) {
     header("Location: /RobloxDefaultErrorPage.aspx?code=404", true, 302);
     exit;
 }
-$user['username'] = htmlspecialchars($profileUser['username']);
+$user['username'] = htmlspecialchars($user['username']);
 $user['description'] = htmlspecialchars($user['description'] ?? $user['username'] . " has no description");
 
 $page = max(1, intval($_GET['page'] ?? 1));
