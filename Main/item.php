@@ -34,16 +34,18 @@ function genreCssClass(string $genre): string {
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 if ($id <= 0) {
-    header("HTTP/1.1 404 Not Found");
-    exit('Invalid asset ID.');
+    http_response_code(404);
+    include $_SERVER['DOCUMENT_ROOT'] . '/RobloxDefaultErrorPage.aspx?code=404';
+    exit;
 }
 
 $stmt = $conn->prepare('SELECT * FROM assets WHERE "AssetId" = :id');
 $stmt->execute([':id' => $id]);
 $asset = $stmt->fetch(PDO::FETCH_ASSOC);
 if (!$asset) {
-    header("HTTP/1.1 404 Not Found");
-    exit('Asset not found.');
+    http_response_code(404);
+    include $_SERVER['DOCUMENT_ROOT'] . '/RobloxDefaultErrorPage.aspx?code=404';
+    exit;
 }
 
 $stmtUser = $conn->prepare('SELECT * FROM users WHERE "id" = :ownerId');
@@ -108,7 +110,7 @@ $genreLink = strtolower(str_replace(' ', '-', $genre)) . '-games';
 <head id="ctl00_Head1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true">
 <title>
-    <?php echo htmlspecialchars($asset['Name'], ENT_QUOTES); ?>, a <?php echo htmlspecialchars($asset['AssetType'], ENT_QUOTES); ?> by <?php echo htmlspecialchars($stmtUser['UserName']); ?> - <?php echo $site_properties['Title']; ?> (updated <?php echo date("n/j/Y g:i:s A", strtotime($asset['UpdatedDate'])); ?>)
+    <?php echo htmlspecialchars($asset['Name'], ENT_QUOTES); ?>, a <?php echo htmlspecialchars($asset['AssetType'], ENT_QUOTES); ?> by <?php echo htmlspecialchars($user['UserName']); ?> - <?php echo $site_properties['Title']; ?> (updated <?php echo date("n/j/Y g:i:s A", strtotime($asset['UpdatedDate'])); ?>)
 </title>
 
 <link rel="stylesheet" href="/CSS/Base/CSS/FetchCSS?path=main___c1d3082f646e63bf22dab346e8648905_m.css">
