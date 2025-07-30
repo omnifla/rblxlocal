@@ -3,7 +3,6 @@
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use Roblox\Authentication;
 use Roblox\UserFeed;
-use Roblox\DataAccess\FeedDAL;
 $userId = $info['id'] ?? 0;
 $limit = 20;
 $feeds = UserFeed::getByUserIdPaged($userId, 0, $limit);
@@ -12,16 +11,18 @@ if (empty($feeds)) {
     exit;
 }
 foreach ($feeds as $userFeed) {
-    $feedDAL = FeedDAL::get($userFeed->getFeedId());
-    if (!$feedDAL) {
+    $feedContent = $userFeed->getFeedContent();
+    $authorId = $userFeed->getFeedAuthorId();
+    $postedAt = $userFeed->getFeedPostTime();
+    if ($feedContent === null || $authorId === null || $postedAt === null) {
         continue;
     }
-    $author = Authentication::GetUserInfo($feedDAL->author_id);
+    $author = Authentication::GetUserInfo($authorId);
     if (!$author) {
         continue;
     }
-    $feed_content = htmlspecialchars($feedDAL->content);
-    $feed_date = date('m/d/Y', $feedDAL->posted_at) . " at " . date('h:i A', $feedDAL->posted_at);
+    $feed_content = htmlspecialchars($feedContent);
+    $feed_date = date('m/d/Y', $postedAt) . " at " . date('h:i A', $postedAt);
     $username = htmlspecialchars($author['username']);
     $html = <<<HTML
         <div class="divider-top feed-container">
@@ -40,7 +41,7 @@ foreach ($feeds as $userFeed) {
                 <span style="display: block; padding-top: 5px; color: #AAA; font-size: 11px;">{$feed_date}</span>
             </div>
             <div class="feed-report-abuse">
-                <a href="/AbuseReport/Feed.aspx?ID={$feedDAL->post_id}&RedirectUrl=/home">
+                <a href="/AbuseReport/Feed.aspx?ID={$userFeed->getFeedId()}&RedirectUrl=/home">
                     <img src="//images.rbxcdn.com/1ea8de3b0f71a67b032b67ddc1770c78.png" alt="Report abuse" id="reportAbuseButton">
                 </a>
             </div>
