@@ -59,7 +59,7 @@ Afterwards, you need to run the migrations on the database via `npm run migrate`
 Coming soon...
 
 ## Features
-- [x] Working feeds (but overall shitty, we will redo this)
+- [x] Working feeds
 - [x] Working user profiles (i think)
 
 ## Roadmap
