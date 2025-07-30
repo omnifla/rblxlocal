@@ -17,13 +17,13 @@ if (isset($_SESSION['id'])) {
 }
 
 $id = intval($_GET['id'] ?? $_GET['Id'] ?? $_GET["ID"] ?? $userId);
-$profileUser = Auth::GetUserInfo($id);
-if (!$profileUser) {
+$user = Auth::GetUserInfo($id);
+if (!$user) { 
     header("Location: /RobloxDefaultErrorPage.aspx?code=404", true, 302);
     exit;
 }
-$profileUser['username'] = htmlspecialchars($profileUser['username']);
-$profileUser['description'] = htmlspecialchars($profileUser['description'] ?? $profileUser['username'] . " has no description");
+$user['username'] = htmlspecialchars($profileUser['username']);
+$user['description'] = htmlspecialchars($user['description'] ?? $user['username'] . " has no description");
 
 $page = max(1, intval($_GET['page'] ?? 1));
 $cat = isset($_GET['cat']) ? intval($_GET['cat']) : null;
