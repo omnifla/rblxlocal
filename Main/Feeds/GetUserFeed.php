@@ -4,6 +4,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use Roblox\Authentication;
 use Roblox\UserFeed;
 use Roblox\DataAccess\FeedDAL;
+$userId = $info['id'] ?? 0;
 $limit = 20;
 $feeds = UserFeed::getByUserIdPaged($userId, 0, $limit);
 if (empty($feeds)) {
