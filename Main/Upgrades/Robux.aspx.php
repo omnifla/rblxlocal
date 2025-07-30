@@ -4,6 +4,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/../config/main.php";
 use Roblox\Authentication as Auth;
 use Roblox\Web\SiteHeader;
 use Roblox\Web\SiteFooter;
+use Roblox\Web\SiteAlert;
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:fb="http://www.facebook.com/2008/fbml" style="--wm-toolbar-height: 67px;">
 <head>
