@@ -11,6 +11,29 @@ class UserFeed
     {
         $this->dal = $dal ?? new UserFeedDAL();
     }
+    
+    public function getFeed(): ?FeedDAL
+    {
+        return FeedDAL::get($this->getFeedId());
+    }
+
+    public function getFeedContent(): ?string
+    {
+        $feed = $this->getFeed();
+        return $feed ? $feed->content : null;
+    }
+
+    public function getFeedAuthorId(): ?int
+    {
+        $feed = $this->getFeed();
+        return $feed ? (int)$feed->author_id : null;
+    }
+
+    public function getFeedPostTime(): ?int
+    {
+        $feed = $this->getFeed();
+        return $feed ? (int)$feed->posted_at : null;
+    }
 
     public function getId(): int
     {
