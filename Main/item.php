@@ -108,7 +108,7 @@ $genreLink = strtolower(str_replace(' ', '-', $genre)) . '-games';
 <head id="ctl00_Head1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true">
 <title>
-    <?php echo htmlspecialchars($asset['Name'], ENT_QUOTES); ?>, a <?php echo htmlspecialchars($asset['AssetType'], ENT_QUOTES); ?> by <?php echo htmlspecialchars($stmtUser['UserName']; ?> - <?php echo $site_properties['Title']; ?> (updated <?php echo date("n/j/Y g:i:s A", strtotime($asset['UpdatedDate'])); ?>)
+    <?php echo htmlspecialchars($asset['Name'], ENT_QUOTES); ?>, a <?php echo htmlspecialchars($asset['AssetType'], ENT_QUOTES); ?> by <?php echo htmlspecialchars($stmtUser['UserName']); ?> - <?php echo $site_properties['Title']; ?> (updated <?php echo date("n/j/Y g:i:s A", strtotime($asset['UpdatedDate'])); ?>)
 </title>
 
 <link rel="stylesheet" href="/CSS/Base/CSS/FetchCSS?path=main___c1d3082f646e63bf22dab346e8648905_m.css">
