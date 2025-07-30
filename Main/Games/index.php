@@ -60,12 +60,12 @@ $user = Auth::GetAuthenticatedUserInfo();
 <script type="text/javascript">window.Sys || document.write("<script type='text/javascript' src='/js/Microsoft/MicrosoftAjax.js'><\/script>")</script>
 
     
-<script type="text/javascript" src="https:http://js.rbxcdn.com/b7f46e3b42d5a57293e87c67eb7be798.js"></script>
+<script type="text/javascript" src="http://js.rbxcdn.com/b7f46e3b42d5a57293e87c67eb7be798.js"></script>
 
     <script type="text/javascript">Roblox.config.externalResources = ['/js/jquery/jquery-1.7.2.min.js','/js/json2.min.js'];Roblox.config.paths['jQuery'] = 'http://js.rbxcdn.com/29cf397a226a92ca602cb139e9aae7d7.js';Roblox.config.paths['Pages.Catalog'] = 'http://js.rbxcdn.com/c8f61a230e6ad34193b40758f1499a3d.js';Roblox.config.paths['Pages.Messages'] = 'http://js.rbxcdn.com/9d551a9e1b4c61c19e752fbed1a6da7c.js';Roblox.config.paths['Resources.Messages'] = 'http://js.rbxcdn.com/fb9cb43a34372a004b06425a1c69c9c4.js';Roblox.config.paths['Widgets.AvatarImage'] = 'http://js.rbxcdn.com/a404577733d1b68e3056a8cd3f31614c.js';Roblox.config.paths['Widgets.DropdownMenu'] = 'http://js.rbxcdn.com/d83d02dd89808934b125fa21c362bcb9.js';Roblox.config.paths['Widgets.GroupImage'] = 'http://js.rbxcdn.com/3e692c7b60e1e28ce639184f793fdda9.js';Roblox.config.paths['Widgets.HierarchicalDropdown'] = 'http://js.rbxcdn.com/e8b579b8e31f8e7722a5d10900191fe7.js';Roblox.config.paths['Widgets.ItemImage'] = 'http://js.rbxcdn.com/f676cf25d820c731b5adb4bf362bcd90.js';Roblox.config.paths['Widgets.PlaceImage'] = 'http://js.rbxcdn.com/08e1942c5b0ef78773b03f02bffec494.js';Roblox.config.paths['Widgets.Suggestions'] = 'http://js.rbxcdn.com/a63d457706dfbc230cf66a9674a1ca8b.js';Roblox.config.paths['Widgets.SurveyModal'] = 'http://js.rbxcdn.com/d6e979598c460090eafb6d38231159f6.js';</script>
     
     
-<script type="text/javascript" src="https:http://js.rbxcdn.com/b57b634508332bbdda35447f97556dd9.js"></script>
+<script type="text/javascript" src="http://js.rbxcdn.com/b57b634508332bbdda35447f97556dd9.js"></script>
 
     <script type="text/javascript">
 function Roblox_Games_Middle_300x250_RTP(estimate){rtp['/1015347/Roblox_Games_Middle_300x250'] = rp_valuation.estimate;}
