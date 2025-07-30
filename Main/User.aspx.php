@@ -1229,7 +1229,7 @@ $categories = [
 ];
 $currentCat = isset($_GET['cat']) ? intval($_GET['cat']) : 3;
 $canViewInventory = true;
-if ($user['InventoryPrivacy'] > 0 && (!isset($_SESSION['id']) || $_SESSION['id'] !== $id)) {
+if ($user['InventoryPrivacy'] !== 'All' && (!isset($_SESSION['id']) || $_SESSION['id'] !== $id)) {
     $canViewInventory = false;
 }
 ?>
