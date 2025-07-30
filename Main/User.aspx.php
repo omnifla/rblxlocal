@@ -1219,145 +1219,161 @@ echo '</tr></tbody></table>';
         </span>
         </h2>
 	<div id="UserAssets">
-	    <div id="AssetsMenu" class="divider-right">
-	        <?php foreach ($categories as $catId => $catName): ?>
-	            <div class="verticaltab <?php echo $catId === $currentCat ? 'selected' : ''; ?>" data-cat="<?php echo $catId; ?>">
-	                <?php echo htmlspecialchars($catName); ?>
-	            </div>
-	        <?php endforeach; ?>
-	    </div>
-	    <div id="AssetsContent">
-	        <?php if (!$canViewInventory): ?>
-	            <p>You cannot view this user's inventory.</p>
-	        <?php else: ?>
-	            <?php if (count($assets) === 0): ?>
-	                <p>This user has no items in this category.</p>
-	            <?php else: ?>
-	                <table cellspacing="0" border="0" style="border-collapse:collapse;">
-	                    <tbody>
-	                    <?php
-	                    $cols = 6;
-	                    $rows = 3;
-	                    $total = count($assets);
-	
-	                    $ownerIds = array_unique(array_map(fn($a) => (int)$a['OwnerId'], $assets));
-	                    if (count($ownerIds) > 0) {
-	                        $placeholders = implode(',', array_fill(0, count($ownerIds), '?'));
-	                        $stmt = $db->prepare("SELECT id, username FROM users WHERE id IN ($placeholders)");
-	                        $stmt->execute($ownerIds);
-	                        $usernames = $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
-	                    } else {
-	                        $usernames = [];
-	                    }
-	
-	                    for ($r = 0; $r < $rows; $r++):
-	                        echo "<tr>";
-	                        for ($c = 0; $c < $cols; $c++):
-	                            $index = $r * $cols + $c;
-	                            if ($index >= $total) {
-	                                echo "<td class='Asset'></td>";
-	                                continue;
-	                            }
-	                            $a = $assets[$index];
-	                            $imgSrc = "/Asset/Thumbs/{$a['AssetId']}.png";
-	                            $nameEscaped = htmlspecialchars($a['Name']);
-	                            $descEscaped = htmlspecialchars($a['Description'] ?? '');
-	                            $ownerId = (int)$a['OwnerId'];
-	                            $assetId = (int)$a['AssetId'];
-	                            $creatorName = isset($usernames[$ownerId]) ? htmlspecialchars($usernames[$ownerId]) : "User {$ownerId}";
-	                            $limitedIcon = "";
-	                            $serialDiv = "";
-	                            if ($a['LimitedUnique']) {
-	                                $limitedIcon = '<div style="position:relative;left:-22px;top:-13px;"><img src="/images/assetIcons/limitedunique.png"></div>';
-	                                $serialDiv = '<div style="position:relative;text-align:center;width:95px;font-size:10px;left:0px;top:-124px;font-weight:bold;color:#003366">#' . ($a['Serials'] > 0 ? $a['Serials'] : 'N/A') . ' / ' . ($a['Serials'] > 0 ? $a['Serials'] : 'N/A') . '</div>';
-	                            } elseif ($a['Limited']) {
-	                                $limitedIcon = '<div style="position:relative;left:-22px;top:-13px;"><img src="/images/assetIcons/limited.png"></div>';
-	                            }
-	                            echo "<td class='Asset' valign='top'>
-	                                <div style='padding: 5px'>
-	                                    <div class='AssetThumbnail'>
-	                                        <a class='notranslate' title='{$nameEscaped}' href='/Item?id={$assetId}' style='display:inline-block;height:110px;width:110px;cursor:pointer;'>
-	                                            <img src='{$imgSrc}' height='110' width='110' border='0' alt='{$nameEscaped}' class='notranslate' onerror='return Roblox.Controls.Image.OnError(this)'>
-	                                        </a>
-	                                        {$limitedIcon}
-	                                        {$serialDiv}
-	                                    </div>
-	                                    <div class='AssetDetails'>
-	                                        <div class='AssetName'>
-	                                            <a class='noranslate' href='/Item?id={$assetId}'>{$nameEscaped}</a>
-	                                        </div>
-	                                        <div class='AssetCreator'>
-	                                            <span class='Label'>Creator: </span>
-	                                            <span class='Detail notranslate'>
-	                                                <a href='/User.aspx?ID={$ownerId}'>{$creatorName}</a>
-	                                            </span>
-	                                        </div>
-	                                    </div>
-	                                </div>
-	                            </td>";
-	                        endfor;
-	                        echo "</tr>";
-	                    endfor;
-	                    ?>
-	                    </tbody>
-	                </table>
-	                <div class="FooterPager">
-	                    <?php if ($page > 1): ?>
-	                        <span class="pager previous" data-page="<?php echo $page - 1; ?>"></span>
-	                    <?php else: ?>
-	                        <span class="pager previous disabled"></span>
-	                    <?php endif; ?>
-	                    <span style="vertical-align: top; display: inline-block; padding: 5px; padding-top: 6px">
-	                        Page <?php echo $page; ?>
-	                    </span>
-	                    <?php if (count($assets) === $itemsPerPage): ?>
-	                        <span class="pager next" data-page="<?php echo $page + 1; ?>"></span>
-	                    <?php else: ?>
-	                        <span class="pager next disabled"></span>
-	                    <?php endif; ?>
-	                </div>
-	            <?php endif; ?>
-	        <?php endif; ?>
-	    </div>
+<?php
+$categories = [
+    0 => "Heads", 1 => "Faces", 2 => "Gear", 3 => "Hats", 4 => "T-Shirts",
+    5 => "Shirts", 6 => "Pants", 7 => "Decals", 8 => "Models", 9 => "Plugins",
+    10 => "Animations", 11 => "Places", 12 => "Game Passes", 13 => "Audio", 14 => "Badges",
+    15 => "Left Arms", 16 => "Right Arms", 17 => "Left Legs", 18 => "Right Legs",
+    19 => "Torsos", 20 => "Packages",
+];
+$currentCat = isset($_GET['cat']) ? intval($_GET['cat']) : 3;
+$canViewInventory = true;
+if ($profileUser['InventoryPrivacy'] > 0 && (!isset($_SESSION['id']) || $_SESSION['id'] !== $id)) {
+    $canViewInventory = false;
+}
+?>
+
+<div id="AssetsMenu">
+    <?php foreach ($categories as $catId => $catName): ?>
+        <div class="verticaltab <?php echo $catId === $currentCat ? 'selected' : ''; ?>" data-cat="<?php echo $catId; ?>">
+            <?php echo htmlspecialchars($catName); ?>
+        </div>
+    <?php endforeach; ?>
+</div>
+
+<div id="AssetsContent">
+    <?php if (!$canViewInventory): ?>
+        <p>You cannot view this user's inventory.</p>
+    <?php else: ?>
+        <?php if (count($assets) === 0): ?>
+            <p>This user has no items in this category.</p>
+        <?php else: ?>
+            <table cellspacing="0" border="0" style="border-collapse:collapse;">
+                <tbody>
+                <?php
+                $cols = 6;
+                $rows = 3;
+                $total = count($assets);
+                $ownerIds = array_unique(array_map(fn($a) => (int)$a['OwnerId'], $assets));
+                if (count($ownerIds) > 0) {
+                    $placeholders = implode(',', array_fill(0, count($ownerIds), '?'));
+                    $stmt = $db->prepare("SELECT id, username FROM users WHERE id IN ($placeholders)");
+                    $stmt->execute($ownerIds);
+                    $usernames = $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
+                } else {
+                    $usernames = [];
+                }
+                for ($r = 0; $r < $rows; $r++) {
+                    echo "<tr>";
+                    for ($c = 0; $c < $cols; $c++) {
+                        $index = $r * $cols + $c;
+                        if ($index >= $total) {
+                            echo "<td class='Asset'></td>";
+                            continue;
+                        }
+                        $a = $assets[$index];
+                        $imgSrc = "/Asset/Thumbs/{$a['AssetId']}.png";
+                        $nameEscaped = htmlspecialchars($a['Name']);
+                        $descEscaped = htmlspecialchars($a['Description'] ?? '');
+                        $ownerId = (int)$a['OwnerId'];
+                        $assetId = (int)$a['AssetId'];
+                        $creatorName = isset($usernames[$ownerId]) ? htmlspecialchars($usernames[$ownerId]) : "User {$ownerId}";
+                        $limitedIcon = "";
+                        $serialDiv = "";
+                        if ($a['LimitedUnique']) {
+                            $limitedIcon = '<div style="position:relative;left:-22px;top:-13px;"><img src="/images/assetIcons/limitedunique.png"></div>';
+                            $serialDiv = '<div style="position:relative;text-align:center;width:95px;font-size:10px;left:0px;top:-124px;font-weight:bold;color:#003366">#' . ($a['Serials'] > 0 ? $a['Serials'] : 'N/A') . ' / ' . ($a['Serials'] > 0 ? $a['Serials'] : 'N/A') . '</div>';
+                        } elseif ($a['Limited']) {
+                            $limitedIcon = '<div style="position:relative;left:-22px;top:-13px;"><img src="/images/assetIcons/limited.png"></div>';
+                        }
+                        echo "<td class='Asset' valign='top'>
+                            <div style='padding: 5px'>
+                                <div class='AssetThumbnail'>
+                                    <a class='notranslate' title='{$nameEscaped}' href='/Item?id={$assetId}' style='display:inline-block;height:110px;width:110px;cursor:pointer;'>
+                                        <img src='{$imgSrc}' height='110' width='110' border='0' alt='{$nameEscaped}' class='notranslate' onerror='return Roblox.Controls.Image.OnError(this)'>
+                                    </a>
+                                    {$limitedIcon}
+                                    {$serialDiv}
+                                </div>
+                                <div class='AssetDetails'>
+                                    <div class='AssetName'>
+                                        <a class='notranslate' href='/Item?id={$assetId}'>{$nameEscaped}</a>
+                                    </div>
+                                    <div class='AssetCreator'>
+                                        <span class='Label'>Creator: </span>
+                                        <span class='Detail notranslate'>
+                                            <a href='/User.aspx?ID={$ownerId}'>{$creatorName}</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>";
+                    }
+                    echo "</tr>";
+                }
+                ?>
+                </tbody>
+            </table>
+            <div class="FooterPager">
+                <?php if ($page > 1): ?>
+                    <span class="pager previous" data-page="<?php echo $page - 1; ?>"></span>
+                <?php else: ?>
+                    <span class="pager previous disabled"></span>
+                <?php endif; ?>
+                <span style="vertical-align: top; display: inline-block; padding: 5px; padding-top: 6px">
+                    Page <?php echo $page; ?>
+                </span>
+                <?php if (count($assets) === $itemsPerPage): ?>
+                    <span class="pager next" data-page="<?php echo $page + 1; ?>"></span>
+                <?php else: ?>
+                    <span class="pager next disabled"></span>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
+    <?php endif; ?>
+</div>
+
+<script>
+const tabs = document.querySelectorAll('#AssetsMenu .verticaltab');
+const assetsContent = document.getElementById('AssetsContent');
+const userId = <?php echo json_encode($id); ?>;
+
+tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        const cat = tab.getAttribute('data-cat');
+        updateAssets(cat, 1);
+        tabs.forEach(t => t.classList.remove('selected'));
+        tab.classList.add('selected');
+    });
+});
+
+function updateAssets(cat, page) {
+    assetsContent.innerHTML = '<div style="text-align:center; margin-top: 50px;"><img src="/images/ProgressIndicator4.gif" alt="Loading..."></div>';
+    fetch(`/Users/InventoryAjax.php?id=${userId}&cat=${cat}&page=${page}`)
+        .then(resp => resp.text())
+        .then(html => {
+            assetsContent.innerHTML = html;
+            attachPagerEvents(cat);
+        });
+}
+
+function attachPagerEvents(cat) {
+    const prev = assetsContent.querySelector('.pager.previous:not(.disabled)');
+    const next = assetsContent.querySelector('.pager.next:not(.disabled)');
+    if (prev) {
+        prev.onclick = () => updateAssets(cat, parseInt(prev.getAttribute('data-page')));
+    }
+    if (next) {
+        next.onclick = () => updateAssets(cat, parseInt(next.getAttribute('data-page')));
+    }
+}
+
+attachPagerEvents(<?php echo json_encode($currentCat); ?>);
+</script>
+		    
+
 	</div>
-	<script>
-	    const tabs = document.querySelectorAll('#AssetsMenu .verticaltab');
-	    const assetsContent = document.getElementById('AssetsContent');
-	    const userId = <?php echo json_encode($id); ?>;
-	
-	    tabs.forEach(tab => {
-	        tab.addEventListener('click', () => {
-	            const cat = tab.getAttribute('data-cat');
-	            updateAssets(cat, 1);
-	            tabs.forEach(t => t.classList.remove('selected'));
-	            tab.classList.add('selected');
-	        });
-	    });
-	
-	    function updateAssets(cat, page) {
-	        assetsContent.innerHTML = '<div style="text-align:center; margin-top: 50px;"><img src="/images/ProgressIndicator4.gif" alt="Loading..."></div>';
-	        fetch(`/Users/InventoryAjax.php?id=${userId}&cat=${cat}&page=${page}`)
-	            .then(resp => resp.text())
-	            .then(html => {
-	                assetsContent.innerHTML = html;
-	                attachPagerEvents(cat);
-	            });
-	    }
-	
-	    function attachPagerEvents(cat) {
-	        const prev = assetsContent.querySelector('.pager.previous:not(.disabled)');
-	        const next = assetsContent.querySelector('.pager.next:not(.disabled)');
-	
-	        if (prev) {
-	            prev.onclick = () => updateAssets(cat, parseInt(prev.getAttribute('data-page')));
-	        }
-	        if (next) {
-	            next.onclick = () => updateAssets(cat, parseInt(next.getAttribute('data-page')));
-	        }
-	    }
-	
-	    attachPagerEvents(<?php echo json_encode($currentCat); ?>);
-	</script>
         <div id="ctl00_cphRoblox_rbxUserAssetsPane_CreateSetPanelDiv" class="createSetPanelPopup" style="width: 400px; height: 100%; padding: 0; float: left; display: none">
 		
             
