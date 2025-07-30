@@ -2,6 +2,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use Roblox\Web\SiteHeader;
 use Roblox\Web\SiteFooter;
+use Roblox\Web\SiteAlert;
 
 function sanitizeNameForUrl(string $name): string {
     $name = preg_replace('/[^a-zA-Z0-9 -]/', '', $name);
