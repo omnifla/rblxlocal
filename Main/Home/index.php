@@ -195,7 +195,7 @@ $(function(){
 <div class="forceSpaceUnderSubmenu">&nbsp;</div> 
             <div class="forceSpace">&nbsp;</div>
         <noscript>&lt;div class="SystemAlert"&gt;&lt;div class="SystemAlertText"&gt;Please enable Javascript to use all the features on this site.&lt;/div&gt;&lt;/div&gt;</noscript>
-	<?= SiteAlert:render() ?>
+	<?= SiteAlert::render() ?>
         <div id="BodyWrapper">
             <div id="RepositionBody">
                 <div id="Body" style="width:970px">
