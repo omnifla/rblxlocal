@@ -1,6 +1,6 @@
 # APIKey
-> [!NOTE]  
-> FFlagDeployer might be replaced with a node.js service as well any other apis.
+> [!IMPORTANT]  
+> FFlagDeployer is now deprecated and superseded by rbx-api-service. Do not use this class anymore.
 
 FFlagDeployer is the controller for `Setting/QuietGet`.
 

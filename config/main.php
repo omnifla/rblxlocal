@@ -17,18 +17,15 @@ spl_autoload_register(function ($class) {
     }
 });
 
-// load .env
+// load .env and other stuff
 use Dotenv\Dotenv;
 use Roblox\Settings;
 use Roblox\Game\ClientScriptCreator;
-
 $dotenv = Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
 
-// settings and stuff
 $settingsInstance = new Settings();
 $properties = $settingsInstance->settings;
-
 $site_properties = [
     "Title" => "ROBLOX",
     "meta-Author" => "ROBLOX Corporation",
@@ -37,12 +34,9 @@ $site_properties = [
     "hostname" => $_SERVER['HTTP_HOST'],
     "baseUrl" => "https://" . $_SERVER['HTTP_HOST'],
 ];
-
-// init client script... very important
 ClientScriptCreator::init();
 
 // db connect. I'm sorry..
-
 $host = $_ENV['DB_HOST'];  
 $dbname = $_ENV['DB_NAME'];  
 $user = $_ENV['DB_USER'];  
@@ -57,6 +51,8 @@ catch(PDOException $e) {
     exit("Connection failed for the ROBLOX Database: " . $e->getMessage());  
 }
 
+// we should make a middleware system for this
+// aka, A FUCKING FRAMEWORK
 if ($properties['SiteMaintenanceMode'] ?? false) {
     $bypassCookie = $_COOKIE['MaintenanceBypass'] ?? null;
     $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -76,3 +72,4 @@ if ($properties['SiteMaintenanceMode'] ?? false) {
         exit;
     }
 }
+
