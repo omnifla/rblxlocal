@@ -4,6 +4,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use Roblox\Authentication as Auth;
 use Roblox\Web\SiteHeader;
 use Roblox\Web\SiteFooter;
+use Roblox\Web\SiteAlert;
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:fb="http://www.facebook.com/2008/fbml" style="--wm-toolbar-height: 67px;">
 <!-- MachineID: WEB203 -->
@@ -93,6 +94,7 @@ use Roblox\Web\SiteFooter;
 							<div class="SystemAlertText">Please enable Javascript to use all the features on this site.</div>
 						</div>
 					</noscript>
+					<?= SiteAlert::render() ?>
 					<div id="BodyWrapper">
 						<div id="RepositionBody">
 							<div id="Body" style="">
