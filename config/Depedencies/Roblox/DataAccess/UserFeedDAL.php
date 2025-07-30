@@ -3,7 +3,7 @@
 // This is a ported version of Roblox.DataAccess.FeedDAL intended to be used for a new Feed System in the near future
 namespace Roblox.DataAccess;
 
-class FeedDAL
+class UserFeedDAL
 {
     public int $post_id = 0;
     public int $author_id = 0;
