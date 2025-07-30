@@ -1,5 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
+use Roblox\Web\SiteHeader;
+use Roblox\Web\SiteFooter;
 
 function sanitizeNameForUrl(string $name): string {
     $name = preg_replace('/[^a-zA-Z0-9 -]/', '', $name);
@@ -105,7 +107,7 @@ $genreLink = strtolower(str_replace(' ', '-', $genre)) . '-games';
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:fb="http://www.facebook.com/2008/fbml" style="--wm-toolbar-height: 1px;"><head id="ctl00_Head1">
 <head id="ctl00_Head1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true"><title>
-	Perfectly Legitimate Business Hat, a Hat by ROBLOX - ROBLOX (updated 6/27/2012 5:58:43 PM)
+	Perfectly Legitimate Business Hat, a Hat by <?php echo $user['user'];?> - <?php echo $site_properties['Title'] ?> (updated 6/27/2012 5:58:43 PM)
 </title>
 <link rel="stylesheet" href="/CSS/Base/CSS/FetchCSS?path=main___c1d3082f646e63bf22dab346e8648905_m.css">
 
@@ -158,6 +160,7 @@ $genreLink = strtolower(str_replace(' ', '-', $genre)) . '-games';
 <form name="aspnetForm" method="post" action="<?= htmlspecialchars($expectedUrl) ?>" id="aspnetForm">
 
 <div id="MasterContainer">
+<?= SiteHeader::render() ?>
 
 <div id="AdvertisingLeaderboard">
     <iframe allowtransparency="true" frameborder="0" height="90" scrolling="no" width="828" src="/userads/1"></iframe>
@@ -289,5 +292,6 @@ $genreLink = strtolower(str_replace(' ', '-', $genre)) . '-games';
 </div></div>
 </div>
 </form>
+<?= SiteFooter::render() ?>
 </body>
 </html>
