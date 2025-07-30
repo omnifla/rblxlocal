@@ -84,6 +84,21 @@ class FeedDAL
             $feeds[] = $feed;
         }
 
+    public static function getRecent(int $limit = 20): array {
+        global $conn;
+        $stmt = $conn->prepare("SELECT * FROM feeds ORDER BY posted_at DESC LIMIT :limit");
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $feeds = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $feed = new FeedDAL();
+            $feed->post_id = (int)$row['post_id'];
+            $feed->author_id = (int)$row['author_id'];
+            $feed->posted_at = (int)$row['posted_at'];
+            $feed->content = $row['content'];
+            $feeds[] = $feed;
+        }
         return $feeds;
     }
 }
