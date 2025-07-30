@@ -83,6 +83,8 @@ class UserFeedDAL
             $feed->content = $row['content'];
             $feeds[] = $feed;
         }
+        return $feeds;
+    }
 
     public static function getRecent(int $limit = 20): array {
         global $conn;
