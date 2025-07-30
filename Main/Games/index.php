@@ -1,3 +1,10 @@
+<?php
+include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
+use Roblox\Authentication as Auth;
+use Roblox\Web\SiteHeader;
+use Roblox\Web\SiteFooter;
+$user = Auth::GetAuthenticatedUserInfo();
+?>
 <!DOCTYPE html>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
