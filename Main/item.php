@@ -36,7 +36,7 @@ if ($id <= 0) {
     exit('Invalid asset ID.');
 }
 
-$stmt = $conn->prepare("SELECT * FROM assets WHERE AssetId = :id");
+$stmt = $conn->prepare('SELECT * FROM assets WHERE "AssetId" = :id');
 $stmt->execute([':id' => $id]);
 $asset = $stmt->fetch(PDO::FETCH_ASSOC);
 if (!$asset) {
@@ -44,7 +44,7 @@ if (!$asset) {
     exit('Asset not found.');
 }
 
-$stmtUser = $conn->prepare("SELECT * FROM users WHERE id = :ownerId");
+$stmtUser = $conn->prepare('SELECT * FROM users WHERE "id" = :ownerId');
 $stmtUser->execute([':ownerId' => $asset['OwnerId']]);
 $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
 
@@ -96,7 +96,7 @@ $description = htmlspecialchars($asset['Description'] ?: 'No description availab
 
 $reportUrl = "/AbuseReport/Asset.aspx?ID={$asset['AssetId']}&RedirectUrl=" . urlencode($expectedUrl);
 
-$genre = 'Town and City'; // Default genre if no genre info present, you can extend this logic to pull genres from DB if needed.
+$genre = 'All Genres';
 $genreCss = genreCssClass($genre);
 $genreLink = strtolower(str_replace(' ', '-', $genre)) . '-games';
 ?>
