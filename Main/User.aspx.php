@@ -70,9 +70,9 @@ $badgeMap = [
     16 => ['name' => 'Outrageous Builders Club', 'img' => '/Images/Badges/OutrageousBuildersClub-75x75.png'],
 ];
 
-$uid = intval($profileUser['id']);
-$k = intval($profileUser['knockouts']);
-$m = intval($profileUser['membership_type']);
+$uid = intval($user['id']);
+$k = intval($user['knockouts']);
+$m = intval($user['membership_type']);
 
 function giveBadge($db, $userId, $badgeId, $badgeMap) {
     if (!isset($badgeMap[$badgeId])) return;
