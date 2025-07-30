@@ -117,7 +117,7 @@ class Settings {
         "UserAssetShimClientApiKey" => "",
         "LogSource" => "Roblox",
         "LogLevel" => "Information",
-        "IsAssetOptionRemoteCached" => false,
+        "IsAssetOptionRemoteCached" => true,
         "IsIncreasedActiveUniverseLimitEnabled" => false,
         "MaxActiveUniversesCount" => 200,
         "MaxActiveUniversesCountForGroups" => 100,

@@ -480,3 +480,9 @@ composer.lock
 /config/includes/keys/PublicKey.pem
 /config/includes/keys/PrivateKeyBlob.txt
 /config/includes/keys/PublicKeyBlob.txt
+
+##### ASSETS
+##### .uaf = universal asset file
+##### .lua = lua file (signed and has --rbxasset) 
+/config/includes/assets/*.uaf
+/config/includes/assets/*.lua

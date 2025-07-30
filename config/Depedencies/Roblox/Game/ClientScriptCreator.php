@@ -29,21 +29,20 @@ class ClientScriptCreator {
     }
 
     // WARNING: this is insecure if you DON'T filter the variables, please filter them
-    private static function formatScripts(array $scriptList, array $replaceList) : string {
+    public static function formatScripts(array $scriptList, array $replaceList) : string {
         $returnScript = '';
         foreach ($scriptList as $script) {
             $returnScript = $returnScript . IncludeHelper::getContents(sprintf(self::LUA_BASEPATH, $script));
         }
 
         // now, we do some magical replacement
-        foreach ($replaceList as $strReplace => $strValue) {
+        foreach ($replaceList as $strReplace => $strValue) { // don't use the second arg in getContents since this predates that
             $returnScript = str_replace($strReplace, $strValue, $returnScript);
         }
         return $returnScript;
     }
 
     public static function getScript(string $script, array $replaceList) : string {
-        header('Content-Type: text/plain');
         $script = strtolower($script);
         if (!self::$DEFAULT_REPLACELIST['{0}'])
             self::init();
