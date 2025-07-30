@@ -34,7 +34,7 @@ foreach ($feeds as $feed) {
             <span style="display: block; padding-top: 5px; color: #AAA; font-size: 11px;">{$feed_date}</span>
         </div>
         <div class="feed-report-abuse">
-            <a href="/AbuseReport/Feed.aspx?ID={$feed->post_id}&RedirectUrl=/home">
+            <a href="/AbuseReport/Feed.aspx?ID={$feed->getPostId()}&RedirectUrl=/home">
                 <img src="//images.rbxcdn.com/1ea8de3b0f71a67b032b67ddc1770c78.png" alt="Report abuse" id="reportAbuseButton">
             </a>
         </div>
