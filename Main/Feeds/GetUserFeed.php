@@ -4,12 +4,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use Roblox\Authentication;
 use Roblox\UserFeed;
 use Roblox\DataAccess\FeedDAL;
-$userId = $info['id'] ?? 0;
 $limit = 20;
-if ($userId === 0) {
-    echo '<div class="no-feeds">You must be logged in to see your feed.</div>';
-    exit;
-}
 $feeds = UserFeed::getByUserIdPaged($userId, 0, $limit);
 if (empty($feeds)) {
     echo '<div class="no-feeds">No feeds available.</div>';
