@@ -64,4 +64,24 @@ class UserFeed
     {
         return $this->dal;
     }
+    
+    public function getFeedContent(): ?string
+    {
+        return $this->dal->content ?? null;
+    }
+
+    public function getFeedPostTime(): ?int
+    {
+        return $this->dal->posted_at ?? null;
+    }
+
+    public function getFeedAuthorId(): ?int
+    {
+        return $this->dal->author_id ?? null;
+    }
+
+    public function getPostId(): int
+    {
+        return $this->dal->post_id ?? 0;
+    }
 }
