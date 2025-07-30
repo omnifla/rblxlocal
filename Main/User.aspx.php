@@ -1227,7 +1227,13 @@ $categories = [
     15 => "Left Arms", 16 => "Right Arms", 17 => "Left Legs", 18 => "Right Legs",
     19 => "Torsos", 20 => "Packages",
 ];
+
 $currentCat = isset($_GET['cat']) ? intval($_GET['cat']) : 3;
+
+if (!isset($id)) {
+    $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+}
+
 $canViewInventory = true;
 if ($user['InventoryPrivacy'] !== 'All' && (!isset($_SESSION['id']) || $_SESSION['id'] !== $id)) {
     $canViewInventory = false;
@@ -1237,9 +1243,9 @@ if ($user['InventoryPrivacy'] !== 'All' && (!isset($_SESSION['id']) || $_SESSION
 <div id="AssetsMenu">
     <?php foreach ($categories as $catId => $catName): ?>
         <div class="verticaltab <?php echo $catId === $currentCat ? 'selected' : ''; ?>" data-cat="<?php echo $catId; ?>">
-	<a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetCategoryRepeater_ctl00_AssetCategorySelector">
-		<?php echo htmlspecialchars($catName); ?>
-	</a>
+            <a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetCategoryRepeater_ctl00_AssetCategorySelector">
+                <?php echo htmlspecialchars($catName); ?>
+            </a>
         </div>
     <?php endforeach; ?>
 </div>
@@ -1248,7 +1254,7 @@ if ($user['InventoryPrivacy'] !== 'All' && (!isset($_SESSION['id']) || $_SESSION
     <?php if (!$canViewInventory): ?>
         <p>You cannot view this user's inventory.</p>
     <?php else: ?>
-        <?php if (count($assets) === 0): ?>
+        <?php if (empty($assets)): ?>
             <p>This user has no items in this category.</p>
         <?php else: ?>
             <table cellspacing="0" border="0" style="border-collapse:collapse;">
@@ -1257,6 +1263,7 @@ if ($user['InventoryPrivacy'] !== 'All' && (!isset($_SESSION['id']) || $_SESSION
                 $cols = 6;
                 $rows = 3;
                 $total = count($assets);
+
                 $ownerIds = array_unique(array_map(fn($a) => (int)$a['OwnerId'], $assets));
                 if (count($ownerIds) > 0) {
                     $placeholders = implode(',', array_fill(0, count($ownerIds), '?'));
@@ -1266,6 +1273,7 @@ if ($user['InventoryPrivacy'] !== 'All' && (!isset($_SESSION['id']) || $_SESSION
                 } else {
                     $usernames = [];
                 }
+
                 for ($r = 0; $r < $rows; $r++) {
                     echo "<tr>";
                     for ($c = 0; $c < $cols; $c++) {
@@ -1277,18 +1285,20 @@ if ($user['InventoryPrivacy'] !== 'All' && (!isset($_SESSION['id']) || $_SESSION
                         $a = $assets[$index];
                         $imgSrc = "/Asset/Thumbs/{$a['AssetId']}.png";
                         $nameEscaped = htmlspecialchars($a['Name']);
-                        $descEscaped = htmlspecialchars($a['Description'] ?? '');
                         $ownerId = (int)$a['OwnerId'];
                         $assetId = (int)$a['AssetId'];
-                        $creatorName = isset($usernames[$ownerId]) ? htmlspecialchars($usernames[$ownerId]) : "User {$ownerId}";
+                        $creatorName = $usernames[$ownerId] ?? "User {$ownerId}";
+                        $creatorName = htmlspecialchars($creatorName);
+
                         $limitedIcon = "";
                         $serialDiv = "";
-                        if ($a['LimitedUnique']) {
+                        if (!empty($a['LimitedUnique'])) {
                             $limitedIcon = '<div style="position:relative;left:-22px;top:-13px;"><img src="/images/assetIcons/limitedunique.png"></div>';
                             $serialDiv = '<div style="position:relative;text-align:center;width:95px;font-size:10px;left:0px;top:-124px;font-weight:bold;color:#003366">#' . ($a['Serials'] > 0 ? $a['Serials'] : 'N/A') . ' / ' . ($a['Serials'] > 0 ? $a['Serials'] : 'N/A') . '</div>';
-                        } elseif ($a['Limited']) {
+                        } elseif (!empty($a['Limited'])) {
                             $limitedIcon = '<div style="position:relative;left:-22px;top:-13px;"><img src="/images/assetIcons/limited.png"></div>';
                         }
+
                         echo "<td class='Asset' valign='top'>
                             <div style='padding: 5px'>
                                 <div class='AssetThumbnail'>
@@ -1318,16 +1328,16 @@ if ($user['InventoryPrivacy'] !== 'All' && (!isset($_SESSION['id']) || $_SESSION
                 </tbody>
             </table>
             <div class="FooterPager">
-                <?php if ($page > 1): ?>
+                <?php if (!empty($page) && $page > 1): ?>
                     <span class="pager previous" data-page="<?php echo $page - 1; ?>"></span>
                 <?php else: ?>
                     <span class="pager previous disabled"></span>
                 <?php endif; ?>
                 <span style="vertical-align: top; display: inline-block; padding: 5px; padding-top: 6px">
-                    Page <?php echo $page; ?>
+                    Page <?php echo $page ?? 1; ?>
                 </span>
-                <?php if (count($assets) === $itemsPerPage): ?>
-                    <span class="pager next" data-page="<?php echo $page + 1; ?>"></span>
+                <?php if (count($assets) === ($itemsPerPage ?? 18)): ?>
+                    <span class="pager next" data-page="<?php echo ($page ?? 1) + 1; ?>"></span>
                 <?php else: ?>
                     <span class="pager next disabled"></span>
                 <?php endif; ?>
