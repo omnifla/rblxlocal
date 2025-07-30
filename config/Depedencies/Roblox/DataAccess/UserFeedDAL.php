@@ -95,7 +95,7 @@ class UserFeedDAL
 
         $feeds = [];
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $feed = new FeedDAL();
+            $feed = new UserFeedDAL();
             $feed->post_id = (int)$row['post_id'];
             $feed->author_id = (int)$row['author_id'];
             $feed->posted_at = (int)$row['posted_at'];
