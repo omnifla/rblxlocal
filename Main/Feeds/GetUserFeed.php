@@ -11,29 +11,29 @@ if (empty($feeds)) {
     exit;
 }
 foreach ($feeds as $feed) {
-    $author = Authentication::GetUserInfo($feed->getUserId());
+    $feed_content = htmlspecialchars($feed->content);
+    $feed_date = date('m/d/Y', $feed->posted_at) . " at " . date('h:i A', $feed->posted_at);
+    $author = \Roblox\Authentication::GetUserInfo($feed->author_id);
     if (!$author) continue;
     $username = htmlspecialchars($author['username']);
-    $content = htmlspecialchars($feed->getContent());
-    $postedAt = date('m/d/Y', $feed->getPostedAt()) . ' at ' . date('h:i A', $feed->getPostedAt());
     echo <<<HTML
     <div class="divider-top feed-container">
         <div class="feed-image-container notranslate">
             <a href="/user.aspx?id={$author['id']}">
                 <span class="feed-user-avatar">
-                    <img alt="{$username}" class="feed-user-avatar-image" src="/Images/Placeholder1024x1024.png" width="50" height="50">
+                    <img alt="{$username}" class="feed-user-avatar-image" src="/Images/Placeholder1024x1024.png" width=50 height=50>
                 </span>
             </a>
         </div>
         <div class="feed-text-container text">
             <span class="notranslate">
                 <a href="/User.aspx?ID={$author['id']}">{$username}</a><br>
-                <div class="Feedtext">"{$content}"</div>
+                <div class="Feedtext">"{$feed_content}"</div>
             </span>
-            <span style="display: block; padding-top: 5px; color: #AAA; font-size: 11px;">{$postedAt}</span>
+            <span style="display: block; padding-top: 5px; color: #AAA; font-size: 11px;">{$feed_date}</span>
         </div>
         <div class="feed-report-abuse">
-            <a href="/AbuseReport/Feed.aspx?ID={$feed->getId()}&RedirectUrl=/home">
+            <a href="/AbuseReport/Feed.aspx?ID={$feed->post_id}&RedirectUrl=/home">
                 <img src="//images.rbxcdn.com/1ea8de3b0f71a67b032b67ddc1770c78.png" alt="Report abuse" id="reportAbuseButton">
             </a>
         </div>
