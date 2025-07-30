@@ -10,10 +10,12 @@ if (empty($feeds)) {
     exit;
 }
 foreach ($feeds as $feed) {
-    $feed_content = htmlspecialchars($feed->content);
-    $feed_date = date('m/d/Y', $feed->posted_at) . " at " . date('h:i A', $feed->posted_at);
-    $author = \Roblox\Authentication::GetUserInfo($feed->author_id);
-    if (!$author) continue;
+    $feed_content = htmlspecialchars($feed->getFeedContent());
+    $feed_timestamp = $feed->getFeedPostTime();
+    $feed_date = date('m/d/Y', $feed_timestamp) . " at " . date('h:i A', $feed_timestamp);
+    $author_id = $feed->getFeedAuthorId();
+    if ($author_id === null) continue;
+    $author = \Roblox\Authentication::GetUserInfo($author_id);
     $username = htmlspecialchars($author['username']);
     echo <<<HTML
     <div class="divider-top feed-container">
