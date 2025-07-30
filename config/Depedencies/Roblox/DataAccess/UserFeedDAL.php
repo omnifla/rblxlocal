@@ -3,6 +3,7 @@
 // This is a ported version of Roblox\DataAccess\FeedDAL intended to be used for a new Feed System in the near future
 namespace Roblox\DataAccess;
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
+use \PDO;
 class UserFeedDAL
 {
     public int $post_id = 0;
