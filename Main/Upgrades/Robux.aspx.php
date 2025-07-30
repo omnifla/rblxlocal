@@ -128,6 +128,7 @@ use Roblox\Web\SiteFooter;
                             </div>
                         </div>
                         </noscript>
+                        <?= SiteAlert::render() ?>
                         <?= SiteHeader::render() ?>
                         <div id="BodyWrapper">
                             <div id="RepositionBody">
