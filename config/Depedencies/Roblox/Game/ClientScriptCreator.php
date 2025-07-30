@@ -8,6 +8,9 @@ use IncludeHelper;
 
 class ClientScriptCreator {
     public const GAMESCRIPT_LIST = [ // i feel like there's a better way for this
+        'join' => [
+            'Join.lua'
+        ],
         'studio' => [
             'Studio.lua'
         ],
