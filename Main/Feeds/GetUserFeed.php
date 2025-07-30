@@ -3,9 +3,8 @@
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use Roblox\Authentication;
 use Roblox\UserFeed;
-$userId = $info['id'] ?? 0;
 $limit = 20;
-$feeds = \Roblox\DataAccess\UserFeedDAL::getByAuthor($userId, $limit);
+$feeds = \Roblox\DataAccess\UserFeedDAL::getRecent($limit);
 if (empty($feeds)) {
     echo '<div class="no-feeds">No feeds available.</div>';
     exit;
