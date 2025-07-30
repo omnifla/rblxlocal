@@ -3,6 +3,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 
 use Roblox\Web\SiteHeader;
 use Roblox\Web\SiteFooter;
+use Roblox\Web\SiteAlert;
 
 $forum_id = isset($_GET['ForumID']) ? intval($_GET['ForumID']) : 0;
 
@@ -41,6 +42,7 @@ $threads = $threads_stmt->fetchAll(PDO::FETCH_ASSOC);
     <div id="BodyWrapper">
         <div id="RepositionBody">
             <?= SiteHeader::render() ?>
+            <?= SiteAlert::render() ?>
             <div class="forceSpace">&nbsp;</div>
 
             <div id="Body" style="width:970px;">
