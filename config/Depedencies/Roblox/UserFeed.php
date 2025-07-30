@@ -1,7 +1,7 @@
 <?php
 // ported and written by SkylerClock
 namespace Roblox;
-use Roblox\DataAccess\FeedDAL;
+use Roblox\DataAccess\UserFeedDAL;
 
 class UserFeed
 {
