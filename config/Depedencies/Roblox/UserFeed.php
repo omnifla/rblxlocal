@@ -1,6 +1,7 @@
 <?php
-// ported and written by SkylerClock
+// written and ported by SkylerClock
 namespace Roblox;
+
 use Roblox\DataAccess\UserFeedDAL;
 
 class UserFeed
@@ -11,72 +12,34 @@ class UserFeed
     {
         $this->dal = $dal ?? new UserFeedDAL();
     }
-    
-    public function getFeed(): ?FeedDAL
-    {
-        return FeedDAL::get($this->getFeedId());
-    }
-
-    public function getFeedContent(): ?string
-    {
-        $feed = $this->getFeed();
-        return $feed ? $feed->content : null;
-    }
-
-    public function getFeedAuthorId(): ?int
-    {
-        $feed = $this->getFeed();
-        return $feed ? (int)$feed->author_id : null;
-    }
-
-    public function getFeedPostTime(): ?int
-    {
-        $feed = $this->getFeed();
-        return $feed ? (int)$feed->posted_at : null;
-    }
 
     public function getId(): int
     {
-        return $this->dal->id;
+        return $this->dal->post_id;
     }
 
     public function getUserId(): int
     {
-        return $this->dal->user_id;
+        return $this->dal->author_id;
     }
 
-    public function setUserId(int $userId): void
+    public function getContent(): string
     {
-        $this->dal->user_id = $userId;
+        return $this->dal->content;
     }
 
-    public function getFeedId(): int
+    public function getPostedAt(): int
     {
-        return $this->dal->feed_id;
-    }
-
-    public function setFeedId(int $feedId): void
-    {
-        $this->dal->feed_id = $feedId;
+        return $this->dal->posted_at;
     }
 
     public function save(): void
     {
-        if ($this->dal->id === 0) {
-            $this->dal->created_at = (new DateTime('now', new DateTimeZone('UTC')))->format('Y-m-d H:i:s');
+        if ($this->dal->post_id === 0) {
             $this->dal->insert();
         } else {
             $this->dal->update();
         }
-    }
-
-    public static function createNew(int $userId, int $feedId): UserFeed
-    {
-        $userFeed = new UserFeed();
-        $userFeed->setUserId($userId);
-        $userFeed->setFeedId($feedId);
-        $userFeed->save();
-        return $userFeed;
     }
 
     public static function get(int $id): ?UserFeed
@@ -85,33 +48,16 @@ class UserFeed
         return $dal ? new UserFeed($dal) : null;
     }
 
-    public static function exists(int $userId, int $feedId): bool
+    public static function getRecent(int $limit = 20): array
     {
-        return UserFeedDAL::getByUserAndFeedId($userId, $feedId) !== null;
-    }
-
-    public static function getByUserIdPaged(int $userId, int $start, int $limit): array
-    {
-        $ids = UserFeedDAL::getIdsByUserIdPaged($userId, $start, $limit);
-        $result = [];
-        foreach ($ids as $id) {
-            $feed = self::get($id);
-            if ($feed !== null) {
-                $result[] = $feed;
-            }
-        }
-        return $result;
-    }
-
-    public static function multiGet(array $ids): array
-    {
-        $dals = UserFeedDAL::multiGet($ids);
+        $dals = UserFeedDAL::getRecent($limit);
         return array_map(fn($dal) => new UserFeed($dal), $dals);
     }
 
-    public function equals(UserFeed $other): bool
+    public static function getByAuthor(int $userId, int $limit = 20): array
     {
-        return $this->getId() === $other->getId();
+        $dals = UserFeedDAL::getByAuthor($userId, $limit);
+        return array_map(fn($dal) => new UserFeed($dal), $dals);
     }
 
     public function getDAL(): UserFeedDAL
