@@ -1,4 +1,5 @@
 <?php
+// page by chloe and should work
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 session_start();
 
@@ -27,7 +28,6 @@ if (!$canViewInventory) {
 
 $itemsPerPage = 18;
 $offset = ($page - 1) * $itemsPerPage;
-
 $catFilter = $cat !== null ? 'AND a."AssetType" = :cat' : '';
 
 $sql = '
@@ -96,6 +96,24 @@ for ($r = 0; $r < $rows; $r++) {
         } elseif ($a['Limited']) {
             $limitedIcon = '<div style="position:relative;left:-22px;top:-13px;"><img src="/images/assetIcons/limited.png"></div>';
         }
+
+        $priceHTML = '';
+        if (!$a['Offsale']) {
+            $robux = (int)$a['RobuxPrice'];
+            $tix = (int)$a['TixPrice'];
+            $isLimited = $a['Limited'] || $a['LimitedUnique'];
+            $wasText = $isLimited ? 'Was ' : '';
+            if ($robux > 0) {
+                $priceHTML .= '<span class="PriceInRobux notranslate">' . $wasText . 'R$: ' . $robux . '</span>';
+            }
+            if ($tix > 0) {
+                $priceHTML .= '<span class="PriceInTickets notranslate">' . $wasText . 'T$: ' . $tix . '</span>';
+            }
+            if ($priceHTML !== '') {
+                $priceHTML = '<div id="ctl00_cphRoblox_rbxUserAssetsPane_UserAssetsDataList_ctl07_Div1" class="AssetPrice">' . $priceHTML . '</div>';
+            }
+        }
+
         echo "<td class='Asset' valign='top'>
             <div style='padding: 5px'>
                 <div class='AssetThumbnail'>
@@ -115,6 +133,7 @@ for ($r = 0; $r < $rows; $r++) {
                             <a href='/User.aspx?ID={$ownerId}'>{$creatorName}</a>
                         </span>
                     </div>
+                    {$priceHTML}
                 </div>
             </div>
         </td>";
