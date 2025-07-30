@@ -5,7 +5,7 @@ use Roblox\Authentication;
 use Roblox\UserFeed;
 $userId = $info['id'] ?? 0;
 $limit = 20;
-$feeds = UserFeed::getByAuthor($userId, $limit);
+$feeds = \Roblox\DataAccess\UserFeedDAL::getByAuthor($userId, $limit);
 if (empty($feeds)) {
     echo '<div class="no-feeds">No feeds available.</div>';
     exit;
