@@ -1237,7 +1237,9 @@ if ($user['InventoryPrivacy'] > 0 && (!isset($_SESSION['id']) || $_SESSION['id']
 <div id="AssetsMenu">
     <?php foreach ($categories as $catId => $catName): ?>
         <div class="verticaltab <?php echo $catId === $currentCat ? 'selected' : ''; ?>" data-cat="<?php echo $catId; ?>">
-            <?php echo htmlspecialchars($catName); ?>
+	<a id="ctl00_cphRoblox_rbxUserAssetsPane_AssetCategoryRepeater_ctl00_AssetCategorySelector">
+		<?php echo htmlspecialchars($catName); ?>
+	</a>
         </div>
     <?php endforeach; ?>
 </div>
