@@ -88,18 +88,18 @@ class UserFeedDAL
     }
 
     public static function getRecent(int $limit = 20): array {
-        global $conn;
+        global $conn;    
         $stmt = $conn->prepare("SELECT * FROM feeds ORDER BY posted_at DESC LIMIT :limit");
-        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':limit', $limit, \PDO::PARAM_INT);
         $stmt->execute();
-
+        
         $feeds = [];
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $feed = new UserFeedDAL();
-            $feed->post_id = (int)$row['post_id'];
-            $feed->author_id = (int)$row['author_id'];
-            $feed->posted_at = (int)$row['posted_at'];
-            $feed->content = $row['content'];
+            $feed->post_id = isset($row['post_id']) ? (int)$row['post_id'] : 0;
+            $feed->author_id = isset($row['author_id']) ? (int)$row['author_id'] : 0;
+            $feed->posted_at = isset($row['posted_at']) ? (int)$row['posted_at'] : 0;
+            $feed->content = $row['content'] ?? '';
             $feeds[] = $feed;
         }
         return $feeds;
