@@ -1,7 +1,4 @@
 <?php
-$code = $_GET['code'] ?? 500;
-$code = intval($code);
-http_response_code($code);
 include_once $_SERVER['DOCUMENT_ROOT'].'/../config/main.php'; 
 use Roblox\Authentication as Auth;
 use Roblox\Web\SiteHeader;
