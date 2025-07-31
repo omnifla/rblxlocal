@@ -104,6 +104,29 @@ $reportUrl = "/AbuseReport/Asset.aspx?ID={$asset['AssetId']}&RedirectUrl=" . url
 $genre = 'All Genres';
 $genreCss = genreCssClass($genre);
 $genreLink = strtolower(str_replace(' ', '-', $genre)) . '-games';
+
+$hash = $_SERVER['REQUEST_URI'] ?? '';
+$selectedTab = 'RecommendationsTab';
+if (strpos($hash, '#CommentaryTab') !== false) {
+    $selectedTab = 'CommentaryTab';
+} elseif (strpos($hash, '#RecommendationsTab') !== false) {
+    $selectedTab = 'RecommendationsTab';
+}
+
+$stmtRecs = $conn->prepare('
+    SELECT a."AssetId", a."OwnerId", a."AssetType", a."Name", u.username 
+    FROM assets a 
+    JOIN users u ON u.id = a."OwnerId" 
+    WHERE a."AssetType" != 9 AND a."OwnerId" = 1
+    ORDER BY a."CreationDate" DESC
+    LIMIT 10
+');
+$stmtRecs->execute();
+$recommendations = $stmtRecs->fetchAll(PDO::FETCH_ASSOC);
+
+function tabClass($tabId, $selectedTab) {
+    return 'StandardPanelWhite TabContent' . ($tabId === $selectedTab ? ' selected' : '');
+}
 ?>
 
 <!DOCTYPE html>
@@ -278,12 +301,123 @@ $genreLink = strtolower(str_replace(' ', '-', $genre)) . '-games';
                 </ul>
                 <div class="StandardPanelContainer">
                     <div id="ScriptReviewTab" class="StandardPanelWhite TabContent"></div>
-                    <div class="StandardPanelWhite TabContent selected">
+                    <div id="RecommendationsTab" class="<?php echo tabClass('RecommendationsTab', $selectedTab); ?>">
                         <div class="AssetRecommenderContainer">
-                            <table id="ctl00_cphRoblox_AssetRec_dlAssets" cellspacing="0" align="Center" border="0" style="height:175px;width:800px;border-collapse:collapse;"></table>
+                            <table id="ctl00_cphRoblox_AssetRec_dlAssets" cellspacing="0" align="Center" border="0" style="height:175px;width:800px;border-collapse:collapse;">
+                                <tbody>
+                                    <?php
+                                    $counter = 0;
+                                    foreach ($recommendations as $index => $assetRec) {
+                                        if ($counter % 5 === 0) {
+                                            echo '<tr>';
+                                        }
+                                        $sanitizedName = sanitizeNameForUrl($assetRec['Name']);
+                                        $assetUrl = '/' . $sanitizedName . '-item?id=' . $assetRec['AssetId'];
+                                        $userUrl = '/User.aspx?ID=' . $assetRec['OwnerId'];
+                                        ?>
+                                        <td>
+                                            <div class="PortraitDiv" style="width: 140px; height: 165px; overflow: hidden;margin:auto;" visible="True" data-se="recommended-items-<?php echo $index; ?>">
+                                                <div class="AssetThumbnail">
+                                                    <a id="ctl00_cphRoblox_AssetRec_dlAssets_ctl<?php echo str_pad($index, 2, '0', STR_PAD_LEFT); ?>_AssetThumbnailHyperLink" title="<?php echo htmlspecialchars($assetRec['Name'], ENT_QUOTES); ?>" style="display:inline-block;height:110px;width:110px;cursor:pointer;" href="<?php echo $assetUrl; ?>">
+                                                        <img height="110" width="110" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="<?php echo htmlspecialchars($assetRec['Name'], ENT_QUOTES); ?>" src="/Thumbs/Asset.ashx?ID=<?php echo $assetRec['AssetId']; ?>">
+                                                    </a>
+                                                </div>
+                                                <div class="AssetDetails">
+                                                    <div class="AssetName noTranslate">
+                                                        <a id="ctl00_cphRoblox_AssetRec_dlAssets_ctl<?php echo str_pad($index, 2, '0', STR_PAD_LEFT); ?>_AssetNameHyperLinkPortrait" href="<?php echo $assetUrl; ?>">
+                                                            <?php echo htmlspecialchars($assetRec['Name'], ENT_QUOTES); ?>
+                                                        </a>
+                                                    </div>
+                                                    <div class="AssetCreator">
+                                                        <span class="stat-label">Creator:</span> 
+                                                        <span class="Detail stat">
+                                                            <a id="ctl00_cphRoblox_AssetRec_dlAssets_ctl<?php echo str_pad($index, 2, '0', STR_PAD_LEFT); ?>_CreatorHyperLinkPortrait" class="notranslate" href="<?php echo $userUrl; ?>">
+                                                                <?php echo htmlspecialchars($assetRec['username'], ENT_QUOTES); ?>
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <?php
+                                        $counter++;
+                                        if ($counter % 5 === 0) {
+                                            echo '</tr>';
+                                        }
+                                    }
+                                    if ($counter % 5 !== 0) {
+                                        echo '</tr>';
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
                         </div>
+                    
+                        <script type="text/javascript">
+                            $(function () {
+                                var itemNames = $('.PortraitDiv .AssetDetails .AssetName a');
+                                $.each(itemNames, function (index) {
+                                    var elem = $(itemNames[index]);
+                                    elem.html(fitStringToWidthSafe(elem.html(), 200));
+                                });
+                                var userNames = $('.PortraitDiv .AssetDetails .AssetCreator .Detail a');
+                                $.each(userNames, function (index) {
+                                    var elem = $(userNames[index]);
+                                    elem.html(fitStringToWidthSafe(elem.html(), 70));
+                                });
+                            });
+                        </script>
                     </div>
-                    <div id="CommentaryTab" class="StandardPanelWhite TabContent" style="display:none;"></div>
+                    
+                    <div id="CommentaryTab" class="<?php echo tabClass('CommentaryTab', $selectedTab); ?>">
+                        <div id="ctl00_cphRoblox_CommentsPane_CommentsUpdatePanel">
+                            <div id="AjaxCommentsPaneData" data-comments-floodcheck="3600"></div>
+                            <div class="AjaxCommentsContainer">
+                                <div class="Comments" data-asset-id="<?php echo (int)$asset['AssetId']; ?>"></div>
+                                <div class="CommentsItemTemplate">
+                                    <div class="Comment text">
+                                        <div class="Commenter">
+                                            <div class="Avatar" data-user-id="%CommentAuthorID" data-image-size="small"></div>
+                                        </div>
+                                        <div class="PostContainer">
+                                            <div class="Post">
+                                                <div class="Audit">
+                                                    <span class="ByLine footnote">Posted %CommentCreated ago by <a href="/web/20130622020708/http://www.roblox.com/user.aspx?id=%CommentAuthorID">%CommentAuthor</a></span>
+                                                    <div class="ReportAbuse">
+                                                        <span class="AbuseButton">
+                                                            <a href="AbuseReport/Comment.aspx?ID=%CommentID&amp;RedirectUrl=%PageURL">Report Abuse</a>
+                                                        </span>
+                                                    </div>
+                                                    <div style="clear:both;"></div>
+                                                </div>
+                                                <div class="Content">%CommentContent</div>
+                                                <div id="Actions" class="Actions">
+                                                    <a data-comment-id="%CommentID" class="DeleteCommentButton">Delete Comment</a>
+                                                </div>
+                                            </div>
+                                            <div class="PostBottom"></div>
+                                        </div>
+                                        <div style="clear:both;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <script type="text/javascript">
+                            Roblox.CommentsPane.Resources = {
+                                floodCheckString: 'You may only post a comment once every ',
+                                seconds: " seconds",
+                                noCommentsFound: 'No comments found.',
+                                moreComments: 'More comments',
+                                sorrySomethingWentWrong: 'Sorry, something went wrong.',
+                                charactersRemaining: ' characters remaining',
+                                emailVerifiedABTitle:"Verify Your Email",
+                                emailVerifiedABMessage:"You must verify your email before you can comment. You can verify your email on the <a href='/My/Account.aspx?confirmemail=1'>Account</a> page.",
+                                accept:"Verify",
+                                decline:"Cancel"
+                            };
+                        </script>
+                    </div>
                 </div>
             </div>
 
