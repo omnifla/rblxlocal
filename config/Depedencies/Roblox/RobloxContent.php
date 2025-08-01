@@ -6,7 +6,7 @@ use DOMDocument;
 use DOMElement;
 use Exception;
 use Imagick;
-use Roblox\Common\Web;
+use Roblox\Web;
 
 class RobloxContent
 {
