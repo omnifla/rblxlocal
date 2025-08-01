@@ -10,11 +10,15 @@ local createObject = function(characterAppearance)
         local character = player.Character
         local head = character.Head
         local face = head:WaitForChild("face")
-        face.Texture = "rbxassetid://1819"
+        face.Texture = "http://{3}/asset?id=1819"
     end
 end
 
+print("Player render info :")
+print("Site: {3}")
+print("CharApp: {4}")
+print("Height: {5}, Width: {6}")
+
 initEnv("http://{3}/")
-wait() -- wait before we render or else it'll fuck up
 createObject("{4}")
-print(getRender({5}, {6}))
+return getRender({5}, {6})
