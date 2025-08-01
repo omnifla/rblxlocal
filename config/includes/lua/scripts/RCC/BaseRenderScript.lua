@@ -23,3 +23,9 @@ end
 local getRender = function(height, width)
     return ThumbnailGenerator:Click("{0}", height, width, {1})
 end
+
+-- basic info about the render
+print("Started RCC Render at JobID: " .. game.JobId)
+print("EXT: {0}")
+print("Hide Skys: {1}")
+print("useLegacyRendering: {2}")
