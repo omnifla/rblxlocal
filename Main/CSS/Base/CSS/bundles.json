@@ -347,5 +347,11 @@
     ],
     "page___09c4a1b67a03bbb716c6f0c4a2a425b4_m.css": [
         "~\/CSS\/PartialViews\/Navigation.css"
+    ],
+    "page___16fb75c02c4ac33ef3891c585687aa28_m.css": [
+        "~\/CSS\/Base\/CSS\/StyleGuide.css",
+        "~\/CSS\/Pages\/Games\/Games.css",
+        "~\/CSS\/Pages\/VotingPanel.css",
+        "~\/CSS\/PartialViews\/Navigation.css"
     ]
 }

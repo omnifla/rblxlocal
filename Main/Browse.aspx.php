@@ -4,6 +4,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/../config/main.php";
 use Roblox\Authentication as Auth;
 use Roblox\Web\SiteHeader;
 use Roblox\Web\SiteFooter;
+use Roblox\Web\SiteAlert;
 $username = urldecode($_GET['name'] ?? $_GET['Name'] ?? "");
 if(isset($_POST['ctl00$cphRoblox$SearchTextBox'])){
     header("Location: /Browse.aspx?name=".$_POST['ctl00$cphRoblox$SearchTextBox']);
@@ -359,6 +360,7 @@ $(function(){
         
 
         <noscript><div class="SystemAlert"><div class="SystemAlertText">Please enable Javascript to use all the features on this site.</div></div></noscript>
+	<?= SiteAlert::render() ?>
         
         <div id="BodyWrapper">
             <div id="RepositionBody">

@@ -3,6 +3,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 
 use Roblox\Web\SiteHeader;
 use Roblox\Web\SiteFooter;
+use Roblox\Web\SiteAlert;
 
 // Fetch data from query parameters
 $subject = isset($_GET['subject']) ? trim($_GET['subject']) : '';
@@ -43,6 +44,7 @@ SiteHeader::render(["pageTitle" => $page_title]);
     <div id="BodyWrapper">
         <div id="RepositionBody">
             <?= SiteHeader::render() ?>
+            <?= SiteAlert::render() ?>
             <div class="forceSpace">&nbsp;</div>
             <div id="Body" style="width:970px;">
                 <table width="100%" height="100%" cellspacing="0" cellpadding="0" border="0">

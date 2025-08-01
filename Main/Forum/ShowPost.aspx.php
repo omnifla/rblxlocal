@@ -1,29 +1,16 @@
 <?php 
 // written by denied_id
-
-// ShowPost.aspx.php
-
-// Include necessary files
+// this should be rewritten soon
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 
 use Roblox\Web\SiteHeader;
 use Roblox\Web\SiteFooter;
+use Roblox\Web\SiteAlert;
 
-/**
- * Basic sanitization for forum post HTML. Removes any <script> tags and their content
- * to protect against malicious injections while still allowing safe HTML tags
- * that users previewed when creating their post.
- *
- * @param string $html Raw HTML from database
- * @return string Sanitized HTML safe for output
- */
 function sanitize_forum_html($html) {
-    // Remove <script> tags and their content (case-insensitive, multi-line)
     return preg_replace('#<script\b[^>]*>(.*?)</script>#is', '', $html);
 }
 
-
-// Get thread ID from URL
 $thread_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 if ($thread_id === 0) {
@@ -31,37 +18,26 @@ if ($thread_id === 0) {
     exit;
 }
 
-// Fetch thread info for breadcrumbs and title
 $thread_stmt = $conn->prepare("SELECT t.subject, t.forum_id, f.name as forum_name, f.group_id as forum_group_id, fg.name as forum_group_name FROM threads t JOIN forums f ON t.forum_id = f.id JOIN forum_groups fg ON f.group_id = fg.id WHERE t.id = :thread_id");
 $thread_stmt->execute(['thread_id' => $thread_id]);
 $thread = $thread_stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$thread) {
-    // Thread not found, redirect to forum index
     header("Location: /Forum/");
     exit;
 }
 
-// Increment view count
 $update_views_stmt = $conn->prepare("UPDATE threads SET views_count = views_count + 1 WHERE id = :thread_id");
 $update_views_stmt->execute(['thread_id' => $thread_id]);
-
-// Sorting setup
 $sort_order = isset($_GET['sort']) && $_GET['sort'] === 'newest' ? 'DESC' : 'ASC';
 $sort_param = $sort_order === 'DESC' ? 'newest' : 'oldest';
-
-// Pagination setup
 $posts_per_page = 10;
 $current_page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
 $offset = ($current_page - 1) * $posts_per_page;
-
-// Get total post count for pagination
 $count_stmt = $conn->prepare("SELECT COUNT(*) as total FROM posts WHERE thread_id = :thread_id");
 $count_stmt->execute(['thread_id' => $thread_id]);
 $total_posts = $count_stmt->fetch(PDO::FETCH_ASSOC)['total'];
 $total_pages = ceil($total_posts / $posts_per_page);
-
-// Fetch posts for the thread, joining with users to get author info
 $posts_stmt = $conn->prepare("
     SELECT p.id, p.content as body, p.created_at, u.id as user_id, u.username, u.post_count, u.created_at as join_date
     FROM posts p
@@ -75,11 +51,7 @@ $posts_stmt->bindValue(':limit', $posts_per_page, PDO::PARAM_INT);
 $posts_stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $posts_stmt->execute();
 $posts = $posts_stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// Page setup
 $page_title = htmlspecialchars($thread['subject']);
-
-// now we can include the header
 SiteHeader::render(["pageTitle" => $page_title]);
 ?>
 
@@ -95,6 +67,7 @@ SiteHeader::render(["pageTitle" => $page_title]);
     <div id="BodyWrapper">
         <div id="RepositionBody">
             <?= SiteHeader::render() ?>
+            <?= SiteAlert::render() ?>
             <div class="forceSpace">&nbsp;</div>
             <div id="Body" style="width:970px;">
                 <table width="100%" height="100%" cellspacing="0" cellpadding="0" border="0">

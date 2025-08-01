@@ -2,7 +2,7 @@
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use Roblox\Authentication as Auth;
 use Roblox\Web\SiteHeader;
-
+use Roblox\Web\SiteAlert;
 $user = Auth::GetAuthenticatedUserInfo();
 $userId = (int)$user["id"];
 
@@ -146,6 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 <?php SiteHeader::render($site_properties); ?>
+<?= SiteAlert::render() ?>
 <div id="MasterContainer">
   <div id="BodyWrapper"><div id="RepositionBody"><div id="Body" style="width:970px">
 

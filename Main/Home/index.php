@@ -6,6 +6,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use Roblox\Authentication as Auth;
 use Roblox\Web\SiteHeader;
 use Roblox\Web\SiteFooter;
+use Roblox\Web\SiteAlert;
 // e
 // redirects the user to /newlogin?redirect-url=url if not logged in (used to show 401 error before)
 if(!Auth::GetAuthenticatedUser()){
@@ -195,6 +196,7 @@ $(function(){
 <div class="forceSpaceUnderSubmenu">&nbsp;</div> 
             <div class="forceSpace">&nbsp;</div>
         <noscript>&lt;div class="SystemAlert"&gt;&lt;div class="SystemAlertText"&gt;Please enable Javascript to use all the features on this site.&lt;/div&gt;&lt;/div&gt;</noscript>
+	<?= SiteAlert::render() ?>
         <div id="BodyWrapper">
             <div id="RepositionBody">
                 <div id="Body" style="width:970px">
