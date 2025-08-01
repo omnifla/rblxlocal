@@ -1,6 +1,6 @@
 <?php
 // im gonna say it here but idfk what feedtypedal is, if meditext ever sees this please explain to me what this is because i ported this for no reason
-namespace Roblox.DataAccess;
+namespace Roblox\DataAccess;
 
 class FeedTypeDAL
 {

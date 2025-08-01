@@ -1,7 +1,7 @@
 <?php
 // written and ported by SkylerClock
 // this is Roblox.DataAccess.BadgeDAL and it's used for defining and inserting game badges
-namespace Roblox.DataAccess;
+namespace Roblox\DataAccess;
 
 class BadgeDAL
 {

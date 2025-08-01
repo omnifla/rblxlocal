@@ -71,6 +71,3 @@ Coming soon...
 
 ## Legalese
 rblx-local does not use any official ROBLOX and ROBLOX Corporation code, all of this is our own code loosely based on legacy ROBLOX code.
-
-> [!WARNING]
-> no questioncawk allowed here noise and the people are actually having a whole world if we go to the site to do it tomorrow and then we have been doing the same happend and I have a great guy that has been a good thing and I was hoping it could get a fix the avatar page and edited the same happend 
