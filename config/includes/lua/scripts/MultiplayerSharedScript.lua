@@ -1,20 +1,13 @@
--- functions --------------------------
-function onPlayerAdded(player)
-	-- override
-end
-
-
-
--- MultiplayerSharedScript.lua inserted here ------ Prepended to GroupBuild.lua and Join.lua --
+------ Prepended to Join.lua --
 
 -- log app init time
 pcall(function()
 	local t = ElapsedTime()
 	local platform = settings().Diagnostics.OsPlatform
-	game:HttpGet("http://{0}/Game/JoinRate.ashx?st=0&i=0&p=-1&c=GameAppInit&r=Success&d=" .. (math.floor(t*1000)) .. "&ip=localhost&errorType=&platform=" .. platform, false)
+	game:HttpGet("{17}/Game/JoinRate.ashx?st=0&i=0&p={13}&c=GameAppInit&r=Success&d=" .. (math.floor(t*1000)) .. "&ip=localhost&errorType=&platform=" .. platform, false)
 end)
 
-pcall(function() game:SetPlaceID(-1, false) end)
+pcall(function() game:SetPlaceID({13}, false) end)
 
 local startTime = tick()
 local connectResolved = false
@@ -26,6 +19,10 @@ local playStartTime = 0
 local cdnSuccess = 0
 local cdnFailure = 0
 
+-- if we are on a touch device, no blocking http calls allowed! This can cause a crash on iOS
+-- In general we need a long term strategy to remove blocking http calls from all platforms
+local isTouchDevice = Game:GetService("UserInputService").TouchEnabled
+
 settings()["Game Options"].CollisionSoundEnabled = true
 pcall(function() settings().Rendering.EnableFRM = true end)
 pcall(function() settings().Physics.Is30FpsThrottleEnabled = true end)
@@ -34,7 +31,7 @@ pcall(function() settings().Physics.PhysicsEnvironmentalThrottle = Enum.Envirome
 
 function reportContentProvider(time, queueLength, blocking)
 	pcall(function()
-		game:HttpGet("http://{0}/Analytics/ContentProvider.ashx?t=" .. time .. "&ql=" .. queueLength, blocking)
+		game:HttpGet("{17}/Analytics/ContentProvider.ashx?t=" .. time .. "&ql=" .. queueLength, blocking and not isTouchDevice)
 	end)
 end
 function reportCdn(blocking)
@@ -46,7 +43,7 @@ function reportCdn(blocking)
 		cdnSuccess = newCdnSuccess
 		cdnFailure = newCdnFailure
 		if successDelta > 0 or failureDelta > 0 then
-			game:HttpGet("http://{0}/Game/Cdn.ashx?source=client&success=" .. successDelta .. "&failure=" .. failureDelta, blocking)
+			game:HttpGet("{17}/Game/Cdn.ashx?source=client&success=" .. successDelta .. "&failure=" .. failureDelta, blocking and not isTouchDevice)
 		end
 	end)
 end
@@ -60,7 +57,7 @@ function reportDuration(category, result, duration, blocking,errorType)
 	if stats().Network:getChildren()[2] ~= nil then
 		bytesReceived = stats().Network:getChildren()[2].Stats.totalBytesReceived:GetValue()
 	end
-	pcall(function() game:HttpGet("http://{0}/Game/JoinRate.ashx?st=0&i=0&p=-1&c=" .. category .. "&r=" .. result .. "&d=" .. (math.floor(duration*1000)) .. "&b=" .. bytesReceived .. "&ip=localhost&errorType=" .. errorType .. "&platform=" .. platform, blocking) end)
+	pcall(function() game:HttpGet("{17}/Game/JoinRate.ashx?st=0&i=0&p={13}&c=" .. category .. "&r=" .. result .. "&d=" .. (math.floor(duration*1000)) .. "&b=" .. bytesReceived .. "&ip=localhost&errorType=" .. errorType .. "&platform=" .. platform, blocking and not isTouchDevice) end)
 end
 -- arguments ---------------------------------------
 local threadSleepTime = ...
@@ -71,9 +68,9 @@ end
 
 local test = true
 
-print("! Joining RBLX.local place")
+print("! Joining game '{12}' place {13} at {1}")
 local closeConnection = game.Close:connect(function() 
-	if 0 then
+	if {0} then
 		reportCdn(true)
 		if not connectResolved then
 			local duration = tick() - startTime;
@@ -93,34 +90,33 @@ local closeConnection = game.Close:connect(function()
 			playResolved = true
 			reportDuration("GameDuration","Success", duration, true)
 		end
-		pcall(function() game:HttpGet("&disconnect=true", true) end)
-		if true then pcall(function() game:HttpPost("https://{1}/auth/invalidate", "invalidate") end) end
+		if true then pcall(function() game:HttpPost("https://api.roblox.com/auth/invalidate", "invalidate") end) end
 	end
 end)
 
 game:GetService("ChangeHistoryService"):SetEnabled(false)
 game:GetService("ContentProvider"):SetThreadPool(16)
-game:GetService("InsertService"):SetBaseSetsUrl("http://{0}/Game/Tools/InsertAsset.ashx?nsets=10&type=base")
-game:GetService("InsertService"):SetUserSetsUrl("http://{0}/Game/Tools/InsertAsset.ashx?nsets=20&type=user&userid=%d")
-game:GetService("InsertService"):SetCollectionUrl("http://{0}/Game/Tools/InsertAsset.ashx?sid=%d")
-game:GetService("InsertService"):SetAssetUrl("http://{0}/Asset/?id=%d")
-game:GetService("InsertService"):SetAssetVersionUrl("http://{0}/Asset/?assetversionid=%d")
+game:GetService("InsertService"):SetBaseSetsUrl("{17}/Game/Tools/InsertAsset.ashx?nsets=10&type=base")
+game:GetService("InsertService"):SetUserSetsUrl("{17}/Game/Tools/InsertAsset.ashx?nsets=20&type=user&userid=%d")
+game:GetService("InsertService"):SetCollectionUrl("{17}/Game/Tools/InsertAsset.ashx?sid=%d")
+game:GetService("InsertService"):SetAssetUrl("{17}/Asset/?id=%d")
+game:GetService("InsertService"):SetAssetVersionUrl("{17}/Asset/?assetversionid=%d")
 
-pcall(function() game:GetService("SocialService"):SetFriendUrl("http://{0}/Game/LuaWebService/HandleSocialRequest.ashx?method=IsFriendsWith&playerid=%d&userid=%d") end)
-pcall(function() game:GetService("SocialService"):SetBestFriendUrl("http://{0}/Game/LuaWebService/HandleSocialRequest.ashx?method=IsBestFriendsWith&playerid=%d&userid=%d") end)
-pcall(function() game:GetService("SocialService"):SetGroupUrl("http://{0}/Game/LuaWebService/HandleSocialRequest.ashx?method=IsInGroup&playerid=%d&groupid=%d") end)
-pcall(function() game:GetService("SocialService"):SetGroupRankUrl("http://{0}/Game/LuaWebService/HandleSocialRequest.ashx?method=GetGroupRank&playerid=%d&groupid=%d") end)
-pcall(function() game:GetService("SocialService"):SetGroupRoleUrl("http://{0}/Game/LuaWebService/HandleSocialRequest.ashx?method=GetGroupRole&playerid=%d&groupid=%d") end)
-pcall(function() game:GetService("GamePassService"):SetPlayerHasPassUrl("http://{0}/Game/GamePass/GamePassHandler.ashx?Action=HasPass&UserID=%d&PassID=%d") end)
-pcall(function() game:GetService("MarketplaceService"):SetProductInfoUrl("https://{1}/marketplace/productinfo?assetId=%d") end)
-pcall(function() game:GetService("MarketplaceService"):SetPlayerOwnsAssetUrl("https://{1}/ownership/hasasset?userId=%d&assetId=%d") end)
+pcall(function() game:GetService("SocialService"):SetFriendUrl("{17}/Game/LuaWebService/HandleSocialRequest.ashx?method=IsFriendsWith&playerid=%d&userid=%d") end)
+pcall(function() game:GetService("SocialService"):SetBestFriendUrl("{17}/Game/LuaWebService/HandleSocialRequest.ashx?method=IsBestFriendsWith&playerid=%d&userid=%d") end)
+pcall(function() game:GetService("SocialService"):SetGroupUrl("{17}/Game/LuaWebService/HandleSocialRequest.ashx?method=IsInGroup&playerid=%d&groupid=%d") end)
+pcall(function() game:GetService("SocialService"):SetGroupRankUrl("{17}/Game/LuaWebService/HandleSocialRequest.ashx?method=GetGroupRank&playerid=%d&groupid=%d") end)
+pcall(function() game:GetService("SocialService"):SetGroupRoleUrl("{17}/Game/LuaWebService/HandleSocialRequest.ashx?method=GetGroupRole&playerid=%d&groupid=%d") end)
+pcall(function() game:GetService("GamePassService"):SetPlayerHasPassUrl("{17}/Game/GamePass/GamePassHandler.ashx?Action=HasPass&UserID=%d&PassID=%d") end)
+pcall(function() game:GetService("MarketplaceService"):SetProductInfoUrl("https://api.roblox.com/marketplace/productinfo?assetId=%d") end)
+pcall(function() game:GetService("MarketplaceService"):SetPlayerOwnsAssetUrl("https://api.roblox.com/ownership/hasasset?userId=%d&assetId=%d") end)
 pcall(function() game:SetCreatorID(0, Enum.CreatorType.User) end)
 
 -- Bubble chat.  This is all-encapsulated to allow us to turn it off with a config setting
 pcall(function() game:GetService("Players"):SetChatStyle(Enum.ChatStyle.Classic) end)
 
 local waitingForCharacter = false
-local waitingForCharacterGuid = "26c3de03-3381-4ab6-8e60-e415fa757eba";
+local waitingForCharacterGuid = "{15}";
 pcall( function()
 	if settings().Network.MtuOverride == 0 then
 	  settings().Network.MtuOverride = 1400
@@ -151,7 +147,7 @@ function setMessage(message)
 end
 
 function showErrorWindow(message, errorType, errorCategory)
-	if 0 then
+	if {0} then
 		if (not loadResolved) or (not joinResolved) then
 			local duration = tick() - startTime;
 			if not loadResolved then
@@ -178,18 +174,18 @@ end
 
 function registerPlay(key)
 	if true and game:GetService("CookiesService"):GetCookieValue(key) == "" then
-		game:GetService("CookiesService"):SetCookieValue(key, "{ \"userId\" : 0, \"placeId\" : -1, \"os\" : \"" .. settings().Diagnostics.OsPlatform .. "\" }")
+		game:GetService("CookiesService"):SetCookieValue(key, "{ \"userId\" : 0, \"placeId\" : {13}, \"os\" : \"" .. settings().Diagnostics.OsPlatform .. "\" }")
 	end
 end
 
 function analytics(name)
-	if not test and false then 
+	if not test and {20} then 
 		pcall(function() game:HttpGet("?IPFilter=Primary&SecondaryFilterName=UserId&SecondaryFilterValue=0&Type=" .. name, false) end)
 	end
 end
 
 function analyticsGuid(name, guid)
-	if not test and false then 
+	if not test and {20} then 
 		pcall(function() game:HttpGet("?IPFilter=Primary&SecondaryFilterName=guid&SecondaryFilterValue=" .. guid .. "&Type=" .. name, false) end)
 	end
 end
@@ -212,7 +208,7 @@ function onDisconnection(peer, lostConnection)
 		showErrorWindow("This game has shut down", "Kick", "Kick")
 	end
 	pcall(function() game:HttpGet("&disconnect=true", true) end)
-	if true then pcall(function() game:HttpPost("https://{1}/auth/invalidate", "invalidate") end) end
+	if true then pcall(function() game:HttpPost("https://api.roblox.com/auth/invalidate", "invalidate") end) end
 end
 
 function requestCharacter(replicator)
@@ -227,7 +223,7 @@ function requestCharacter(replicator)
 			
 			connection:disconnect()
 		
-			if 0 then
+			if {0} then
 				if not joinResolved then
 					local duration = tick() - startTime;
 					joinResolved = true
@@ -242,7 +238,7 @@ function requestCharacter(replicator)
 	
 	setMessage("Requesting character")
 	
-	if 0 and not loadResolved then
+	if {0} and not loadResolved then
 		local duration = tick() - startTime;
 		loadResolved = true
 		reportDuration("GameLoad","Success", duration, false)
@@ -269,7 +265,7 @@ function onConnectionAccepted(url, replicator)
 	
 	local success, err = pcall(function()	
 		if not test then 
-		    visit:SetPing("", 300) 
+		    visit:SetPing("{3}", {4}) 
 		end
 		
 		if not false then
@@ -315,9 +311,9 @@ end
 
 idled = false
 function onPlayerIdled(time)
-	if time > 30*60 then
+	if time > 20*60 then
 		showErrorWindow(string.format("You were disconnected for being idle %d minutes", time/60), "Idle", "Idle")
-		client:Disconnect()	
+		client:Disconnect()
 		if not idled then
 			idled = true
 		end
@@ -336,19 +332,19 @@ local success, err = pcall(function()
 
 	game:SetRemoteBuildMode(true)
 	
-	setMessage("Connecting to RBLX.local Server")
+	setMessage("Connecting to Server")
 	client.ConnectionAccepted:connect(onConnectionAccepted)
 	client.ConnectionRejected:connect(onConnectionRejected)
 	connectionFailed = client.ConnectionFailed:connect(onConnectionFailed)
-	client.Ticket = ""	
+	client.Ticket = "{10}"	
 	ifSeleniumThenSetCookie("SeleniumTest2", "Successfully connected to server")
 	
-	playerConnectSucces, player = pcall(function() return client:PlayerConnect(0, "localhost", 53640, 0, threadSleepTime) end)
+	playerConnectSucces, player = pcall(function() return client:PlayerConnect({7}, "{1}", {2}, {0}, threadSleepTime) end)
 	if not playerConnectSucces then
 		--Old player connection scheme
 		player = game:GetService("Players"):CreateLocalPlayer(0)
 		analytics("Created Player")
-		client:Connect("localhost", 53640, 0, threadSleepTime) -- Get the Game Server IP from the .env in order to prevent mass GS DDoSing though the port is a different story
+		client:Connect("{1}", {2}, {0}, threadSleepTime)
 	else
 		analytics("Created Player")
 	end
@@ -360,16 +356,16 @@ local success, err = pcall(function()
 
 	-- negotiate an auth token
 	if true then
-		pcall(function() game:HttpPost("https://{1}/auth/negotiate?ticket=", "negotiate") end)
+		pcall(function() game:HttpPost("https://api.roblox.com/auth/negotiate?ticket=", "negotiate") end)
 		delay(300, function()
 			while true do
-				pcall(function() game:HttpPost("https://{1}/auth/renew", "renew") end)
+				pcall(function() game:HttpPost("https://api.roblox.com/auth/renew", "renew") end)
 				wait(300)
 			end
 		end)
 	end
 
-	player:SetSuperSafeChat(true)
+	player:SetSuperSafeChat({8})
 	pcall(function() player:SetUnder13(true) end)
 	pcall(function() player:SetMembershipType(Enum.MembershipType.None) end)
 	pcall(function() player:SetAccountAge(0) end)
@@ -378,8 +374,8 @@ local success, err = pcall(function()
 	-- Overriden
 	onPlayerAdded(player)
 	
-	pcall(function() player.Name = [========[Player]========] end)
-	player.CharacterAppearance = ""	
+	pcall(function() player.Name = [========[{5}]========] end)
+	player.CharacterAppearance = "{9}"	
 	if not test then visit:SetUploadUrl("")end
 	
 	analytics("Connect Client")
@@ -394,7 +390,7 @@ ifSeleniumThenSetCookie("SeleniumTest3", "Successfully created player")
 
 if not test then
 	-- TODO: Async get?
-	loadfile("")("", -1, 0)
+	loadfile("{11}")("{12}", {13}, {0})
 end
 
 if 0 then
@@ -415,7 +411,7 @@ if 0 then
 end
 
 pcall(function() game:SetScreenshotInfo("") end)
-pcall(function() game:SetVideoInfo('<?xml version="1.0"?><entry xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:yt="http://gdata.youtube.com/schemas/2007"><media:group><media:title type="plain"><![CDATA[ROBLOX Place]]></media:title><media:description type="plain"><![CDATA[ For more games visit http://{0}]]></media:description><media:category scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Games</media:category><media:keywords>ROBLOX, video, free game, online virtual world</media:keywords></media:group></entry>') end)
+pcall(function() game:SetVideoInfo('') end)
 -- use single quotes here because the video info string may have unescaped double quotes
 
 analytics("Join Finished")

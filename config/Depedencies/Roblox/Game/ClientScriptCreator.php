@@ -18,6 +18,10 @@ class ClientScriptCreator {
             'SingleplayerSharedScript.lua',
             'Visit.lua'
         ],
+        'rcc-player' => [
+            'RCC/BaseRenderScript.lua',
+            'RCC/PlayerRender.lua'
+        ]
     ];
     public const LUA_BASEPATH = '/lua/scripts/%s';
     public static array $DEFAULT_REPLACELIST = [
