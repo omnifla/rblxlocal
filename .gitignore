@@ -483,6 +483,6 @@ composer.lock
 
 ##### ASSETS
 ##### .uaf = universal asset file
-##### .lua = lua file (signed and has --rbxasset) 
+##### .saf = lua file (signed and has --rbxasset) 
 /config/includes/assets/*.uaf
-/config/includes/assets/*.lua
+/config/includes/assets/*.saf

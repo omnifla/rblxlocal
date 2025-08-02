@@ -18,10 +18,15 @@ class ClientScriptCreator {
             'SingleplayerSharedScript.lua',
             'Visit.lua'
         ],
+
         'rcc-player' => [
             'RCC/BaseRenderScript.lua',
             'RCC/PlayerRender.lua'
-        ]
+        ],
+        'rcc-place' => [
+            'RCC/BaseRenderScript.lua',
+            'RCC/PlaceRender.lua'
+        ],
     ];
     public const LUA_BASEPATH = '/lua/scripts/%s';
     public static array $DEFAULT_REPLACELIST = [
@@ -36,7 +41,7 @@ class ClientScriptCreator {
     }
 
     // WARNING: this is insecure if you DON'T filter the variables, please filter them
-    public static function formatScripts(array $scriptList, array $replaceList) : string {
+    public static function formatScripts(array $scriptList, ?array $replaceList = []) : string {
         $returnScript = '';
         foreach ($scriptList as $script) {
             $returnScript = $returnScript . IncludeHelper::getContents(sprintf(self::LUA_BASEPATH, $script));
@@ -49,7 +54,7 @@ class ClientScriptCreator {
         return $returnScript;
     }
 
-    public static function getScript(string $script, array $replaceList) : string {
+    public static function getScript(string $script, ?array $replaceList = []) : string {
         $script = strtolower($script);
         if (!self::$DEFAULT_REPLACELIST['{0}'])
             self::init();

@@ -1,24 +1,24 @@
--- BaseRenderScript.lua inserted here --
+-- BaseRenderScript.lua inserted above --
 
+local characterAppearanceUrl, baseUrl, fileExtension, x, y, useLegacyRendering = ...
 local Players = game:GetService("Players")
-local createObject = function(characterAppearance)
+local createObject = function()
     local player = Players:CreateLocalPlayer(0)
-    player.CharacterAppearance = characterAppearance
+    player.CharacterAppearance = characterAppearanceUrl
     player:LoadCharacter(false)
 
-    if useLegacyRendering then
+    if useLegacyRendering then -- this doesn't work, leave this be for now
         local character = player.Character
         local head = character.Head
         local face = head:WaitForChild("face")
-        face.Texture = "http://{3}/asset?id=1819"
+        face.Texture = "http://rblx.local/asset?id=1819"
     end
 end
 
-print("Player render info :")
-print("Site: {3}")
-print("CharApp: {4}")
-print("Height: {5}, Width: {6}")
+print("Player RCC Render Info:")
+print("characterAppearanceUrl, baseUrl, fileExtension, x, y")
+print(characterAppearanceUrl, baseUrl, fileExtension, x, y)
 
-initEnv("http://{3}/")
-createObject("{4}")
-return getRender({5}, {6})
+initEnv(baseUrl)
+createObject()
+return getRender(fileExtension, x, y, true)
