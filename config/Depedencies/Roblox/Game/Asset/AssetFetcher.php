@@ -6,13 +6,16 @@ namespace Roblox\Game\Asset;
 use IncludeHelper;
 use Roblox\Settings;
 use Roblox\Game\ClientHelper;
+use Roblox\AssetTypes;
 
 class AssetFetcher {
     public bool $cacheAssets;
+    public bool $useRobloxCookie;
 
     private Settings $settingsInstance;
+    private string $assetApiKey;
 
-    private const ROBLOXAPI_URL = 'https://assetdelivery.roblox.com/v1/assetId/{0}';
+    private const ROBLOXAPI_URL = 'https://apis.roblox.com/asset-delivery-api/v1/assetId/{0}';
     private const ASSET_PATH = '/assets/{0}.{1}';
     private const ASSETPRE_PATH = '/assets/predefined/{0}.{1}';
     private const SIGNEDFILE_EXT = 'saf';
@@ -20,12 +23,47 @@ class AssetFetcher {
     function __construct()
     {
         $this->settingsInstance = new Settings();
-        $this->cacheAssets = $this->settingsInstance->settings['IsAssetOptionRemoteCached']; // might be the wrong settings, meh who cares
+        $this->cacheAssets = $this->settingsInstance->settings['IsAssetOptionRemoteCached']; // might be the wrong setting, meh who cares
+        $this->useRobloxCookie = true; // insecure, but keep this true as i haven't tested api keys yet...
+        $this->assetApiKey = $_ENV['ROBLOXAPI_KEY'];
     }
 
-    // WARNING: this is unsafe as $assetID isn't filtered
+    // WARNING: all of these private functions are unsafe, please $assetID before use
+
     private function getJSONString(string $assetID) : \stdClass {
-        return json_decode(file_get_contents(str_replace('{0}', $assetID, self::ROBLOXAPI_URL)));
+        // https://stackoverflow.com/a/3032658
+        // I AM NOT USING CURL
+        $options = [
+            'http' => [
+                'method' => 'GET',
+                'header' => "x-api-key: " . $this->assetApiKey . "\r\n"
+            ]
+        ];
+        $context = stream_context_create($options);
+
+        return json_decode(file_get_contents(str_replace('{0}', $assetID, self::ROBLOXAPI_URL), false, $context));
+    }
+
+    private function cacheAsset(string $assetID) {
+        $jsonContents = $this->getJSONString($assetID);
+        if (!isset($jsonContents->location)) {
+            // this is an error, log this and return an empty string
+            // $this->loggerInstance->log(LoggerLevel::ERROR, 'failed to load asset id: ' . $assetID)
+            var_dump($jsonContents->errors); // TODO: add this to the private logger
+            return '';
+        }
+
+        $fileContents = file_get_contents($jsonContents->location);
+        $isLuaFile = $jsonContents->assetTypeId == AssetTypes::$PantsID; // modern roblox uses different asset types, models are now 10
+        echo $isLuaFile;
+
+        $assetReplaceList = [
+            '{0}' => $assetID,
+            '{1}' => $isLuaFile ? self::SIGNEDFILE_EXT : 'uaf' // thank god for ternary operations!!!
+        ];
+
+        IncludeHelper::putContents(self::ASSET_PATH, $fileContents, $assetReplaceList);
+        return $fileContents;
     }
 
     private function getCachedFile(string $assetID, string $fileExt) : string | null {
@@ -54,12 +92,12 @@ class AssetFetcher {
         $fileInfo = IncludeHelper::findFileByName($assetID, '/assets/predefined');
         if (!$fileInfo)
             $fileInfo = IncludeHelper::findFileByName($assetID, '/assets');
-        
+
         $fileContents = null;
         if ($fileInfo)
             $fileContents = $this->getCachedFile($assetID, $fileInfo['extension']);
-        else
-            $fileContents = file_get_contents($this->getJSONString($assetID)->location);
+        else 
+            $fileContents = $this->cacheAsset($assetID);
 
         return $fileContents;
     }

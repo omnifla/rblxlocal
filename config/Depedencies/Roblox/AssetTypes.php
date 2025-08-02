@@ -2,7 +2,7 @@
 // ported by meditext
 namespace Roblox;
 // TODO: add more asset types from the Roblox Source code.
-class AssetType
+class AssetTypes
 {
     // static ids and values
     public const AudioValue = "Audio";
