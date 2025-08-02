@@ -328,11 +328,14 @@ $(function(){
                 googletag.display("3439303639313930");
             });
         </script>
-    <div id="google_ads_iframe_/1015347/Roblox_MyHome_Right_160x600_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1015347/Roblox_MyHome_Right_160x600_0" name="google_ads_iframe_/1015347/Roblox_MyHome_Right_160x600_0" width="160" height="600" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" src="javascript:"<html><body style='background:transparent'></body></html>"" style="border: 0px; vertical-align: bottom;"></iframe></div><iframe id="google_ads_iframe_/1015347/Roblox_MyHome_Right_160x600_0__hidden__" name="google_ads_iframe_/1015347/Roblox_MyHome_Right_160x600_0__hidden__" width="0" height="0" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" src="javascript:"<html><body style='background:transparent'></body></html>"" style="border: 0px; vertical-align: bottom; visibility: hidden; display: none;"></iframe></span>
-    <div class="ad-annotations " style="width: 160px">
-        <span class="ad-identification">Advertisement</span>
-            <a class="BadAdButton" href="http://<?= $site_properties['hostname'] ?>/Ads/ReportAd.aspx" title="click to report an offensive ad">Report</a>
-    </div>
+    <iframe
+    allowtransparency="true"
+    frameborder="0"
+    height="160"
+    scrolling="no"
+    src="/userads/1"
+    width="600"
+    data-js-adtype="iframead"></iframe>
 </div>        </div>
     </div>
 	<div class="clear"></div>
