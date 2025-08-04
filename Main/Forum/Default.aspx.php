@@ -3,6 +3,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 
 use Roblox\Web\SiteHeader;
 use Roblox\Web\SiteFooter;
+use Roblox\Web\SiteAlert;
 
 // Fetch forum groups
 $groups = $conn->query('SELECT id, name FROM forum_groups ORDER BY sort_order ASC')->fetchAll(PDO::FETCH_ASSOC);
@@ -24,6 +25,7 @@ $groups = $conn->query('SELECT id, name FROM forum_groups ORDER BY sort_order AS
     <div id="BodyWrapper">
         <div id="RepositionBody">
             <?= SiteHeader::render() ?>
+            <?= SiteAlert::render() ?>
             <div class="forceSpace">&nbsp;</div>
             <div id="Body" style="width:970px;">
                 <table width="100%">

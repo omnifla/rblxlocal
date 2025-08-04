@@ -4,7 +4,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use Roblox\Authentication as Auth;
 use Roblox\Web\SiteHeader;
 use Roblox\Web\SiteFooter;
-
+use Roblox\Web\SiteAlert;
 $user = Auth::GetAuthenticatedUserInfo();
 $userId = (int)$user["id"];
 ?>
@@ -34,6 +34,7 @@ $userId = (int)$user["id"];
 <div id="BodyWrapper">
 <div id="RepositionBody">
 <?= SiteHeader::render() ?>
+<?= SiteAlert::render() ?>
 <div id="Body" style="width:970px;">
 <div id="Container">
 <div id="UserContainer">

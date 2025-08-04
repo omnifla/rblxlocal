@@ -1,6 +1,6 @@
 <?php
 // ported by meditext
-namespace Roblox\Web\Authentication;
+namespace Roblox\Authentication;
 // this file defines the RobloxGuestCookie class and its dependencies
 // extra note: someone can use this to be any fucking guest they want to be including guest 666 but who cares lol
 class RobloxGuestCookie

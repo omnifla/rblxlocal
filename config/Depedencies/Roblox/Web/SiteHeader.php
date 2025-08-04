@@ -2,6 +2,7 @@
 // written by meditext & SkylerClock
 namespace Roblox\Web;
 use Roblox\Authentication as Auth;
+use Roblox\Alert;
 
 class SiteHeader{
     private bool $isAuthenticated;
@@ -1195,5 +1196,20 @@ $html = <<<HTML
             HTML;
             return $html;
         }
+    }
+}
+class SiteAlert {
+    public static function render(): string
+    {
+        $alert = Alert::getLast();
+        if (!$alert) {
+            return '';
+        }
+        $text = htmlspecialchars($alert->getText(), ENT_QUOTES, 'UTF-8');
+        return <<<HTML
+        <div class="SystemAlert">
+            <div class="SystemAlertText" style="background-color: orange;">{$text}</div>
+        </div>
+        HTML;
     }
 }

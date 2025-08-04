@@ -1,7 +1,7 @@
 <?php
 // written and ported by SkylerClock
 // Roblox.DataAccess.BadgeTypeDAL is used to manage types of badges, meaning the category or classification of a badge
-namespace Roblox.DataAccess;
+namespace Roblox\DataAccess;
 use \DateTime;
 
 class BadgeTypeDAL
@@ -20,9 +20,9 @@ class BadgeTypeDAL
     {
         global $conn;
         $this->db = $conn;
-
-    public function insert(): void
     }
+    public function insert(): void
+    
     {
         if (trim($this->value) === '') {
             throw new Exception("Required value: value");

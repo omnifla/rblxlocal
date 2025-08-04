@@ -4,6 +4,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use Roblox\Authentication as Auth;
 use Roblox\Web\SiteHeader;
 use Roblox\Web\SiteFooter;
+use Roblox\Web\SiteAlert;
 
 // Check if user is authenticated
 $current_user = Auth::GetAuthenticatedUser();
@@ -108,6 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div id="BodyWrapper">
         <div id="RepositionBody">
             <?= SiteHeader::render() ?>
+            <?= SiteAlert::render() ?>
             <div class="forceSpace">&nbsp;</div>
 
             <div id="Body" style="width:970px;">
