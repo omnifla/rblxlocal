@@ -3,6 +3,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use Roblox\Authentication as Auth;
 use Roblox\Web\SiteHeader;
 use Roblox\Web\SiteFooter;
+use Roblox\Web\SiteAlert;
 $user = Auth::GetAuthenticatedUserInfo();
 ?>
 <!DOCTYPE html>
@@ -243,6 +244,7 @@ $(function(){
                     </style>
                     <div class="forceSpace">&nbsp;</div>
                 <noscript><div class="SystemAlert"><div class="SystemAlertText">Please enable Javascript to use all the features on this site.</div></div></noscript>
+		<?= SiteAlert::render() ?>
                 <div id="BodyWrapper">
                     <div id="RepositionBody">
                         <div id="Body" style="width:auto; min-width:970px;">

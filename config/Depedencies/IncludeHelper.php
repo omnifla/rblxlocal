@@ -29,6 +29,18 @@ class IncludeHelper {
         }
 
         // we should be fine when we use this lol
-        return file_get_contents(self::$basePath . filter_var($path));
+        return @file_get_contents(self::$basePath . filter_var($path));
+    }
+
+    public static function putContents(string $path, mixed $contents, ?array $replaceList = null) {
+        if (!self::$basePath)
+            self::$basePath = $_SERVER['DOCUMENT_ROOT'] . '/../config/includes';
+        if ($replaceList) {
+            foreach ($replaceList as $key => $value) {
+                $path = str_replace($key, $value, $path);
+            }
+        }
+
+        file_put_contents(self::$basePath . filter_var($path), $contents);
     }
 }

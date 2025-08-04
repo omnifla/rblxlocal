@@ -3,6 +3,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use Roblox\Authentication as Auth;
 use Roblox\Web\ConfirmationModal;
 use Roblox\Web\SiteHeader;
+use Roblox\Web\SiteAlert;
 if(Auth::GetAuthenticatedUser()){
     header("Location: /Home");
     exit;
@@ -231,6 +232,7 @@ $(function(){
             </style>
                             <div class="forceSpace">&nbsp;</div>
                                 <noscript><div class="SystemAlert"><div class="SystemAlertText">Please enable Javascript to use all the features on this site.</div></div></noscript>
+	                        <?= SiteAlert::render() ?>
             <!--
             <div class="SystemAlert" style="background-color:blue">
                 <div class="SystemAlertText"><div> Player Points and Leaderboards have been reset. The beta test continues...</div></div>
