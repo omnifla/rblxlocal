@@ -1,5 +1,7 @@
 <?php
-namespace Roblox\Avatar;
+// ported by meditext
+// TODO: make it use assets table instead of asset_types
+namespace Roblox\DataAccess;
 
 use \PDO;
 use \Exception;
