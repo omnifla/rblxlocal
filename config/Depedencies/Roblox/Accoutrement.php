@@ -1,7 +1,7 @@
 <?php
 // ported by meditext
 namespace Roblox;
-use Roblox\AccoutrementDAL;
+use Roblox\DataAccess;
 use Roblox\UserAvatar;
 use Exception;
 
@@ -104,7 +104,7 @@ class Accoutrement {
         $currentlyWornAccoutrements = self::getUserAccoutrements($userId);
         $currentlyWornOfType = array_filter($currentlyWornAccoutrements, fn($a) => $a->getUserAsset()->asset_type_id === $assetTypeId);
 
-        if (count($currentlyWornOfType) >= ($assetTypeId === AssetType::HAT_ID ? 3 : 1)) {
+        if (count($currentlyWornOfType) >= ($assetTypeId === AssetType::$HatID ? 3 : 1)) {
             foreach ($currentlyWornOfType as $accoutrement) {
                 $accoutrement->delete();
             }
@@ -115,29 +115,20 @@ class Accoutrement {
 
     public static function isValidAssetType(int $assetTypeId): bool {
         $validAssetTypes = [
-            AssetType::HEAD_ID,
-            AssetType::FACE_ID,
-            AssetType::GEAR_ID,
-            AssetType::HAT_ID,
-            AssetType::TEE_SHIRT_ID,
-            AssetType::SHIRT_ID,
-            AssetType::PANTS_ID,
-            AssetType::PACKAGE_ID,
+            AssetType::$HeadID,
+            AssetType::$FaceID,
+            AssetType::$GearID,
+            AssetType::$HatID,
+            AssetType::$TeeShirtID,
+            AssetType::$ShirtID,
+            AssetType::$PantsID,
+            AssetType::$PackageID,
+            AssetType::$TorsoID,
+            AssetType::$RightArmID,
+            AssetType::$LeftArmID,
+            AssetType::$RightArmID,
+            AssetType::$LeftArmID,
         ];
-
-        if (Settings::TORSO_ASSET_TYPE_ENABLED) {
-            $validAssetTypes[] = AssetType::TORSO_ID;
-        }
-
-        if (Settings::INDIVIDUAL_ARMS_ASSET_TYPE_ENABLED) {
-            $validAssetTypes[] = AssetType::RIGHT_ARM_ID;
-            $validAssetTypes[] = AssetType::LEFT_ARM_ID;
-        }
-
-        if (Settings::INDIVIDUAL_LEGS_ASSET_TYPE_ENABLED) {
-            $validAssetTypes[] = AssetType::RIGHT_LEG_ID;
-            $validAssetTypes[] = AssetType::LEFT_LEG_ID;
-        }
 
         return in_array($assetTypeId, $validAssetTypes, true);
     }
