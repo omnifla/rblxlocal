@@ -13,13 +13,13 @@ $userId = (int)$user["id"];
 $currentUser = null;
 if(isset($_GET['id']) || isset($_GET["ID"]) || isset($_GET['Id'])) {
     $selfview = false;
+    $id = (int)($_GET['id'] ?? $_GET['ID'] ?? $_GET['Id'] ?? 0);
+    $user = Auth::GetUserInfo($id);
 }
 
-$id = $selfview ? $userId : (int)($_GET['id'] ?? $_GET['ID'] ?? $_GET['Id'] ?? 0);
-$user = Auth::GetUserInfo($id);
+
 if (!$user) { 
-    //header("Location: /RobloxDefaultErrorPage.aspx?code=404", true, 302);
-    echo "User not found.";
+    header("Location: /RobloxDefaultErrorPage.aspx?code=404", true, 302);
     exit;
 }
 $user['username'] = htmlspecialchars($user['username']);
