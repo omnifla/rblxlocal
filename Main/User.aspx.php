@@ -23,8 +23,8 @@ if (!$user) {
 }
 $user['username'] = htmlspecialchars($user['username']);
 $user['description'] = htmlspecialchars($user['description'] ?? $user['username'] . " has no description");
-$userPronoun = $profileInfo->Name." does";
-$addressUserAs = $profileInfo->Name."'s";
+$userPronoun = $user['username']." does";
+$addressUserAs = $user['username']."'s";
 if($selfview){
     $userPronoun = "You do";
     $addressUserAs = "Your";
