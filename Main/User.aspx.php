@@ -6,18 +6,16 @@ use Roblox\Web\SiteFooter;
 use Roblox\Web\SiteAlert;
 
 session_start();
-
+$selfview = true;
 $user = Auth::GetAuthenticatedUserInfo();
 $userId = (int)$user["id"];
 
 $currentUser = null;
-if (isset($_SESSION['id'])) {
-    $stmt = $conn->prepare('SELECT "InventoryPrivacy" FROM users WHERE id = :id');
-    $stmt->execute([':id' => $_SESSION['id']]);
-    $currentUser = $stmt->fetch(PDO::FETCH_ASSOC);
+if(isset($_GET['id']) || isset($_GET["ID"]) || isset($_GET['Id'])) {
+    $selfview = false;
 }
 
-$id = intval($_GET['id'] ?? $_GET['Id'] ?? $_GET["ID"] ?? $userId);
+$id = $selfview ? $userId : (int)($_GET['id'] ?? $_GET['ID'] ?? $_GET['Id'] ?? 0);
 $user = Auth::GetUserInfo($id);
 if (!$user) { 
     header("Location: /RobloxDefaultErrorPage.aspx?code=404", true, 302);
@@ -25,7 +23,12 @@ if (!$user) {
 }
 $user['username'] = htmlspecialchars($user['username']);
 $user['description'] = htmlspecialchars($user['description'] ?? $user['username'] . " has no description");
-
+$userPronoun = $profileInfo->Name." does";
+$addressUserAs = $profileInfo->Name."'s";
+if($selfview){
+    $userPronoun = "You do";
+    $addressUserAs = "Your";
+}
 $page = max(1, intval($_GET['page'] ?? 1));
 $cat = isset($_GET['cat']) ? intval($_GET['cat']) : null;
 $itemsPerPage = 18;
@@ -368,9 +371,34 @@ if (isset($user['membership_type'])) {
 ?>
 
         
-<div style="width:900px;height:30px;clear:both; display:none;">
-    <span id="ctl00_cphRoblox_rbxHeaderPane_nameRegion" style="font-size:20px; font-weight:bold;"><?= $user['username'] ?></span>
-</div>
+<?php if($selfview) {
+    $get_recent_Feed = $conn->prepare("SELECT * FROM \"feeds\" WHERE \"author_id\" = ? ORDER BY \"post_id\" DESC LIMIT 1");
+    $get_recent_Feed->execute([$user['id']]);
+    $recent_Feed = $get_recent_Feed->fetch(PDO::FETCH_ASSOC);
+    $textStatus = htmlspecialchars($recent_Feed["content"]);
+  echo <<<HTML
+  <div id="ctl00_cphRoblox_rbxHeaderPane_statusBox" class="blank-box" style="width:951px; padding: 8px;word-wrap: break-word;display:block;">
+    <span style="font-size:12px;color: #888;word-wrap: normal;">
+      Right now I'm:
+    </span> &nbsp;&nbsp;
+    <span id="ctl00_cphRoblox_rbxHeaderPane_statusRegion" style="font-size:14px;" class="notranslate"><i>"{$textStatus}"</i></span>&nbsp;&nbsp;
+    <a href="UserControls/#" id="ctl00_cphRoblox_rbxHeaderPane_updateStatusLink" style="font-size:14px;word-wrap:normal;display:block;" onclick="if (!window.__cfRLUnblockHandlers) return false; document.getElementById('updateStatusBox').style.display='block';document.getElementById('ctl00_cphRoblox_rbxHeaderPane_updateStatusLink').style.display='none'; return false;">&gt; Update My Status</a>
+    <div id="updateStatusBox" style="display:none;">
+      <input type="text" style="visibility:hidden;position:absolute">
+        <span style="position:relative">
+        <input name="ctl00$cphRoblox$rbxHeaderPane$txtStatusMessage" type="text" id="ctl00_cphRoblox_rbxHeaderPane_txtStatusMessage" style="margin-bottom:5px;width:560px;height:17px;" maxlength="254" value="{$textStatus}">&nbsp;&nbsp;
+      </span>
+      <input type="submit" name="ctl00$cphRoblox$rbxHeaderPane$btnUpdateStatus" value="Save" onclick="if (!window.__cfRLUnblockHandlers) return false; javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$cphRoblox$rbxHeaderPane$btnUpdateStatus&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, false))" id="ctl00_cphRoblox_rbxHeaderPane_btnUpdateStatus" class="translate">&nbsp;<input type="button" value="Cancel" onclick="if (!window.__cfRLUnblockHandlers) return false; document.getElementById('updateStatusBox').style.display='none';document.getElementById('ctl00_cphRoblox_rbxHeaderPane_updateStatusLink').style.display='inline';" <br="">
+    </div>
+  </div>
+  HTML;
+    } else {
+  echo <<<HTML
+        <div style="width:900px;height:30px;clear:both; display:none;">
+    <span id="ctl00_cphRoblox_rbxHeaderPane_nameRegion" style="font-size:20px; font-weight:bold;">{$user['Name']}</span>
+  </div>
+  HTML;
+  } ?>
 
 
 
@@ -381,7 +409,7 @@ if (isset($user['membership_type'])) {
             
 
 <h2 class="title">
-    <span id="ctl00_cphRoblox_rbxUserPane_lUserRobloxURL"><?= $user['username'] ?>'s Profile</span></h2>
+    <span id="ctl00_cphRoblox_rbxUserPane_lUserRobloxURL"><?= $addressUserAs ?> Profile</span></h2>
 <div class="divider-bottom" style="position: relative;z-index:3;padding-bottom: 20px">
     <div style="width: 100%">
         <div id="ctl00_cphRoblox_rbxUserPane_onlineStatusRow">
@@ -446,8 +474,27 @@ if (isset($user['membership_type'])) {
     </script>
 </div>
 
-                    <div class="ProfileAlertPanel" style='display: none; margin: 15px auto 0px auto; width: 205px;'>
-                        
+                    <div class="ProfileAlertPanel" style='<?php if(!$selfview){ echo"display: none"; }?> margin: 15px auto 0px auto; width: 205px;'>
+                        <?php if($selfview) { 
+                    echo <<<HTML
+                      <div class="SmallHeaderAlertSpaceLeft">
+                        <div class="AlertSpace">
+                          <div class="MessageAlert">
+                            <a id="ctl00_cphRoblox_rbxUserPane_Alerts1_MessageAlertCaptionHyperLink" class="MessageAlertCaption tooltip-bottom" href="/My/Messages.aspx" original-title="Inbox">0</a>
+                          </div>
+                          <div class="FriendsAlert">
+                            <a id="ctl00_cphRoblox_rbxUserPane_Alerts1_FriendsAlertCaptionHyperLink" class="FriendsAlertCaption tooltip-bottom" href="/Friends.aspx" original-title="Friend Requests">0</a>
+                          </div>
+                          <div class="RobuxAlert">
+                            <a id="ctl00_cphRoblox_rbxUserPane_Alerts1_RobuxAlertCaptionHyperLink" class="RobuxAlertCaption tooltip-bottom" href="/My/Money.aspx?tab=MyTransactions" original-title="ROBUX">{$user['robux']}</a>
+                          </div>
+                          <div class="TicketsAlert">
+                            <a id="ctl00_cphRoblox_rbxUserPane_Alerts1_TicketsAlertCaptionHyperLink" class="TicketsAlertCaption tooltip-bottom" href="/My/Money.aspx?tab=MyTransactions" original-title="Tickets">{$user['tickets']}</a>
+                          </div>
+                        </div>
+                      </div>
+                      HTML;
+                        } ?>
                         <br />
                     </div>
                     <div style="margin-right: 20px">
@@ -778,7 +825,7 @@ echo '</tr></tbody></table>';
 <div style="padding-bottom: 20px">
     <div>
         <h2 class="title" style="display:block;float: left;">
-            <span class="notranslate"><?= $user['username'] ?></span>'s Sets
+            <span class="notranslate"><?= $addressUserAs ?></span> Sets
         </h2>
         <a data-js-my-button href class="btn-small btn-neutral" id="ToggleBetweenOwnedSubscribedSets" style="float: right; margin-right: 20px; margin-top: 25px" onclick="Roblox.SetsPaneObject.toggleBetweenSetsOwnedSubscribed();return false;" >View Subscribed<span class="btn-text" id="SetsToggleSpan">View Subscribed</span></a>
         <div class="clear"></div>
@@ -994,7 +1041,7 @@ echo '</tr></tbody></table>';
                 
 
 <div style="margin: 12px 0 20px; overflow:visible">
-    <h2 style="float: left"><?= $user['username'] ?>'s Friends</h2>
+    <h2 style="float: left"><?= $addressUserAs ?> Friends</h2>
     
     <a data-js-my-button style="float: right" href="Friends.aspx?UserID=<?= $user['id'] ?>" class="btn-small btn-neutral" id="HeaderButton">See All 97<span class="btn-text">See All 97</span></a>
     
