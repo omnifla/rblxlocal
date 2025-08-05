@@ -18,7 +18,8 @@ if(isset($_GET['id']) || isset($_GET["ID"]) || isset($_GET['Id'])) {
 $id = $selfview ? $userId : (int)($_GET['id'] ?? $_GET['ID'] ?? $_GET['Id'] ?? 0);
 $user = Auth::GetUserInfo($id);
 if (!$user) { 
-    header("Location: /RobloxDefaultErrorPage.aspx?code=404", true, 302);
+    //header("Location: /RobloxDefaultErrorPage.aspx?code=404", true, 302);
+    echo "User not found.";
     exit;
 }
 $user['username'] = htmlspecialchars($user['username']);
