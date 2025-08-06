@@ -76,6 +76,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="/CSS/Base/CSS/FetchCSS?path=page___2ad765c3e4926df9c25fa00b92677eed_m.css" rel="stylesheet">
     <link href="/CSS/Base/CSS/MyAccount.css" rel="stylesheet">
     <link href="/CSS/Pages/Character/Character.css" rel="stylesheet">
+<script type='text/javascript' src='//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js'></script>
+<script type='text/javascript'>window.jQuery || document.write("<script type='text/javascript' src='/js/jquery/jquery-1.7.2.min.js'><\/script>")</script>
+<script type='text/javascript' src='//ajax.aspnetcdn.com/ajax/4.0/1/MicrosoftAjax.js'></script>
+<script type='text/javascript'>window.Sys || document.write("<script type='text/javascript' src='/js/Microsoft/MicrosoftAjax.js'><\/script>")</script>
+
     <script type="text/javascript" src="/js/jquery.validate.js"></script>
 <script type="text/javascript" src="/js/jquery.validate.unobtrusive.js"></script>
 <script type="text/javascript" src="/Services/Secure/AddParentEmail.js"></script>
