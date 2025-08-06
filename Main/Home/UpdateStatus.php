@@ -5,6 +5,11 @@ use Roblox\TextFilter\BasicTextFilter;
 
 header("Content-Type: application/json");
 
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    exit('{"success": false, "message": "Invalid request method."}');
+}
+
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $filter = new BasicTextFilter();
@@ -34,9 +39,11 @@ if (mb_strlen($status, 'UTF-8') > 150) {
 }
 
 $time = time();
-$checkLimit =  $conn->prepare("SELECT * FROM feeds WHERE posted_at < :time - 60 AND author_id = :user_id LIMIT 5");
+// this ratelimiter is buggy
+$checkLimit = $conn->prepare("SELECT * FROM feeds WHERE posted_at > :time_cutoff AND author_id = :user_id");
+$timeCutoff = $time - 60;
 $checkLimit->bindParam(':user_id', $user['id'], PDO::PARAM_INT);
-$checkLimit->bindParam(':time', $time, PDO::PARAM_STR);
+$checkLimit->bindParam(':time_cutoff', $timeCutoff, PDO::PARAM_INT);
 $checkLimit->execute();
 if($checkLimit->rowCount() >= 4){
     exit('{"success": false, "message": "You are being rate limited, please try again later."}');
