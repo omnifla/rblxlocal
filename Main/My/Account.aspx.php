@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?= SiteAlert::render() ?>
 <div id="MasterContainer">
   <div id="BodyWrapper"><div id="RepositionBody"><div id="Body" style="width:970px">
-    <div id="AccountPageContainer" data-missingparentemail="false" data-userabove13="true" data-currentdateyear="<?=date(Y)?>" data-currentdatemonth="<?=date(n)?>" data-currentdateday="<?=date(j)?>">
+    <div id="AccountPageContainer" data-missingparentemail="false" data-userabove13="true" data-currentdateyear="<?=date("Y")?>" data-currentdatemonth="<?=date(n)?>" data-currentdateday="<?=date(j)?>">
   <div id="AccountPageLeft" class="divider-right">
     <h1>My Account</h1>
     <form action="/My/Account/Update" id="UpdateAccountForm" method="post">
