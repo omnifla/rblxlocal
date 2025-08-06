@@ -387,9 +387,9 @@ if (isset($user['membership_type'])) {
     <div id="updateStatusBox" style="display:none;">
       <input type="text" style="visibility:hidden;position:absolute">
         <span style="position:relative">
-        <input name="ctl00$cphRoblox$rbxHeaderPane$txtStatusMessage" type="text" id="ctl00_cphRoblox_rbxHeaderPane_txtStatusMessage" style="margin-bottom:5px;width:560px;height:17px;" maxlength="254" value="{$textStatus}">&nbsp;&nbsp;
+        <input name="ctl00\$cphRoblox\$rbxHeaderPane\$txtStatusMessage" type="text" id="ctl00_cphRoblox_rbxHeaderPane_txtStatusMessage" style="margin-bottom:5px;width:560px;height:17px;" maxlength="254" value="{$textStatus}">&nbsp;&nbsp;
       </span>
-      <input type="submit" name="ctl00$cphRoblox$rbxHeaderPane$btnUpdateStatus" value="Save" onclick="if (!window.__cfRLUnblockHandlers) return false; javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$cphRoblox$rbxHeaderPane$btnUpdateStatus&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, false))" id="ctl00_cphRoblox_rbxHeaderPane_btnUpdateStatus" class="translate">&nbsp;<input type="button" value="Cancel" onclick="if (!window.__cfRLUnblockHandlers) return false; document.getElementById('updateStatusBox').style.display='none';document.getElementById('ctl00_cphRoblox_rbxHeaderPane_updateStatusLink').style.display='inline';" <br="">
+      <input type="submit" name="ctl00\$cphRoblox\$rbxHeaderPane\$btnUpdateStatus" value="Save" onclick="if (!window.__cfRLUnblockHandlers) return false; javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00\$cphRoblox\$rbxHeaderPane\$btnUpdateStatus&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, false))" id="ctl00_cphRoblox_rbxHeaderPane_btnUpdateStatus" class="translate">&nbsp;<input type="button" value="Cancel" onclick="if (!window.__cfRLUnblockHandlers) return false; document.getElementById('updateStatusBox').style.display='none';document.getElementById('ctl00_cphRoblox_rbxHeaderPane_updateStatusLink').style.display='inline';" <br="">
     </div>
   </div>
   HTML;
