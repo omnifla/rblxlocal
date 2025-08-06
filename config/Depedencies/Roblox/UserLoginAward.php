@@ -5,7 +5,7 @@
 namespace Roblox;
 
 use DateTime;
-use Roblox\UserLoginAwardDAL;
+use Roblox\DataAccess\UserLoginAwardDAL;
 
 class UserLoginAward
 {
