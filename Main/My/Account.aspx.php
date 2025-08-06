@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <div class="tab-content active" id="settings_tab" style="display: block;">
         <div id="AccountSettings" class="settings-section">
           <div class="SettingSubTitle" id="UsernameSetting" <?php if ($user["robux"] < 1000) {echo('data-robux-remaining="'.(1000-$user["robux"]).'"');}?> data-email-verified="True" data-alerturl="https://s3.amazonaws.com/images.roblox.com/cbb24e0c0f1fb97381a065bd1e056fcb.png" data-change-username-verifyurl="/account/username/verifyupdate" data-change-username-url="/account/username/update" data-buy-robux-url="/upgrades/robux">
-            <span class="settingLabel form-label">Username:</span> <span id="username"><?=SESSION["username"]?></span>
+            <span class="settingLabel form-label">Username:</span> <span id="username"><?=htmlspecialchars($user["username"])?></span>
             <a class="btn-small btn-primary" id="changeUsername">Change My Username<span class="btn-text">Change My Username</span></a>
           </div>
           <div id="BirthdaySetting" class="SettingSubTitle">
