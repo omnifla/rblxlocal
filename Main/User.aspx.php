@@ -439,15 +439,16 @@ if (isset($user['membership_type'])) {
 <div class="UserBlurb" style="margin-top: 10px; overflow-y: auto; max-height: 450px; ">
     <?= $user['description'] ?>
 </div>
-<div id="ProfileButtons" style="margin:10px auto;">
-    
-            <a id="FriendButton" class="btn-control btn-control-large disabled">Send Friend Request</a>
-        
+<div id="ProfileButtons" style="<?php if($selfview) { echo "display: none; "; }?>margin:10px auto;">
+    <?php
+    if(!$selfview){
+        $friends_html = <<<HTML
+            <a id="FriendButton" class="GrayButton <?php if(!$canSendFR){ echo "Disabled"; } ?>" <?php if($canSendFR){ echo 'href="/My/FriendInvitation.aspx?RecipientID='.$profileInfo->Id.'"'; } ?>>Send Friend Request</a>
+        HTML;
+echo <<<HTML
+    <a id="FriendButton" class="btn-control btn-control-large disabled">Send Friend Request</a>
     <div class="SendMessageProfileBtnDiv">
-        
-        <a  id="MessageButton" style="margin:0 5px" class="btn-control btn-control-large "  href="/My/NewMessage.aspx?RecipientID=<?= $user['id'] ?>">Send Message</a>
-    </div>
-	
+    <a  id="MessageButton" style="margin:0 5px" class="btn-control btn-control-large "  href="/My/NewMessage.aspx?RecipientID={$user['id']}">Send Message</a></div>
     <div class="clear"></div>
     <script type="text/javascript">
         function hideDropdowns() {
@@ -473,6 +474,9 @@ if (isset($user['membership_type'])) {
             friendRequestButton.click(function () { window.location = "/Login/Signup.aspx"; });
         
     </script>
+    HTML;
+    }
+    ?>
 </div>
 
                     <div class="ProfileAlertPanel" style='<?php if(!$selfview){ echo"display: none"; }?> margin: 15px auto 0px auto; width: 205px;'>
