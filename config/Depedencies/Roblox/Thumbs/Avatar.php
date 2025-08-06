@@ -4,7 +4,7 @@ namespace Roblox\Thumbs;
 use Roblox\Grid;
 use Roblox\Grid\Rcc as RBXGS;
 use Roblox\Authentication as Auth;
-use Roblox\Avatar\Accoutrement;
+use Roblox\Accoutrement;
 
 class Avatar {
     private static $avatarScriptOverride = null;
