@@ -1,7 +1,7 @@
 <?php
 // ported by meditext,
 // trimmed anyways.
-namespace Roblox;
+namespace Roblox\DataAccess;
 use PDO;
 use DateTime;
 class UserLoginAwardDAL
