@@ -442,9 +442,7 @@ if (isset($user['membership_type'])) {
 <div id="ProfileButtons" style="<?php if($selfview) { echo "display: none; "; }?>margin:10px auto;">
     <?php
     if(!$selfview){
-        $friends_html = <<<HTML
-            <a id="FriendButton" class="GrayButton <?php if(!$canSendFR){ echo "Disabled"; } ?>" <?php if($canSendFR){ echo 'href="/My/FriendInvitation.aspx?RecipientID='.$profileInfo->Id.'"'; } ?>>Send Friend Request</a>
-        HTML;
+        
 echo <<<HTML
     <a id="FriendButton" class="btn-control btn-control-large disabled">Send Friend Request</a>
     <div class="SendMessageProfileBtnDiv">
