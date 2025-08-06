@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $birthDay = isset($user['birthdate']) ? (int)substr($user['birthdate'],8,2) : null;
 }
 ?>
-<!DOCTYPE html>
+<!DOCTYPE html><a class="btn-medium btn-neutral updateSettingsBtn" id="UpdateSettingsBtn1">Update<span class="btn-text">Update</span></a>
 <html>
 <head>
     <title>My Account - <?= $site_properties['Title'] ?></title>
@@ -350,7 +350,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <span class="field-validation-valid" data-valmsg-for="CountryId" data-valmsg-replace="true"></span>
           </div>
           <div style="clear: both;">
-            <a class="btn-medium btn-neutral updateSettingsBtn btn-update btn-neutral btn-medium" id="UpdateSettingsBtn1">Update<span class="btn-text">Update</span></a>
+            <a class="btn-medium btn-neutral updateSettingsBtn" id="UpdateSettingsBtn1">Update<span class="btn-text">Update</span></a>
           </div>
         </div>
         <div id="AddEmailScreenModal" class="PurchaseModal simplemodal-data" data-uid="59896360" data-userip="72.211.206.23">
@@ -454,7 +454,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         Upgrade Account
       </h3>
       <div id="buyRobux" class="upgrade-account-button">
-        <a href="/upgrades/robux.aspx" class="buyRobux btn-medium btn-primary">Buy Robux
+        <a href="/upgrades/robux.aspx" class="btn-medium btn-primary">Buy Robux
         <span class="btn-text">Buy Robux</span></a>
       </div>
       <div id="JoinBuildersClub" class="upgrade-account-button">
