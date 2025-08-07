@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $birthDay = isset($user['birthdate']) ? (int)substr($user['birthdate'],8,2) : null;
 }
 ?>
-<!DOCTYPE html><a class="btn-medium btn-neutral updateSettingsBtn" id="UpdateSettingsBtn1">Update<span class="btn-text">Update</span></a>
+<!DOCTYPE html>
 <html>
 <head>
     <title>My Account - <?= $site_properties['Title'] ?></title>
@@ -572,14 +572,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="Title"></div>
     <div class="GenericModalBody">
         <div class="TopBody">
-            <div class="ImageContainer roblox-item-image" data-image-size="small" data-no-overlays data-no-click>
-                <img class="GenericModalImage" alt="generic image" />
+            <div class="ImageContainer roblox-item-image" data-image-size="small" data-no-overlays="" data-no-click="">
+                <img class="GenericModalImage" alt="generic image">
             </div>
             <div class="Message"></div>
         </div>
         <div class="ConfirmationModalButtonContainer">
-            <a href id="roblox-confirm-btn"><span></span></a>
-            <a href id="roblox-decline-btn"><span></span></a>
+            <a href="" roblox-confirm-btn=""><span></span></a>
+            <a href="" roblox-decline-btn=""><span></span></a>
         </div>
         <div class="ConfirmationModalFooter">
         
@@ -590,12 +590,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         Roblox.GenericConfirmation = Roblox.GenericConfirmation || {};
         
         //<sl:translate>
-        Roblox.GenericConfirmation.Resources = {
-            yes: "Yes",
-            No: "No",
-            Confirm: "Confirm",
-            Cancel: "Cancel"
-        };
+        Roblox.GenericConfirmation.Resources = { yes: "Yes", No: "No" };
         //</sl:translate>
     </script>
 </div>

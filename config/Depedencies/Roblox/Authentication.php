@@ -55,6 +55,12 @@ class Authentication {
         }
         return $userinfo;
     }
+    public static function VerifyPassword(array $userinfo, string $password) : bool {
+        if(!$userinfo) {
+            return false;
+        }
+        return password_verify($password, $userinfo['password']);
+    }
     // used for captcha verification on the site
     private static function ValidateCaptcha(): void {
         $secret = $_ENV['HCAPTCHA_SECRET'];
