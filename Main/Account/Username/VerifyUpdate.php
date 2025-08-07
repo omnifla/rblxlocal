@@ -35,7 +35,7 @@ if($authenticatedUser['robux'] <= 1000 || $remainingBalance < 0) {
     $robux_left = 1000 - $authenticatedUser['robux'];
     exit(json_encode(['success' => false, 'title' => 'Error', 'message' => "Insufficient ROBUX for changing your username, you need R$ {$robux_left} more to change your username. Try again later", 'remainingBalance' => $authenticatedUser['robux']]));
 }
-$changeUsername_stmt = $conn->prepare("UPDATE users SET username = :username, robux = :robux updated = NOW() WHERE id = :id");
+$changeUsername_stmt = $conn->prepare("UPDATE users SET username = :username, robux = :robux, updated = NOW() WHERE id = :id");
 $changeUsername_stmt->execute([
     ':username' => $newUsername,
     ':robux' => $remainingBalance,

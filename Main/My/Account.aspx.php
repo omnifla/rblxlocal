@@ -129,11 +129,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php
                 // format expected on the birthdate row: 1996-01-02
                 $birthdate = $user['birthdate'] ?? null;
-                $dateParts = explode('-', $birthdate);
-                $year = $dateParts[0];
-                $month = $dateParts[1];
-                $day = $dateParts[2];
-                for ($m=1; $m<=12; $m++) {
+                $dateParts = $birthdate ? explode('-', $birthdate) : [null, null, null];
+                $year = $dateParts[0] ?? null;
+                $month = isset($dateParts[1]) ? (int)$dateParts[1] : null;
+                $day = isset($dateParts[2]) ? (int)$dateParts[2] : null;
+                for ($m = 1; $m <= 12; $m++) {
                     $selected = ($m === $month) ? ' selected="selected"' : '';
                     $monthName = date('M', mktime(0, 0, 0, $m, 10));
                     echo "<option value=\"$m\"$selected>$monthName</option>\n";
@@ -144,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php
                 $currentYear = date("Y");
                 $startYear = $currentYear - 99;
-                for ($d=1; $d<=31; $d++) {
+                for ($d = 1; $d <= 31; $d++) {
                     $selected = ($d === $day) ? ' selected="selected"' : '';
                     echo "<option value=\"$d\"$selected>$d</option>\n";
                 }
@@ -155,8 +155,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $currentYear = date("Y");
                 $startYear = $currentYear - 99;
                 for ($y = $currentYear; $y >= $startYear; $y--) {
-                   $selected = ($y === $year) ? ' selected="selected"' : '';
-                  echo "<option value=\"$y\"$selected>$y</option>";
+                    $selected = ($y === $year) ? ' selected="selected"' : '';
+                    echo "<option value=\"$y\"$selected>$y</option>";
                 }
               ?>
               </select>
