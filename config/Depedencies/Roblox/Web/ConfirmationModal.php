@@ -18,8 +18,8 @@ class ConfirmationModal
             <div class="Message"></div>
         </div>
         <div class="ConfirmationModalButtonContainer">
-            <a href id="roblox-confirm-btn"><span></span></a>
-            <a href id="roblox-decline-btn"><span></span></a>
+            <a href roblox-confirm-btn><span></span></a>
+            <a href roblox-decline-btn><span></span></a>
         </div>
         <div class="ConfirmationModalFooter">
         
