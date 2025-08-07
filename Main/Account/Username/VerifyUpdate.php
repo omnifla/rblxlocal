@@ -41,3 +41,5 @@ $changeUsername_stmt->execute([
     ':robux' => $remainingBalance,
     ':id' => $authenticatedUser['id']
 ]);
+$rel = htmlspecialchars($authenticatedUser['user']);
+exit(json_encode(['success' => true, 'title' => 'Success', 'message' => "Username changed successfully from <b>{$rel}</b> to {htmlspecialchars($newUsername)}", 'remainingBalance' => $remainingBalance]));
