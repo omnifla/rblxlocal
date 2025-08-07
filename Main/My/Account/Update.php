@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 $authenticatedUser = Auth::GetAuthenticatedUserInfo();
 $gender = $_POST['Gender'] - 1;
-$PersonalBlurb = $_POST['PersonalBlurb'] !== "Describe yourself here" ? trim($_POST['PersonalBlurb']) : "";
+$PersonalBlurb = $_POST['PersonalBlurb'] !== "Describe yourself here" ? trim($_POST['PersonalBlurb']) : null;
 $filter = new BasicTextFilter();
 $filteredBlurb = $filter->filter($PersonalBlurb)->getFilteredText();
 $update_stmt = $conn->prepare("UPDATE users SET description = :blurb, gender = :gender, updated = NOW() WHERE id = :id");
