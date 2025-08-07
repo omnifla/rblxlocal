@@ -202,7 +202,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <div id="PersonalBlurbSetting" class="SettingSubTitle">
             <span class="settingLabel form-label">Personal blurb:</span>
             <div id="BlurbDesc">
-              <textarea class="roblox-blurb-default-text accountPageChangeMonitor text blurbGreyText valid" cols="20" data-val="true" data-val-length="The field Personal Blurb must be a string with a maximum length of 1000." data-val-length-max="1000" id="blurbText" name="PersonalBlurb" value="<?= htmlspecialchars($user['description']) ?>" rows="2" title="Describe yourself here"></textarea>
+              <textarea class="roblox-blurb-default-text accountPageChangeMonitor text blurbGreyText valid" cols="20" data-val="true" data-val-length="The field Personal Blurb must be a string with a maximum length of 1000." data-val-length-max="1000" id="blurbText" name="PersonalBlurb" rows="2" title="Describe yourself here"><?= htmlspecialchars($user['description']) ?></textarea>
               <span class="field-validation-valid" data-valmsg-for="PersonalBlurb" data-valmsg-replace="true"></span>
               <br>
               <div id="blurbSubtext" class="footnote">
