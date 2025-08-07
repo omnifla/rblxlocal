@@ -1208,12 +1208,12 @@ class SiteAlert {
         $text = htmlspecialchars($alert->getText(), ENT_QUOTES, 'UTF-8');
         return <<<HTML
         <div id="ctl00_Announcement">
-    	  <div id="ctl00_SystemAlertDiv" class="SystemAlert" style="background-color: orange;">
-    	    <div id="ctl00_SystemAlertTextColor" class="SystemAlertText">
-     	     <div id="ctl00_LabelAnnouncement">{$text}</div>
-     	   </div>
-     	 </div>
-    	</div>
+            <div id="ctl00_SystemAlertDiv" class="SystemAlert" style="background-color: orange;">
+                <div id="ctl00_SystemAlertTextColor" class="SystemAlertText">
+                    <div id="ctl00_LabelAnnouncement">{$text}</div>
+                </div>
+            </div>
+        </div>
         HTML;
     }
 }
