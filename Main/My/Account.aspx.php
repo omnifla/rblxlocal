@@ -134,7 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $month = isset($dateParts[1]) ? (int)$dateParts[1] : null;
                 $day = isset($dateParts[2]) ? (int)$dateParts[2] : null;
                 for ($m = 1; $m <= 12; $m++) {
-                    $selected = ($m === $month) ? ' selected="selected"' : '';
+                    $selected = ($m == $month) ? ' selected="selected"' : '';
                     $monthName = date('M', mktime(0, 0, 0, $m, 10));
                     echo "<option value=\"$m\"$selected>$monthName</option>\n";
                 }
@@ -142,10 +142,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               </select>
               <select class="accountPageChangeMonitor form-select" data-val="true" data-val-number="The field BirthDay must be a number." data-val-range="The field BirthDay must be between 1 and 31." data-val-range-max="31" data-val-range-min="1" data-val-required="The BirthDay field is required."  id="DayDropDown" name="BirthDay">
                 <?php
-                $currentYear = date("Y");
-                $startYear = $currentYear - 99;
                 for ($d = 1; $d <= 31; $d++) {
-                    $selected = ($d === $day) ? ' selected="selected"' : '';
+                    $selected = ($d == $day) ? ' selected="selected"' : '';
                     echo "<option value=\"$d\"$selected>$d</option>\n";
                 }
               ?>
@@ -155,7 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $currentYear = date("Y");
                 $startYear = $currentYear - 99;
                 for ($y = $currentYear; $y >= $startYear; $y--) {
-                    $selected = ($y === $year) ? ' selected="selected"' : '';
+                    $selected = ($y == $year) ? ' selected="selected"' : '';
                     echo "<option value=\"$y\"$selected>$y</option>";
                 }
               ?>
