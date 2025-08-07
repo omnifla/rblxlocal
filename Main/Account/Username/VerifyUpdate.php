@@ -1,6 +1,6 @@
 <?php
 // written by meditext
-require_once $_SERVER['DOCUMENT_ROOT'] . '/../main/config.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use Roblox\Authentication as Auth;
 header("Content-Type: application/json");
 // {"success": bool, "title": string, "message": string, "remainingBalance": int}
