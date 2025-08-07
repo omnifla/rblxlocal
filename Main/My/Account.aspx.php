@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $birthDay = isset($user['birthdate']) ? (int)substr($user['birthdate'],8,2) : null;
 }
 ?>
-<!DOCTYPE html><a class="btn-medium btn-neutral updateSettingsBtn" id="UpdateSettingsBtn1">Update<span class="btn-text">Update</span></a>
+<!DOCTYPE html>
 <html>
 <head>
     <title>My Account - <?= $site_properties['Title'] ?></title>
