@@ -1,24 +1,26 @@
 <?php
-
 namespace Roblox\DataAccess;
-
+include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use PDO;
 use stdClass;
 
 class FeedificationDAL
 {
-    protected static PDO $conn;
-    public static function setConnection(PDO $pdo): void
+    private PDO $db;
+
+    public function __construct()
     {
-        self::$conn = $pdo;
+        global $conn;
+        $this->db = $conn;
     }
 
-    public static function getRecent(int $limit = 1): array
+    public function getRecent(int $limit = 1): array
     {
         $sql = 'SELECT id, title, message, created_at FROM feedifications ORDER BY created_at DESC LIMIT :limit';
-        $stmt = self::$conn->prepare($sql);
+        $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
         $stmt->execute();
+
         $results = [];
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $obj = new stdClass();
@@ -28,6 +30,7 @@ class FeedificationDAL
             $obj->created_at = $row['created_at'];
             $results[] = $obj;
         }
+
         return $results;
     }
 }
