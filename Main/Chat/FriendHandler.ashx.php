@@ -8,7 +8,7 @@ header('Content-Type: application/json');
 
 $cmd = $_GET['cmd'];
 $chatData = ["Error" => "", "Count" => 0, "Users" => []];
-$getFriendedUser = function ($uid) use ($chatData) {
+$getFriendedUser = function ($uid) use (&$chatData) {
 	$getUser = Auth::GetUserInfo($uid);
 
 	$chatData['Users'][] = [

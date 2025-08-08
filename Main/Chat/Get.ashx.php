@@ -13,7 +13,7 @@ $chatData = [
 	"Party" => null,
 	"Chats" => []
 ];
-$getChat = function ($senderID, $showInviteLink = false, $hasNewMessages = false) use ($chatData) {
+$getChat = function ($senderID, $showInviteLink = false, $hasNewMessages = false) use (&$chatData) {
 	/*
     a small reminder that if the player is in-game, it should be set the location under this table format:
     [
