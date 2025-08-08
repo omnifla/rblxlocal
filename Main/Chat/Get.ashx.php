@@ -24,7 +24,7 @@ $getChat = function ($senderID, $showInviteLink = false, $hasNewMessages = false
     presence types:
     offline, website (that's all)
     */
-    $getUser = Auth::GetUserInfo($uid);
+    $getUser = Auth::GetUserInfo($senderID);
     if (!$getUser) {
         return;
     }
