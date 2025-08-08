@@ -3,7 +3,7 @@
 namespace Roblox\Social;
 
 use Roblox\Friends\Client\FriendsErrorMetadata;
-use Roblox\Platform\Core\PlatformException;
+use Roblox\Core\PlatformException;
 
 class FriendshipOperationException extends PlatformException
 {
