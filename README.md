@@ -7,7 +7,7 @@
 </p>
 
 <div align="center">
-An open source 2014M ROBLOX clone, using ROBLOX's source as a guidance.
+An open source 2014M ROBLOX clone, using the ported ROBLOX Site backend
 </div>
 
 ## Authors
