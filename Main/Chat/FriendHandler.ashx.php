@@ -10,9 +10,7 @@ $cmd = $_GET['cmd'];
 $chatData = ["Error" => "", "Count" => 0, "Users" => []];
 $getFriendedUser = function ($uid) use ($chatData) {
 	$getUser = Auth::GetUserInfo($uid);
-    if (!$getUser) {
-        return;
-    }
+
 	$chatData['Users'][] = [
 		"ID" => $getUser['id'],
 		"Name" => $getUser['username'],

@@ -25,9 +25,6 @@ $getChat = function ($senderID, $showInviteLink = false, $hasNewMessages = false
     offline, website (that's all)
     */
     $getUser = Auth::GetUserInfo($senderID);
-    if (!$getUser) {
-        return;
-    }
 	$location = "offline";
 	$chatData['Chats'][] = [
 		"SenderID" => $senderID,
