@@ -51,6 +51,11 @@ use Roblox\Web\SiteAlert;
 </span></td>
 	</tr>
 	<tr>
+		<td valign="top" colspan="2">
+		    <div style="height:7px"></div>
+		    <table id="ctl00_cphRoblox_ThreadView1_ctl00_ThreadList" class="tableBorder" cellspacing="1" cellpadding="3" border="0" style="width:100%;">
+	<tbody>
+	<tr>
 		<h2>Your Tracked Threads</h2>
 	</tr>
 	<tr>
@@ -59,11 +64,7 @@ use Roblox\Web\SiteAlert;
 	<tr>
 		<h2>Your Last 25 Active Threads</h2>
 	</tr>
-	<tr>
-		<td valign="top" colspan="2">
-		    <div style="height:7px"></div>
-		    <table id="ctl00_cphRoblox_ThreadView1_ctl00_ThreadList" class="tableBorder" cellspacing="1" cellpadding="3" border="0" style="width:100%;">
-	<tbody><tr class="forum-table-header">
+		<tr class="forum-table-header">
 		<th align="left" colspan="3" style="height:25px;">&nbsp;Subject&nbsp;</th><th align="left" style="white-space:nowrap;">&nbsp;Author&nbsp;</th><th align="center">&nbsp;Replies&nbsp;</th><th align="center">&nbsp;Views&nbsp;</th><th align="center" style="white-space:nowrap;">&nbsp;Last Post&nbsp;</th>
 	</tr><tr class="forum-table-footer">
 		<td colspan="7">&nbsp;</td>
