@@ -1,6 +1,6 @@
 <?php
 
-namespace Roblox\Platform\Social;
+namespace Roblox\Social;
 
 use Exception;
 
