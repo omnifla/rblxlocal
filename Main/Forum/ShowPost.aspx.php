@@ -11,7 +11,7 @@ function sanitize_forum_html($html) {
     return preg_replace('#<script\b[^>]*>(.*?)</script>#is', '', $html);
 }
 
-$thread_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+$thread_id = isset($_GET['PostID']) ? (int)$_GET['PostID'] : 0;
 
 if ($thread_id === 0) {
     header("Location: /Forum/");

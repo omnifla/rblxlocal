@@ -1,16 +1,15 @@
 <?php
-namespace Roblox\Platform\Groups;
+namespace Roblox\Groups;
 
-use Roblox\Group as GroupEntity;
-use Roblox\Platform\Membership\IUser;
-use Roblox\Platform\Groups\Events\GroupEventType;
-use Roblox\Platform\Groups\GroupManagement;
+use Roblox\Groups\Group as GroupEntity;
+use Roblox\Membership\IUser;
+use Roblox\Groups\Events\GroupEventType;
+use Roblox\Groups\GroupManagement;
 use Roblox\Enums\GroupActionType;
 
 class Group implements IGroup
 {
     private ?bool $isLocked = null;
-    
     public int $id;
     public int $agentId;
     public ?int $ownerUserId;
