@@ -17,7 +17,8 @@ $stmt->execute(['id' => $forum_id]);
 $forum = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$forum) {
-    die('Forum not found.');
+    header("Location: /Forum/Default.aspx");
+    exit();
 }
 
 $threads_stmt = $conn->prepare('SELECT t.id, t.subject, t.user_id, u.username as author_name, t.replies_count, t.views_count, t.last_post_at, t.is_pinned, t.is_locked, t.is_popular, lp.username as last_poster_name FROM threads t JOIN users u ON t.user_id = u.id LEFT JOIN users lp ON t.last_post_user_id = lp.id WHERE t.forum_id = :forum_id ORDER BY t.is_pinned DESC, t.last_post_at DESC');
