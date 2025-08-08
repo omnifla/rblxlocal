@@ -131,6 +131,15 @@ $threads = $threads_stmt->fetchAll(PDO::FETCH_ASSOC);
 		<td colspan="2">&nbsp;</td>
 	</tr>
 </tbody></table>
+		</td>
+	</tr>
+	</tbody>
+</table>
+						</span>
+						</td>
+					</tr>
+				</table>
+			</div>
             </div>
             <?= SiteFooter::render() ?>
         </div>
