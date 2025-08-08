@@ -28,7 +28,7 @@ switch ($cmd) {
             header("Location: /newlogin");
             exit;
         }
-        getFriendedUser(1); // default ROBLOX account set as friend.
+        $getFriendedUser(1); // default ROBLOX account set as friend.
         break;
     case "recents":
         if (!Auth::GetAuthenticatedUser()) {
