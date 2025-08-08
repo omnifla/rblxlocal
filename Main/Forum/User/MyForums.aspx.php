@@ -57,9 +57,11 @@ use Roblox\Web\SiteAlert;
 	<tbody>
 	<tr>
 		<h2>Your Tracked Threads</h2>
+		<br>
 	</tr>
 	<tr>
 		<h3>Coming very soon...</h3>
+		<br>
 	</tr>
 	<tr>
 		<h2>Your Last 25 Active Threads</h2>
