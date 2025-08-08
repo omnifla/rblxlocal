@@ -42,7 +42,7 @@ $getChat = function ($senderID, $showInviteLink = false, $hasNewMessages = false
 	];
 };
 if ($reqType == "getallchatswithdata") {
-    getChat(1);
+    $getChat(1);
 }
 else {
 	$chatData['Error'] = "Invalid request";
