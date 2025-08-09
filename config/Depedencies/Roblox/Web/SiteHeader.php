@@ -612,10 +612,10 @@ $html = <<<HTML
                                 <div class="friend_dock_chatbox_titlebar blinkoffheader" userid="CHATUSERID">
                                     <div class="friend_dock_chatbox_username">
                                         <a style="color: #fff" class="friend_dock_chatbox_username_display" href="http://www.roblox.com/user.aspx?id=CHATUSERID">CHATUSERNAME</a>
-                                        <a class="friend_dock_chatbox_username_abuse" style="color: #fff; font-size: 9px; line-height: 14px; cursor: pointer" alt="Report Abuse" href="http://www.roblox.com/home?nl=true#" onclick=" ReportAbuse(CHATUSERID); return false; ">(Report)</a>
+                                        <a class="friend_dock_chatbox_username_abuse" style="color: #fff; font-size: 9px; line-height: 14px; cursor: pointer" alt="Report Abuse" href="#" onclick=" ReportAbuse(CHATUSERID); return false; ">(Report)</a>
                                     </div>
                                     <div class="friend_dock_chatbox_closebutton">
-                                        <a href="http://www.roblox.com/home?nl=true#" style="color: #fff" onclick=" ChatBar.CloseChat($(this).parents(&#39;.friend_dock_chatbox&#39;).filter(&#39;:first&#39;));return false; ">-</a>
+                                        <a href="#" style="color: #fff" onclick=" ChatBar.CloseChat($(this).parents(&#39;.friend_dock_chatbox&#39;).filter(&#39;:first&#39;));return false; ">-</a>
                                     </div>
                                 </div>
                                 <div class="friend_dock_chatbox_currentlocation" style="margin: 10px; font-size: 12px; height: 18px">
@@ -746,11 +746,11 @@ $html = <<<HTML
                                 </div> 
                             
                                 <div class="btn_green21h"> 
-                                    <a href="http://www.roblox.com/home?nl=true#" onclick="Party.AcceptInvite();return false;">Join Party</a> 
+                                    <a href="#" onclick="Party.AcceptInvite();return false;">Join Party</a> 
                                 </div> 
                             
                                 <div class="btn_red21h"> 
-                                    <a href="http://www.roblox.com/home?nl=true#" onclick="Party.DeclineInvite();return false;">Ignore</a> 
+                                    <a href="#" onclick="Party.DeclineInvite();return false;">Ignore</a> 
                                 </div> 
                             
                                 <div class="clear" id="invite_clear"> 
@@ -804,7 +804,7 @@ $html = <<<HTML
                                                 </div>
                                                 <span id="party_game_follow_me" class="followme_green19h" onclick="Party.JoinGameWithParty(); return false;"></span>
                                                 <span class="btn_red21h">
-                                                    <a href="http://www.roblox.com/home?nl=true#" onclick="Party.DeclineInvite();return false;">Leave Party</a>
+                                                    <a href="#" onclick="Party.DeclineInvite();return false;">Leave Party</a>
                                                 </span>
                                             </td>
                                         </tr>
@@ -822,9 +822,9 @@ $html = <<<HTML
                         </div>
                     <div id="friend_dock_minimized_container" style="">
                             <div style="float:right">
-                                <a id="minChatsTab" href="http://www.roblox.com/home?nl=true#" class="tab_white19h">
+                                <a id="minChatsTab" href="#" class="tab_white19h">
                                     <span onclick="ChatBar.ShowFriends();return false;">
-                                        <img src="./ROBLOX.com_files/164e80229d83c8b6e55b1eb671887e54.png" style="border: none">
+                                        <img src="/images/online.png" style="border: none">
                                         Online
                                     </span>
                                 </a>
@@ -835,15 +835,15 @@ $html = <<<HTML
                            <div id="friend_dock_titlebar">
                                <div style="float:left;">
                                     
-                                        <a id="bestFriendsTab" style="text-decoration: none" class="tab_white19h" href="http://www.roblox.com/home?nl=true#" onclick="ChatBar.TogglePanel(&#39;bestFriendsTab_dock_thumbnails&#39;);return false;"><span>Best Friends</span></a>
-                                        <a id="friendsTab" style="text-decoration: none" class="tab_white19hselected" href="http://www.roblox.com/home?nl=true#" onclick="ChatBar.TogglePanel(&#39;friendsTab_dock_thumbnails&#39;);return false;"><span>Online Friends</span></a>
-                                    <a id="recentsTab" style="text-decoration: none" class="tab_white19h" href="http://www.roblox.com/home?nl=true#" onclick="ChatBar.TogglePanel(&#39;recentsTab_dock_thumbnails&#39;);return false;"><span>Recent</span></a>
-                                        <a id="chatsTab" style="text-decoration: none" class="tab_white19h" href="http://www.roblox.com/home?nl=true#" onclick="ChatBar.TogglePanel(&#39;chatsTab_dock_thumbnails_chat&#39;);return false;"><span>Chats</span></a>
+                                        <a id="bestFriendsTab" style="text-decoration: none" class="tab_white19h" href="#" onclick="ChatBar.TogglePanel(&#39;bestFriendsTab_dock_thumbnails&#39;);return false;"><span>Best Friends</span></a>
+                                        <a id="friendsTab" style="text-decoration: none" class="tab_white19hselected" href="#" onclick="ChatBar.TogglePanel(&#39;friendsTab_dock_thumbnails&#39;);return false;"><span>Online Friends</span></a>
+                                    <a id="recentsTab" style="text-decoration: none" class="tab_white19h" href="#" onclick="ChatBar.TogglePanel(&#39;recentsTab_dock_thumbnails&#39;);return false;"><span>Recent</span></a>
+                                        <a id="chatsTab" style="text-decoration: none" class="tab_white19h" href="#" onclick="ChatBar.TogglePanel(&#39;chatsTab_dock_thumbnails_chat&#39;);return false;"><span>Chats</span></a>
                                 </div>
                                 <div style="float:right;">
                                         <div class="tab_white19h" id="partyTab" onclick=" Party.ToggleTab(null); return false; ">
                                             <span>
-                                                <b><a href="http://www.roblox.com/home?nl=true#">Party</a></b>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <b><a href="#">Party</a></b>&nbsp;&nbsp;&nbsp;&nbsp;
                                             </span>
                                         </div>
                                     <div class="friend_dock_chatsettings" style="display:none">
@@ -870,8 +870,8 @@ $html = <<<HTML
                                     </div>
                                     <div class="tab_white19h">
                                         <span>
-                                            <b><a onclick="$(&#39;.friend_dock_chatsettings&#39;).toggle(); return false" href="http://www.roblox.com/home?nl=true#">Settings</a></b>&nbsp;&nbsp;&nbsp;
-                                            <img src="./ROBLOX.com_files/8a762994af1e122de8ac427005ac3d9b.png" onclick="ChatBar.HideFriends();return false;" style="border: none; cursor: pointer" alt="Close chat">
+                                            <b><a onclick="$(&#39;.friend_dock_chatsettings&#39;).toggle(); return false" href="#">Settings</a></b>&nbsp;&nbsp;&nbsp;
+                                            <img src="/images/online.png" onclick="ChatBar.HideFriends();return false;" style="border: none; cursor: pointer" alt="Close chat">
                                         </span>
                                     </div>
                                </div>
@@ -1035,8 +1035,8 @@ $html = <<<HTML
                         <div style="clear:both; height:25px;"></div>
                         <div class="RevisedFooter">
                             <div style="width:200px;margin:10px auto 0 auto;">
-                                <a href="http://www.roblox.com/home?nl=true#" onclick="redirectPlaceLauncherToRegister(); return false;"><div class="RevisedCharacterSelectSignup"></div></a>
-                                <a class="HaveAccount" href="http://www.roblox.com/home?nl=true#" onclick="redirectPlaceLauncherToLogin();return false;">I have an account</a>
+                                <a href="#" onclick="redirectPlaceLauncherToRegister(); return false;"><div class="RevisedCharacterSelectSignup"></div></a>
+                                <a class="HaveAccount" href="#" onclick="redirectPlaceLauncherToLogin();return false;">I have an account</a>
                             </div>
                         </div>
                     </div>
