@@ -605,6 +605,7 @@ $html = <<<HTML
                     </div>
                     
                 </div>
+                <script type="text/javascript" src="https://js.rbxcdn.com/f6ebdcdab40c43bb18d29009ce0880be.js.gzip"></script>
                 <div id="ChatContainer" style="position: fixed; bottom: 0px; right: 0px; z-index: 1000; width: 100%;">
                     <!-- Friends dock / chat bar -->
                         <div id="friend_dock_chattemplate" style="display: none;">
