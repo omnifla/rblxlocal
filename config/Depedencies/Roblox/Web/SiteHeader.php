@@ -530,6 +530,75 @@ class SiteFooter{
             $userId = (int)$user["id"];
             $tickets = htmlspecialchars($user["tickets"], ENT_QUOTES, 'UTF-8');
             $robux = htmlspecialchars($user["robux"], ENT_QUOTES, 'UTF-8');
+            $js_party_val = "<script type=\"text/javascript\" language=\"javascript\">
+                        Party.CurrentUserID = {$userId};
+                        Party.CurrentUserName = \"{$username}\";
+                        Party.ActiveView = \"\";
+                        Party.PollThreadAvailable = true;
+                        Party.FirstLoad = true;
+                        Party.PollIntervalTimer = null;
+                        Party.Cookie = new RobloxJSONCookie(\"PartyCookie\"); 
+                        Party.MaxPartySize = 6;
+                        Party.PlayEnabled = true;
+                        
+                        Party.Resources = {
+                            areYouSureReport: 'Are you sure you would like to report '
+                            , report: \"Report\"
+                            , kick: \"Kick\"
+                            , pending: \"Pending...\"
+                            , partyInvite: \"Party Invite!\"
+                            , partyGameBlurb: \"When the party leader joins a game, the rest of the party will be invited to follow\"
+                            , inviteInstructions: \"Please type the name of the user you wish to invite\"
+                            , partyFull: \"Your party is already full!\"
+                            , joinConfirm1: \"The party leader has joined \"
+                            , joinConfirm2: \".  Would you like to join?\"
+                            , joinConfirm3: \"You will be removed from any game you might be playing.\"
+                            , enterUserName: 'Enter username'
+                        };
+                    </script>";
+            $js_chat_info_val = "<script type=\"text/javascript\" language=\"javascript\">
+                            if (typeof Roblox === \"undefined\") {
+                        Roblox = {};
+                        }
+                        if (typeof Roblox.Chat_v1 === \"undefined\") {
+                            Roblox.Chat_v1 = {};
+                        }
+                        Roblox.Chat_v1.Resources = {
+                            //<sl:translate>
+                            reportConfirm: 'Are you sure you would like to report this user?'
+                            , sendPersonalMessage1: 'This user cannot receive chat messages.  Send them a '
+                            , sendPersonalMessage2: 'Personal Message'
+                            , loadingChat: 'Loading Chat'
+                            , offline: 'Offline'
+                            , online: 'Online'
+                            , newMessage: 'New Message!'
+                            , newMessages: 'New Messages!'
+                            //</sl:translate>
+                        };
+                            
+                        ChatBar.FriendsEnabled = 'True';
+                        ChatBar.BestFriendsEnabled = 'True';
+                        ChatBar.PartyEnabled = 'True';
+                        ChatBar.MyUserName = \"{$username}\";
+                        ChatBar.MaxChatWindows = 4;
+                        ChatBar.ChatPollInterval = 4000;
+                        ChatBar.IdleChatPollInterval = ChatBar.ChatPollInterval * ChatBar.PollIntervalFactorForIdle;
+                        ChatBar.FriendsPollInterval = 40000;
+                        ChatBar.BestFriendsPollInterval = 30000;
+                        ChatBar.RecentsPollInterval = 32000;
+                        ChatBar.ChatReceivedSoundFile = \"/chat/sound/chatsound.mp3\";
+                        ChatBar.ChatNotificationsSetting = 'All';
+                        ChatBar.DiagnosticsEnabled = false;
+                    
+                        $(function()
+                        {
+                            try
+                            {
+                                ChatBar.OnPageLoad();
+                            }
+                            catch (x) { }
+                        });
+                    </script>";
 $html = <<<HTML
                <div id="Footer" class="footer-container">
                     <div class="FooterNav">
@@ -664,32 +733,7 @@ $html = <<<HTML
                             </dd> 
                         </div>
                     </div>
-                    <script type="text/javascript" language="javascript">
-                        Party.CurrentUserID = 2104706;
-                        Party.CurrentUserName = "fatboy122";
-                        Party.ActiveView = "";
-                        Party.PollThreadAvailable = true;
-                        Party.FirstLoad = true;
-                        Party.PollIntervalTimer = null;
-                        Party.Cookie = new RobloxJSONCookie("PartyCookie"); 
-                        Party.MaxPartySize = 6;
-                        Party.PlayEnabled = true;
-                        
-                        Party.Resources = {
-                            areYouSureReport: 'Are you sure you would like to report '
-                            , report: "Report"
-                            , kick: "Kick"
-                            , pending: "Pending..."
-                            , partyInvite: "Party Invite!"
-                            , partyGameBlurb: "When the party leader joins a game, the rest of the party will be invited to follow"
-                            , inviteInstructions: "Please type the name of the user you wish to invite"
-                            , partyFull: "Your party is already full!"
-                            , joinConfirm1: "The party leader has joined "
-                            , joinConfirm2: ".  Would you like to join?"
-                            , joinConfirm3: "You will be removed from any game you might be playing."
-                            , enterUserName: 'Enter username'
-                        };
-                    </script>
+                    {$js_party_val}
                     <script type="text/javascript" language="javascript">
                         try
                         {
@@ -901,49 +945,7 @@ $html = <<<HTML
                            </div>
                         </div>
                         <div id="jPlayerDiv" style="position: absolute; top: 0px; left: -9999px;"><audio id="jqjp_audio_0" preload="none"></audio><div id="jqjp_force_0" style="text-indent: -9999px;">0.7583572196308523</div></div>
-                    <script type="text/javascript" language="javascript">
-                            if (typeof Roblox === "undefined") {
-                        Roblox = {};
-                        }
-                        if (typeof Roblox.Chat_v1 === "undefined") {
-                            Roblox.Chat_v1 = {};
-                        }
-                        Roblox.Chat_v1.Resources = {
-                            //<sl:translate>
-                            reportConfirm: 'Are you sure you would like to report this user?'
-                            , sendPersonalMessage1: 'This user cannot receive chat messages.  Send them a '
-                            , sendPersonalMessage2: 'Personal Message'
-                            , loadingChat: 'Loading Chat'
-                            , offline: 'Offline'
-                            , online: 'Online'
-                            , newMessage: 'New Message!'
-                            , newMessages: 'New Messages!'
-                            //</sl:translate>
-                        };
-                            
-                        ChatBar.FriendsEnabled = 'True';
-                        ChatBar.BestFriendsEnabled = 'True';
-                        ChatBar.PartyEnabled = 'True';
-                        ChatBar.MyUserName = "fatboy122";
-                        ChatBar.MaxChatWindows = 4;
-                        ChatBar.ChatPollInterval = 4000;
-                        ChatBar.IdleChatPollInterval = ChatBar.ChatPollInterval * ChatBar.PollIntervalFactorForIdle;
-                        ChatBar.FriendsPollInterval = 40000;
-                        ChatBar.BestFriendsPollInterval = 30000;
-                        ChatBar.RecentsPollInterval = 32000;
-                        ChatBar.ChatReceivedSoundFile = "/chat/sound/chatsound.mp3";
-                        ChatBar.ChatNotificationsSetting = 'All';
-                        ChatBar.DiagnosticsEnabled = false;
-                    
-                        $(function()
-                        {
-                            try
-                            {
-                                ChatBar.OnPageLoad();
-                            }
-                            catch (x) { }
-                        });
-                    </script>
+                    {$js_chat_info_val}
                 </div>
                     
                         <script src="./ROBLOX.com_files/urchin.js" type="text/javascript"></script>

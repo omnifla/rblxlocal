@@ -79,9 +79,6 @@ $user = Auth::GetAuthenticatedUserInfo();
     
 <script type="text/javascript" src="https://js.rbxcdn.com/f6ebdcdab40c43bb18d29009ce0880be.js.gzip"></script>
 
-    
-<script type="text/javascript" src="https://js.rbxcdn.com/32159205207304027c7e0aa4dd329d32.js.gzip"></script>
-
     <script type="text/javascript">   
         googletag.cmd.push(function() {
             Roblox = Roblox || {};
