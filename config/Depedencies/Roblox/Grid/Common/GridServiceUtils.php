@@ -1,15 +1,16 @@
 <?php
-// all this does is get a rccservice instance and returns RCCServiceSoap
-// whats the point??
-
+// ported by meditext
 namespace Roblox\Grid\Common;
-use Roblox\Grid\Rcc\RCCServiceSoap;
-
-class GridServiceUtils {
-    public static function GetService(string $Address = '127.0.0.1', int $Port = 64989) : RCCServiceSoap {
-        if (!$Address)
-            throw new \InvalidArgumentException('Bad address, does not exist.');
-        
-        return new RCCServiceSoap($Address, $Port);
-    }
+use Roblox\Grid\Rcc;
+class GridServiceUtils
+{
+	public static function GetService(string $address, int $port) : RCCServiceSoap
+	{
+		if ($address == null)
+		{
+			return null;
+		}
+		$rCCServiceSoap  = new RCCServiceSoap($address, $port);
+		return $rCCServiceSoap;
+	}
 }

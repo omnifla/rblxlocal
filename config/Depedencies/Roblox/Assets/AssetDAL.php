@@ -1,6 +1,6 @@
 <?php
 // ported by meditext
-namespace Roblox\DataAccess;
+namespace Roblox\Assets\DataAccess;
 
 use PDO;
 use Exception;

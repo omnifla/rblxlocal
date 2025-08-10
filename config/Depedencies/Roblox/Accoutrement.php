@@ -5,6 +5,28 @@ use Roblox\DataAccess;
 use Roblox\UserAvatar;
 use Exception;
 
+class AssetEquippedState
+{
+    private Asset $asset;
+    private bool $isEquipped;
+
+    public function __construct(Asset $asset, bool $isEquipped)
+    {
+        $this->asset = $asset;
+        $this->isEquipped = $isEquipped;
+    }
+
+    public function getAsset(): Asset
+    {
+        return $this->asset;
+    }
+
+    public function isEquipped(): bool
+    {
+        return $this->isEquipped;
+    }
+}
+
 class Accoutrement {
     private AccoutrementDAL $dal;
 
@@ -131,5 +153,64 @@ class Accoutrement {
         ];
 
         return in_array($assetTypeId, $validAssetTypes, true);
+    }
+
+    public function isEquipped(): bool {
+        $userAsset = $this->getUserAsset();
+        $assetTypeId = $userAsset->asset_type_id;
+
+        if ($assetTypeId === AssetType::$GearID) {
+            $equippedGearId = $this->getEquippedGearId();
+            return $equippedGearId === $userAsset->id;
+        }
+
+        return true; // stub, this is not a good pratice.
+    }
+
+    private function getEquippedGearId(): int {
+        // Stub
+        return 0;
+    }
+
+    public static function getInventory(int $userId, ?Asset $place = null): array {
+        $equippedGearId = 0;
+        $inventory = [];
+
+        $accoutrements = self::getUserAccoutrements($userId);
+        foreach ($accoutrements as $accoutrement) {
+            $userAsset = $accoutrement->getUserAsset();
+            if (!$userAsset || $userAsset->isExpired()) {
+                continue;
+            }
+
+            $asset = $userAsset->getAsset();
+            $assetTypeId = $asset->asset_type_id;
+
+            if ($assetTypeId === AssetType::$GearID) {
+                if ($place && !Asset::testPlaceRestrictions($place, $asset)) {
+                    continue;
+                }
+                $equippedGearId = $asset->id;
+            }
+
+            $isEquipped = ($assetTypeId === AssetType::$GearID && $equippedGearId === $asset->id);
+            $inventory[] = new AssetEquippedState($asset, $isEquipped);
+        }
+
+        if ($place) {
+            $additionalGear = UserAsset::getUserAssets($userId, AssetType::$GearID);
+            foreach ($additionalGear as $gearUserAsset) {
+                if ($gearUserAsset->id === $equippedGearId || $gearUserAsset->isExpired()) {
+                    continue;
+                }
+
+                $asset = $gearUserAsset->getAsset();
+                if (Asset::testPlaceRestrictions($place, $asset)) {
+                    $inventory[] = new AssetEquippedState($asset, false);
+                }
+            }
+        }
+
+        return $inventory;
     }
 }
