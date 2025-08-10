@@ -2,14 +2,61 @@
 // ported and written by meditext
 namespace Roblox\Thumbs;
 use Roblox\Grid;
+use Roblox\Grid\Lua;
 use Roblox\Grid\Rcc as RBXGS;
 use Roblox\Authentication as Auth;
 use Roblox\Accoutrement;
+class AvatarRequest {
+    private $userId;
+    private $parameters;
+    private $avatarAssetHashId;
+    public function __construct($parameters, $user, $avatarAssetHashId)
+    {
+        $this->parameters = $parameters;
+        $this->userId = $user['id'];
+        $this->avatarAssetHashId = $avatarAssetHashId;
+    }
+    public function getScript($size)
+    {
+        $equippedGearId = 0;
+        $assetIds = [];
+        $accoutrements = Accoutrement::getUserAccoutrements($this->userId);
+
+        foreach ($accoutrements as $accoutrement) {
+            $assetIds[] = $accoutrement->getDAL()->user_asset_id;
+            if ($accoutrement->isEquipped()) {
+                $equippedGearId = $accoutrement->getDAL()->user_asset_id;
+            }
+        }
+
+        $assetIdsString = implode(", ", $assetIds);
+        $avatarAccoutrementsUrl = sprintf(
+            Avatar::$avatarAccoutrementsBaseUrl,
+            $this->userId,
+            $assetIdsString
+        );
+
+        if ($equippedGearId !== 0) {
+            $avatarAccoutrementsUrl .= "&EquippedGearId={$equippedGearId}";
+        }
+
+        return Lua::NewScriptWithArgs(
+            $this->avatarAssetHashId,
+            Avatar::getAvatarScriptContent(),
+            [$avatarAccoutrementsUrl,
+            Avatar::$baseUrl,
+            $this->parameters['format'],
+            $size['width'],
+            $size['height']]
+        );
+    }
+}
 
 class Avatar {
     private static $avatarScriptOverride = null;
-    private static $avatarScript = "AvatarScript.lua"; 
-    private static $baseUrl = "http://roblox.com/";
+    public static $avatarScript = "AvatarScript.lua"; 
+    public static $baseUrl = "http://roblox.com/";
+    private static $avatarAccoutrementsBaseUrl = "http://roblox.com/Asset/AvatarAccoutrements.ashx?UserID={0}&AssetIDs={1}";
 
     public function requestThumbnail($userId, $width = null, $height = null, $imageFormat = "png", $thumbnailFormatId = 1) {
         if (is_null($width) || is_null($height)) {
@@ -55,7 +102,7 @@ class Avatar {
 
     private function getThumbnailUrl($user, $parameters) {
         $avatarAssetHashId = $this->getAvatarAssetHashId($user);
-        $avatarRequest = $this->createAvatarRequest($parameters, $user, $avatarAssetHashId);
+        $avatarRequest = new AvatarRequest($parameters, $user, $avatarAssetHashId);
         // stub
         return ['url' => ""];
     }
@@ -73,27 +120,20 @@ class Avatar {
         return crc32(implode(',', $hashComponents));
     }
 
-    private function createAvatarRequest($parameters, $user, $avatarAssetHashId) {
-        $script = $this->getAvatarScript();
-        $baseUrl = self::$baseUrl;
-
-        $accoutrements = Accoutrement::getUserAccoutrements($user['id']);
-        $accoutrementIds = array_map(fn($acc) => $acc->getDAL()->user_asset_id, $accoutrements);
-
-        return [
-            'parameters' => $parameters,
-            'user' => $user,
-            'avatarAssetHashId' => $avatarAssetHashId,
-            'script' => $script,
-            'baseUrl' => $baseUrl,
-            'accoutrements' => $accoutrementIds
-        ];
-    }
-
-    private function getAvatarScript() {
+    public static function getAvatarScriptContent()
+    {
         return self::$avatarScriptOverride ?? self::$avatarScript;
     }
 
+    private function createAvatarRequest($parameters, $user, $avatarAssetHashId)
+    {
+        return new AvatarRequest($parameters, $user, $avatarAssetHashId);
+    }
+
+    private function getAvatarScript()
+    {
+        return self::getAvatarScriptContent();
+    }
     private function isSecureConnection() {
         return isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on';
     }

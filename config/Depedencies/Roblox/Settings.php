@@ -128,5 +128,16 @@ class Settings {
         "DatabaseMaxUsernameLength" => 64, // Roblox's max username length is 20, but the database allows 64.
         "SiteMaintenaceMode" => true,
         "LandingRedirect" => true, // Default.aspx to Landing/Animated.
+        // added those here as i found more eventually in the other scripts
+        "DefaultBoyAssets" => [],
+        "DefaultGirlAssets" => [],
+        "VerifiedUserHatAssetId" => 0, // change this once we publish the verified hat.
+        "DefaultEnvironments" => [],
+        "DefaultShirts" => [],
+        "DefaultPants" => [],
+        "DefaultHeads" => [],
     ];
+    public function get(string $key): mixed {
+        return $this->settings[$key] ?? null;
+    }
 }
