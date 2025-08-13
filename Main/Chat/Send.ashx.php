@@ -22,7 +22,7 @@ if(!Auth::GetUserInfo(intval($recipient))){
 }
 $filter_test = new BasicTextFilter();
 $message = $filter_test->filter($_POST["message"]);
-if($message->isFiltered){
+if($message->isFiltered()){
     $chatData['Error'] = "ModeratedMessage";
     exit(json_encode($chatData));
 }
