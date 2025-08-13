@@ -21,6 +21,6 @@ if(!Auth::GetUserInfo(intval($recipient))){
     exit(json_encode($chatData));
 }
 $filter_test = new BasicTextFilter();
-$message = $filter_test->filterText($_POST["message"], Auth::GetCurrentUserId(), intval($recipient), $message);
+$message = $filter_test->filter($_POST["message"]);
 exit(json_encode($chatData)); // stub
 ?>
