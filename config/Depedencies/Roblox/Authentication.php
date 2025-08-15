@@ -6,6 +6,7 @@ use \Firebase\JWT\Key;
 use Roblox\BrickColor as BrickColor;
 use Roblox\TextFilter\BasicTextFilter;
 use Roblox\UserLoginAward;
+use Roblox\User;
 
 class Authentication {
     public static function isGlobalFlooding(): bool { // added this global flood checker because HOLY CRAP ITS JUST TO MUCH ACCOUNTS BEING CREATED.
