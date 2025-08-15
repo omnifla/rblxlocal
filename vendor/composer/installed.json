@@ -224,6 +224,397 @@
             "install-path": "../firebase/php-jwt"
         },
         {
+            "name": "florianwolters/component-core-cloneable",
+            "version": "v0.2.0",
+            "version_normalized": "0.2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FlorianWolters/PHP-Component-Core-Cloneable.git",
+                "reference": "3067ab2a36b2b3e21d2ab3053229db05c257047f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FlorianWolters/PHP-Component-Core-Cloneable/zipball/3067ab2a36b2b3e21d2ab3053229db05c257047f",
+                "reference": "3067ab2a36b2b3e21d2ab3053229db05c257047f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "time": "2013-03-19T16:49:12+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "FlorianWolters": [
+                        "src/php",
+                        "src/tests/mocks/php",
+                        "src/tests/unit-tests/php"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Florian Wolters",
+                    "email": "wolters.fl@gmail.com",
+                    "homepage": "http://blog.florianwolters.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Allows and disallows the cloning of objects as a PHP component.",
+            "homepage": "http://github.com/FlorianWolters/PHP-Component-Core-Cloneable",
+            "keywords": [
+                "clone",
+                "cloning",
+                "creation"
+            ],
+            "support": {
+                "issues": "https://github.com/FlorianWolters/PHP-Component-Core-Cloneable/issues",
+                "source": "https://github.com/FlorianWolters/PHP-Component-Core-Cloneable/tree/v0.2.0"
+            },
+            "install-path": "../florianwolters/component-core-cloneable"
+        },
+        {
+            "name": "florianwolters/component-core-debugprint",
+            "version": "v0.2.0",
+            "version_normalized": "0.2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FlorianWolters/PHP-Component-Core-DebugPrint.git",
+                "reference": "fc43207589b45221cf7ad1b015fede163f5ff0db"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FlorianWolters/PHP-Component-Core-DebugPrint/zipball/fc43207589b45221cf7ad1b015fede163f5ff0db",
+                "reference": "fc43207589b45221cf7ad1b015fede163f5ff0db",
+                "shasum": ""
+            },
+            "require": {
+                "florianwolters/component-core-hashcode": "0.2.*",
+                "php": ">=5.4"
+            },
+            "time": "2013-02-27T11:10:11+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "FlorianWolters": [
+                        "src/php",
+                        "src/tests/mocks/php"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Florian Wolters",
+                    "email": "wolters.fl@gmail.com",
+                    "homepage": "http://blog.florianwolters.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The Debug Print Method implementation pattern as a PHP component.",
+            "homepage": "http://github.com/FlorianWolters/PHP-Component-Core-DebugPrint",
+            "keywords": [
+                "debug",
+                "debug print method",
+                "language",
+                "pattern",
+                "tostring"
+            ],
+            "support": {
+                "issues": "https://github.com/FlorianWolters/PHP-Component-Core-DebugPrint/issues",
+                "source": "https://github.com/FlorianWolters/PHP-Component-Core-DebugPrint/tree/v0.2.0"
+            },
+            "install-path": "../florianwolters/component-core-debugprint"
+        },
+        {
+            "name": "florianwolters/component-core-equality",
+            "version": "v0.2.0",
+            "version_normalized": "0.2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FlorianWolters/PHP-Component-Core-Equality.git",
+                "reference": "1e70f3a39987ee63612ad3c38d1916c205bbd8eb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FlorianWolters/PHP-Component-Core-Equality/zipball/1e70f3a39987ee63612ad3c38d1916c205bbd8eb",
+                "reference": "1e70f3a39987ee63612ad3c38d1916c205bbd8eb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "time": "2013-03-22T12:31:35+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "FlorianWolters": [
+                        "src/php",
+                        "src/tests/mocks/php",
+                        "src/tests/unit-tests/php"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Florian Wolters",
+                    "email": "wolters.fl@gmail.com",
+                    "homepage": "http://blog.florianwolters.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Implements equivalence relations on non-null object references as a PHP component.",
+            "homepage": "http://github.com/FlorianWolters/PHP-Component-Core-Equality",
+            "keywords": [
+                "comparison",
+                "core",
+                "equality",
+                "equals",
+                "reference equality",
+                "value equality"
+            ],
+            "support": {
+                "issues": "https://github.com/FlorianWolters/PHP-Component-Core-Equality/issues",
+                "source": "https://github.com/FlorianWolters/PHP-Component-Core-Equality/tree/v0.2.0"
+            },
+            "install-path": "../florianwolters/component-core-equality"
+        },
+        {
+            "name": "florianwolters/component-core-hashcode",
+            "version": "v0.2.1",
+            "version_normalized": "0.2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FlorianWolters/PHP-Component-Core-HashCode.git",
+                "reference": "a3c77a0c7f08ecd194b07aa99680ea1e7076225b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FlorianWolters/PHP-Component-Core-HashCode/zipball/a3c77a0c7f08ecd194b07aa99680ea1e7076225b",
+                "reference": "a3c77a0c7f08ecd194b07aa99680ea1e7076225b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "time": "2013-03-01T11:31:56+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "FlorianWolters": [
+                        "src/php",
+                        "src/tests/mocks"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Florian Wolters",
+                    "email": "wolters.fl@gmail.com",
+                    "homepage": "http://blog.florianwolters.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Provides a hash code value for objects as a PHP component.",
+            "homepage": "http://github.com/FlorianWolters/PHP-Component-Core-HashCode",
+            "keywords": [
+                "hash",
+                "language",
+                "object"
+            ],
+            "support": {
+                "issues": "https://github.com/FlorianWolters/PHP-Component-Core-HashCode/issues",
+                "source": "https://github.com/FlorianWolters/PHP-Component-Core-HashCode/tree/master"
+            },
+            "install-path": "../florianwolters/component-core-hashcode"
+        },
+        {
+            "name": "florianwolters/component-core-immutable",
+            "version": "v0.1.0",
+            "version_normalized": "0.1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FlorianWolters/PHP-Component-Core-Immutable.git",
+                "reference": "1eb57cacfac89b054fbb869579116cf4a1108961"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FlorianWolters/PHP-Component-Core-Immutable/zipball/1eb57cacfac89b054fbb869579116cf4a1108961",
+                "reference": "1eb57cacfac89b054fbb869579116cf4a1108961",
+                "shasum": ""
+            },
+            "require": {
+                "florianwolters/component-core-cloneable": "0.2.*",
+                "php": ">=5.4"
+            },
+            "time": "2013-03-19T16:50:12+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "FlorianWolters": [
+                        "src/php",
+                        "src/tests/mocks/php"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Florian Wolters",
+                    "email": "wolters.fl@gmail.com",
+                    "homepage": "http://blog.florianwolters.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The Immutable Object implementation pattern as a PHP component.",
+            "homepage": "http://github.com/FlorianWolters/PHP-Component-Core-Immutable",
+            "keywords": [
+                "core",
+                "immutable",
+                "immutable class",
+                "immutable object"
+            ],
+            "support": {
+                "issues": "https://github.com/FlorianWolters/PHP-Component-Core-Immutable/issues",
+                "source": "https://github.com/FlorianWolters/PHP-Component-Core-Immutable/tree/v0.1.0"
+            },
+            "install-path": "../florianwolters/component-core-immutable"
+        },
+        {
+            "name": "florianwolters/component-core-valueobject",
+            "version": "v0.1.0",
+            "version_normalized": "0.1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FlorianWolters/PHP-Component-Core-ValueObject.git",
+                "reference": "e1ffd110fdb79ac2613099ec157125f3cdf951f6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FlorianWolters/PHP-Component-Core-ValueObject/zipball/e1ffd110fdb79ac2613099ec157125f3cdf951f6",
+                "reference": "e1ffd110fdb79ac2613099ec157125f3cdf951f6",
+                "shasum": ""
+            },
+            "require": {
+                "florianwolters/component-core-equality": "0.2.*",
+                "florianwolters/component-core-immutable": "0.1.*",
+                "php": ">=5.4"
+            },
+            "time": "2013-06-29T11:19:25+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "FlorianWolters": [
+                        "src/php",
+                        "src/tests/mocks/php"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Florian Wolters",
+                    "email": "wolters.fl@gmail.com",
+                    "homepage": "http://blog.florianwolters.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The Value Object implementation pattern as a PHP component.",
+            "homepage": "http://github.com/FlorianWolters/PHP-Component-Core-ValueObject",
+            "keywords": [
+                "Value Object",
+                "core"
+            ],
+            "support": {
+                "issues": "https://github.com/FlorianWolters/PHP-Component-Core-ValueObject/issues",
+                "source": "https://github.com/FlorianWolters/PHP-Component-Core-ValueObject/tree/v0.1.0-stable"
+            },
+            "install-path": "../florianwolters/component-core-valueobject"
+        },
+        {
+            "name": "florianwolters/component-drawing-color",
+            "version": "v0.1.0",
+            "version_normalized": "0.1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FlorianWolters/PHP-Component-Drawing-Color.git",
+                "reference": "e5e6e6fbc36fce8afb657d229bf4754649eba4f0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FlorianWolters/PHP-Component-Drawing-Color/zipball/e5e6e6fbc36fce8afb657d229bf4754649eba4f0",
+                "reference": "e5e6e6fbc36fce8afb657d229bf4754649eba4f0",
+                "shasum": ""
+            },
+            "require": {
+                "florianwolters/component-core-debugprint": "0.2.*",
+                "florianwolters/component-core-valueobject": "0.1.*",
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "florianwolters/component-test": "dev-master"
+            },
+            "time": "2013-06-29T11:48:21+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "FlorianWolters": "src/php"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Florian Wolters",
+                    "email": "wolters.fl@gmail.com",
+                    "homepage": "http://blog.florianwolters.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Models and operations on objects related to colors as a PHP component.",
+            "homepage": "http://github.com/FlorianWolters/PHP-Component-Drawing-Color",
+            "keywords": [
+                "color",
+                "conversion",
+                "drawing"
+            ],
+            "support": {
+                "issues": "https://github.com/FlorianWolters/PHP-Component-Drawing-Color/issues",
+                "source": "https://github.com/FlorianWolters/PHP-Component-Drawing-Color/tree/v0.1.0"
+            },
+            "install-path": "../florianwolters/component-drawing-color"
+        },
+        {
             "name": "graham-campbell/result-type",
             "version": "v1.1.3",
             "version_normalized": "1.1.3.0",

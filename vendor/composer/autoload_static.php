@@ -115,6 +115,30 @@ class ComposerStaticInit20fad51902f91e7fd3039e016a6556b5
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'F' => 
+        array (
+            'FlorianWolters' => 
+            array (
+                0 => __DIR__ . '/..' . '/florianwolters/component-drawing-color/src/php',
+                1 => __DIR__ . '/..' . '/florianwolters/component-core-valueobject/src/php',
+                2 => __DIR__ . '/..' . '/florianwolters/component-core-valueobject/src/tests/mocks/php',
+                3 => __DIR__ . '/..' . '/florianwolters/component-core-debugprint/src/php',
+                4 => __DIR__ . '/..' . '/florianwolters/component-core-debugprint/src/tests/mocks/php',
+                5 => __DIR__ . '/..' . '/florianwolters/component-core-immutable/src/php',
+                6 => __DIR__ . '/..' . '/florianwolters/component-core-immutable/src/tests/mocks/php',
+                7 => __DIR__ . '/..' . '/florianwolters/component-core-hashcode/src/php',
+                8 => __DIR__ . '/..' . '/florianwolters/component-core-hashcode/src/tests/mocks',
+                9 => __DIR__ . '/..' . '/florianwolters/component-core-equality/src/php',
+                10 => __DIR__ . '/..' . '/florianwolters/component-core-equality/src/tests/mocks/php',
+                11 => __DIR__ . '/..' . '/florianwolters/component-core-equality/src/tests/unit-tests/php',
+                12 => __DIR__ . '/..' . '/florianwolters/component-core-cloneable/src/php',
+                13 => __DIR__ . '/..' . '/florianwolters/component-core-cloneable/src/tests/mocks/php',
+                14 => __DIR__ . '/..' . '/florianwolters/component-core-cloneable/src/tests/unit-tests/php',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'AWS\\CRT\\Auth\\AwsCredentials' => __DIR__ . '/..' . '/aws/aws-crt-php/src/AWS/CRT/Auth/AwsCredentials.php',
         'AWS\\CRT\\Auth\\CredentialsProvider' => __DIR__ . '/..' . '/aws/aws-crt-php/src/AWS/CRT/Auth/CredentialsProvider.php',
@@ -152,6 +176,7 @@ class ComposerStaticInit20fad51902f91e7fd3039e016a6556b5
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit20fad51902f91e7fd3039e016a6556b5::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit20fad51902f91e7fd3039e016a6556b5::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit20fad51902f91e7fd3039e016a6556b5::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit20fad51902f91e7fd3039e016a6556b5::$classMap;
 
         }, null, ClassLoader::class);
