@@ -7,7 +7,6 @@ use Roblox\Authentication as Auth;
 $uid = $_GET['userId'] ?? $_GET['UserId'] ?? 1;
 $user = Auth::GetUserInfo(intval($uid));
 $bodycolor = json_decode($user['bodycolor'], true);
-//{"HeadColor": 1, "TorsoColor": 23, "LeftArmColor": 1, "LeftLegColor": 11, "RightArmColor": 1, "RightLegColor": 11}
 ?>
 <roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
 <External>null</External>
