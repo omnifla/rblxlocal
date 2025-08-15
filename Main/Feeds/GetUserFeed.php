@@ -16,6 +16,7 @@ foreach ($feeds as $feed) {
     $author_id = $feed->getFeedAuthorId();
     if ($author_id === null) continue;
     $author = \Roblox\Authentication::GetUserInfo($author_id);
+    if(!$author){ $author = [username => "[ Account Deleted $author_id ]", "id" => $author_id]; }
     $username = htmlspecialchars($author['username']);
     echo <<<HTML
     <div class="divider-top feed-container">
