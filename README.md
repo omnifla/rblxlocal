@@ -12,9 +12,15 @@ An open source 2014M ROBLOX clone, using the ported ROBLOX Site backend
 
 ## Authors
 - [meditext](https://github.com/TheGuyWhoIsIdiot)
+- [Carbon](https://github.com/Carbonapi)
+- [SkylerClock](https://github.com/SkylerClockYT)
+- [exrand](https://github.com/randomyaps)
+- [newuser](https://github.com/therealestnewuser)
+- [Chloe](https://github.com/kqsane)
 - [watrabi](https://github.com/watrabi)
 
 ## Contributors
+- [Waylon](https://github.com/WayloFunk)
 - [floof](https://github.com/verify-stack)
 - [omnifla](https://github.com/omnifla)
 
