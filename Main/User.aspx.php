@@ -8,13 +8,14 @@ use Roblox\Web\SiteAlert;
 session_start();
 $selfview = true;
 $user = Auth::GetAuthenticatedUserInfo();
-$userId = (int)$user["id"];
+$userId = intval($user["id"] ?? 0);
 
 $currentUser = null;
 if(isset($_GET['id']) || isset($_GET["ID"]) || isset($_GET['Id'])) {
     $selfview = false;
     $id = (int)($_GET['id'] ?? $_GET['ID'] ?? $_GET['Id'] ?? 0);
     $user = Auth::GetUserInfo($id);
+    if($id === $userId){ $selfview = true; }
 }
 
 
@@ -87,9 +88,9 @@ if ($m === 3) giveBadge($db, $uid, 16, $badgeMap);
 <head id="ctl00_Head1"><meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true" /><title>
 	<?= $user['username'] ." - " .$site_properties['Title'] ?>
 </title>
-<link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=main___dac4a444950639c02cc831a484c826f5_m.css' />
+<link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=main___1cacbba05e42ebf55ef7a6de7f5dd3f0_m.css' />
 
-<link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=page___1b22aeedd7f4e73ab0700a149f589336_m.css' />
+<link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=page___6d7bcbdfd9dfa4d697c4e627e71f4fc1_m.css' />
 <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Language" content="en-us" /><meta name="author" content="ROBLOX Corporation" /><meta id="ctl00_metadescription" name="description" content="View <?= $user['username'] ?>&#39;s profile on ROBLOX.  ROBLOX is the place for free games online, where people like <?= $user['username'] ?> imagine, build, and share their creations with their friends in a kid-safe environment.  There are millions of free games on ROBLOX.  10 of them are <?= $user['username'] ?>&#39;s pics on ROBLOX for best free games.  <?= $user['username'] ?> is the creator of 8 free games.  Visit ROBLOX now to play <?= $user['username'] ?>&#39;s free games and discover thousands of others!" /><meta id="ctl00_metakeywords" name="keywords" content="free games, online games, building games, virtual worlds, free mmo, gaming cloud, physics engine" />	<script type="text/javascript">
 
         var _gaq = _gaq || [];
@@ -396,7 +397,7 @@ if (isset($user['membership_type'])) {
     } else {
   echo <<<HTML
         <div style="width:900px;height:30px;clear:both; display:none;">
-    <span id="ctl00_cphRoblox_rbxHeaderPane_nameRegion" style="font-size:20px; font-weight:bold;">{$user['Name']}</span>
+    <span id="ctl00_cphRoblox_rbxHeaderPane_nameRegion" style="font-size:20px; font-weight:bold;">{$user['username']}</span>
   </div>
   HTML;
   } ?>

@@ -7,6 +7,7 @@ use Roblox\Authentication as Auth;
 use Roblox\Web\SiteHeader;
 use Roblox\Web\SiteFooter;
 use Roblox\Web\SiteAlert;
+use Roblox\UserFeed;
 // e
 // redirects the user to /newlogin?redirect-url=url if not logged in (used to show 401 error before)
 if(!Auth::GetAuthenticatedUser()){
@@ -34,11 +35,11 @@ $user = Auth::GetAuthenticatedUserInfo();
     <link rel="icon" type="image/vnd.microsoft.icon" href="http://<?= $site_properties['hostname'] ?>/favicon.ico">
     
     
-<link rel="stylesheet" href="https://<?= $site_properties['hostname'] ?>/CSS/Base/CSS/FetchCSS?path=main___9f842fd9a1a7173bd52d5de5563566b8_m.css">
+<link rel="stylesheet" href="https://<?= $site_properties['hostname'] ?>/CSS/Base/CSS/FetchCSS?path=leanbase___f9e2a82b042c4b4f945b16e30fb19e87_m.css">
 
     
-<link rel="stylesheet" href="https://<?= $site_properties['hostname'] ?>/CSS/Base/CSS/FetchCSS?path=page___bd540dc4bbc3cb88bfd00f03ec91d022_m.css">
-
+<link rel="stylesheet" href="https://<?= $site_properties['hostname'] ?>/CSS/Base/CSS/FetchCSS?path=page___0513ca5a00c9bdedff82380744b7def6_m.css">
+<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600,700" rel="stylesheet" type="text/css">
     
 	<script async="" type="text/javascript" src="./<?= $site_properties['hostname'] ?>_files/gpt.js"></script><script type="text/javascript" src="https://js.rbxcdn.com/9db05af88b1dc737664247f24a0120e0.js.gzip"></script><link href="./<?= $site_properties['hostname'] ?>_files/BestFriends.css" rel="stylesheet" type="text/css"><script type="text/javascript" src="https://js.rbxcdn.com/e96b59fba745a37cdd847ff394b79aac.js.gzip"></script><script type="text/javascript" src="https://js.rbxcdn.com/9f4404fc11d8b8958d09f6316719cef9.js.gzip"></script><script type="text/javascript" async="" src="./<?= $site_properties['hostname'] ?>_files/ga.js"></script><script type="text/javascript">
 
@@ -125,221 +126,209 @@ $user = Auth::GetAuthenticatedUserInfo();
 <body>
     
 <div id="fb-root"></div>
-<div id="MasterContainer">
-           
-
-
-<script type="text/javascript">
-$(function(){
-    function trackReturns() {
-	    function dayDiff(d1, d2) {
-		    return Math.floor((d1-d2)/86400000);
-	    }
-
-	    var cookieName = 'RBXReturn';
-	    var cookieOptions = {expires:9001};
-        var cookie = $.getJSONCookie(cookieName);
-
-	    if (typeof cookie.ts === "undefined" || isNaN(new Date(cookie.ts))) {
-	        $.setJSONCookie(cookieName, { ts: new Date().toDateString() }, cookieOptions);
-		    return;
-	    }
-
-	    var daysSinceFirstVisit = dayDiff(new Date(), new Date(cookie.ts));
-	    if (daysSinceFirstVisit == 1 && typeof cookie.odr === "undefined") {
-		    RobloxEventManager.triggerEvent('rbx_evt_odr', {});
-		    cookie.odr = 1;
-	    }
-	    if (daysSinceFirstVisit >= 1 && daysSinceFirstVisit <= 7 && typeof cookie.sdr === "undefined") {
-		    RobloxEventManager.triggerEvent('rbx_evt_sdr', {});
-		    cookie.sdr = 1;
-	    }
-	
-	    $.setJSONCookie(cookieName, cookie, cookieOptions);
-    }
-
-    
-        RobloxListener.restUrl = window.location.protocol + "//" + "<?= $site_properties['hostname'] ?>/Game/EventTracker.ashx";
-        RobloxListener.init();
-    
-    
-        GoogleListener.init(); 
-    
-    
-    
-    
-        RobloxEventManager.initialize(true);
-        RobloxEventManager.triggerEvent('rbx_evt_pageview');
-        trackReturns(); // trapz was here mewmewomeowmeow
-    
-    
-    
-        RobloxEventManager._idleInterval = 450000;
-        RobloxEventManager.registerCookieStoreEvent('rbx_evt_initial_install_start');
-        RobloxEventManager.registerCookieStoreEvent('rbx_evt_ftp');
-        RobloxEventManager.registerCookieStoreEvent('rbx_evt_initial_install_success');
-        RobloxEventManager.registerCookieStoreEvent('rbx_evt_fmp');
-        RobloxEventManager.startMonitor();
-    
-
-});
-
-</script>
-
-    <div>
+<div id="MasterContainer"><div>
 
                                                             
 <?= SiteHeader::render() ?>
-<div class="forceSpaceUnderSubmenu">&nbsp;</div> 
-            <div class="forceSpace">&nbsp;</div>
-        <noscript>&lt;div class="SystemAlert"&gt;&lt;div class="SystemAlertText"&gt;Please enable Javascript to use all the features on this site.&lt;/div&gt;&lt;/div&gt;</noscript>
-	<?= SiteAlert::render() ?>
-        <div id="BodyWrapper">
-            <div id="RepositionBody">
-                <div id="Body" style="width:970px">
-                    		   
-<div id="HomeContainer" class="home-container" data-facebook-share="/facebook/share-character" data-update-status-url="/home/updatestatus" data-get-feed-url="https://<?= $site_properties['hostname'] ?>/feeds/getuserfeed">
-	<div>
-		<h1>Hello, <span class="notranslate"><?= htmlspecialchars($user['username']) ?></span>!</h1>
-	</div>
-	<div class="left-column">
-	    <div class="left-column-boxes user-avatar-container">
-<div id="UserAvatar" class="user-avatar-holder">
-    <span class="user-avatar"><img alt="<?= htmlspecialchars($user['username']) ?>" class="user-avatar-image" src="/Thumbs/User.ashx?ID=<?= $user['id'] ?>&Width=210&Height=210"></span>
-</div>
-<div id="UserInfo" class="text">
-	<div>
-		<b><a class="text-link" href="http://<?= $site_properties['hostname'] ?>/my/messages?111">0 System Notification(s)</a></b>
-	</div>
-</div>	    </div>
-		<div class="left-column-boxes">
-			<h3>RBLX.local News</h3>
-			<div class="notranslate text news-container">
-				<div id="RobloxNews">
-    <div class="roblox-news-feed">
-                <div class="roblox-news-feed-item">
-                    <a href="http://blog.<?= $site_properties['hostname'] ?>/2013/11/racetothebottom-races-to-the-top-with-space-knights/?utm_source=rss&utm_medium=rss&utm_campaign=racetothebottom-races-to-the-top-with-space-knights" ref="news-article" class="roblox-interstitial">RaceToTheBottom Races to the Top with Space Knights</a>
-                </div>
-                <div class="roblox-news-feed-item">
-                    <a href="http://blog.<?= $site_properties['hostname'] ?>/2013/11/developers-share-their-devex-success-stories/?utm_source=rss&utm_medium=rss&utm_campaign=developers-share-their-devex-success-stories" ref="news-article" class="roblox-interstitial">Developers Share Their DevEx Success Stories</a>
-                </div>
-    </div>
-    <a href="http://blog.<?= $site_properties['hostname'] ?>/" class="SeeMore roblox-interstitial">See More</a>
-    <img alt="See more! " src="./<?= $site_properties['hostname'] ?>_files/efe86a4cae90d4c37a5d73480dea4cb1.png" class="see-more-img">
-</div>
-			</div>
-		</div>
-	    <div class="left-column-boxes">
-	        <div>
-	            <h3 class="best-friends-title">My Best Friends</h3>
-	            <div class="edit-friends-button">
-	                <a href="http://<?= $site_properties['hostname'] ?>/my/EditFriends.aspx" class="btn-small btn-neutral">Edit</a>
-	            </div>
-	            <div class="clear"></div>
-	        </div>
-	        <div id="bestFriendsContainer" class="best-friends-container">
-<div class="best-friends">
-    <div class="user">
-        <div class="roblox-avatar-image" data-user-id="1" data-image-size="tiny">
-        <div class="info">
-            <img src="" title="Offline">
-            <a class="name" href="http://<?= $site_properties['hostname'] ?>/User.aspx?ID=1">ROBLOX</a>
-            <div class="status">"Still in the works"</div>
+        <div id="navContent" class="nav-content"><div class="nav-content-inner">
+		<div class="content">
+<div id="HomeContainer" class="row home-container"
+     data-facebook-share="/facebook/share-character"
+     data-update-status-url="/home/updatestatus"
+     data-should-show-enable-two-step-verification-call-to-action=False>
+
+
+    <div class="col-xs-12 home-header">  
+        <a href="/User.aspx" class="home-thumbnail-bust" >
+            <img alt="avatar" src="/Images/Placeholder1024x1024.png" />
+        </a>
+        <div class="home-header-content ">
+            <h1><a href="/User.aspx">Hello, <?= htmlspecialchars($user['username']) ?>!</a>
+            </h1>
+                <span class="rbx-icon-tbc"></span>
         </div>
-        <div class="clear"></div>
     </div>
-</div>
-
-	        <div style="clear:both;"></div>
-	    </div>
-            <div class="left-column-boxes text">
-                	
-	<div id="fbNotLoggedIn">
-			<img border="0" alt="Facebook Connect" src="//images.rbxcdn.com/4ec0c6c40a454f2f6537946d00f09b56.png">
-			<div style="text-align: left; margin: 5px">
-				Link your ROBLOX account with your Facebook account to let your Facebook friends see what you're doing on RBLX.local !<br>
-			</div>
-		<a class="facebook-login" href="http://<?= $site_properties['hostname'] ?>/facebook/authorize?ReturnTo=%2Fmy%2Fhome.aspx">
-			<span class="left"></span>
-			<span class="middle">Connect with Facebook<span>Connect with Facebook</span></span>
-			<span class="right"></span>
-		</a>
-	</div>
-
+        <div class="col-xs-12 section home-friends">
+            <div class="container-header">
+                <h3>Friends (1)</h3>
+                <a  href="/friends.aspx#FriendsTab" class="rbx-btn-secondary-xs btn-more">See All</a>
             </div>
-	</div>
-</div>
-		</div>
-</div>
-	<div class="middle-column">
-		<div id="statusUpdateBox" class="middle-column-box status-update">
-		    <div>
-                    <input name="txtStatusMessage" type="text" id="txtStatusMessage" maxlength="254" class="translate text-box text-box-large status-textbox" placeholder="What are you up to?">
-<span class="btn-control btn-control-large share-button" id="shareButton">Share</span>		        
-		        <img id="loadingImage" class="status-update-image" style="display: none" alt="Sharing..." src="//images.rbxcdn.com/ec4e85b0c4396cf753a06fade0a8d8af.gif">
-		        <div class="clear"></div>
-		    </div>
-		</div>
+            
+            
 
-        <div id="FeedificationsContainer" class="">
 
-</div>
+<ul class="hlist friend-list">
+                <li class="list-item friend">
+                    <a href="/User.aspx?id=1" class="friend-link" title="TheGuyWhoIsIdiot">
+                        <span class="friend-avatar" data-3d-url="/avatar-thumbnail-3d/json?userId=72230447"  data-js-files='https://js.rbxcdn.com/47e6e85800c4ed3c4eef848c077575a9.js.gzip' ><img alt='TheGuyWhoIsIdiot' class='' src='/Images/Placeholder1024x1024.png' /></span>
+                        <span class="friend-name rbx-text-overflow">TheGuyWhoIsIdiot</span>
+                                <span class="friend-status rbx-icon-online" title="Website"></span>
+                    </a>
+                </li>
+</ul>
 
-		<div id="FeedContainer" class="middle-column-box feed-container">
-			<h2>My Feed</h2>
-			<div id="FeedPanel">
-				<div id="AjaxFeed" class="text"><div class="text">
-</div>
-</div>
-				<div id="AjaxFeedError" style="display: none" class="error-message">An error occurred while fetching your feed.</div>
-			</div>
-		</div>
-	</div>
 
-    <div class="right-column">
-            <div id="RecentlyVisitedPlacesContainer" class="right-column-box">
-                <h3 style="padding-bottom: 6px;">Recently Played Games</h3>
+        </div>
+
+
+        <div id="recently-visited-places" class="col-xs-12 container-list home-games">
+            <div class="container-header">
+                <h3>Recently Played</h3>
+<a  href="/games?sortFilter=6" class="rbx-btn-secondary-xs btn-more">See All</a>            </div>
+            
+            
+
+
+<ul class="hlist game-list">
+<li class="list-item game">
+            <a href="/Place.aspx?placeId=1" class="game-item">
+                <span class="game-thumb"><img class="" src="/rbxcdn_img/04baeb33ef66ef1395cd5464309fece6.jpg"></span>
+                <span class="rbx-title rbx-text-overflow">Crossroads</span>
+                    <span class="rbx-text-notes rbx-font-sm">0 Online</span>
+            </a>
+        </li>
+
+</ul>
+        </div>
+
+    <div class="col-xs-12 col-sm-6 home-right-col">
+
+
+        <div class="section">
+            <div class="section-header">
+                <h3>Blog News</h3>
+                <a  href="https://blog.<?= $site_properties['hostname'] ?>" class="rbx-btn-control-xs btn-more">See More</a>
+            </div>
+            
+            
+<ul class="blog-news">
+            <li class="news">
+                <span class="rbx-icon-page"></span>
+                <span class="news-link"><a href="https://blog.<?= $site_properties['hostname'] ?>/2015/09/get-free-hats-win-prizes-in-the-endless-summer-camp-out/" ref="news-article" class="roblox-interstitial rbx-link rbx-article-title">Get Free Hats &amp; Win Prizes in the Endless Summer Camp Out!</a></span>
+            </li>
+            <li class="news">
+                <span class="rbx-icon-page"></span>
+                <span class="news-link"><a href="https://blog.<?= $site_properties['hostname'] ?>/2015/09/new-profile-pages-add-new-features-for-interacting-with-friends/" ref="news-article" class="roblox-interstitial rbx-link rbx-article-title">New Profile Pages Add New Features for Interacting With Friends</a></span>
+            </li>
+
+
+</ul>
+        </div>
+                            <div id="FacebookConnectCard" class="section">
                 
-<div id="RecentlyVisitedPlaces">
-	<div id="RecentlyVisitedPlaceTemplate" class="recent-place-container">
-		<div class="recent-place-thumb"></div>
-		<div class="recent-place-Info">
-			<div class="recent-place-name"></div>
-			<div class="recent-place-players-online text"></div>
-		</div>
-	</div>
-</div>
-<div id="SeeMore">
-        <a href="http://<?= $site_properties['hostname'] ?>/games?sortFilter=6" class="text-link">See More  <img alt="See more! " src="//images.rbxcdn.com/efe86a4cae90d4c37a5d73480dea4cb1.png" class="see-more-img"></a>
-</div>
-<div id="PlayGames" style="display: none">
-	You haven't played any games recently.
-	<a href="http://<?= $site_properties['hostname'] ?>/Games.aspx" class="text-link">Play Now  <img alt="See more! " src="//images.rbxcdn.com/efe86a4cae90d4c37a5d73480dea4cb1.png" class="see-more-img"></a>
+                
+
+<center>
+<img src="https://images.rbxcdn.com/4ec0c6c40a454f2f6537946d00f09b56.png">
+<p style="width:50%;">Link your ROBLOX account with your Facebook account to let your Facebook friends see what you're doing on ROBLOX!</p>
+</center>
+<div id="connect-facebook">
+    
+    
+
+
+<div id="SocialIdentitiesInformation" 
+    data-rbx-login="/social/notify-login"
+    data-rbx-update="/social/update-info"
+    data-rbx-disconnect="/social/disconnect"
+    data-rbx-login-redirect-url="/social/postlogin"
+    data-user-is-authenticated></div>
+    <div class="connect-button" data-rbx-provider="facebook" style="background-image:url('https://cdns3.gigya.com/gs/GetSprite.ashx?path=%2FHTMLLogin%2FFullLogo%2F%5Bfacebook%5D_30.png%7C78%2C30');width:78px;height:30px;background-repeat:no-repeat"></div>
+    <div class="disconnect-link" data-rbx-provider="facebook"></div>
+    <div class="nickname"></div>
 </div>
             </div>
-        <div id="Skyscraper-Ad" class="right-column-box">
-<div style="width: 160px">
-    <span id="3439303639313930" class="GPTAd skyscraper" data-js-adtype="gptAd">
-        <script type="text/javascript">
-            googletag.cmd.push(function () {
-                googletag.display("3439303639313930");
-            });
-        </script>
-    <iframe
-    allowtransparency="true"
-    frameborder="0"
-    height="160"
-    scrolling="no"
-    src="/userads/2"
-    width="600"
-    data-js-adtype="iframead"></iframe>
-</div>        </div>
-    </div>
-	<div class="clear"></div>
-	<div id="UserScreenContainer">
+    </div><!-- .home-right-col -->
 
-	</div>
+
+    <div class="col-xs-12 col-sm-6 home-left-col">
+        <div class="section">
+            <div class="section-header">
+                <h3>My Feed</h3>
+            </div>
+            <div class="rbx-form-horizontal" id="statusForm" role="form">
+                <div class="rbx-form-group" id="groupYes">
+                    <input class="form-control rbx-input-field" id="txtStatusMessage" maxlength="254" placeholder="What are you up to?" />
+                    <p class="rbx-control-label">Status update failed.</p>
+                </div>
+                <a  type="button" class="rbx-btn-primary-sm" id="shareButton">Share</a>
+                <img id="loadingImage" class="share-login" style="display: none" alt="Sharing..." src="https://images.rbxcdn.com/ec4e85b0c4396cf753a06fade0a8d8af.gif" height="17" width="48" />
+            </div>
+            
+            
+
+
+<ul class="vlist feeds">
+<?php
+$limit = 20;
+$feeds = UserFeed::getRecent($limit);
+if (empty($feeds)) {
+    echo '<div class="no-feeds">No feeds available.</div>';
+    exit;
+}
+foreach ($feeds as $feed) {
+    $feed_content = htmlspecialchars($feed->getFeedContent());
+    $feed_timestamp = $feed->getFeedPostTime();
+    $feed_date = date('m/d/Y', $feed_timestamp) . " at " . date('h:i A', $feed_timestamp);
+    $author_id = $feed->getFeedAuthorId();
+    if ($author_id === null) continue;
+    $author = \Roblox\Authentication::GetUserInfo($author_id);
+    if(!$author){ $author = [username => "[ Account Deleted $author_id ]", "id" => $author_id]; }
+    $username = htmlspecialchars($author['username']);
+    echo <<<HTML
+            <li class="list-item"><a href="/User.aspx?id={$author['id']}" class="list-header" ><img  class="header-thumb" src="/Images/Placeholder1024x1024.png" /></a>
+            <div class="list-body">
+                <p class="list-content"><a href="/User.aspx?id={$author['id']}">{$username}</a><div class="feedtext linkify">"{$feed_content}"</div></p>
+                <span class="rbx-text-notes rbx-font-sm">{$feed_date}</span>
+                    <a href="/abusereport/Feed?id={$feed->getPostId()}&amp;amp;redirectUrl=%2Fhome">
+                        <span class="rbx-icon-report"></span>
+                    </a>
+            </div>
+        </li>
+    HTML;
+}
+?>
+</ul>
+        </div>
+    </div>
+
+
+    
+    
+
+
+    
+    
+
+
+
+
+
+
 </div>
+
+
+
+
+                <div id="Skyscraper-Adp-Right" class="abp abp-container right-abp">
+                    
+                    
+
+
+    <iframe allowtransparency="true"
+            frameborder="0"
+            height="612"
+            scrolling="no"
+            src="/userads/2"
+            width="160"
+            data-js-adtype="iframead"></iframe>
+
+
+                </div>
+            
+            
+        </div>
+            </div> 
 
 
                     <div style="clear:both"></div>
@@ -347,4 +336,4 @@ $(function(){
             </div>
         </div>
 
-<?= SiteFooter::render() ?>
+<?= SiteFooter::renderNextStyleGuide() ?>

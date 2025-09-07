@@ -41,10 +41,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     
 
-<link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=main___3731e5099a71e94e28c4df78e94fcc01_m.css' />
+<link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=main___1cacbba05e42ebf55ef7a6de7f5dd3f0_m.css' />
 
     
-<link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=page___bae5a64df734598d457f78134ba86e31_m.css' />
+<link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=page___3297996122eaf8389c3412b669a3c56c_m.css' />
 
         
 	<script type="text/javascript">
@@ -130,80 +130,23 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <div id="fb-root"></div>
 
-<div class=" no-gutter-ads">
+<div class="nav-container no-gutter-ads">
+<?= SiteHeader::render() ?>
 <div class="">
 <div class="">
+
+<div id="navContent" class="">
 <div id="MasterContainer">
         <script type="text/javascript">
             if (top.location != self.location) {
                 top.location = self.location.href;
             }
         </script>
-    
 
-<script type="text/javascript">
-$(function(){
-    function trackReturns() {
-	    function dayDiff(d1, d2) {
-		    return Math.floor((d1-d2)/86400000);
-	    }
-        if (!localStorage) return; 
-
-	    var cookieName = 'RBXReturn';
-	    var cookieOptions = {expires:9001};
-        var cookie = localStorage.getItem(cookieName) || {};
-
-	    if (typeof cookie.ts === "undefined" || isNaN(new Date(cookie.ts))) {
-	        localStorage.setItem(cookieName, { ts: new Date().toDateString() });
-		    return;
-	    }
-
-	    var daysSinceFirstVisit = dayDiff(new Date(), new Date(cookie.ts));
-	    if (daysSinceFirstVisit == 1 && typeof cookie.odr === "undefined") {
-		    RobloxEventManager.triggerEvent('rbx_evt_odr', {});
-		    cookie.odr = 1;
-	    }
-	    if (daysSinceFirstVisit >= 1 && daysSinceFirstVisit <= 7 && typeof cookie.sdr === "undefined") {
-		    RobloxEventManager.triggerEvent('rbx_evt_sdr', {});
-		    cookie.sdr = 1;
-	    }
-	
-	    localStorage.setItem(cookieName, cookie);
-    }
-
-    
-        RobloxListener.restUrl = window.location.protocol + "//" + "<?= $site_properties["hostname"] ?>/Game/EventTracker.ashx";
-        RobloxListener.init();
-    
-    
-        GoogleListener.init();
-    
-    
-    
-    
-        RobloxEventManager.initialize(true);
-        RobloxEventManager.triggerEvent('rbx_evt_pageview');
-        trackReturns();
-    
-    
-    
-        RobloxEventManager._idleInterval = 450000;
-        RobloxEventManager.registerCookieStoreEvent('rbx_evt_initial_install_start');
-        RobloxEventManager.registerCookieStoreEvent('rbx_evt_ftp');
-        RobloxEventManager.registerCookieStoreEvent('rbx_evt_initial_install_success');
-        RobloxEventManager.registerCookieStoreEvent('rbx_evt_fmp');
-        RobloxEventManager.startMonitor();
-    
-
-});
-
-</script>
-
-
-    <div>
+<div>
 
                                                             
-<?= SiteHeader::render() ?>
+
 <script type="text/javascript">
     $(function () {
         $('.more-list-item').bind('showDropDown', function () {

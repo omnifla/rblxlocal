@@ -63,22 +63,9 @@ class Authentication {
         return password_verify($password, $userinfo['password']);
     }
     // used for captcha verification on the site
-    private static function ValidateCaptcha(): void {
-        $secret = $_ENV['HCAPTCHA_SECRET'];
-        $response = $_POST['h-captcha-response'] ?? null;
-        if (!$response) {
-            throw new \InvalidArgumentException("Captcha is required");
-        }
-        $verify = file_get_contents("https://hcaptcha.com/siteverify?secret=" . urlencode($secret) . "&response=" . urlencode($response) . "&remoteip=" . $_SERVER['REMOTE_ADDR']);
-        $success = json_decode($verify, true);
-        if (!isset($success['success']) || $success['success'] !== true) {
-            throw new \InvalidArgumentException("Captcha validation failed.");
-        }
-    }
     public static function Login(string $username, string $password) {
         global $conn;
         $jwt_secret = $_ENV['JWT_SECRET'];
-        self::ValidateCaptcha();
 
         if (empty($username) || empty($password)) {
             throw new \InvalidArgumentException("Username and password are required.");
@@ -136,11 +123,7 @@ class Authentication {
     public static function Register(string $username, string $password, ?int $gender = 1, ?string $email = "", ?string $birthdate = "1970-01-01") {
         global $conn;
         $jwt_secret = $_ENV['JWT_SECRET'];
-        self::ValidateCaptcha();
         
-        if($_ENV['CAN_MAKE_ACC'] == "false"){
-            throw new \InvalidArgumentException("Could not register your account, please try again later.");
-        }
         if(empty($birthdate)) {
             throw new \InvalidArgumentException("Birthday must be set first.");
         }

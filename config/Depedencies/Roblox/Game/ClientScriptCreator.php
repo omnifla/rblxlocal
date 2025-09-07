@@ -36,8 +36,8 @@ class ClientScriptCreator {
 
     public static function init() { // god i fucking hate php
         // there is a better way to do this, i think
-        self::$DEFAULT_REPLACELIST['{0}'] = $_ENV['SITE_DOMAIN'];
-        self::$DEFAULT_REPLACELIST['{1}'] = $_ENV['API_DOMAIN'];
+        self::$DEFAULT_REPLACELIST['{0}'] = $_SERVER['HTTP_HOST'] ?? 'www.roblox.com';
+        self::$DEFAULT_REPLACELIST['{1}'] = $_SERVER['HTTP_HOST'] ?? 'api.roblox.com';
     }
 
     // WARNING: this is insecure if you DON'T filter the variables, please filter them
