@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>My Account - <?= $site_properties['Title'] ?></title>
     <link href="/CSS/Pages/Accounts/AccountMVC.css" rel="stylesheet">
     <link rel="stylesheet" href="/CSS/Base/CSS/FetchCSS?path=main___93d7b975be9106ab72cfa4deac3a5583_m.css">
-    <link href="/CSS/Base/CSS/FetchCSS?path=page___2ad765c3e4926df9c25fa00b92677eed_m.css" rel="stylesheet">
+    <link href="/CSS/Base/CSS/FetchCSS?path=page___6d7bcbdfd9dfa4d697c4e627e71f4fc1_m.css" rel="stylesheet">
     <link href="/CSS/Base/CSS/MyAccount.css" rel="stylesheet">
     <link href="/CSS/Pages/Character/Character.css" rel="stylesheet">
 <script type='text/javascript' src='//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js'></script>

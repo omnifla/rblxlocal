@@ -11,48 +11,93 @@ class SiteHeader{
         global $site_properties;
         if(!Auth::GetAuthenticatedUser()){
             return <<<HTML
-            <div class="site-header">
-            <div id="navigation-container">
-                <a href="/Default.aspx" class="btn-logo" data-se="nav-logo"></a>
-            <div id="navigation-menu">
-            <ul>
-                <li><a href="/home" ref="nav-myroblox" data-se="nav-myhome">Home</a></li>
-                <li><a data-se="nav-games" href="/games" ref="nav-games" title="Games">Games</a> </li>
-                <li><a data-se="nav-catalog" href="/Catalog" ref="nav-catalog" title="Catalog">Catalog</a></li>
-                
-                <li><a data-se="nav-leaderboards" href="/leaderboards" title="Leaderboards" ref="nav-leaderboards">Leaderboards</a></li>
-                
-                <li><a data-se="nav-upgrade" href="/Upgrades/BuildersClubMemberships.aspx" title="Builders Club" ref="nav-buildersclub">Builders Club</a></li>
-                <li><a data-se="nav-forum" onclick=''  href="/Forum/Default.aspx" style='' title="Forum" ref="nav-forum">Forum</a></li>
-                <li class="more-list-item" drop-down-nav-button="more-list-item">
-                    <div class="more-link-container">
-                        <a id="nav-more" title="More" data-se="nav-more" ref="nav-more">More<span id="more-menu-toggle" ></span></a> 
-                    </div>
-                    <div class="dropdownnavcontainer" style="display:none;" data-drop-down-nav-container="more-list-item">
-                        <div class="dropdownmainnav" style="z-index:1023">
-                            <a class="dropdownoption" data-se="nav-more-browse" href="/Browse.aspx" title="People" ref="nav-people"><span>People</span></a>
-                            <a class="dropdownoption roblox-interstitial" data-se="nav-more-blog" href="http://blog.{$site_properties["hostname"]}" title="Blog" ref="nav-news"><span>Blog</span></a>
-                            <a class="dropdownoption" data-se="nav-more-help" href="/Help/Builderman.aspx" title="Help" ref="nav-help"><span>Help</span></a>
-                            <div style="clear:both;"></div>
+            <div id="header" class="navbar-fixed-top rbx-header" role="navigation">
+                <div class="container-fluid">
+                    <div class="rbx-navbar-header">
+                        <div data-behavior="nav-notification" class="rbx-nav-collapse" onselectstart="return false;">
+                                        </div>
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="/"><span class="logo"></span></a>
                         </div>
                     </div>
-                </li>
-            </ul>
-            </div>
-                <div id="header-login-container">
-                    <div id="header-login-wrapper" class="iframe-login-signup" data-display-opened="">
-                        <a id="header-signup" href="/Login/NewAge.aspx">Sign Up</a>
-                        <span id="header-or">or</span>
-                        <span id="login-span">
-                            <a id="header-login" class="btn-control btn-control-large" href="#" onclick="window.location.href='/newlogin?redirect=' + encodeURIComponent(window.location.href); return false;">Login <span class="grey-arrow">▼</span></a>
-                        </span>
-                        <div id="iFrameLogin"  style="display:none">
-                            <iframe class="login-frame" src="/Login/iFrameLogin.aspx?loginRedirect=False&amp;parentUrl=https%3a%2f%2fwww.{$site_properties["hostname"]}>%2fNewLogin" scrolling="no" frameborder="0"></iframe>
+                    <ul class="nav rbx-navbar hidden-xs hidden-sm col-md-4 col-lg-3">
+                        <li>
+                            <a href="/games">Games</a>
+                        </li>
+                        <li>
+                            <a href="/catalog">Catalog</a>
+                        </li>
+                        <li>
+                            <a href="/develop">Develop</a>
+                        </li>
+                        <li>
+                            <a class="buy-robux" href="/upgrades/robux">ROBUX</a>
+                        </li>
+                    </ul><!--rbx-navbar-->
+                    <div id="navbar-universal-search" class="navbar-left rbx-navbar-search col-xs-5 col-sm-6 col-md-3" data-behavior="univeral-search" role="search">
+                        <div class="input-group rbx-input-group">
+
+                            <input id="navbar-search-input" class="form-control rbx-input-field" type="text" placeholder="Search" maxlength="120" />
+                            <div class="input-group-btn rbx-input-group-btn">
+                                <button id="navbar-search-btn" class="rbx-input-addon-btn" type="submit">
+                                    <span class="rbx-icon-nav-search"></span>
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                        <ul data-toggle="dropdown-menu" class="rbx-dropdown-menu" role="menu">
+                            <li class="rbx-navbar-search-option selected" data-searchurl="/users/search?keyword=">
+                                <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in People</span>
+                            </li>
+                                    <li class="rbx-navbar-search-option" data-searchurl="/games/?Keyword=">
+                                        <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Games</span>
+                                    </li>
+                                    <li class="rbx-navbar-search-option" data-searchurl="/catalog/browse.aspx?CatalogContext=1&amp;Keyword=">
+                                        <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Catalog</span>
+                                    </li>
+                                    <li class="rbx-navbar-search-option" data-searchurl="/groups/search.aspx?val=">
+                                        <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Groups</span>
+                                    </li>
+                                    <li class="rbx-navbar-search-option" data-searchurl="/develop/library?CatalogContext=2&amp;Category=6&amp;Keyword=">
+                                        <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Library</span>
+                                    </li>
+                        </ul>
+                    </div><!--rbx-navbar-search-->
+                    <div class="navbar-right rbx-navbar-right col-xs-4 col-sm-3">
+                            <ul class="nav navbar-right rbx-navbar-right-nav" data-display-opened="False">
+                                <li>
+                                    <a id="header-login" class="rbx-navbar-login" data-behavior="login" data-toggle="popover" data-bind="popover-login" data-viewport="#header">Log In</a>
+                                </li>
+                                <div id="iFrameLogin" class="rbx-popover-content" data-toggle="popover-login" role="menu">
+                                    <iframe class="rbx-navbar-login-iframe" src="/Login/iFrameLogin.aspx?loginRedirect=True&amp;parentUrl=http%3a%2f%2fwww.roblox.com%2fuser.aspx%3fID%3d1" scrolling="no" frameborder="0" width="320"></iframe>
+                                </div>
+                                <li>
+                                    <a class="rbx-navbar-signup" href="/Login/NewAge.aspx">Sign Up</a>
+                                </li>
+                                <li class="rbx-navbar-right-search" data-toggle="toggle-search">
+                                    <a class="rbx-menu-icon">
+                                        <span class="rbx-icon-nav-search-white"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                    </div><!-- navbar right-->
+                    <ul class="nav rbx-navbar hidden-md hidden-lg col-xs-12">
+                        <li>
+                            <a href="/games">Games</a>
+                        </li>
+                        <li>
+                            <a href="/catalog">Catalog</a>
+                        </li>
+                        <li>
+                            <a href="/develop">Develop</a>
+                        </li>
+                        <li>
+                            <a class="buy-robux" href="/upgrades/robux">ROBUX</a>
+                        </li>
+                    </ul><!--rbx-navbar-->
                 </div>
             </div>
-            </div>
+            <!-- LEFT NAV MENU -->
+
             HTML;
         }else{
             $user = Auth::GetAuthenticatedUserInfo();
@@ -60,152 +105,215 @@ class SiteHeader{
             $userId = (int)$user["id"];
             $tickets = htmlspecialchars($user["tickets"], ENT_QUOTES, 'UTF-8');
             $robux = htmlspecialchars($user["robux"], ENT_QUOTES, 'UTF-8');
+            function formatNumberToAbbreviation($number) {
+                if ($number >= 1000000000000) {
+                    return round($number / 1000000000000, 1) . 'T';
+                } elseif ($number >= 1000000000) {
+                    return round($number / 1000000000, 1) . 'B';
+                } elseif ($number >= 1000000) {
+                    return round($number / 1000000, 1) . 'M';
+                } elseif ($number >= 1000) {
+                    return round($number / 1000, 1) . 'K';
+                } else {
+                    return $number;
+                }
+            }
+            $formated_t = formatNumberToAbbreviation($tickets);
+            $formated_r = formatNumberToAbbreviation($robux);
+
 $html = <<<HTML
-                <div class="site-header">
-                <div id="navigation-container">
-                    <a href="/Default.aspx" class="btn-logo" data-se="nav-logo"></a>
-                    <div id="navigation-menu">
+                <script type="text/javascript" src="//js.rbxcdn.com/9715e76471ffacd5f6d9c24a5ab101ad.js"></script>
+            	<div id="header" class="navbar-fixed-top rbx-header" role="navigation">
+                <div class="container-fluid">
+                    <div class="rbx-navbar-header">
+                        <div data-behavior="nav-notification" class="rbx-nav-collapse" onselectstart="return false;">
+                                <span class="rbx-icon-nav-menu"></span>
+                            
+                            
+                            <div class="rbx-nav-notification hide rbx-font-xs"
+                                   title="0">
+                                
+                                
+                            </div>
+                            
+                            
+                        </div>
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="/"><span class="logo"></span></a>
+                        </div>
+                    </div>
+                    <ul class="nav rbx-navbar hidden-xs hidden-sm col-md-4 col-lg-3">
+                        <li>
+                            <a href="/games">Games</a>
+                        </li>
+                        <li>
+                            <a href="/catalog">Catalog</a>
+                        </li>
+                        <li>
+                            <a href="/develop">Develop</a>
+                        </li>
+                        <li>
+                            <a class="buy-robux" href="/upgrades/robux?ctx=nav">ROBUX</a>
+                        </li>
+                    </ul><!--rbx-navbar-->
+                    <div id="navbar-universal-search" class="navbar-left rbx-navbar-search col-xs-5 col-sm-6 col-md-3" data-behavior="univeral-search" role="search">
+                        <div class="input-group rbx-input-group">
+                    
+                    
+                            <input id="navbar-search-input" class="form-control rbx-input-field" type="text" placeholder="Search" maxlength="120" />
+                            <div class="input-group-btn rbx-input-group-btn">
+                                <button id="navbar-search-btn" class="rbx-input-addon-btn" type="submit">
+                                    <span class="rbx-icon-nav-search"></span>
+                                </button>
+                            </div>
+                        </div>
+                        <ul data-toggle="dropdown-menu" class="rbx-dropdown-menu" role="menu">
+                            <li class="rbx-navbar-search-option selected" data-searchurl="/search/users?keyword=">
+                                <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in People</span>
+                            </li>
+                                    <li class="rbx-navbar-search-option" data-searchurl="/games/?Keyword=">
+                                        <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Games</span>
+                                    </li>
+                                    <li class="rbx-navbar-search-option" data-searchurl="/catalog/browse.aspx?CatalogContext=1&amp;amp;Keyword=">
+                                        <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Catalog</span>
+                                    </li>
+                                    <li class="rbx-navbar-search-option" data-searchurl="/groups/search.aspx?val=">
+                                        <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Groups</span>
+                                    </li>
+                                    <li class="rbx-navbar-search-option" data-searchurl="/develop/library?CatalogContext=2&amp;amp;Category=6&amp;amp;Keyword=">
+                                        <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Library</span>
+                                    </li>
+                        </ul>
+                    </div><!--rbx-navbar-search-->
+                    <div class="navbar-right rbx-navbar-right col-xs-4 col-sm-3">
+                    
+                    
+            <ul class="nav navbar-right rbx-navbar-icon-group">
+                <li>
+                    <a class="rbx-menu-item" data-toggle="popover" data-bind="popover-setting" data-viewport="#header">
+                        <span class="rbx-icon-nav-settings" id="nav-settings"></span>
+                        <span class="rbx-font-xs nav-setting-highlight hidden">0</span>
+                    </a>
+                    <div class="rbx-popover-content" data-toggle="popover-setting">
+                        <ul class="rbx-dropdown-menu" role="menu">
+                            <li>
+                                <a class="rbx-menu-item" href="/my/account">
+                                    Settings
+                                    <span class="rbx-font-xs nav-setting-highlight hidden">0</span>
+                                </a>
+                            </li>
+                            <li><a href="/Help/Builderman.aspx" target="_blank">Help</a></li>
+                            <li><a data-behavior="logout" data-bind="/authentication/logout">Logout</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a class="rbx-menu-item" data-toggle="popover" data-bind="popover-tix" data-viewport="#header">
+                        <span class="rbx-icon-nav-tix" id="nav-tix"></span>
+                        <span class="rbx-text-navbar-right" id="nav-tix-amount">{$formated_t}</span>
+                    </a>
+                    <div class="rbx-popover-content" data-toggle="popover-tix">
+                        <ul class="rbx-dropdown-menu" role="menu">
+                            <li><a href="/My/Money.aspx#/#Summary_tab" id="nav-tix-balance">{$tickets} Tickets</a></li>
+                            <li><a href="/my/money.aspx?tab=TradeCurrency">Trade Currency</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a id="nav-robux-icon" class="rbx-menu-item" data-toggle="popover" data-bind="popover-robux">
+                        <span class="rbx-icon-nav-robux" id="nav-robux"></span>
+                        <span class="rbx-text-navbar-right" id="nav-robux-amount">{$formated_r}</span>
+                    </a>
+                    <div class="rbx-popover-content" data-toggle="popover-robux">
+                        <ul class="rbx-dropdown-menu" role="menu">
+                            <li><a href="/My/Money.aspx#/#Summary_tab" id="nav-robux-balance">{$robux} ROBUX</a></li>
+                            <li><a href="/upgrades/robux?ctx=navpopover">Buy ROBUX</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="rbx-navbar-right-search" data-toggle="toggle-search">
+                    <a class="rbx-menu-icon">
+                        <span class="rbx-icon-nav-search-white"></span>
+                    </a>
+                </li>
+            </ul>        </div><!-- navbar right-->
+                    <ul class="nav rbx-navbar hidden-md hidden-lg col-xs-12">
+                        <li>
+                            <a href="/games">Games</a>
+                        </li>
+                        <li>
+                            <a href="/catalog">Catalog</a>
+                        </li>
+                        <li>
+                            <a href="/develop">Develop</a>
+                        </li>
+                        <li>
+                            <a class="buy-robux" href="/upgrades/robux?ctx=nav">ROBUX</a>
+                        </li>
+                    </ul><!--rbx-navbar-->
+                </div>
+            </div>
+                    
+            <!-- LEFT NAV MENU -->
+                <div id="navigation" class="rbx-left-col" data-behavior="left-col">
+                    <ul>
+                        <li class="rbx-lead">
+                            <a href="/user.aspx">{$username}</a>
+                        </li>
+                        <li class="rbx-divider"></li>
+                    </ul>
+                    <div class="rbx-scrollbar" data-toggle="scrollbar" onselectstart="return false;">
                         <ul>
-                            <li><a href="/home" ref="nav-myroblox" data-se="nav-myhome">Home</a></li>
-                            <li><a data-se="nav-games" href="/games" ref="nav-games" title="Games">Games</a> </li>
-                            <li><a data-se="nav-catalog" href="/Catalog" ref="nav-catalog" title="Catalog">Catalog</a></li>
-
-                                <li><a data-se="nav-develop" href="/develop" title="Develop" ref="nav-develop">Develop</a></li>
-
-                            <li><a data-se="nav-upgrade" href="/Upgrades/BuildersClubMemberships.aspx" title="Builders Club" ref="nav-buildersclub">Builders Club</a></li>
-                            <li><a data-se="nav-forum" onclick="" href="/Forum/Default.aspx" style="" title="Forum" ref="nav-forum">Forum</a></li>
-                            <li class="more-list-item" drop-down-nav-button="more-list-item">
-                                <div class="more-link-container">
-                                    <a id="nav-more" title="More" data-se="nav-more" ref="nav-more">More<span id="more-menu-toggle"></span></a> 
-                                </div>
-                                <div class="dropdownnavcontainer" style="display:none;" drop-down-nav-container="more-list-item">
-                                    <div class="dropdownmainnav" style="z-index:1023">
-                                        <a class="dropdownoption" data-se="nav-more-browse" href="/Browse.aspx" title="People" ref="nav-people"><span>People</span></a>
-                                        <a class="dropdownoption roblox-interstitial" data-se="nav-more-blog" href="http://blog.roblox.com/" title="Blog" ref="nav-news"><span>Blog</span></a>
-                                        <a class="dropdownoption" data-se="nav-more-help" href="/Help/Builderman.aspx" title="Help" ref="nav-help"><span>Help</span></a>
-                                        <div style="clear:both;"></div>
-                                    </div>
-                                </div>
+                            <li><a href="/home" id="nav-home"><span class="rbx-icon-nav-home"></span><span>Home</span></a></li>
+                            <li><a href="/User.aspx?ID={$userId}" id="nav-profile"><span class="rbx-icon-nav-profile"></span><span>Profile</span></a></li>
+                            <li>
+                                <a href="/my/messages/#!/inbox" id="nav-message" data-count="0">
+                                    <span class="rbx-icon-nav-message"></span><span>Messages</span>
+                                    <span class="rbx-highlight" title="0"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/friends.aspx" id="nav-friends" data-count="0">
+                                    <span class="rbx-icon-nav-friends"></span><span>Friends</span>
+                                    <span class="rbx-highlight" title="0"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/My/Character.aspx" id="nav-character">
+                                    <span class="rbx-icon-nav-charactercustomizer"></span><span>Character</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/My/Stuff.aspx" id="nav-inventory">
+                                    <span class="rbx-icon-nav-inventory"></span><span>Inventory</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/My/Money.aspx#/#TradeItems_tab" id="nav-trade">
+                                    <span class="rbx-icon-nav-trade"></span><span>Trade</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/My/Groups.aspx" id="nav-group">
+                                    <span class="rbx-icon-nav-group"></span><span>Groups</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Forum/default.aspx" id="nav-forum">
+                                    <span class="rbx-icon-nav-forum"></span><span>Forum</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://blog.{$site_properties['hostname']}" id="nav-blog">
+                                    <span class="rbx-icon-nav-blog"></span><span>Blog</span>
+                                </a>
+                            </li>
+                            <li class="rbx-upgrade-now">
+                                <a href="/Upgrades/BuildersClubMemberships.aspx?ctx=leftnav" class="rbx-btn-secondary-xs" id="upgrade-now-button">Upgrade Now</a>
                             </li>
                         </ul>
                     </div>
-
-            <div id="AlertSpace">
-                <div class="AlertItem" style="max-width: 50px;text-align:center;">
-                    <a id="lsLoginStatus" data-se="nav-logout" class="logoutButton">Logout</a>
                 </div>
-                <div class="HeaderDivider"></div>
-
-                <a data-se="nav-tickets" href="/My/Money.aspx?tab=MyTransactions">
-                <div id="TicketsWrapper" class="TicketsAlert AlertItem tooltip-bottom" original-title="Tickets">
-                    <div class="icons tickets_icon">
-                    </div>
-                    <div id="TicketsAlertCaption" class="AlertCaption">{$tickets}</div>
-                </div>
-                </a>
-
-                <a data-se="nav-robux" href="/My/Money.aspx?tab=MyTransactions">
-                <div id="RobuxWrapper" class="RobuxAlert AlertItem tooltip-bottom" original-title="Robux">
-                    <div class="icons robux_icon">
-                    </div>
-                    <div id="RobuxAlertCaption" class="AlertCaption">{$robux}</div>
-                </div>
-                </a>
-
-                <div class="HeaderDivider"></div>
-
-                <a data-se="nav-friends" href="/friends.aspx#FriendRequestsTab">
-                <span id="FriendsTextWrapper" class="FriendsAlert AlertItem tooltip-bottom" original-title="1 Friend Requests">
-                    <div class="icons friends_icon" style="float:none;">
-                    </div>    
-                        <div id="FriendsBubble" class="AlertTextWrapper" runat="server">
-                            <div class="AlertBox Left"></div>
-                            <div class="AlertBox" style="background-position: right; padding-right: 3px">
-                                <div class="AlertText">1</div>
-                            </div>
-                        </div>
-                </span>
-                </a>
-
-                <a data-se="nav-messages" href="/my/messages">
-                <span id="MessagesTextWrapper" class="MessageAlert AlertItem tooltip-bottom" original-title="Messages">
-                    <div class="icons message_icon" style="float:none;">
-                    </div>
-                </span>
-                </a>
-                <a data-se="nav-login" href="/User.aspx">
-                    <div id="AuthenticatedUserNameWrapper">
-                        <div id="AuthenticatedUserName">
-
-                            <span class="login-span notranslate">
-                                <img id="over13icon" src="/Images/8ed6b064a35786706f738c0858345c11.png" alt="" style="vertical-align:middle;padding-right:5px;padding-left:0px;" original-title="This is a 13+ account.">
-                                {$username}
-                            </span>
-                        </div>
-                    </div> 
-
-                </a>
-
-                <script type="text/javascript">
-                    ;$(function () {
-                        $('#over13icon').tipsy({ gravity: 'n' });
-                    
-                        $("#lsLoginStatus").click(
-                                function () {
-                                    var form = $(this).closest('form');
-                                    if (form.length == 0) {
-                                        form = $("<form></form>").appendTo("body");
-                                    }
-                                    form.attr('action', '/authentication/logout');
-                                    form.attr('method', 'post');
-                                    form.submit();
-                                }
-                            );
-                    });
-                
-                </script> 
-            </div>
-                </div>
-            </div>
-            <script type="text/javascript">
-                $(function () {
-                    $('.more-list-item').bind('showDropDown', function () {
-                        var maxWidth = $('#navigation-menu .dropdownnavcontainer').width();
-                        $('a.dropdownoption span').each(function (index, elem) {
-                            elem = $(elem);
-                            if (elem.outerWidth() > maxWidth) {
-                                maxWidth = elem.outerWidth();
-                            }
-                        });
-                        maxWidth = maxWidth + 5;
-                        $('#navigation-menu .dropdownoption').each(function (index, elem) {
-                            elem = $(elem);
-                            if (elem.width() < maxWidth) {
-                                elem.width(maxWidth);
-                            }
-                        });
-                    });
-                });
-
-
-            </script>
-            <div class="mySubmenuFixed Redesign">
-                <div id="subMenu" class="subMenu">
-                    <ul>
-                        <li><a data-se="subnav-profile" href="/User.aspx?submenu=true">Profile</a></li>
-                        <li><a data-se="subnav-character" href="/My/Character.aspx">Character</a></li>
-                        <li><a data-se="subnav-friends" href="/My/EditFriends.aspx">Friends</a></li>
-                        <li><a data-se="subnav-groups" href="/My/Groups.aspx">Groups</a></li>
-                        <li><a data-se="subnav-inventory" href="/My/Stuff.aspx">Inventory</a></li>
-                            <li><a data-se="subnav-sets" href="/My/Sets.aspx">Sets</a></li>
-                        <li><a data-se="subnav-trade" href="/My/Money.aspx?tab=TradeItems">Trade</a></li>
-                        <li><a data-se="subnav-money" href="/My/Money.aspx?tab=MyTransactions">Money</a></li>
-                        <li><a data-se="subnav-advertising" href="/develop?Page=ads">Advertising</a></li>
-                        <li><a data-se="subnav-account" href="/My/Account.aspx">Account</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="forceSpaceUnderSubmenu">&nbsp;</div> 
             HTML;
             return $html;
         }
@@ -1200,6 +1308,30 @@ $html = <<<HTML
             HTML;
             return $html;
         }
+    }
+    static function renderNextStyleGuide(){
+        global $site_properties;
+        $host = htmlspecialchars($site_properties["hostname"]);
+        $html = <<<HTML
+        <footer class="container-footer">
+        <div class="footer">
+        <ul class="row footer-links">
+            <li class="col-xs-4 col-sm-2 footer-link"><a href="//corp.{$host}" class="roblox-interstitial" target="_blank"><h2>About Us</h2></a></li>
+            <li class="col-xs-4 col-sm-2 footer-link"><a href="//corp.{$host}/jobs" class="roblox-interstitial" target="_blank"><h2>Jobs</h2></a></li>
+            <li class="col-xs-4 col-sm-2 footer-link"><a href="//blog.{$host}" class="roblox-interstitial" target="_blank"><h2>Blog</h2></a></li>
+            <li class="col-xs-4 col-sm-2 footer-link"><a href="/Info/Privacy.aspx" target="_blank"><h2>Privacy</h2></a></li>
+            <li class="col-xs-4 col-sm-2 footer-link"><a href="//corp.{$host}/parents" class="roblox-interstitial" target="_blank"><h2>Parents</h2></a></li>
+            <li class="col-xs-4 col-sm-2 footer-link"><a href="//en.help.{$host}/" class="roblox-interstitial" target="_blank"><h2>Help</h2></a></li>
+        </ul>
+        <p class="footer-note">
+            RBLXLOCAL, "Online Building Toy", characters, logos, names, and all related indicia are trademarks of <a target="_blank" href="//corp.{$host}" class="rbx-link roblox-interstitial">ROBLOX Corporation</a>, ©2015. Patents pending. RBLXLOCAL is not sponsored, authorized or endorsed by any producer of plastic building bricks, including The LEGO Group, MEGA Brands, and K'Nex, and no resemblance to the products of these companies is intended, especially within the usage of ROBLOX Corporation material, we are NOT AFFILIATED. Use of this site signifies your acceptance of the <a href="/info/terms-of-service" target="_blank" class="rbx-link">Terms and Conditions</a>.
+        </p>
+        
+        
+        </div>
+        </footer>
+        HTML;
+        return $html;
     }
 }
 class SiteAlert {
