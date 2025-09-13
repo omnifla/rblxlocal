@@ -151,7 +151,7 @@ class Avatar {
         }
 
         if (empty($hashComponents)) {
-            return md5("user:{$user['id']}");
+            return md5("user:{$user['id']};bodycolors:{$user['bodycolor']}");
         }
 
         return md5(implode(',', $hashComponents));
