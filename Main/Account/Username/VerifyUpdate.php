@@ -35,5 +35,4 @@ if($authenticatedUser['robux'] <= 1000 || $remainingBalance < 0) {
     $robux_left = 1000 - $authenticatedUser['robux'];
     exit(json_encode(['success' => false, 'title' => 'Error', 'message' => "Insufficient ROBUX for changing your username, you need R$ {$robux_left} more to change your username. Try again later", 'remainingBalance' => $authenticatedUser['robux']]));
 }
-$rel = htmlspecialchars($authenticatedUser['user']);
 exit(json_encode(['success' => true, 'title' => 'Success', 'message' => "Username can be changed", 'remainingBalance' => $remainingBalance]));
