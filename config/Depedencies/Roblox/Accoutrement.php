@@ -1,7 +1,7 @@
 <?php
 // ported by meditext
 namespace Roblox;
-use Roblox\DataAccess;
+use Roblox\DataAccess\AccoutrementDAL;
 use Roblox\UserAvatar;
 use Exception;
 

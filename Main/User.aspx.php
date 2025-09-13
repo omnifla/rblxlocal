@@ -378,7 +378,63 @@ if (isset($user['membership_type'])) {
     $get_recent_Feed->execute([$user['id']]);
     $recent_Feed = $get_recent_Feed->fetch(PDO::FETCH_ASSOC);
     $textStatus = htmlspecialchars($recent_Feed["content"]);
+    $scr = '<script>
+$(function() {
+    const $updateLink = $("#ctl00_cphRoblox_rbxHeaderPane_updateStatusLink");
+    const $updateBox = $("#updateStatusBox");
+    const $statusRegion = $("#ctl00_cphRoblox_rbxHeaderPane_statusRegion");
+    const $txt = $("#ctl00_cphRoblox_rbxHeaderPane_txtStatusMessage");
+    const $saveBtn = $("#ctl00_cphRoblox_rbxHeaderPane_btnUpdateStatus");
+    const $cancelBtn = $updateBox.find("input[type=button]");
+    const updateUrl = "/Home/UpdateStatus";
+
+    $updateLink.on("click", function(e) {
+        e.preventDefault();
+        $updateLink.hide();
+        $updateBox.show();
+        $txt.focus();
+    });
+
+    $cancelBtn.on("click", function(e) {
+        e.preventDefault();
+        $updateBox.hide();
+        $updateLink.show();
+        $txt.val($statusRegion.text().replace(/"/g, \'\'));
+    });
+
+    $saveBtn.on("click", function(e) {
+        e.preventDefault();
+        const message = $txt.val().trim();
+        if (!message) return;
+
+        $.ajax({
+            url: updateUrl,
+            type: "POST",
+            data: { status: message }
+        }).done(function(res) {
+            // if backend responds with plain text instead of JSON:
+            if (typeof res === "string") {
+                $statusRegion.html(`<i>"${message}"</i>`);
+                $updateBox.hide();
+                $updateLink.show();
+            }
+            // if backend does JSON with success flag:
+            else if (res.success) {
+                $statusRegion.html(`<i>"${message}"</i>`);
+                $updateBox.hide();
+                $updateLink.show();
+            } else {
+                alert((res.message) ? res.message : "An error occurred.");
+            }
+        }).fail(function() {
+            alert("Network error, please try again later.");
+        });
+    });
+});
+</script>
+';
   echo <<<HTML
+  {$scr}
   <div id="ctl00_cphRoblox_rbxHeaderPane_statusBox" class="blank-box" style="width:951px; padding: 8px;word-wrap: break-word;display:block;">
     <span style="font-size:12px;color: #888;word-wrap: normal;">
       Right now I'm:
@@ -427,7 +483,7 @@ if (isset($user['membership_type'])) {
                     <div style="margin-bottom: 10px;">
                         
                     </div>
-                    <a id="ctl00_cphRoblox_rbxUserPane_AvatarImage" disabled="disabled" class=" notranslate" title="<?= $user['username'] ?>" class=" notranslate" onclick="return false" style="display:inline-block;height:352px;width:352px;"><img src="/Thumbs/User.ashx?ID=<?= $user['id'] ?>&Width=352&Height=352" height="352" width="352" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="<?= htmlspecialchars($user['username']) ?>" class="notranslate" /></a>
+                    <a id="ctl00_cphRoblox_rbxUserPane_AvatarImage" disabled="disabled" class=" notranslate" title="<?= $user['username'] ?>" class=" notranslate" onclick="return false" style="display:inline-block;height:352px;width:352px;"><img src="/Thumbs/Avatar.ashx?userId=<?= $user['id'] ?>&x=352&y=352" height="352" width="352" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="<?= htmlspecialchars($user['username']) ?>" class="notranslate" /></a>
                     <br />
                     <div class="PointsContainer">
                         

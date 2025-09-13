@@ -142,8 +142,8 @@ class Authentication {
             "HeadColor" => $palletColor->ID,
             "LeftArmColor" => $palletColor->ID,
             "RightArmColor" => $palletColor->ID,
-            "LeftLegColor" => 11, // default leg color
-            "RightLegColor" => 11, // default leg color
+            "LeftLegColor" => 11,
+            "RightLegColor" => 11,
             "TorsoColor" => $torsoColor->ID,
         ];
         if(empty($password)) {
@@ -255,15 +255,23 @@ class Authentication {
             return null;
         }
     }
-    public static function SearchUserTerm(string $username) {
+    public static function SearchUserTerm(string $username, int $startrow = 0, int $limit = 10) : array {
         global $conn;
-        $searchTerm = '%' . $username . '%';
+        $searchTerm = '%'.$username.'%';
 
-        $stmt = $conn->prepare("SELECT * FROM users WHERE username ILIKE :searchTerm");
+        $stmt = $conn->prepare("SELECT * FROM users WHERE username ILIKE :searchTerm ORDER BY username ASC OFFSET :startrow LIMIT :limit");
+        
         $stmt->bindParam(':searchTerm', $searchTerm, \PDO::PARAM_STR);
+        $stmt->bindParam(':startrow', $startrow, \PDO::PARAM_INT);
+        $stmt->bindParam(':limit', $limit, \PDO::PARAM_INT);
         $stmt->execute();
 
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $stmt2 = $conn->prepare("SELECT * FROM users WHERE username ILIKE :searchTerm");
+        $stmt2->bindParam(':searchTerm', $searchTerm, \PDO::PARAM_STR);
+        $stmt2->execute();
+        $totalResults = $stmt2->rowCount();
+
+        return [$stmt->fetchAll(\PDO::FETCH_ASSOC), $totalResults];
     }
 
 }  

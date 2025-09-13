@@ -8,6 +8,8 @@ use Roblox\Web\SiteHeader;
 use Roblox\Web\SiteFooter;
 use Roblox\Web\SiteAlert;
 use Roblox\UserFeed;
+use Roblox\DataAccess\FeedificationDAL;
+
 // e
 // redirects the user to /newlogin?redirect-url=url if not logged in (used to show 401 error before)
 if(!Auth::GetAuthenticatedUser()){
@@ -31,8 +33,8 @@ $user = Auth::GetAuthenticatedUserInfo();
     
     
 
-    <title><?= $site_properties['hostname'] ?></title>
-    <link rel="icon" type="image/vnd.microsoft.icon" href="http://<?= $site_properties['hostname'] ?>/favicon.ico">
+    <title>ROBLOX Home</title>
+    <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
     
     
 <link rel="stylesheet" href="https://<?= $site_properties['hostname'] ?>/CSS/Base/CSS/FetchCSS?path=leanbase___f9e2a82b042c4b4f945b16e30fb19e87_m.css">
@@ -68,10 +70,8 @@ $user = Auth::GetAuthenticatedUserInfo();
 		})();
 
 	</script>
-    <script type="text/javascript" src="./<?= $site_properties['hostname'] ?>_files/jquery-1.7.2.min.js"></script>
-<script type="text/javascript">window.jQuery || document.write("<script type='text/javascript' src='https://<?= $site_properties['hostname'] ?>/js/jquery/jquery-1.7.2.min.js'><\/script>")</script>
-<script type="text/javascript" src="./<?= $site_properties['hostname'] ?>_files/MicrosoftAjax.js"></script>
-<script type="text/javascript">window.Sys || document.write("<script type='text/javascript' src='https://<?= $site_properties['hostname'] ?>/js/Microsoft/MicrosoftAjax.js'><\/script>")</script>
+    <script type='text/javascript' src='//code.jquery.com/jquery-1.7.2.min.js'></script>
+<script type='text/javascript' src='//code.jquery.com/jquery-migrate-3.5.2.min.js'></script>
 
     
 <script type="text/javascript" src="https://js.rbxcdn.com/c57cc32d0db0d462c64bb8ace02fdf13.js.gzip"></script>
@@ -136,11 +136,52 @@ $user = Auth::GetAuthenticatedUserInfo();
      data-facebook-share="/facebook/share-character"
      data-update-status-url="/home/updatestatus"
      data-should-show-enable-two-step-verification-call-to-action=False>
+<script>
+// written by meditext.
+// this is just a placeholder used to replace the UpdateStatus.js file, since for some ODD reason, it wasn't bundled the original code.
+// so i had to write from scratch this simple JS code that handles status (or commonly referred as "feed").
+$(function(){
+  const $aS=$("#txtStatusMessage"),$bS=$("#groupYes .rbx-control-label"),$cS=$("#shareButton"),$dS=$("#loadingImage"),$eS=$("#HomeContainer"),fS=$eS.data("update-status-url");
+  $bS.hide();
+  $cS.on("click",function(e){
+    e.preventDefault();
+    const gS=$aS.val().trim();
+    if(!gS){
+      $bS.text("Status cannot be empty.").attr("style","display:block;");
+      return;
+    }
+    $bS.text("").attr("style","");
+    $dS.show();
+    $cS.hide();
+    $.ajax({
+      url:fS,
+      method:"POST",
+      data:{status:gS},
+      dataType:"json"
+    })
+    .done(function(res){
+      if(res&&res.success){
+        $bS.text(res.message||"Status updated successfully.").attr("style","display:block;");
+        $aS.val("");
+      }else{
+        $bS.text((res&&res.message)||"An error occurred.").attr("style","display:block;");
+      }
+    })
+    .fail(function(){
+      $bS.text("Network error, please try again later.").attr("style","display:block;");
+    })
+    .always(function(){
+      $dS.hide();
+      $cS.show();
+    });
+  });
+});
+</script>
 
 
     <div class="col-xs-12 home-header">  
         <a href="/User.aspx" class="home-thumbnail-bust" >
-            <img alt="avatar" src="/Images/Placeholder1024x1024.png" />
+            <img alt="avatar" src="/Thumbs/Avatar.ashx?userId=<?= $user['id'] ?>&x=250&y=250" />
         </a>
         <div class="home-header-content ">
             <h1><a href="/User.aspx">Hello, <?= htmlspecialchars($user['username']) ?>!</a>
@@ -160,7 +201,7 @@ $user = Auth::GetAuthenticatedUserInfo();
 <ul class="hlist friend-list">
                 <li class="list-item friend">
                     <a href="/User.aspx?id=1" class="friend-link" title="TheGuyWhoIsIdiot">
-                        <span class="friend-avatar" data-3d-url="/avatar-thumbnail-3d/json?userId=72230447"  data-js-files='https://js.rbxcdn.com/47e6e85800c4ed3c4eef848c077575a9.js.gzip' ><img alt='TheGuyWhoIsIdiot' class='' src='/Images/Placeholder1024x1024.png' /></span>
+                        <span class="friend-avatar" data-3d-url="/avatar-thumbnail-3d/json?userId=72230447"  data-js-files='https://js.rbxcdn.com/47e6e85800c4ed3c4eef848c077575a9.js.gzip' ><img alt='TheGuyWhoIsIdiot' class='' src='/Thumbs/Avatar.ashx?userId=2&x=250&y=250' /></span>
                         <span class="friend-name rbx-text-overflow">TheGuyWhoIsIdiot</span>
                                 <span class="friend-status rbx-icon-online" title="Website"></span>
                     </a>
@@ -182,7 +223,7 @@ $user = Auth::GetAuthenticatedUserInfo();
 <ul class="hlist game-list">
 <li class="list-item game">
             <a href="/Place.aspx?placeId=1" class="game-item">
-                <span class="game-thumb"><img class="" src="/rbxcdn_img/04baeb33ef66ef1395cd5464309fece6.jpg"></span>
+                <span class="game-thumb"><img class="" src="//images.rbxcdn.com/04baeb33ef66ef1395cd5464309fece6.jpg"></span>
                 <span class="rbx-title rbx-text-overflow">Crossroads</span>
                     <span class="rbx-text-notes rbx-font-sm">0 Online</span>
             </a>
@@ -192,8 +233,26 @@ $user = Auth::GetAuthenticatedUserInfo();
         </div>
 
     <div class="col-xs-12 col-sm-6 home-right-col">
-
-
+<?php
+$dal = new FeedificationDAL();
+$feed = $dal->getRecent(1);
+if(count($feed) > 0) {
+    $f = $feed[0];
+    $cont = nl2br(htmlspecialchars($f->message));
+    echo
+<<<HTML
+<div class="section">
+            <div class="section-header">
+                <h3>ANNOUNCEMENT</h3>
+                
+            </div>
+<div>
+    <p>{$cont}</p>
+</div>
+        </div>
+HTML;
+}
+?>
         <div class="section">
             <div class="section-header">
                 <h3>Blog News</h3>
@@ -220,7 +279,7 @@ $user = Auth::GetAuthenticatedUserInfo();
 
 <center>
 <img src="https://images.rbxcdn.com/4ec0c6c40a454f2f6537946d00f09b56.png">
-<p style="width:50%;">Link your ROBLOX account with your Facebook account to let your Facebook friends see what you're doing on ROBLOX!</p>
+<p style="width:70%;">Link your ROBLOX account with your Facebook account to let your Facebook friends see what you're doing on ROBLOX!</p>
 </center>
 <div id="connect-facebook">
     
@@ -276,7 +335,7 @@ foreach ($feeds as $feed) {
     if(!$author){ $author = [username => "[ Account Deleted $author_id ]", "id" => $author_id]; }
     $username = htmlspecialchars($author['username']);
     echo <<<HTML
-            <li class="list-item"><a href="/User.aspx?id={$author['id']}" class="list-header" ><img  class="header-thumb" src="/Images/Placeholder1024x1024.png" /></a>
+            <li class="list-item"><a href="/User.aspx?id={$author['id']}" class="list-header" ><img  class="header-thumb" src="/Thumbs/Avatar.ashx?userId={$author['id']}&x=250&y=250" /></a>
             <div class="list-body">
                 <p class="list-content"><a href="/User.aspx?id={$author['id']}">{$username}</a><div class="feedtext linkify">"{$feed_content}"</div></p>
                 <span class="rbx-text-notes rbx-font-sm">{$feed_date}</span>
