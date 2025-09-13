@@ -7,7 +7,7 @@
 </p>
 
 <div align="center">
-An open source 2014M ROBLOX clone, using the ported ROBLOX Site backend
+An open source 2015E ROBLOX clone, using the ported ROBLOX Site backend
 </div>
 
 ## Authors
@@ -33,11 +33,12 @@ Coming soon...
 ## Features
 - [x] Working feeds
 - [x] Working user profiles (i think)
-
+- [x] Working User renders
+- [x] Working Daily rewards
 ## Roadmap
-- [ ] Add forums 
-- [ ] Add working launcher
-- [ ] Add renders
+- [-] Add forums 
+- [-] Add working launcher
+- [-] Add renders
 - [ ] Admin panel
 - [ ] Add api.site.com apis other than /Setting/QuietGet
 
