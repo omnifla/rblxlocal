@@ -377,7 +377,7 @@ if (isset($user['membership_type'])) {
     $get_recent_Feed = $conn->prepare("SELECT * FROM \"feeds\" WHERE \"author_id\" = ? ORDER BY \"post_id\" DESC LIMIT 1");
     $get_recent_Feed->execute([$user['id']]);
     $recent_Feed = $get_recent_Feed->fetch(PDO::FETCH_ASSOC);
-    $textStatus = htmlspecialchars($recent_Feed["content"]) : "";
+    $textStatus = htmlspecialchars($recent_Feed["content"] ?? "");
     $scr = '<script>
 $(function() {
     const $updateLink = $("#ctl00_cphRoblox_rbxHeaderPane_updateStatusLink");
