@@ -50,8 +50,12 @@ class AvatarRequest {
 class Avatar {
     private static $avatarScriptOverride = null;
     public static $avatarScript = "AvatarScript.lua"; 
-    public static $baseUrl = "http://www.rblx.local/"; 
-    public static $avatarAccoutrementsBaseUrl = "http://www.rblx.local/Asset/CharacterFetch.ashx?userId=%s"; 
+    public static $baseUrl = "http://%s/"; 
+    public static $avatarAccoutrementsBaseUrl = "%sAsset/CharacterFetch.ashx?userId=%s"; 
+    public function init(){
+        $this->baseUrl = sprintf(self::$baseUrl, $_SERVER['SERVER_NAME']);
+        $this->avatarAccoutrementsBaseUrl = sprintf(self::$avatarAccoutrementsBaseUrl, $this->baseUrl, "%s");
+    }
 
     public function requestThumbnail($userId, $width = null, $height = null, $imageFormat = "png", $thumbnailFormatId = 1) {
         if (is_null($width) || is_null($height)) {
@@ -167,3 +171,4 @@ class Avatar {
         return isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on'; 
     } 
 }
+Avatar::init();
