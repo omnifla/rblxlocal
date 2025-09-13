@@ -18,7 +18,9 @@ class ClientScriptCreator {
             'SingleplayerSharedScript.lua',
             'Visit.lua'
         ],
-
+        'gameserver' => [
+            "GameServer.lua"
+        ],
         'rcc-player' => [
             'RCC/BaseRenderScript.lua',
             'RCC/PlayerRender.lua'

@@ -2,7 +2,8 @@
 // ported by meditext
 // helper class for creating and managing Lua script executions.
 namespace Roblox\Grid;
-use Roblox\Grid\Rcc;
+use Roblox\Grid\Rcc\ScriptExecution;
+use Roblox\Grid\Rcc\LuaType;
 
 class Lua
 {
@@ -25,10 +26,7 @@ class Lua
 
 	public static function NewScriptWithArgs(string $name, string $script, array $args): ScriptExecution
 	{
-		$scriptExecution = new ScriptExecution();
-		$scriptExecution->name = $name;
-		$scriptExecution->script = $script;
-		$scriptExecution->arguments = $args ?? self::NewArgs();
+		$scriptExecution = new ScriptExecution($name, $script, $args);
 		return $scriptExecution;
 	}
 
@@ -100,4 +98,4 @@ class Lua
 	}
 }
 
-Lua::init();
+//Lua::init();

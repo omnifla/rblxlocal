@@ -23,7 +23,7 @@ foreach ($feeds as $feed) {
         <div class="feed-image-container notranslate">
             <a href="/user.aspx?id={$author['id']}">
                 <span class="feed-user-avatar">
-                    <img alt="{$username}" class="feed-user-avatar-image" src="/Images/Placeholder1024x1024.png" width=50 height=50>
+                    <img alt="{$username}" class="feed-user-avatar-image" src="https://www.rblx.local/Thumbs/Avatar.ashx?userId={$author['id']}&x=50&y=50" width=50 height=50>
                 </span>
             </a>
         </div>

@@ -486,3 +486,6 @@ composer.lock
 ##### .saf = lua file (signed and has --rbxasset) 
 /config/includes/assets/*.uaf
 /config/includes/assets/*.saf
+
+## files
+/thumbnail_renders/
