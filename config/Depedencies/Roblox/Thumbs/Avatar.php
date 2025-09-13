@@ -52,9 +52,9 @@ class Avatar {
     public static $avatarScript = "AvatarScript.lua"; 
     public static $baseUrl = "http://%s/"; 
     public static $avatarAccoutrementsBaseUrl = "%sAsset/CharacterFetch.ashx?userId=%s"; 
-    public function init(){
-        $this->baseUrl = sprintf(self::$baseUrl, $_SERVER['SERVER_NAME']);
-        $this->avatarAccoutrementsBaseUrl = sprintf(self::$avatarAccoutrementsBaseUrl, $this->baseUrl, "%s");
+    public static function init(){
+        self::$baseUrl = sprintf(self::$baseUrl, $_SERVER['SERVER_NAME']);
+        self::$avatarAccoutrementsBaseUrl = sprintf(self::$avatarAccoutrementsBaseUrl, self::$baseUrl, "%s");
     }
 
     public function requestThumbnail($userId, $width = null, $height = null, $imageFormat = "png", $thumbnailFormatId = 1) {
