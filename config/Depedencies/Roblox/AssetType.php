@@ -243,6 +243,23 @@ class AssetType {
             self::getByValue('TeeShirt')->id,
         ]);
     }
+    public static function GetAssetType(string $xml) : ?AssetType{
+        $endOfFirstTagIndex = strpos($xml,'>');
+        if ($endOfFirstTagIndex == -1){
+            throw new \Exception("Invalid XML");
+        }
+        // Should just be using xml parsing....
+        $indexOfAssetType = strpos(strtolower(substr($xml,0, $endOfFirstTagIndex)),"assettype=");
+        if ($indexOfAssetType == -1){
+            // Is it a model, place? Dunno..
+            return null;
+        }
+        $indexOfAssetType += 11;
+        $endIndex = strpos($xml,'\"', $indexOfAssetType);
+        $assetType = substr($xml,$indexOfAssetType, $endIndex - $indexOfAssetType);
+        $actualtype = self::get(assetType);
+        return $actualtype;
+    }
 }
 
 AssetType::init();
