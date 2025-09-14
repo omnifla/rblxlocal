@@ -99,6 +99,7 @@ class Authentication {
     public static function ValidateUsername(string $username) {
         global $conn;
         $filter = new BasicTextFilter();
+        $username = trim($username); // to prevent abuse
         if(empty($username)) {
             throw new \InvalidArgumentException("Please enter a username.");
         }
@@ -106,11 +107,11 @@ class Authentication {
             throw new \InvalidArgumentException("Usernames can be 3 to 20 characters long.");
         }
         // verify if the username contains only valid characters
-        if(!preg_match('/^[a-zA-Z0-9]*$/', $username)) {
+        if(!preg_match('/^[a-zA-Z0-9]+$/', $username)) { // had to fix this regex pattern, caused a lot of issues.
             throw new \InvalidArgumentException("Usernames may only contain letters and numbers.");
         }
-        $check = $conn->prepare("SELECT COUNT(*) FROM users WHERE username = :username");
-        $check->execute([':username' => $username]);
+        $check = $conn->prepare("SELECT COUNT(*) FROM users WHERE LOWER(username) = LOWER(:username)");
+        $check->execute([':username' => $username]); // new system for checking usernames (case unsensitive
         if($check->fetchColumn() > 0) {
             throw new \InvalidArgumentException("This username is already in use.");
         }
