@@ -16,7 +16,7 @@ An open source 2015E ROBLOX clone, using the ported ROBLOX Site backend
 - [SkylerClock](https://github.com/SkylerClockYT)
 - [exrand](https://github.com/randomyaps)
 - [newuser](https://github.com/therealestnewuser)
-- [Chloe](https://github.com/kqsane)
+- [fowntain](https://github.com/fowntain)
 - [watrabi](https://github.com/watrabi)
 
 ## Contributors
