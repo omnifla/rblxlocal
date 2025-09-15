@@ -78,7 +78,7 @@ class Avatar {
         if(!$user){ 
             exit("uhm what"); 
         } 
-        return ['id' => $user['id'], 'name' => $user['username']];
+        return ['id' => $user['id'], 'name' => $user['username'], 'bodycolor' => $user['bodycolor']];
     } 
     private function createImageParameters($width, $height, $imageFormat, $thumbnailFormatId) {
         return [ 
