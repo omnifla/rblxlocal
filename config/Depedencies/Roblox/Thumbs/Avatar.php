@@ -102,8 +102,7 @@ class Avatar {
         $output = $rccservice->BatchJobEx($job, $avatarscript);
         
         if (is_soap_fault($output) || $output === null) {
-            var_dump($output); // temporary (used to debug soap)
-            exit("RCCService returned null or fault for avatar {$avatarAssetHashId} so here's the output {$output}");
+            exit("RCCService returned null or fault for avatar {$avatarAssetHashId}");
             return ['url' => null];
         }
         // normalize the response
