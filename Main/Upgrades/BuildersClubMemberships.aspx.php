@@ -219,6 +219,8 @@ Roblox.Endpoints.Urls = Roblox.Endpoints.Urls || {};
 
 
 <?= SiteHeader::render() ?>
+    <div id="navContent" class="nav-content  ">
+        <div class="nav-content-inner">
             <div id="MasterContainer">
                     <script type="text/javascript">
                         if (top.location != self.location) {
