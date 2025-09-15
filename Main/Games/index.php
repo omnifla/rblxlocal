@@ -221,8 +221,8 @@ Roblox.AdsHelper.slots = Roblox.AdsHelper.slots || []; Roblox.AdsHelper.slots.pu
 
 
 <div id="fb-root"></div>
-
-<div class="wrap no-gutter-ads logged-out"
+<?php $classcheck = $user ? 'logged-in' : 'logged-out'; ?>
+<div class="wrap no-gutter-ads <?= $classcheck ?>"
      data-gutter-ads-enabled="false">
 
 
@@ -816,13 +816,13 @@ Roblox.AdsHelper.slots = Roblox.AdsHelper.slots || []; Roblox.AdsHelper.slots.pu
 
     <script type="text/javascript">function urchinTracker() {}</script>
 
-
+<?php $isUserLoggedInCheck = $user ? 'True' : 'False'; ?>
 <div id="PlaceLauncherStatusPanel" style="display:none;width:300px"
      data-new-plugin-events-enabled="True"
      data-event-stream-for-plugin-enabled="True"
      data-event-stream-for-protocol-enabled="True"
      data-is-protocol-handler-launch-enabled="True"
-     data-is-user-logged-in="False"
+     data-is-user-logged-in="<?= $isLoggedIn ?>"
      data-os-name="Windows"
      data-protocol-name-for-client="roblox-player"
      data-protocol-name-for-studio="roblox-studio"
