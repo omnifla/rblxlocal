@@ -429,8 +429,7 @@ Roblox.Endpoints.Urls = Roblox.Endpoints.Urls || {};
 			    </td>
 			</tr>
                     <tr>
-                <td colspan="4">* Signing bonus is for first time membership purchase only.</td>
-				<td colspan="4">Note: This page is only used for shows and not for purchasing BC.</td>
+                <td colspan="4">* This page is only used for shows and not for purchasing BC.</td>
             </tr>
 	</tbody>
 
