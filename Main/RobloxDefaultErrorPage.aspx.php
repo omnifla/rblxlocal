@@ -11,7 +11,7 @@ use Roblox\Web\SiteAlert;
     <meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="Content-Language" content="en-us" />
-    <meta name="author" content="ROBLOX Corporation" />
+    <meta name="author" content="RBLX.local" />
     <meta name="description" content="User-generated MMO gaming site for kids, teens, and adults. Players architect their own worlds. Builders create free online games that simulate the real world. Create and play amazing 3D games. An online gaming cloud and distributed physics engine." />
     <meta name="keywords" content="free games, online games, building games, virtual worlds, free mmo, gaming cloud, physics engine" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,8 +19,8 @@ use Roblox\Web\SiteAlert;
 		RBLX.local
 	</title>
     <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
-	<link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=main___dac4a444950639c02cc831a484c826f5_m.css	' />
-        
+	<link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=main___d7f658c4695ed776947e7d072c17ef0f_m.css' />
+    <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=page___bf085a0aa25ce4df4c0be2fa1dc7e79a_m.css' />
 	<script type="text/javascript">
 
         var _gaq = _gaq || [];
@@ -29,13 +29,13 @@ use Roblox\Web\SiteAlert;
 		    _gaq.push(['_setCampSourceKey', 'rbx_source']);
 		    _gaq.push(['_setCampMediumKey', 'rbx_medium']);
 		    _gaq.push(['_setCampContentKey', 'rbx_campaign']);
-		        _gaq.push(['_setDomainName', 'roblox.com']);
+		        _gaq.push(['_setDomainName', '<?= $site_properties['hostname'] ?>']);
 		_gaq.push(['b._setAccount', 'UA-486632-1']);
 		_gaq.push(['b._setCampSourceKey', 'rbx_source']);
 		_gaq.push(['b._setCampMediumKey', 'rbx_medium']);
 		_gaq.push(['b._setCampContentKey', 'rbx_campaign']);
 
-		_gaq.push(['b._setDomainName', 'roblox.com']);
+		_gaq.push(['b._setDomainName', '<?= $site_properties['hostname'] ?>']);
         
             _gaq.push(['b._setCustomVar', 1, 'Visitor', 'Anonymous', 2]);
             _gaq.push(['b._trackPageview']);    
@@ -44,7 +44,7 @@ use Roblox\Web\SiteAlert;
         
 
 		_gaq.push(['c._setAccount', 'UA-26810151-2']);
-		_gaq.push(['c._setDomainName', 'roblox.com']);
+		_gaq.push(['c._setDomainName', '<?= $site_properties['hostname'] ?>']);
 
 		(function() {
 			var ga = document.createElement('script');
@@ -57,10 +57,14 @@ use Roblox\Web\SiteAlert;
 
 	</script>
 <div id="roblox-linkify" data-enabled="true" data-regex="(https?\:\/\/)?(?:www\.)?([a-z0-9\-]{2,}\.)*((m|de|www|web|api|blog|wiki|help|corp|polls|bloxcon|developer)\.roblox\.com|robloxlabs\.com)((\/[A-Za-z0-9-+&amp;@#\/%?=~_|!:,.;]*)|(\b|\s))" data-regex-flags="gm"></div>
-    <script type='text/javascript' src='//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.1.min.js'></script>
-<script type='text/javascript'>window.jQuery || document.write("<script type='text/javascript' src='/js/jquery/jquery-1.11.1.js'><\/script>")</script>
-<script type='text/javascript' src='//ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.2.1.min.js'></script>
-<script type='text/javascript'>window.jQuery || document.write("<script type='text/javascript' src='/js/jquery/jquery-migrate-1.2.1.js'><\/script>")</script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript">
+    window.jQuery || document.write("<script type='text/javascript' src='/js/jquery/jquery-1.7.2.js'><\/script>");
+</script>
+<script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-3.5.2.min.js"></script>
+<script type="text/javascript">
+    window.jQuery || document.write("<script type='text/javascript' src='/js/jquery/jquery-migrate-1.2.1.js'><\/script>");
+</script>
 <script type='text/javascript' src='//ajax.aspnetcdn.com/ajax/4.0/1/MicrosoftAjax.js'></script>
 <script type='text/javascript'>window.Sys || document.write("<script type='text/javascript' src='/js/Microsoft/MicrosoftAjax.js'><\/script>")</script>
 
@@ -206,10 +210,9 @@ $(function(){
 
     <div class="divideTitleAndBackButtons">&nbsp;</div>
 HTML;
- }
- elseif($code == 403){
+ }elseif($code == 403){
 	 echo <<<HTML
-    <img src="/images/05636e8bda24cdc11428e091e386605c.png" id="ctl00_cphRoblox_ErrorImage" alt="Alert" class="ErrorAlert">
+    <img src="http://images.rbxcdn.com/05636e8bda24cdc11428e091e386605c.png" id="ctl00_cphRoblox_ErrorImage" alt="Alert" class="ErrorAlert">
     
     <h1><span id="ctl00_cphRoblox_ErrorTitle">Access Denied</span></h1>
     <h3><span id="ctl00_cphRoblox_ErrorMessage">Sorry, you don't have permission to view this page!</span></h3>
@@ -218,22 +221,10 @@ HTML;
 
     <div class="divideTitleAndBackButtons">&nbsp;</div>
 HTML;
- }
- elseif($code == 500){
+ }else{
 	 echo <<<HTML
-    <img src="/images/b47ba5565699c01cb4521af3f339b36b.png" id="ctl00_cphRoblox_ErrorImage" alt="Alert" class="ErrorAlert">
+    <img src="http://images.rbxcdn.com/b47ba5565699c01cb4521af3f339b36b.png" id="ctl00_cphRoblox_ErrorImage" alt="Alert" class="ErrorAlert">
     
-    <h1><span id="ctl00_cphRoblox_ErrorTitle">Access Denied</span></h1>
-    <h3><span id="ctl00_cphRoblox_ErrorMessage">Sorry, you don't have permission to view this page!</span></h3>
-    <p><span id="ctl00_cphRoblox_CustomerServiceMessage">If you continue to receive this page, please contact the developers.</span></p>
-    <pre style="text-align:left;margin-left:10px;"><span id="ctl00_cphRoblox_errorMsgLbl"></span></pre>
-
-    <div class="divideTitleAndBackButtons">&nbsp;</div>
-HTML;
- }
- else{
-	 echo <<<HTML
-    <img src="/Images/UI/error/exclamation.png" id="ctl00_cphRoblox_ErrorImage" alt="Alert" class="ErrorAlert">
     <h1><span id="ctl00_cphRoblox_ErrorTitle">Unexpected error with your request</span></h1>
     <h3><span id="ctl00_cphRoblox_ErrorMessage">Please try again after a few moments.</span></h3>
     <p><span id="ctl00_cphRoblox_CustomerServiceMessage">If you continue to receive this page, please contact the developers.</span></p>
