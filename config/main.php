@@ -51,25 +51,4 @@ catch(PDOException $e) {
     exit("Connection failed for the ROBLOX Database: " . $e->getMessage());  
 }
 
-// we should make a middleware system for this
-// aka, A FUCKING FRAMEWORK
-// Maintenance check (v2 with debugging)
-if ($properties['SiteMaintenanceMode'] ?? false) {
-    $bypassCookie = $_COOKIE['MaintenanceBypass'] ?? null;
-    $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-    $clientIP = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
-    $whitelistedIPs = ['10.0.0.1'];
-    $excludedPaths = ['/Login/FulfillConstraint.aspx'];
-    $excluded = false;
-    foreach ($excludedPaths as $path) {
-        if (str_starts_with($currentPath, $path)) {
-            $excluded = true;
-            break;
-        }
-    }
-
-    if ($bypassCookie !== 'true' && !$excluded && !in_array($clientIP, $whitelistedIPs, true)) {
-        header('Location: /Login/FulfillConstraint.aspx');
-        exit;
-    }
-}
+// remove maintenance stuff cuz it dosen't work
