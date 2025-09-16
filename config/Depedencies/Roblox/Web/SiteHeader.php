@@ -319,12 +319,11 @@ $html = <<<HTML
         }
     }
 }
-class SiteHeaderMobileSite{
+class SiteHeaderMobileSite {
     private bool $isAuthenticated;
     public static function render()
     {
-        global $site_properties;
-        if(!Auth::GetAuthenticatedUser()){
+        if (!Auth::GetAuthenticatedUser()) {
             return <<<HTML
             <div data-role="header" data-id="header">
                <div class="header-icons header-icons-left">
@@ -333,29 +332,11 @@ class SiteHeaderMobileSite{
                <h1 class="header-logo-only"></h1>
             </div>
             HTML;
-        }else{
-            $user = Auth::GetAuthenticatedUserInfo();
-            $username = htmlspecialchars($user["username"], ENT_QUOTES, 'UTF-8');
-            $userId = (int)$user["id"];
-            $tickets = htmlspecialchars($user["tickets"], ENT_QUOTES, 'UTF-8');
-            $robux = htmlspecialchars($user["robux"], ENT_QUOTES, 'UTF-8');
-            function formatNumberToAbbreviation($number) {
-                if ($number >= 1000000000000) {
-                    return round($number / 1000000000000, 1) . 'T';
-                } elseif ($number >= 1000000000) {
-                    return round($number / 1000000000, 1) . 'B';
-                } elseif ($number >= 1000000) {
-                    return round($number / 1000000, 1) . 'M';
-                } elseif ($number >= 1000) {
-                    return round($number / 1000, 1) . 'K';
-                } else {
-                    return $number;
-                }
-            }
-            $formated_t = formatNumberToAbbreviation($tickets);
-            $formated_r = formatNumberToAbbreviation($robux);
-
-$html = <<<HTML
+        }
+        $user = Auth::GetAuthenticatedUserInfo();
+        $username = htmlspecialchars($user["username"], ENT_QUOTES, 'UTF-8');
+        $userId   = (int)$user["id"];
+        return <<<HTML
             <div data-role="header" data-id="header">
                <div class="header-icons header-icons-left">
                   <a href="#" data-show-menu-link class="header-icons-menu"></a>
@@ -367,8 +348,6 @@ $html = <<<HTML
                </div>
             </div>
             HTML;
-            return $html;
-        }
     }
 }
 class SiteFooter{
