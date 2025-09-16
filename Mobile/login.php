@@ -1,7 +1,7 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use Roblox\Authentication as Auth;
-use Roblox\Web\SiteHeader;
+use Roblox\Web\SiteHeaderMobile;
 $user = Auth::GetAuthenticatedUserInfo();
 ?>
 
@@ -23,7 +23,7 @@ $user = Auth::GetAuthenticatedUserInfo();
     <body data-ga-key="UA-486632-9" data-ga-devicename="Unknown">
         <div id="login-page" data-role="page" >
                 <div class="wrapper">
-                    <?= Roblox\Web\SiteHeader::render() ?>
+                    <?= SiteHeaderMobile::render() ?>
                     <div data-role="content">
                         
 
