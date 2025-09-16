@@ -31,7 +31,7 @@ $site_properties = [
     "meta-Author" => "ROBLOX Corporation",
     "meta-Description" => "User-generated MMO gaming site for kids, teens, and adults. Players architect their own worlds. Builders create free online games that simulate the real world.",
     "meta-Keywords" => "free games, online games, building games, virtual worlds, free mmo, gaming cloud, physics engine",
-    "hostname" => $_SERVER['HTTP_HOST'],
+    "hostname" => "aftwld.xyz",
     "baseUrl" => "https://" . $_SERVER['HTTP_HOST'],
 ];
 ClientScriptCreator::init();
