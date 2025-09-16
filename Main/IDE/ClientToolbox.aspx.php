@@ -1,14 +1,14 @@
 
 <head><title>Toolbox</title>
 		 
-<link rel="stylesheet" href="http://www.watr13.icu/CSS/Base/CSS/page___b05f9fa8b62e0f38b935a5fc2411d93b_m.css">
+<link rel="stylesheet" href="http://www.aftwld.xyz/CSS/Base/CSS/page___b05f9fa8b62e0f38b935a5fc2411d93b_m.css">
 
 		 <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.1.min.js"></script>
 <script type="text/javascript">window.jQuery || document.write("<script type='text/javascript' src='/js/jquery/jquery-1.11.1.js'><\/script>")</script>
 <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript">window.jQuery || document.write("<script type='text/javascript' src='/js/jquery/jquery-migrate-1.2.1.js'><\/script>")</script>
 
-		 <script type="text/javascript" src="http://www.watr13.icu/rbxcdn_js/be45a84247f84dd8b4ffe764c65135c7.js"></script>
+		 <script type="text/javascript" src="http://www.aftwld.xyz/rbxcdn_js/be45a84247f84dd8b4ffe764c65135c7.js"></script>
 		 <script>
 		 		    function clickButton(e, buttonid)
 		    {
@@ -38,7 +38,7 @@
 	</head>
 <body class="Page" style="margin: 0;">
         <input name="__RequestVerificationToken" type="hidden" value="6_eZHOjUPq8Jhw66Ug0so8DxlG33_rZY0TrLaXEc7aMbOKqRbphTsdZWYh_pBl5ud60toqWtjSAZmQHQU93ZLxukFYLaUIRjFnWCQD57CiwhlECKHNRU2ejI5FDEhDWcZ1Ru3g2">
-        <div id="NewToolboxContainer" data-isuserauthenticated="false" data-isdecalcreationenabled="true" data-requesturl="http://www.watr13.icu/asset/" data-isrecentlyinsertedassetenabled="true">
+        <div id="NewToolboxContainer" data-isuserauthenticated="false" data-isdecalcreationenabled="true" data-requesturl="http://www.aftwld.xyz/asset/" data-isrecentlyinsertedassetenabled="true">
             <div id="ToolboxControls">
                 <div id="SetTabs">
                     <div id="Inventory" class="Tabs">Inventory</div>
@@ -113,7 +113,7 @@
                 noVotesYet: "No votes yet",
                 endorsedAsset: "A high-quality item",
                 //</sl:translate>
-                endorsedIcon: "http://www.watr13.icu/rbxcdn_img/a98989e47370589a088675aaca5eaab8.png"
+                endorsedIcon: "http://www.aftwld.xyz/rbxcdn_img/a98989e47370589a088675aaca5eaab8.png"
             };
         </script>
 	
