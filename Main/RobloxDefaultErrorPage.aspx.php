@@ -4,6 +4,7 @@ use Roblox\Authentication as Auth;
 use Roblox\Web\SiteHeader;
 use Roblox\Web\SiteFooter;
 use Roblox\Web\SiteAlert;
+$code = $_GET['code'] ?? 500;
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
@@ -16,7 +17,7 @@ use Roblox\Web\SiteAlert;
     <meta name="keywords" content="free games, online games, building games, virtual worlds, free mmo, gaming cloud, physics engine" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>
-		RBLX.local
+		<?= $site_properties['hostname'] ?>
 	</title>
     <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
 	<link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=main___d7f658c4695ed776947e7d072c17ef0f_m.css' />
