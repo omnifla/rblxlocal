@@ -361,7 +361,7 @@ $html = <<<HTML
                   <a href="#" data-show-menu-link class="header-icons-menu"></a>
                </div>
                <h1 class="header-logo-only"></h1>
-               <div class="header-icons header-icons-right">
+               <div class="header-icons ui-btn-right">
                   <a href="#" data-show-menu-link class="header-icons-friend-requests"></a>
                   <a href="#" data-show-menu-link class="header-icons-inbox"></a>
                </div>
