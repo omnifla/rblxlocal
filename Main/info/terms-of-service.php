@@ -73,7 +73,7 @@ $user = Auth::GetAuthenticatedUserInfo();
                     RBLX.local users, not from someone at RBLX.local. If you see anything mean or nasty on the
                     site, or anyone sends you anything that makes you uncomfortable or asks for your
                     password or personal information (such as your name, address or phone number), please
-                    let us know immediately at <span class="SL_swap" id="CsEmailLink"><a href="mailto:info@watr13.icu">info@watr13.icu</a></span>
+                    let us know immediately at <span class="SL_swap" id="CsEmailLink"><a href="mailto:info@aftwld.xyz">info@aftwld.xyz</a></span>
                     so that we can handle it right away! However, reporting false abuse or inappropriate
                     feedback will not be tolerated and will likely result in a frozen account.
                 </p>
@@ -136,7 +136,7 @@ $user = Auth::GetAuthenticatedUserInfo();
         </div>
         <p>
             There are additional rules and guidelines for behavior on RBLX.local beyond the Terms
-            of Service. They can be found in our <a href="http://www.watr13.icu/Help/Builderman.aspx?id=221897">
+            of Service. They can be found in our <a href="http://www.aftwld.xyz/Help/Builderman.aspx?id=221897">
                                                      Community Guidelines</a>, and in the rules posted by staff on the Forums.</p>
         <br />
         <center>

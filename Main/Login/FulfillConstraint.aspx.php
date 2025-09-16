@@ -140,7 +140,7 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager', 'aspnetForm',
     <p style="text-align: center">
         &nbsp;</p>
     <p style="text-align: center">
-        <img src="http://watr13.icu/Images/grafik.png" id="ctl00_cphRoblox_imgRobloxTeam" alt="Offline" /></p>
+        <img src="http://aftwld.xyz/Images/grafik.png" id="ctl00_cphRoblox_imgRobloxTeam" alt="Offline" /></p>
     <h3 style="text-align: center">
         The site is currently offline for maintenance and upgrades. Please check back soon!
     </h3>

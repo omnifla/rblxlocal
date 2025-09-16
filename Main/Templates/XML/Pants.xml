@@ -4,7 +4,7 @@
   <Item class="Pants" referent="RBX0">
     <Properties>
       <Content name="PantsTemplate">
-        <url>http://watr13.icu/asset/?id=$ID</url>
+        <url>http://aftwld.xyz/asset/?id=$ID</url>
       </Content>
       <string name="Name">Pants</string>
       <bool name="archivable">true</bool>

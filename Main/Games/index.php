@@ -207,7 +207,7 @@ Roblox.AdsHelper.slots = Roblox.AdsHelper.slots || []; Roblox.AdsHelper.slots.pu
             <script type="text/javascript">
             $(function() {
                 if (Roblox.EventStream) {
-                    Roblox.EventStream.InitializeEventStream("http://ecsv2.watr13.icu/www/e.png");
+                    Roblox.EventStream.InitializeEventStream("http://ecsv2.aftwld.xyz/www/e.png");
                 }
             });
         </script>
@@ -1021,7 +1021,7 @@ Roblox.AdsHelper.slots = Roblox.AdsHelper.slots || []; Roblox.AdsHelper.slots.pu
 <script type="text/javascript">
     Roblox.Client._skip = null;
     Roblox.Client._CLSID = '76D50904-6780-4c8b-8986-1A7EE0B1716D';
-    Roblox.Client._installHost = 'setup.watr13.icu';
+    Roblox.Client._installHost = 'setup.aftwld.xyz';
     Roblox.Client.ImplementsProxy = true;
     Roblox.Client._silentModeEnabled = true;
     Roblox.Client._bringAppToFrontEnabled = false;
