@@ -13,7 +13,7 @@ $user = Auth::GetAuthenticatedUserInfo();
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/Images/Icon114x114v3.png">
 
-<link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=page___e58fe365ff1540cd0ddc28d38aa70cdb_m.css' />
+<link rel='stylesheet' href='https://<?= $site_properties['hostname'] ?>/CSS/Base/CSS/FetchCSS?path=page___e58fe365ff1540cd0ddc28d38aa70cdb_m.css' />
         <script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
 <script type='text/javascript' src='https://s3.amazonaws.com/js.roblox.com/5ea8ef99bf4e445bb7e993c2d5d18fe5.js'></script>
@@ -50,8 +50,8 @@ $user = Auth::GetAuthenticatedUserInfo();
         </div>
     </div>
     <div id="TwoStepVerificationSection" style="display:none"
-         data-request-code-unauthenticated-path="https://api.roblox.com/twostepverification/request-unauthenticated"
-         data-verify-code-unauthenticated-path="https://api.roblox.com/twostepverification/verify-unauthenticated">
+         data-request-code-unauthenticated-path="https://api.<?= $site_properties['hostname'] ?>/twostepverification/request-unauthenticated"
+         data-verify-code-unauthenticated-path="https://api.<?= $site_properties['hostname'] ?>/twostepverification/verify-unauthenticated">
         <div id="TwoStepVerificatonMessage">Enter your two step verification code.</div>
         <input id="IdentificationCode" name="IdentificationCode" placeholder="Code" type="text" value="" />
 
