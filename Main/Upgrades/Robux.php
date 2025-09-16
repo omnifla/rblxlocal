@@ -292,7 +292,7 @@ use Roblox\Web\SiteAlert;
 
     <div class="rbx-font-xs robux-footer">
         Prices for Turbo and Outrageous Builders Club are the same as for regular Builders Club. All sales are final. Please see our <a href="/info/terms-of-service" class="rbx-link-xs">Terms & Conditions</a> for more information.
-    </div>
+    </div><br>
 </div>
 
             
