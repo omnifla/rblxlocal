@@ -222,7 +222,7 @@ use Roblox\Web\SiteAlert;
                         <h1>400</h1>
                         <h2>ROBUX</h2>
                     </div>
-                    <a  href="/Upgrades/PaymentMethods?ap=42&page=grid" class="rbx-btn-primary-sm robux-product-price btn-full-width robux-buy">Buy for $4.95</a>
+                    <a class="rbx-btn-primary-sm robux-product-price btn-full-width robux-buy">Buy for $4.95</a>
                         <div class="robux-bonus-nbc">Want to get <span class="robux-bonus">50 Bonus ROBUX</span> ?
                         </div>
                         <a href=/Upgrades/BuildersClubMemberships.aspx?ap=42&amp;page=grid class="rbx-link"> Join Builders Club</a>
@@ -234,7 +234,7 @@ use Roblox\Web\SiteAlert;
                         <h1>800</h1>
                         <h2>ROBUX</h2>
                     </div>
-                    <a  href="/Upgrades/PaymentMethods?ap=45&page=grid" class="rbx-btn-primary-sm robux-product-price btn-full-width robux-buy">Buy for $9.95</a>
+                    <a class="rbx-btn-primary-sm robux-product-price btn-full-width robux-buy">Buy for $9.95</a>
                         <div class="robux-bonus-nbc">Want to get <span class="robux-bonus">200 Bonus ROBUX</span> ?
                         </div>
                         <a href=/Upgrades/BuildersClubMemberships.aspx?ap=45&amp;page=grid class="rbx-link"> Join Builders Club</a>
@@ -246,7 +246,7 @@ use Roblox\Web\SiteAlert;
                         <h1>2,000</h1>
                         <h2>ROBUX</h2>
                     </div>
-                    <a  href="/Upgrades/PaymentMethods?ap=10&page=grid" class="rbx-btn-primary-sm robux-product-price btn-full-width robux-buy">Buy for $24.95</a>
+                    <a class="rbx-btn-primary-sm robux-product-price btn-full-width robux-buy">Buy for $24.95</a>
                         <div class="robux-bonus-nbc">Want to get <span class="robux-bonus">750 Bonus ROBUX</span> ?
                         </div>
                         <a href=/Upgrades/BuildersClubMemberships.aspx?ap=10&amp;page=grid class="rbx-link"> Join Builders Club</a>
@@ -258,7 +258,7 @@ use Roblox\Web\SiteAlert;
                         <h1>4,500</h1>
                         <h2>ROBUX</h2>
                     </div>
-                    <a  href="/Upgrades/PaymentMethods?ap=46&page=grid" class="rbx-btn-primary-sm robux-product-price btn-full-width robux-buy">Buy for $49.95</a>
+                    <a class="rbx-btn-primary-sm robux-product-price btn-full-width robux-buy">Buy for $49.95</a>
                         <div class="robux-bonus-nbc">Want to get <span class="robux-bonus">1,500 Bonus ROBUX</span> ?
                         </div>
                         <a href=/Upgrades/BuildersClubMemberships.aspx?ap=46&amp;page=grid class="rbx-link"> Join Builders Club</a>
@@ -270,7 +270,7 @@ use Roblox\Web\SiteAlert;
                         <h1>10,000</h1>
                         <h2>ROBUX</h2>
                     </div>
-                    <a  href="/Upgrades/PaymentMethods?ap=19&page=grid" class="rbx-btn-primary-sm robux-product-price btn-full-width robux-buy">Buy for $99.95</a>
+                    <a class="rbx-btn-primary-sm robux-product-price btn-full-width robux-buy">Buy for $99.95</a>
                         <div class="robux-bonus-nbc">Want to get <span class="robux-bonus">5,000 Bonus ROBUX</span> ?
                         </div>
                         <a href=/Upgrades/BuildersClubMemberships.aspx?ap=19&amp;page=grid class="rbx-link"> Join Builders Club</a>
@@ -282,7 +282,7 @@ use Roblox\Web\SiteAlert;
                         <h1>22,500</h1>
                         <h2>ROBUX</h2>
                     </div>
-                    <a  href="/Upgrades/PaymentMethods?ap=21&page=grid" class="rbx-btn-primary-sm robux-product-price btn-full-width robux-buy">Buy for $199.95</a>
+                    <a class="rbx-btn-primary-sm robux-product-price btn-full-width robux-buy">Buy for $199.95</a>
                         <div class="robux-bonus-nbc">Want to get <span class="robux-bonus">12,500 Bonus ROBUX</span> ?
                         </div>
                         <a href=/Upgrades/BuildersClubMemberships.aspx?ap=21&amp;page=grid class="rbx-link"> Join Builders Club</a>
