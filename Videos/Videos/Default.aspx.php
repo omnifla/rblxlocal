@@ -115,10 +115,33 @@ $user = Auth::GetAuthenticatedUserInfo();
 <?= SiteHeaderVideos::render() ?>
         <div id="navContent" class="nav-content"><div class="nav-content-inner">
 		<div class="content">
-</div>     
+        </div>     
         </div>
             </div> 
-
+				<h1>Videos</h1>		
+        <div class="video-list-card">
+            <div class="video-thumb">
+                <img alt="Video Thumbnail" src="https://placehold.co/280x158" />
+                <span class="video-duration">N/A Not finished lol</span>
+            </div>
+            <div class="video-info">
+                <a href="/videos/watch.aspx?id=0" class="video-title">
+                    not finished
+                </a>
+                <div class="video-meta">
+                    0 views • Uploaded at NaN
+                </div>
+                <div class="video-channel">
+                    <img class="channel-avatar" src="https://www.<?= $site_properties['hostname'] ?>/Thumbs/Avatar.ashx?userId=1&amp;x=200&amp;y=200" alt="User Avatar" />
+                    <span class="channel-name">
+                        <a href="/Videos/User.aspx?id=1">
+                            <strong>OnlyTwentyCharacters</strong>
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    <p>No videos uploaded yet.</p>
 
                     <div style="clear:both"></div>
                 </div>
