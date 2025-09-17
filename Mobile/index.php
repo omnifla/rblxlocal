@@ -23,7 +23,7 @@ $user = Auth::GetAuthenticatedUserInfo();
         <script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
 <script type='text/javascript' src='https://s3.amazonaws.com/js.roblox.com/ba00b3edd1e67e9348a47a67a08fa69e.js'></script>
-    <script type="text/javascript" src="http://cdn.gigya.com/js/gigya.js?apiKey=3_OsvmtBbTg6S_EUbwTPtbbmoihFY5ON6v6hbVrTbuqpBs7SyF_LQaJwtwKJ60sY1p"></script>
+    <script type="text/javascript" src="/js/gigya.js?apiKey=3_OsvmtBbTg6S_EUbwTPtbbmoihFY5ON6v6hbVrTbuqpBs7SyF_LQaJwtwKJ60sY1p"></script>
 
         
     </head>
