@@ -1,4 +1,9 @@
-
+<?php
+include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
+use Roblox\Authentication as Auth;
+use Roblox\Web\SiteHeaderMobile;
+$user = Auth::GetAuthenticatedUserInfo();
+?>
 
 <!DOCTYPE html>
 <html>
