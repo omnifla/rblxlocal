@@ -11,7 +11,7 @@ class Markdown {
         $this->text = $text;
     }
     public function toHtml(): string {
-        $blocks = preg_split("/\n{2,}/", trim($this->text));
+        $blocks = preg_split("/\R{2,}/", trim($this->text));
         $htmlParts = [];
         foreach ($blocks as $block) {
             $block = $this->parseInline($block);
