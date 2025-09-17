@@ -126,4 +126,4 @@ $user = Auth::GetAuthenticatedUserInfo();
             </div>
         </div>
 
-<?= SiteFooter::renderNextStyleGuide() ?>
+<?= SiteFooter::render() ?>
