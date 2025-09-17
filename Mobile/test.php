@@ -9,7 +9,7 @@
         <link rel="shortcut icon" href="/favicon.ico"/>
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/web/20150312214338im_/https://m.roblox.com/Images/Icon114x114v3.png">
 
-<link rel="stylesheet" href="/CSS/Base/CSS/FetchCSS?path=page___c1f266fd667554c60776af47cca6a8ab_m.css"/>
+<link rel="stylesheet" href="https://www.<?= $site_properties['hostname'] ?>/CSS/Base/CSS/FetchCSS?path=page___c1f266fd667554c60776af47cca6a8ab_m.css"/>
         <script type="text/javascript" src="//web.archive.org/web/20150312214338js_/https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" src="//web.archive.org/web/20150312214338js_/https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
 <script type="text/javascript" src="https://web.archive.org/web/20150312214338js_/https://s3.amazonaws.com/js.roblox.com/ba00b3edd1e67e9348a47a67a08fa69e.js"></script>
