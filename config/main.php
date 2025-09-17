@@ -31,8 +31,8 @@ $site_properties = [
     "meta-Author" => "ROBLOX Corporation",
     "meta-Description" => "User-generated MMO gaming site for kids, teens, and adults. Players architect their own worlds. Builders create free online games that simulate the real world.",
     "meta-Keywords" => "free games, online games, building games, virtual worlds, free mmo, gaming cloud, physics engine",
-    "hostname" => "aftwld.xyz",
-    "baseUrl" => "https://" . $_SERVER['HTTP_HOST'],
+    "hostname" => $_SERVER['SERVER_NAME'], // CAN YOU ALL STOP PUTTING AFTWLD.XYZ EVERYWHERE?
+    "baseUrl" => "https://" . $_SERVER['SERVER_NAME'], // maybe we should discontinue this
 ];
 ClientScriptCreator::init();
 
