@@ -18,24 +18,6 @@ class SiteHeaderVideos{
                             <a class="navbar-brand" href="/"><span class="logo"></span></a>
                         </div>
                     </div>
-                    <div id="navbar-universal-search" class="navbar-left rbx-navbar-search col-xs-5 col-sm-6 col-md-3" data-behavior="univeral-search" role="search">
-                        <div class="input-group rbx-input-group">
-                            <input id="navbar-search-input" class="form-control rbx-input-field" type="text" placeholder="Search" maxlength="120" />
-                            <div class="input-group-btn rbx-input-group-btn">
-                                <button id="navbar-search-btn" class="rbx-input-addon-btn" type="submit">
-                                    <span class="rbx-icon-nav-search"></span>
-                                </button>
-                            </div>
-                        </div>
-                        <ul data-toggle="dropdown-menu" class="rbx-dropdown-menu" role="menu">
-                            <li class="rbx-navbar-search-option selected" data-searchurl="/videos/search?keyword=">
-                                <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Videos</span>
-                            </li>
-                            <li class="rbx-navbar-search-option" data-searchurl="/videos/people?Keyword=">
-                                <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in People</span>
-                            </li>
-                        </ul>
-                    </div><!--rbx-navbar-search-->
                     <div class="navbar-right rbx-navbar-right col-xs-4 col-sm-3">
                             <ul class="nav navbar-right rbx-navbar-right-nav" data-display-opened="False">
                                 <li>
@@ -84,24 +66,6 @@ $html = <<<HTML
                             <a class="navbar-brand" href="/"><span class="logo"></span></a>
                         </div>
                     </div>
-                    <div id="navbar-universal-search" class="navbar-left rbx-navbar-search col-xs-5 col-sm-6 col-md-3" data-behavior="univeral-search" role="search">
-                        <div class="input-group rbx-input-group">
-                            <input id="navbar-search-input" class="form-control rbx-input-field" type="text" placeholder="Search" maxlength="120" />
-                            <div class="input-group-btn rbx-input-group-btn">
-                                <button id="navbar-search-btn" class="rbx-input-addon-btn" type="submit">
-                                    <span class="rbx-icon-nav-search"></span>
-                                </button>
-                            </div>
-                        </div>
-                        <ul data-toggle="dropdown-menu" class="rbx-dropdown-menu" role="menu">
-                            <li class="rbx-navbar-search-option selected" data-searchurl="/videos/search?keyword=">
-                                <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in People</span>
-                            </li>
-                                    <li class="rbx-navbar-search-option" data-searchurl="/videos/people?Keyword=">
-                                        <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Games</span>
-                                    </li>
-                        </ul>
-                    </div><!--rbx-navbar-search-->
                     <div class="navbar-right rbx-navbar-right col-xs-4 col-sm-3">
                     
                     
@@ -145,6 +109,7 @@ $html = <<<HTML
                         <ul>
                             <li><a href="/" id="nav-home"><span class="rbx-icon-nav-home"></span><span>Home</span></a></li>
                             <li><a href="/videos/user.aspx" id="nav-profile"><span class="rbx-icon-nav-profile"></span><span>Profile</span></a></li>
+                            <li><a href="/videos/search" id="nav-search"><span class="rbx-icon-nav-search"></span><span>Search</span></a></li>
                             <li class="rbx-upgrade-now">
                                 <a href="https://www.aftwld.xyz/Upgrades/BuildersClubMemberships.aspx?ctx=leftnav" class="rbx-btn-secondary-xs" id="upgrade-now-button">Upgrade Now</a>
                             </li>
