@@ -2,7 +2,6 @@
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use Roblox\Authentication as Auth;
 use Roblox\Web\SiteHeaderVideos;
-use Roblox\Web\SiteFooter;
 $user = Auth::GetAuthenticatedUserInfo();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -125,5 +124,3 @@ $user = Auth::GetAuthenticatedUserInfo();
                 </div>
             </div>
         </div>
-
-<?= SiteFooter::render() ?>
