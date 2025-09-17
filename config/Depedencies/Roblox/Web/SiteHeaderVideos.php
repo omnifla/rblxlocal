@@ -63,24 +63,6 @@ class SiteHeaderVideos{
             $user = Auth::GetAuthenticatedUserInfo();
             $username = htmlspecialchars($user["username"], ENT_QUOTES, 'UTF-8');
             $userId = (int)$user["id"];
-            $tickets = htmlspecialchars($user["tickets"], ENT_QUOTES, 'UTF-8');
-            $robux = htmlspecialchars($user["robux"], ENT_QUOTES, 'UTF-8');
-            function formatNumberToAbbreviation($number) {
-                if ($number >= 1000000000000) {
-                    return round($number / 1000000000000, 1) . 'T';
-                } elseif ($number >= 1000000000) {
-                    return round($number / 1000000000, 1) . 'B';
-                } elseif ($number >= 1000000) {
-                    return round($number / 1000000, 1) . 'M';
-                } elseif ($number >= 1000) {
-                    return round($number / 1000, 1) . 'K';
-                } else {
-                    return $number;
-                }
-            }
-            $formated_t = formatNumberToAbbreviation($tickets);
-            $formated_r = formatNumberToAbbreviation($robux);
-
 $html = <<<HTML
                 <script type="text/javascript" src="//js.rbxcdn.com/9715e76471ffacd5f6d9c24a5ab101ad.js"></script>
             	<div id="header" class="navbar-fixed-top rbx-header" role="navigation">
