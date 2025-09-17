@@ -9,7 +9,7 @@ use Roblox\Web\SiteFooter;
 use Roblox\Web\SiteAlert;
 use Roblox\UserFeed;
 use Roblox\DataAccess\FeedificationDAL;
-
+use Roblox\Web\Markdown;
 // e
 // redirects the user to /newlogin?redirect-url=url if not logged in (used to show 401 error before)
 if(!Auth::GetAuthenticatedUser()){
@@ -238,7 +238,8 @@ $dal = new FeedificationDAL();
 $feed = $dal->getRecent(1);
 if(count($feed) > 0) {
     $f = $feed[0];
-    $cont = nl2br(htmlspecialchars($f->message));
+    $markdown = new Markdown(htmlspecialchars($f->message));
+    $cont = $markdown->toHtml();
     echo
 <<<HTML
 <div class="section">
