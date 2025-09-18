@@ -4,42 +4,56 @@ use Roblox\Authentication as Auth;
 use Roblox\Web\SiteHeaderVideos;
 $user = Auth::GetAuthenticatedUserInfo();
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- MachineID: WEB1 -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true">
-    
-    <meta http-equiv="Content-Language" content="en-us">
-    <meta name="author" content="RBLX.Vidoes">
-    <meta name="description" content="Publish your own videos about RBLX.local inside of RBLX.Videos">
-    <meta name="keywords" content="free games, online games, building games, virtual worlds, free mmo, gaming cloud, physics engine">
-    
-    
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+    <!-- MachineID: WEB186 -->
     <title>RBLX.Videos</title>
-    <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="en-us" />
+    <meta name="author" content="RBLX.Videos" />
+    <meta name="description" content="Publish your own videos about RBLX.local inside of RBLX.Videos" />
+    <meta name="keywords" content="free games, online games, building games, virtual worlds, free mmo, gaming cloud, physics engine" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     
     
-<link rel="stylesheet" href="https://www.aftwld.xyz/CSS/Base/CSS/FetchCSS?path=leanbase___f9e2a82b042c4b4f945b16e30fb19e87_m.css">
 
     
+    <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+    
+
+
+<link rel='stylesheet' href='https://www.aftwld.xyz/CSS/Base/CSS/FetchCSS?path=main___52c69b42777a376ab8c76204ed8e75e2_m.css' />
+<link rel='stylesheet' href='https://www.aftwld.xyz/CSS/Base/CSS/FetchCSS?path=page___d2eeb5738db9c7a822adf9b46cf9784f_m.css' />
 <link rel="stylesheet" href="https://www.aftwld.xyz/CSS/Base/CSS/FetchCSS?path=page___a3f1c9d8e4726b5d01f4378b29c54e7a_m.css">
-<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600,700" rel="stylesheet" type="text/css">
+
+        
     
-	<script async="" type="text/javascript" src="./<?= $site_properties['hostname'] ?>_files/gpt.js"></script><script type="text/javascript" src="https://js.rbxcdn.com/9db05af88b1dc737664247f24a0120e0.js.gzip"></script><link href="./<?= $site_properties['hostname'] ?>_files/BestFriends.css" rel="stylesheet" type="text/css"><script type="text/javascript" src="https://js.rbxcdn.com/e96b59fba745a37cdd847ff394b79aac.js.gzip"></script><script type="text/javascript" src="https://js.rbxcdn.com/9f4404fc11d8b8958d09f6316719cef9.js.gzip"></script><script type="text/javascript" async="" src="./<?= $site_properties['hostname'] ?>_files/ga.js"></script><script type="text/javascript">
 
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-11419793-1']);
-		_gaq.push(['_setCampSourceKey', 'rbx_source']);
-		_gaq.push(['_setCampMediumKey', 'rbx_medium']);
-		_gaq.push(['_setCampContentKey', 'rbx_campaign']);
-		_gaq.push(['_setDomainName', '<?= $site_properties['hostname'] ?>']);
+	<script type="text/javascript">
 
+        var _gaq = _gaq || [];
+
+		    _gaq.push(['_setAccount', 'UA-11419793-1']);
+		    _gaq.push(['_setCampSourceKey', 'rbx_source']);
+		    _gaq.push(['_setCampMediumKey', 'rbx_medium']);
+		    _gaq.push(['_setCampContentKey', 'rbx_campaign']);
+		        _gaq.push(['_setDomainName', '<?= $site_properties['hostname'] ?>']);
 		_gaq.push(['b._setAccount', 'UA-486632-1']);
 		_gaq.push(['b._setCampSourceKey', 'rbx_source']);
 		_gaq.push(['b._setCampMediumKey', 'rbx_medium']);
 		_gaq.push(['b._setCampContentKey', 'rbx_campaign']);
+
 		_gaq.push(['b._setDomainName', '<?= $site_properties['hostname'] ?>']);
+        
+            _gaq.push(['b._setCustomVar', 1, 'Visitor', 'Anonymous', 2]);
+            _gaq.push(['b._trackPageview']);    
+        
+        
+        
+
 		_gaq.push(['c._setAccount', 'UA-26810151-2']);
 		_gaq.push(['c._setDomainName', '<?= $site_properties['hostname'] ?>']);
 
@@ -53,69 +67,173 @@ $user = Auth::GetAuthenticatedUserInfo();
 		})();
 
 	</script>
-    <script type='text/javascript' src='//code.jquery.com/jquery-1.7.2.min.js'></script>
-<script type='text/javascript' src='//code.jquery.com/jquery-migrate-3.5.2.min.js'></script>
+<div id="roblox-linkify" data-enabled="true" data-regex="(https?\:\/\/)?(?:www\.)?([a-z0-9\-]{2,}\.)*((m|de|www|web|api|blog|wiki|help|corp|polls|bloxcon|developer)\.watr13\.icu|robloxlabs\.com)((\/[A-Za-z0-9-+&amp;@#\/%?=~_|!:,.;]*)|(\b|\s))" data-regex-flags="gm"></div>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript">
+    window.jQuery || document.write("<script type='text/javascript' src='/js/jquery/jquery-1.7.2.js'><\/script>");
+</script>
+<script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-3.5.2.min.js"></script>
+<script type="text/javascript">
+    window.jQuery || document.write("<script type='text/javascript' src='/js/jquery/jquery-migrate-1.2.1.js'><\/script>");
+</script>
+<script type='text/javascript' src='//ajax.aspnetcdn.com/ajax/4.0/1/MicrosoftAjax.js'></script>
+<script type='text/javascript'>window.Sys || document.write("<script type='text/javascript' src='/js/Microsoft/MicrosoftAjax.js'><\/script>")</script>
 
+    <script type='text/javascript' src='https://s3.amazonaws.com/js.www.aftwld.xyz/4564b16e8c662d0f22e92bfbfe939d9d.js'></script>
+
+    <script type='text/javascript' src='https://s3.amazonaws.com/js.www.aftwld.xyz/ab68faa5d84854f0a12ec8055bc30286.js'></script>
+
+    <script type='text/javascript'>Roblox.config.externalResources = [];Roblox.config.paths['Pages.Catalog'] = 'https://s3.amazonaws.com/js.www.aftwld.xyz/1612c57544c7977e19cd15c824f7ecc3.js';Roblox.config.paths['Pages.CatalogShared'] = 'https://s3.amazonaws.com/js.www.aftwld.xyz/209f2b781ea84e8d0332648ddf547d57.js';Roblox.config.paths['Pages.Messages'] = 'https://s3.amazonaws.com/js.www.aftwld.xyz/e8cbac58ab4f0d8d4c707700c9f97630.js';Roblox.config.paths['Resources.Messages'] = 'https://s3.amazonaws.com/js.www.aftwld.xyz/fb9cb43a34372a004b06425a1c69c9c4.js';Roblox.config.paths['Widgets.AvatarImage'] = 'https://s3.amazonaws.com/js.www.aftwld.xyz/bbaeb48f3312bad4626e00c90746ffc0.js';Roblox.config.paths['Widgets.DropdownMenu'] = 'https://s3.amazonaws.com/js.www.aftwld.xyz/7b436bae917789c0b84f40fdebd25d97.js';Roblox.config.paths['Widgets.GroupImage'] = 'https://s3.amazonaws.com/js.www.aftwld.xyz/33d82b98045d49ec5a1f635d14cc7010.js';Roblox.config.paths['Widgets.HierarchicalDropdown'] = 'https://s3.amazonaws.com/js.www.aftwld.xyz/fbb86cf0752d23f389f983419d3085b4.js';Roblox.config.paths['Widgets.ItemImage'] = 'https://s3.amazonaws.com/js.www.aftwld.xyz/8babd891cf420dfe3999b3824a0154cb.js';Roblox.config.paths['Widgets.PlaceImage'] = 'https://s3.amazonaws.com/js.www.aftwld.xyz/f2697119678d0851cfaa6c2270a727ed.js';Roblox.config.paths['Widgets.SurveyModal'] = 'https://s3.amazonaws.com/js.www.aftwld.xyz/d6e979598c460090eafb6d38231159f6.js';</script>
     
-<script type="text/javascript" src="https://js.rbxcdn.com/c57cc32d0db0d462c64bb8ace02fdf13.js.gzip"></script>
+        
+    <script type='text/javascript' src='https://s3.amazonaws.com/js.www.aftwld.xyz/c72cdccff7c18a597489b7f3ec469a5d.js'></script>
 
-    <script type="text/javascript">Roblox.config.externalResources = ['https://<?= $site_properties['hostname'] ?>/js/jquery/jquery-1.7.2.min.js','/js/json2.min.js'];Roblox.config.paths['jQuery'] = 'http://js.rbxcdn.com/e96b59fba745a37cdd847ff394b79aac.js.gzip';Roblox.config.paths['Pagelets.BestFriends'] = 'http://js.rbxcdn.com/9db05af88b1dc737664247f24a0120e0.js.gzip';Roblox.config.paths['Pages.Catalog'] = 'http://js.rbxcdn.com/10a6b22225379eaa8d41dd1c0ffb6dc3.js.gzip';Roblox.config.paths['Pages.Messages'] = 'http://js.rbxcdn.com/f266eeedec9548a94baf73ccb09e4a5d.js.gzip';Roblox.config.paths['Resources.Messages'] = 'http://js.rbxcdn.com/6307f9bd9c09fa9d88c76291f3b68fda.js.gzip';Roblox.config.paths['Widgets.AvatarImage'] = 'http://js.rbxcdn.com/9f4404fc11d8b8958d09f6316719cef9.js.gzip';Roblox.config.paths['Widgets.DropdownMenu'] = 'http://js.rbxcdn.com/88a3e1afed9aa3b21670a59ddb7775c3.js.gzip';Roblox.config.paths['Widgets.GroupImage'] = 'http://js.rbxcdn.com/c98baf27bc7feda3206342566db92696.js.gzip';Roblox.config.paths['Widgets.HierarchicalDropdown'] = 'http://js.rbxcdn.com/3f95857727df4739b29a8385501752fa.js.gzip';Roblox.config.paths['Widgets.ItemImage'] = 'http://js.rbxcdn.com/152201bc9a4e721fe8c326c78b35e364.js.gzip';Roblox.config.paths['Widgets.PlaceImage'] = 'http://js.rbxcdn.com/4426a131abb3e214ed89338154f6e78a.js.gzip';Roblox.config.paths['Widgets.Suggestions'] = 'http://js.rbxcdn.com/63f96a694a0eedd389b573a5859b8974.js.gzip';Roblox.config.paths['Widgets.SurveyModal'] = 'http://js.rbxcdn.com/56ad7af86ee4f8bc82af94269ed50148.js.gzip';</script>
-    
-<script type="text/javascript" src="https://js.rbxcdn.com/f6ebdcdab40c43bb18d29009ce0880be.js.gzip"></script>
 
-    <script type="text/javascript">   
-        googletag.cmd.push(function() {
-            Roblox = Roblox || {};
-            Roblox.AdsHelper = Roblox.AdsHelper || {};
-            Roblox.AdsHelper.slots = [];
-	        Roblox.AdsHelper.slots = Roblox.AdsHelper.slots || []; Roblox.AdsHelper.slots.push({slot:googletag.defineSlot("/1015347/Roblox_MyHome_Right_160x600", [160, 600], "3439303639313930").addService(googletag.pubads()), id: "3439303639313930"});
- 
-            for (var key in Roblox.AdsHelper.slots) {
-                var slot = Roblox.AdsHelper.slots[key].slot;
-                var id = Roblox.AdsHelper.slots[key].id;
-                if (slot.renderEnded != "undefined") {
-                    (function(slot, id)
-                    {
-                        slot.renderEndedOld = slot.renderEnded;
-                        slot.renderEnded = function() {
-                            slot.renderEndedOld();
-                            if ($('#' + id + '.gutter').css('display') == "none") {
-                                $(document).trigger("GuttersHidden");
-                            }
-                        };    
-                    }(slot, id));
-                }
-            }
-
-        googletag.pubads().setTargeting("Age", ["13", "13to14" ]);	
-            googletag.pubads().setTargeting("Env",  "Production");
-        googletag.pubads().enableSingleRequest();
-        googletag.pubads().collapseEmptyDivs();
-        googletag.enableServices();
-	    });
-    </script>  
 <script type="text/javascript">
     $(function () {
-        Roblox.JSErrorTracker.initialize({'internalEventListenerPixelEnabled': true});
+        Roblox.JSErrorTracker.initialize({ 'suppressConsoleError': true});
     });
-</script>        <script type="text/javascript">
-            Roblox.XsrfToken.setToken('y5zY3quEFHjD');
+</script>
+
+<script type="text/javascript">
+    var Roblox = Roblox || {};
+    Roblox.UpsellAdModal = Roblox.UpsellAdModal || {};
+
+    Roblox.UpsellAdModal.Resources = {
+        //<sl:translate>
+        title: "Remove Ads Like This",
+        body: "Builders Club members do not see external ads like these.",
+        accept: "Upgrade Now",
+        decline: "No, thanks"
+        //</sl:translate>
+    };
+</script>
+        <script type="text/javascript">
+            Roblox.XsrfToken.setToken('k8a6rShpGUQj');
+        </script>
+        <script type="text/javascript">
+        Roblox.FixedUI.gutterAdsEnabled = false;
+    </script>
+    
+
+    <script type="text/javascript">
+        var Roblox = Roblox || {};
+        Roblox.jsConsoleEnabled = false;
+    </script>
+    
+    <script>
+        $(function () {
+            Roblox.DeveloperConsoleWarning.showWarning();
+        });
+    </script>
+            <script type="text/javascript">
+            $(function() {
+                if (Roblox.EventStream) {
+                    Roblox.EventStream.InitializeEventStream("//ecsv2.<?= $site_properties['hostname'] ?>/www/e.png");
+                }
+            });
         </script>
     <script type="text/javascript">
-        Roblox.FixedUI.gutterAdsEnabled = false;
-    </script>   
+if (typeof(Roblox) === "undefined") { Roblox = {}; }
+Roblox.Endpoints = Roblox.Endpoints || {};
+Roblox.Endpoints.Urls = Roblox.Endpoints.Urls || {};
+</script>
+
+</head>
+<body class="">
     
-<script async="" type="text/javascript" src="./<?= $site_properties['hostname'] ?>_files/pubads_impl_30.js"></script><script type="text/javascript" src="./<?= $site_properties['hostname'] ?>_files/osd.js"></script></head>
-<body>
-    
+
+
+
+
 <div id="fb-root"></div>
+
+<div class="nav-container no-gutter-ads">
 <?= SiteHeaderVideos::render() ?>
-<div id="MasterContainer">
-        <div id="navContent" class="nav-content"><div class="nav-content-inner">
-		<div class="content">
-        </div>     
-        </div>
-            </div> 
+<div id="navContent" class="nav-content  ">
+        <div class="nav-content-inner">
+            <div id="MasterContainer">
+                    <script type="text/javascript">
+                        if (top.location != self.location) {
+                            top.location = self.location.href;
+                        }
+                    </script>
+                
+
+<script type="text/javascript">
+    $(function(){
+        function trackReturns() {
+            function dayDiff(d1, d2) {
+                return Math.floor((d1-d2)/86400000);
+            }
+            if (!localStorage) {
+                return false;
+            }
+
+            var cookieName = 'RBXReturn';
+            var cookieOptions = {expires:9001};
+            var cookieStr = localStorage.getItem(cookieName) || "";
+            var cookie = {};
+
+            try {
+                cookie = JSON.parse(cookieStr);
+            } catch (ex) {
+                // busted cookie string from old previous version of the code
+            }
+
+            try {
+                if (typeof cookie.ts === "undefined" || isNaN(new Date(cookie.ts))) {
+                    localStorage.setItem(cookieName, JSON.stringify({ ts: new Date().toDateString() }));
+                    return false;
+                }
+            } catch (ex) {
+                return false;
+            }
+
+            var daysSinceFirstVisit = dayDiff(new Date(), new Date(cookie.ts));
+            if (daysSinceFirstVisit == 1 && typeof cookie.odr === "undefined") {
+                RobloxEventManager.triggerEvent('rbx_evt_odr', {});
+                cookie.odr = 1;
+            }
+            if (daysSinceFirstVisit >= 1 && daysSinceFirstVisit <= 7 && typeof cookie.sdr === "undefined") {
+                RobloxEventManager.triggerEvent('rbx_evt_sdr', {});
+                cookie.sdr = 1;
+            }
+            try {
+                localStorage.setItem(cookieName, JSON.stringify(cookie));
+            } catch (ex) {
+                return false;
+            }
+        }
+
+        GoogleListener.init();
+
+
+    
+        RobloxEventManager.initialize(true);
+        RobloxEventManager.triggerEvent('rbx_evt_pageview');
+        trackReturns();
+        
+
+    
+        RobloxEventManager._idleInterval = 450000;
+        RobloxEventManager.registerCookieStoreEvent('rbx_evt_initial_install_start');
+        RobloxEventManager.registerCookieStoreEvent('rbx_evt_ftp');
+        RobloxEventManager.registerCookieStoreEvent('rbx_evt_initial_install_success');
+        RobloxEventManager.registerCookieStoreEvent('rbx_evt_fmp');
+        RobloxEventManager.startMonitor();
+        
+
+    });
+
+</script>
+
+
+                <div>
+                                                            <noscript><div class="SystemAlert"><div class="SystemAlertText">Please enable Javascript to use all the features on this site.</div></div></noscript>
+                    <div id="BodyWrapper" class="">
+                        <div id="RepositionBody">
+                            <div id="Body" style="width:970px">
 				<h1>Videos</h1>		
         <div class="video-list-card">
             <div class="video-thumb">
