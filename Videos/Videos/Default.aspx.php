@@ -2,7 +2,9 @@
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use Roblox\Authentication as Auth;
 use Roblox\Web\SiteHeaderVideos;
+use Roblox\Videos;
 $user = Auth::GetAuthenticatedUserInfo();
+$videos = Videos::getRecent(10);
 ?>
 
 <!DOCTYPE html>
@@ -234,7 +236,9 @@ Roblox.Endpoints.Urls = Roblox.Endpoints.Urls || {};
                     <div id="BodyWrapper" class="">
                         <div id="RepositionBody">
                             <div id="Body" style="width:970px">
-				<h1>Videos</h1>		
+				<h1>Videos</h1>	
+	<?php if (!empty($videos)): ?>
+    <?php foreach ($videos as $video): ?>
         <div class="video-list-card">
             <div class="video-thumb">
                 <img alt="Video Thumbnail" src="https://placehold.co/280x158" />
@@ -257,7 +261,10 @@ Roblox.Endpoints.Urls = Roblox.Endpoints.Urls || {};
                 </div>
             </div>
         </div>
+	 <?php endforeach; ?>
+     <?php else: ?>
     <p>No videos uploaded yet.</p>
+<?php endif; ?>
 <div>
                     <div style="clear:both"></div>
                 </div>
