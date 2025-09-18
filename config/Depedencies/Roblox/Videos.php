@@ -22,14 +22,23 @@ class Videos
         $this->url = $this->buildUrl($data->video_name);
         $this->views = $data->views;
         $this->uploadedAt = $data->uploadedAt ?? new \DateTime();
-        $this->uploaderUsername = $data->uploaderUsername;
         $this->uploaderId = $data->uploaderId;
+        $this->uploaderUsername = $this->fetchUsername($this->uploaderId) ?? "Guest";
     }
 
     private function buildUrl(string $videoName): string
     {
         $bucketDomain = "https://videoscdn.aftwld.xyz";
         return rtrim($bucketDomain, "/") . "/" . ltrim($videoName, "/");
+    }
+
+    private function fetchUsername(int $userId): ?string
+    {
+        global $conn;
+        $stmt = $conn->prepare("SELECT Username FROM users WHERE id = :id LIMIT 1");
+        $stmt->execute([':id' => $userId]);
+        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $row['username'] ?? null;
     }
 
     public static function getRecent(int $limit = 1): array
