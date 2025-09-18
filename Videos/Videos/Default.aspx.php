@@ -109,10 +109,8 @@ $user = Auth::GetAuthenticatedUserInfo();
 <body>
     
 <div id="fb-root"></div>
-<div id="MasterContainer"><div>
-
-                                                            
 <?= SiteHeaderVideos::render() ?>
+<div id="MasterContainer">
         <div id="navContent" class="nav-content"><div class="nav-content-inner">
 		<div class="content">
         </div>     
@@ -142,7 +140,7 @@ $user = Auth::GetAuthenticatedUserInfo();
             </div>
         </div>
     <p>No videos uploaded yet.</p>
-
+<div>
                     <div style="clear:both"></div>
                 </div>
             </div>
