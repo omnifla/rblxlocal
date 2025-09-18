@@ -95,4 +95,25 @@ class VideosDAL
         $video->uploadedAt = $row['uploadedAt'] !== null ? new DateTime($row['uploadedAt']) : null;
         return $video;
     }
+
+    public static function getRecent(int $limit = 1): array
+    {
+        global $conn;
+        $sql = "SELECT v.id, v.title, v.video_name, v.views, v.uploadedAt, v.uploaderId, u.Username AS uploaderUsername FROM videos v JOIN users u ON v.uploaderId = u.UserId ORDER BY v.uploadedAt DESC LIMIT :limit";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(':limit', $limit, \PDO::PARAM_INT);
+        $stmt->execute();
+        $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return array_map([self::class, 'buildFromRow'], $rows);
+    }
+
+    public static function getById(int $id): ?VideosDAL
+    {
+        global $conn;
+        $sql = "SELECT v.id, v.title, v.video_name, v.views, v.uploadedAt, v.uploaderId, u.Username AS uploaderUsername FROM videos v JOIN users u ON v.uploaderId = u.UserId WHERE v.id = :id LIMIT 1";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([':id' => $id]);
+        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $row ? self::buildFromRow($row) : null;
+    }
 }
