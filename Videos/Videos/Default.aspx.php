@@ -242,20 +242,20 @@ Roblox.Endpoints.Urls = Roblox.Endpoints.Urls || {};
         <div class="video-list-card">
             <div class="video-thumb">
                 <img alt="Video Thumbnail" src="https://placehold.co/280x158" />
-                <span class="video-duration">N/A Not finished lol</span>
+                <span class="video-duration">N/A</span>
             </div>
             <div class="video-info">
-                <a href="/videos/watch.aspx?id=0" class="video-title">
-                    not finished
+                <a href="/videos/watch.aspx?id=<?= htmlspecialchars($video->id) ?>" class="video-title">
+                    <?= htmlspecialchars($video->title) ?>
                 </a>
                 <div class="video-meta">
-                    0 views • Uploaded at NaN
+                    <?= number_format($video->views) ?> views • Uploaded at <?= $video->uploadedAt->format("M j, Y") ?>
                 </div>
                 <div class="video-channel">
-                    <img class="channel-avatar" src="https://www.<?= $site_properties['hostname'] ?>/Thumbs/Avatar.ashx?userId=1&amp;x=200&amp;y=200" alt="User Avatar" />
+                    <img class="channel-avatar" src="https://www.aftwld.xyz/Thumbs/Avatar.ashx?userId=<?= $video->uploaderId ?>&amp;x=200&amp;y=200" alt="User Avatar" />
                     <span class="channel-name">
-                        <a href="/Videos/User.aspx?id=1">
-                            <strong>OnlyTwentyCharacters</strong>
+                        <a href="/Videos/User.aspx?id=<?= $video->uploaderId ?>">
+                            <strong><?= htmlspecialchars($video->uploaderUsername) ?></strong>
                         </a>
                     </span>
                 </div>
