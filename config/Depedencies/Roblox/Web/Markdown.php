@@ -22,10 +22,10 @@ class Markdown {
             elseif (preg_match('/^- /m', $block)) {
                 $items = preg_replace(
                     '/^- (.+)$/m',
-                    '<li><span class="md-bullet">•</span>&#9; $1</li>',
+                    '<dd><span class="md-bullet">•</span>&#9; $1</dd>',
                     $block
                 );
-                $htmlParts[] = "<ul>$items</ul>";
+                $htmlParts[] = "<dl>$items</dl>";
             }
             else {
                 $block = preg_replace("/\n/", "<br>", $block);
