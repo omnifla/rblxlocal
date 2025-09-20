@@ -35,8 +35,7 @@ function genreCssClass(string $genre): string {
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 if ($id <= 0) {
-    http_response_code(404);
-    include $_SERVER['DOCUMENT_ROOT'] . '/RobloxDefaultErrorPage.aspx?code=404';
+    header("Location: /requesterror?code=404");
     exit;
 }
 
@@ -44,8 +43,7 @@ $stmt = $conn->prepare('SELECT * FROM assets WHERE "AssetId" = :id');
 $stmt->execute([':id' => $id]);
 $asset = $stmt->fetch(PDO::FETCH_ASSOC);
 if (!$asset) {
-    http_response_code(404);
-    include $_SERVER['DOCUMENT_ROOT'] . '/RobloxDefaultErrorPage.aspx?code=404';
+    header("Location: /requesterror?code=404");
     exit;
 }
 
