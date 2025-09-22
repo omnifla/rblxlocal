@@ -7,6 +7,8 @@ use Roblox\BrickColor as BrickColor;
 use Roblox\TextFilter\BasicTextFilter;
 use Roblox\UserLoginAward;
 use Roblox\User;
+use Roblox\Economy\Common\RobuxBalance;
+use Roblox\Economy\Common\TicketsBalance;
 
 class Authentication {
     public static function isGlobalFlooding(): bool { // added this global flood checker because HOLY CRAP ITS JUST TO MUCH ACCOUNTS BEING CREATED.
@@ -33,24 +35,21 @@ class Authentication {
         if(!$userinfo){
             return null;
         }
+        $ticket = new TicketsBalance($userinfo['id']);
+        $robux = new RobuxBalance($userinfo['id']);
         $award = UserLoginAward::getOrCreate($userinfo['id']);
         if ($award->tryAward()) {
             // ticket incrementation
-            // TODO: add Roblox.Economy
-            $stmt = $conn->prepare("UPDATE users SET tickets = tickets + :amt WHERE id = :uid");
-            $stmt->execute([':amt' => 10, ':uid' => $userinfo['id']]);
+            $ticket->Credit(10);
             switch($userinfo['membership_type']){
                 case 1:
-                    $stmt = $conn->prepare("UPDATE users SET robux = robux + :amt WHERE id = :uid");
-                    $stmt->execute([':amt' => 15, ':uid' => $userinfo['id']]);
+                    $robux->Credit(15);
                     break;
                 case 2:
-                    $stmt = $conn->prepare("UPDATE users SET robux = robux + :amt WHERE id = :uid");
-                    $stmt->execute([':amt' => 35, ':uid' => $userinfo['id']]);
+                    $robux->Credit(35);
                     break;
                 case 3:
-                    $stmt = $conn->prepare("UPDATE users SET robux = robux + :amt WHERE id = :uid");
-                    $stmt->execute([':amt' => 60, ':uid' => $userinfo['id']]);
+                    $robux->Credit(60);
                     break;
             }
         }

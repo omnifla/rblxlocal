@@ -39,11 +39,9 @@ function timeElapsedString($datetime, $full = false) {
 }
 
 $stmt = $conn->prepare("
-    SELECT a.*, u.username 
-    FROM assets a 
-    LEFT JOIN users u ON a.OwnerId = u.id 
-    WHERE a.OwnerId = 1 
-    ORDER BY a.UpdatedDate DESC 
+    SELECT a.*, u.\"username\" 
+    FROM assets
+    ORDER BY a.\"UpdatedDate\" DESC 
     LIMIT 22
 ");
 $stmt->execute();

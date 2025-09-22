@@ -1,90 +1,159 @@
 <?php
 // ported by meditext
-// TODO: Add ROBLOX2Local Asset System (copy the assets from roblox itself once requesting them, publish into the database.)
-
 namespace Roblox;
+
 use Roblox\DataAccess\AssetDAL;
-// The asset class should ideally have it's own assembly to make it easily portable between projects, this a crude beginning
-class Asset
-{
-    public static array $DefaultHeadIds = [];
-    public static array $DefaultPlaceIds = [];
-    public static array $DefaultShirtIds = [];
+use Roblox\AssetOption;
+use Roblox\AssetType;
+use Roblox\Settings;
+use Exception;
 
-    public static function getDefaultBoyAssetIds(): array
-    {
-        return self::getDefaults(Settings::get('DefaultBoyAssets'));
-    }
-
-    public static function getDefaultGirlAssetIds(): array
-    {
-        return self::getDefaults(Settings::get('DefaultGirlAssets'));
-    }
-
-    public static function getVerifiedHatId(): int
-    {
-        return (int)Settings::get('VerifiedUserHatAssetId');
-    }
-
-    public static function init(): void
-    {
-        self::setDefaults(self::$DefaultPlaceIds, Settings::get('DefaultEnvironments'));
-        self::setDefaults(self::$DefaultShirtIds, Settings::get('DefaultShirts'));
-        self::setDefaults(self::$DefaultHeadIds, Settings::get('DefaultHeads'));
-
-        Settings::onChange(function ($key, $value) {
-            switch ($key) {
-                case 'DefaultEnvironments':
-                    self::setDefaults(self::$DefaultPlaceIds, $value);
-                    break;
-                case 'DefaultShirts':
-                    self::setDefaults(self::$DefaultShirtIds, $value);
-                    break;
-                case 'DefaultHeads':
-                    self::setDefaults(self::$DefaultHeadIds, $value);
-                    break;
-            }
-        });
-    }
-
-    private static function setDefaults(array &$arrayToPopulate, string $sourceData): void
-    {
-        $array = explode(',', $sourceData);
-        $ids = [];
-
-        foreach ($array as $item) {
-            if (!empty($item)) {
-                $ids[] = (int)$item;
-            }
-        }
-
-        $arrayToPopulate = $ids;
-    }
-
-    private static function getDefaults(string $sourceData): array
-    {
-        $array = explode(',', $sourceData);
-        $ids = [];
-
-        foreach ($array as $item) {
-            if (!empty($item)) {
-                $ids[] = (int)$item;
-            }
-        }
-
-        return $ids;
-    }
-
-    //TODO: Implement Assets class here
-    public static function getAssetGenres(int $assetId): int
-    {
-        return AssetDAL::getAssetGenres($assetId);
-    }
-
-    public static function getAssetCategories(int $assetId): int
-    {
-        return AssetDAL::getAssetCategories($assetId);
-    }
+function sanitizeNameForUrl(string $name): string {
+    $name = preg_replace('/[^a-zA-Z0-9 -]/', '', $name);
+    $name = str_replace(' ', '-', $name);
+    $name = preg_replace('/-+/', '-', $name);
+    $name = trim($name, '-');
+    return $name;
 }
 
-Asset::init();
+class Asset {
+    private AssetDAL $_EntityDAL;
+    private ?int $_OriginalCreatorID = null;
+    private ?bool $_OriginalIsArchived = null;
+
+    public function __construct(?AssetDAL $dal = null) {
+        $this->_EntityDAL = $dal ?? new AssetDAL();
+    }
+
+    // === Properties ===
+    public function getID(): int { return $this->_EntityDAL->ID; }
+    public function setID(int $id): void { $this->_EntityDAL->ID = $id; }
+    public function getAssetTypeID(): int { return $this->_EntityDAL->AssetTypeID; }
+    public function setAssetTypeID(int $value): void { $this->_EntityDAL->AssetTypeID = $value; }
+    public function getAssetHashID(): int { return $this->_EntityDAL->AssetHashID; }
+    public function setAssetHashID(int $value): void { $this->_EntityDAL->AssetHashID = $value; }
+    public function getAssetCategories(): int { return (int)$this->_EntityDAL->AssetCategories; }
+    public function setAssetCategories(int $value): void { $this->_EntityDAL->AssetCategories = $value; }
+    public function getAssetGenres(): int { return (int)$this->_EntityDAL->AssetGenres; }
+    public function setAssetGenres(int $value): void { $this->_EntityDAL->AssetGenres = $value; }
+    public function getHash(): string { return $this->_EntityDAL->Hash; }
+    public function setHash(string $value): void { $this->_EntityDAL->Hash = $value; }
+    public function getName(): string { return $this->_EntityDAL->Name; }
+    public function setName(string $value): void { $this->_EntityDAL->Name = $value; }
+    public function getDescription(): string { return $this->_EntityDAL->Description ?? ''; }
+    public function setDescription(string $value): void { $this->_EntityDAL->Description = $value; }
+    public function getCurrentVersionID(): int { return $this->_EntityDAL->CurrentVersionID; }
+    public function setCurrentVersionID(int $value): void { $this->_EntityDAL->CurrentVersionID = $value; }
+    public function getCreatorID(): int { return $this->_EntityDAL->CreatorID; }
+    public function setCreatorID(int $value): void {
+        if ($this->_OriginalCreatorID === null) $this->_OriginalCreatorID = $this->_EntityDAL->CreatorID;
+        $this->_EntityDAL->CreatorID = $value;
+    }
+    public function getIsArchived(): ?bool { return $this->_EntityDAL->IsArchived; }
+    public function setIsArchived(?bool $value): void {
+        if ($this->_OriginalIsArchived === null) $this->_OriginalIsArchived = $this->_EntityDAL->IsArchived;
+        $this->_EntityDAL->IsArchived = $value;
+    }
+    public function getCreated(): string { return $this->_EntityDAL->Created; }
+    public function getUpdated(): string { return $this->_EntityDAL->Updated; }
+
+    public function Save(): void {
+        if (empty($this->_EntityDAL->ID)) {
+            $this->_EntityDAL->CreatedUtc = date("Y-m-d H:i:s");
+            $this->_EntityDAL->UpdatedUtc = $this->_EntityDAL->CreatedUtc;
+            $this->_EntityDAL->Insert();
+        } else {
+            $this->_EntityDAL->UpdatedUtc = date("Y-m-d H:i:s");
+            $this->_EntityDAL->Update();
+        }
+        $this->_OriginalCreatorID = null;
+        $this->_OriginalIsArchived = null;
+    }
+
+    public static function Get(int $id): ?Asset {
+        if ($id <= 0) return null;
+        $dal = AssetDAL::Get($id);
+        return $dal ? new Asset($dal) : null;
+    }
+
+    public static function MustGet(int $id): Asset {
+        $asset = self::Get($id);
+        if ($asset === null) throw new Exception("Asset $id not found");
+        return $asset;
+    }
+
+    public static function MultiGet(array $ids): array {
+        $dals = AssetDAL::MultiGet($ids);
+        return array_map(fn($dal) => new Asset($dal), $dals);
+    }
+
+    public function Delete(): void {
+        if (!empty($this->_EntityDAL->ID)) {
+            $this->_EntityDAL->Delete();
+        }
+    }
+
+    public static function GetSEOURL(Asset $asset): string {
+        if ($asset === null) return "";
+        $name = sanitizeNameForUrl($asset->getName());
+        if ($asset->getAssetTypeID() == AssetType::$PlaceID) {
+            return "/{$name}-place?id={$asset->getID()}/";
+        }
+        return "/{$name}-item?id={$asset->getID()}/";
+    }
+
+    public function IsPlace(): bool { return $this->getAssetTypeID() === 9; }
+    public function IsDecal(): bool { return $this->getAssetTypeID() === 13; }
+    public function IsModel(): bool { return $this->getAssetTypeID() === 10; }
+    public function IsAudio(): bool { return $this->getAssetTypeID() === 3; }
+    public function IsMesh(): bool { return $this->getAssetTypeID() === 4; }
+    public function IsPackage(): bool { return $this->getAssetTypeID() === 32; }
+    public function IsAnimation(): bool { return $this->getAssetTypeID() === 24; }
+    public function IsClothing(): bool { return in_array($this->getAssetTypeID(), [11, 12], true); }
+    public function IsGear(): bool { return $this->getAssetTypeID() === 19; }
+
+    public function PassesGearCategoryMatch(int $gearCategory): bool {
+        return ($this->getAssetCategories() & $gearCategory) === $gearCategory;
+    }
+
+    public function HasGenre(int $genre): bool {
+        return ($this->getAssetGenres() & $genre) === $genre;
+    }
+
+    public function CanBeTakenDown(): bool { return !$this->IsPlace(); }
+
+    public static function GetAssetsByCreator(int $creatorId, int $limit = 50, int $offset = 0): array {
+        $dals = AssetDAL::GetAssetsByCreator($creatorId, $limit, $offset);
+        return array_map(fn($dal) => new Asset($dal), $dals);
+    }
+    public static function GetAssetsByType(int $assetTypeId, int $limit = 50, int $offset = 0): array {
+        $dals = AssetDAL::GetAssetsByType($assetTypeId, $limit, $offset);
+        return array_map(fn($dal) => new Asset($dal), $dals);
+    }
+    public static function GetRecentAssets(int $limit = 50, int $offset = 0): array {
+        $dals = AssetDAL::GetRecentAssets($limit, $offset);
+        return array_map(fn($dal) => new Asset($dal), $dals);
+    }
+    public static function SearchByName(string $name, int $limit = 50, int $offset = 0): array {
+        $dals = AssetDAL::SearchByName($name, $limit, $offset);
+        return array_map(fn($dal) => new Asset($dal), $dals);
+    }
+
+    public function GetOptions(): AssetOption {
+        return AssetOption::GetOrCreate($this->getID());
+    }
+
+    public function MembershipLevelOk(?array $user): bool {
+        if (Settings::$settings["BCOnlyPlacesEnabled"]) {
+            return true;
+        }
+        $assetOption = $this->GetOptions();
+        $minLevel = $assetOption->getMinMembershipType();
+
+        if ($minLevel == 0) return true;
+        if ($user === null) return false;
+
+        $userLevel = $user["membership_type"] ?? 0;
+        return $userLevel >= $minLevel;
+    }
+}

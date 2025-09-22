@@ -1,8 +1,13 @@
 <?php
+// written by chloe and meditext
+// i had to change some stuff to be complient with the existing system.
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use Roblox\Web\SiteHeader;
 use Roblox\Web\SiteFooter;
 use Roblox\Web\SiteAlert;
+use Roblox\AssetType;
+
 
 function sanitizeNameForUrl(string $name): string {
     $name = preg_replace('/[^a-zA-Z0-9 -]/', '', $name);
@@ -35,8 +40,7 @@ function genreCssClass(string $genre): string {
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 if ($id <= 0) {
-    http_response_code(404);
-    include $_SERVER['DOCUMENT_ROOT'] . '/RobloxDefaultErrorPage.aspx?code=404';
+    header("Location: /requesterror?code=404");
     exit;
 }
 
@@ -44,10 +48,16 @@ $stmt = $conn->prepare('SELECT * FROM assets WHERE "AssetId" = :id');
 $stmt->execute([':id' => $id]);
 $asset = $stmt->fetch(PDO::FETCH_ASSOC);
 if (!$asset) {
-    http_response_code(404);
-    include $_SERVER['DOCUMENT_ROOT'] . '/RobloxDefaultErrorPage.aspx?code=404';
+    header("Location: /requesterror?code=404");
     exit;
 }
+
+$assetType = AssetType::get((int)$asset['AssetType']);
+if (!$assetType) {
+    header("Location: /requesterror?code=404");
+    exit;
+}
+//$plural = AssetType::getValuePluralized($assetType->value);
 
 $stmtUser = $conn->prepare('SELECT * FROM users WHERE "id" = :ownerId');
 $stmtUser->execute([':ownerId' => $asset['OwnerId']]);
@@ -71,7 +81,7 @@ $limitedOverlay = $asset['Limited'] ? '<img id="ctl00_cphRoblox_ItemLimitedOverl
 $assetImageUrl = "/Thumbs/Asset.ashx?ID=" . $asset['AssetId'];
 
 $userProfileUrl = "/User.aspx?ID=" . $user['id'];
-$userThumbUrl = "/Thumbs/User.ashx?ID=" . $user['id'];
+$userThumbUrl = "/Thumbs/Avatar.ashx?userId=" . $user['id'];
 $userName = htmlspecialchars($user['username'], ENT_QUOTES);
 
 $createdDate = $asset['CreationDate'] ? date("n/j/Y", strtotime($asset['CreationDate'])) : 'Unknown';
@@ -134,55 +144,119 @@ function tabClass($tabId, $selectedTab) {
 <head id="ctl00_Head1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true">
 <title>
-    <?php echo htmlspecialchars($asset['Name'], ENT_QUOTES); ?>, a <?php echo htmlspecialchars($asset['AssetType'], ENT_QUOTES); ?> by <?php echo $userName ?> - <?php echo $site_properties['Title']; ?> (updated <?php echo date("n/j/Y g:i:s A", strtotime($asset['UpdatedDate'])); ?>)
+    <?php echo htmlspecialchars($asset['Name'], ENT_QUOTES); ?>, a <?php echo htmlspecialchars($assetType->value, ENT_QUOTES); ?> by <?php echo $userName ?> - <?php echo $site_properties['Title']; ?> (updated <?php echo date("n/j/Y g:i:s A", strtotime($asset['UpdatedDate'])); ?>)
 </title>
 
-<link rel="stylesheet" href="/CSS/Base/CSS/FetchCSS?path=main___c1d3082f646e63bf22dab346e8648905_m.css">
-
-<link rel="stylesheet" href="/CSS/Base/CSS/FetchCSS?path=page___c8c5fc6ec88c1a359b92c484cdfa7fbe_m.css">
-<link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="Content-Language" content="en-us"><meta name="author" content="ROBLOX Corporation"><meta id="ctl00_metadescription" name="description" content="Perfectly Legitimate Business Hat, a Hat by ROBLOX - ROBLOX (updated 6/27/2012 5:58:43 PM): aka Al Capwn"><meta id="ctl00_metakeywords" name="keywords" content="virtual good Perfectly Legitimate Business Hat, a Hat by ROBLOX - ROBLOX (updated 6/27/2012 5:58:43 PM) items, ROBLOX Perfectly Legitimate Business Hat, a Hat by ROBLOX - ROBLOX (updated 6/27/2012 5:58:43 PM)">
-<script type="text/javascript">
-
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-11419793-1']);
-    _gaq.push(['_setCampSourceKey', 'rbx_source']);
-    _gaq.push(['_setCampMediumKey', 'rbx_medium']);
-    _gaq.push(['_setCampContentKey', 'rbx_campaign']);
+<script type="text/javascript" src="http://cdn.gigya.com/js/gigya.js?apiKey=3_OsvmtBbTg6S_EUbwTPtbbmoihFY5ON6v6hbVrTbuqpBs7SyF_LQaJwtwKJ60sY1p"></script>
     
-    
-    
-    _gaq.push(['b._setAccount', 'UA-486632-1']);
-    _gaq.push(['b._setCampSourceKey', 'rbx_source']);
-    _gaq.push(['b._setCampMediumKey', 'rbx_medium']);
-    _gaq.push(['b._setCampContentKey', 'rbx_campaign']);
+<link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=main___1cacbba05e42ebf55ef7a6de7f5dd3f0_m.css' />
 
-    
-        _gaq.push(['c._setAccount', 'UA-26810151-2']);
-    
+<link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=page___53eeb36e90466af109423d4e236a59bd_m.css' />
+<link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en-us" />
+<meta name="author" content="ROBLOX Corporation" />
+<meta id="ctl00_metadescription" name="description" content="<?php echo htmlspecialchars($asset['Name'], ENT_QUOTES); ?>, a <?php echo htmlspecialchars($assetType->value, ENT_QUOTES); ?> by <?php echo $userName ?> - <?php echo $site_properties['Title']; ?> (updated <?php echo date("n/j/Y g:i:s A", strtotime($asset['UpdatedDate'])); ?>" />
+<meta id="ctl00_metakeywords" name="keywords" content="virtual good <?php echo htmlspecialchars($asset['Name']); ?>, a <?php echo htmlspecialchars($assetType->value, ENT_QUOTES); ?> by <?php echo $userName ?> - <?php echo $site_properties['Title']; ?> (updated <?php echo date("n/j/Y g:i:s A", strtotime($asset['UpdatedDate'])); ?> items, ROBLOX <?php echo htmlspecialchars($asset['Name']); ?>, a <?php echo htmlspecialchars($assetType->value, ENT_QUOTES); ?> by <?php echo $userName ?> - <?php echo $site_properties['Title']; ?> (updated <?php echo date("n/j/Y g:i:s A", strtotime($asset['UpdatedDate'])); ?>" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+	    	<script type="text/javascript">
 
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://web.archive.org/web/20130528102628/https://ssl' : 'https://web.archive.org/web/20130528102628/http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+        var _gaq = _gaq || [];
 
-</script>
-<script type="text/javascript" src="https:/web.archive.org/web/20130528102628js_/http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
-<script type="text/javascript">window.jQuery || document.write("<script type='text/javascript' src='/js/jquery/jquery-1.7.2.min.js'><\/script>")</script>
-<script type="text/javascript" src="https:/web.archive.org/web/20130528102628js_/http://ajax.aspnetcdn.com/ajax/4.0/1/MicrosoftAjax.js"></script>
-<script type="text/javascript">window.Sys || document.write("<script type='text/javascript' src='/js/Microsoft/MicrosoftAjax.js'><\/script>")</script>
-<script type="text/javascript" src="https:/web.archive.org/web/20130528102628js_/http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js"></script>
-<script type="text/javascript">window.jQuery.ui || document.write("<script type='text/javascript' src='/js/jquery/jquery-ui-1.9.2.min.js'><\/script>")</script>
+		    _gaq.push(['_setAccount', 'UA-11419793-1']);
+		    _gaq.push(['_setCampSourceKey', 'rbx_source']);
+		    _gaq.push(['_setCampMediumKey', 'rbx_medium']);
+		    _gaq.push(['_setCampContentKey', 'rbx_campaign']);
+		        _gaq.push(['_setDomainName', 'aftwld.xyz']);
+		_gaq.push(['b._setAccount', 'UA-486632-1']);
+		_gaq.push(['b._setCampSourceKey', 'rbx_source']);
+		_gaq.push(['b._setCampMediumKey', 'rbx_medium']);
+		_gaq.push(['b._setCampContentKey', 'rbx_campaign']);
 
-<script type="text/javascript" src="https://web.archive.org/web/20130528102628js_/http://jsak.roblox.com/2655c0671edbd81cedb18fcec6c8acc0.js"></script>
-<script type="text/javascript">Roblox.config.externalResources = ['/js/jquery/jquery-1.7.2.min.js','/js/json2.min.js'];Roblox.config.paths['jQuery'] = 'https://web.archive.org/web/20130528102628/http://jsak.roblox.com/29cf397a226a92ca602cb139e9aae7d7.js';Roblox.config.paths['Pagelets.BestFriends'] = 'https://web.archive.org/web/20130528102628/http://jsak.roblox.com/c8acaba4214074ed4ad6f8b4a9647038.js';Roblox.config.paths['Pages.Catalog'] = 'https://web.archive.org/web/20130528102628/http://jsak.roblox.com/c8f61a230e6ad34193b40758f1499a3d.js';Roblox.config.paths['Pages.Messages'] = 'https://web.archive.org/web/20130528102628/http://jsak.roblox.com/b84022adb990981fb0bd838cda0f67d5.js';Roblox.config.paths['Resources.Messages'] = 'https://web.archive.org/web/20130528102628/http://jsak.roblox.com/fb9cb43a34372a004b06425a1c69c9c4.js';Roblox.config.paths['Widgets.AvatarImage'] = 'https://web.archive.org/web/20130528102628/http://jsak.roblox.com/b7f418a5fefacfd21f2c86b495b4698f.js';Roblox.config.paths['Widgets.DropdownMenu'] = 'https://web.archive.org/web/20130528102628/http://jsak.roblox.com/d83d02dd89808934b125fa21c362bcb9.js';Roblox.config.paths['Widgets.GroupImage'] = 'https://web.archive.org/web/20130528102628/http://jsak.roblox.com/3e692c7b60e1e28ce639184f793fdda9.js';Roblox.config.paths['Widgets.HierarchicalDropdown'] = 'https://web.archive.org/web/20130528102628/http://jsak.roblox.com/e8b579b8e31f8e7722a5d10900191fe7.js';Roblox.config.paths['Widgets.ItemImage'] = 'https://web.archive.org/web/20130528102628/http://jsak.roblox.com/facde7fc56e53e1ef9ee75203bc76bb4.js';Roblox.config.paths['Widgets.PlaceImage'] = 'https://web.archive.org/web/20130528102628/http://jsak.roblox.com/08e1942c5b0ef78773b03f02bffec494.js';Roblox.config.paths['Widgets.SurveyModal'] = 'https://web.archive.org/web/20130528102628/http://jsak.roblox.com/d6e979598c460090eafb6d38231159f6.js';</script><script type="text/javascript">
+		_gaq.push(['b._setDomainName', 'aftwld.xyz']);
+        
+            _gaq.push(['b._setCustomVar', 1, 'Visitor', 'Anonymous', 2]);
+            _gaq.push(['b._trackPageview']);    
+        
+        
+        
+
+		_gaq.push(['c._setAccount', 'UA-26810151-2']);
+		_gaq.push(['c._setDomainName', 'aftwld.xyz']);
+
+		(function() {
+			var ga = document.createElement('script');
+			ga.type = 'text/javascript';
+			ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(ga, s);
+		})();
+
+	</script>
+<div id="roblox-linkify" data-enabled="true" data-regex="(https?\:\/\/)?(?:www\.)?([a-z0-9\-]{2,}\.)*((m|de|www|web|api|blog|wiki|help|corp|polls|bloxcon|developer)\.roblox\.com|robloxlabs\.com)((\/[A-Za-z0-9-+&amp;@#\/%?=~_|!:,.;]*)|(\b|\s))" data-regex-flags="gm"></div><script type='text/javascript' src='//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.1.min.js'></script>
+<script type='text/javascript'>window.jQuery || document.write("<script type='text/javascript' src='/js/jquery/jquery-1.11.1.js'><\/script>")</script>
+<script type='text/javascript' src='//ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.2.1.min.js'></script>
+<script type='text/javascript'>window.jQuery || document.write("<script type='text/javascript' src='/js/jquery/jquery-migrate-1.2.1.js'><\/script>")</script>
+<script type='text/javascript' src='//ajax.aspnetcdn.com/ajax/4.0/1/MicrosoftAjax.js'></script>
+<script type='text/javascript'>window.Sys || document.write("<script type='text/javascript' src='/js/Microsoft/MicrosoftAjax.js'><\/script>")</script>
+<script type='text/javascript' src='//js.rbxcdn.com/50cb8c7590b75499925be4825ab1fb8f.js'></script>
+<script type='text/javascript'>Roblox.config.externalResources = [];Roblox.config.paths['Pages.Catalog'] = '//js.rbxcdn.com/a2ff3787d1fd8d3c2492b5f5c5ec70b6.js';Roblox.config.paths['Pages.CatalogShared'] = '//js.rbxcdn.com/4eb48eec34ca711d5a7b08a4291ac753.js';Roblox.config.paths['Pages.Messages'] = '//js.rbxcdn.com/e8cbac58ab4f0d8d4c707700c9f97630.js';Roblox.config.paths['Resources.Messages'] = '//js.rbxcdn.com/fb9cb43a34372a004b06425a1c69c9c4.js';Roblox.config.paths['Widgets.AvatarImage'] = '//js.rbxcdn.com/bbaeb48f3312bad4626e00c90746ffc0.js';Roblox.config.paths['Widgets.DropdownMenu'] = '//js.rbxcdn.com/7b436bae917789c0b84f40fdebd25d97.js';Roblox.config.paths['Widgets.GroupImage'] = '//js.rbxcdn.com/33d82b98045d49ec5a1f635d14cc7010.js';Roblox.config.paths['Widgets.HierarchicalDropdown'] = '//js.rbxcdn.com/fbb86cf0752d23f389f983419d3085b4.js';Roblox.config.paths['Widgets.ItemImage'] = '//js.rbxcdn.com/838ec9c8067ba6fd6793a8bdbdb48a5c.js';Roblox.config.paths['Widgets.PlaceImage'] = '//js.rbxcdn.com/f2697119678d0851cfaa6c2270a727ed.js';Roblox.config.paths['Widgets.SurveyModal'] = '//js.rbxcdn.com/d6e979598c460090eafb6d38231159f6.js';</script><script type="text/javascript">
     $(function () {
-        Roblox.JSErrorTracker.initialize({'internalEventListenerPixelEnabled': true});
+        Roblox.JSErrorTracker.initialize({ 'suppressConsoleError': true});
     });
-</script>
-<script type="text/javascript" src="https://web.archive.org/web/20130528102628js_/http://jsak.roblox.com/61290ae011975e568910dc656ab3dc17.js"></script>
+</script><script type='text/javascript' src='//js.rbxcdn.com/db95b7bf9a4587f82d242e5a2fc3fc30.js'></script>
 
-<script type="text/javascript" src="https://web.archive.org/web/20130528102628js_/http://jsak.roblox.com/f2b0cc7f4fd56709c2fe6b913866cd4c.js"></script>
+    <script type="text/javascript">
+function Roblox_Item_Top_728x90_RTP(estimate){rtp['/1015347/Roblox_Item_Top_728x90'] = rp_valuation.estimate;}
+var rtp = rtp || {};
+oz_api="valuation";oz_site="9874/18868";oz_zone="58960";oz_ad_slot_size="728x90";oz_callback=Roblox_Item_Top_728x90_RTP;
+</script><script type="text/javascript" src="http://tap-cdn.rubiconproject.com/partner/scripts/rubicon/dorothy.js?pc=9874/18868"></script><script>
+
+function Roblox_Item_Right_160x600_RTP(estimate){rtp['/1015347/Roblox_Item_Right_160x600'] = rp_valuation.estimate;}
+var rtp = rtp || {};
+oz_api="valuation";oz_site="9874/18868";oz_zone="58960";oz_ad_slot_size="160x600";oz_callback=Roblox_Item_Right_160x600_RTP;
+</script><script type="text/javascript" src="http://tap-cdn.rubiconproject.com/partner/scripts/rubicon/dorothy.js?pc=9874/18868"></script><script>
+
+    googletag.cmd.push(function() {
+        Roblox = Roblox || {};
+        Roblox.AdsHelper = Roblox.AdsHelper || {};
+        Roblox.AdsHelper.slots = [];
+        Roblox.AdsHelper.slots = Roblox.AdsHelper.slots || []; Roblox.AdsHelper.slots.push({slot:googletag.defineSlot("/1015347/Roblox_Item_Top_728x90", [728, 90], "3133333934333635").addService(googletag.pubads()), id: "3133333934333635", path: "/1015347/Roblox_Item_Top_728x90"});
+Roblox.AdsHelper.slots = Roblox.AdsHelper.slots || []; Roblox.AdsHelper.slots.push({slot:googletag.defineSlot("/1015347/Roblox_Item_Right_160x600", [160, 600], "3632323431393436").addService(googletag.pubads()), id: "3632323431393436", path: "/1015347/Roblox_Item_Right_160x600"});
+
+        for (var key in Roblox.AdsHelper.slots) {
+            var slot = Roblox.AdsHelper.slots[key].slot;
+            var id = Roblox.AdsHelper.slots[key].id;
+            var path = Roblox.AdsHelper.slots[key].path;
+
+                     slot.setTargeting('pos', path);
+                                             slot.setTargeting('tier', rtp[path].tier);
+            if (slot.renderEnded != "undefined") {
+                (function(slot, id)
+                {
+                    slot.renderEndedOld = slot.renderEnded;
+                    slot.renderEnded = function() {
+                        slot.renderEndedOld();
+                        if ($('#' + id + '.gutter').css('display') == "none") {
+                            $(document).trigger("GuttersHidden");
+                        }
+                        if ($('#' + id + '.filmstrip').css('display') == "none") {
+                            $(document).trigger("FilmStripHidden");
+                        }
+                    };
+                }(slot, id));
+            }
+        }
+
+        googletag.pubads().setTargeting("Age", "Unknown");
+                    googletag.pubads().setTargeting("Env",  "Production");
+                    googletag.pubads().setTargeting("AssetID", "<?php echo htmlspecialchars($asset['AssetId']); ?>");
+                                        googletag.pubads().enableSingleRequest();
+        googletag.pubads().collapseEmptyDivs();
+        googletag.enableServices();
+    });
+    </script>  
 </head>
 <body data-twttr-rendered="true">
 <form name="aspnetForm" method="post" action="<?= htmlspecialchars($expectedUrl) ?>" id="aspnetForm">
@@ -201,7 +275,7 @@ function tabClass($tabId, $selectedTab) {
         <div>
             <h1 class="notranslate" data-se="item-name"><?= htmlspecialchars($asset['Name']) ?></h1>
             <h3>
-                ROBLOX Hat / Collectible Item
+                ROBLOX <?= htmlspecialchars($assetType->value) ?>
             </h3>
         </div>
         <div id="Item">
@@ -271,9 +345,9 @@ function tabClass($tabId, $selectedTab) {
                             <div class="clear"></div>
                             <div class="PrivateSalesPurchasePanel" id="ctl00_cphRoblox_PrivateSalesPurchasePanel">
                                 <span class="Price ">
-                                    Best Price: <span class="robux " data-se="item-privatesale-price"><?= intval($asset['RobuxPrice']) ?></span>
+                                    Best Price: <span class="robux " data-se="item-privatesale-price"><?= intval($asset['PriceInRobux']) ?></span>
                                 </span>
-                                <div class="roblox-buy-now btn-primary btn-medium PurchaseButton" data-se="item-privatesale-buyforbestprice" data-item-name="<?= htmlspecialchars($asset['Name']) ?>" data-item-id="<?= $asset['AssetId'] ?>" data-expected-price="<?= intval($asset['RobuxPrice']) ?>">
+                                <div class="roblox-buy-now btn-primary btn-medium PurchaseButton" data-se="item-privatesale-buyforbestprice" data-item-name="<?= htmlspecialchars($asset['Name']) ?>" data-item-id="<?= $asset['AssetId'] ?>" data-expected-price="<?= intval($asset['PriceInRobux']) ?>">
                                     Buy Now
                                     <span class="btn-text">Buy Now</span>
                                 </div>

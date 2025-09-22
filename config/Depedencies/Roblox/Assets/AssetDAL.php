@@ -1,5 +1,6 @@
 <?php
 // ported by meditext
+// DO NOT USE THIS.
 namespace Roblox\Assets\DataAccess;
 
 use PDO;

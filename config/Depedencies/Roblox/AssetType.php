@@ -76,7 +76,6 @@ class AssetType {
     public static int $PackageID;
 
     public function __construct() {
-        // stub.
     }
 
     public static function init(): void {
@@ -92,7 +91,7 @@ class AssetType {
         self::$PantsID = self::MustGet('Pants')->id;
         self::$PlaceID = self::MustGet('Place')->id;
         self::$ShirtID = self::MustGet('Shirt')->id;
-        self::$TeeShirtID = self::MustGet('T-Shirt')->id;
+        self::$TeeShirtID = self::MustGet('TeeShirt')->id;
         self::$TextID = self::MustGet('Text')->id;
         self::$HeadID = self::MustGet('Head')->id;
         self::$FaceID = self::MustGet('Face')->id;
@@ -100,11 +99,11 @@ class AssetType {
         self::$BadgeID = self::MustGet('Badge')->id;
         self::$AnimationID = self::MustGet('Animation')->id;
         self::$ArmsID = self::MustGet('Arms')->id;
-        self::$LeftArmID = self::MustGet('Left Arm')->id;
-        self::$RightArmID = self::MustGet('Right Arm')->id;
+        self::$LeftArmID = self::MustGet('LeftArm')->id;
+        self::$RightArmID = self::MustGet('RightArm')->id;
         self::$LegsID = self::MustGet('Legs')->id;
-        self::$LeftLegID = self::MustGet('Left Leg')->id;
-        self::$RightLegID = self::MustGet('Right Leg')->id;
+        self::$LeftLegID = self::MustGet('LeftLeg')->id;
+        self::$RightLegID = self::MustGet('RightLeg')->id;
         self::$TorsoID = self::MustGet('Torso')->id;
         self::$PackageID = self::MustGet('Package')->id;
     }
