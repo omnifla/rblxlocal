@@ -2,6 +2,8 @@
 // written by meditext & SkylerClock
 namespace Roblox\Web;
 use Roblox\Authentication as Auth;
+use Roblox\Economy\Common\RobuxBalance;
+use Roblox\Economy\Common\TicketsBalance;
 use Roblox\Alert;
 
 class SiteHeader{
@@ -103,8 +105,10 @@ class SiteHeader{
             $user = Auth::GetAuthenticatedUserInfo();
             $username = htmlspecialchars($user["username"], ENT_QUOTES, 'UTF-8');
             $userId = (int)$user["id"];
-            $tickets = htmlspecialchars($user["tickets"], ENT_QUOTES, 'UTF-8');
-            $robux = htmlspecialchars($user["robux"], ENT_QUOTES, 'UTF-8');
+            $tickets = new TicketsBalance($userId);
+            $tickets = $tickets->Value;
+            $robux = new RobuxBalance($userId);
+            $robux = $robux->Value;
             function formatNumberToAbbreviation($number) {
                 if ($number >= 1000000000000) {
                     return round($number / 1000000000000, 1) . 'T';
