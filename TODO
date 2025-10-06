@@ -1,0 +1,8 @@
+TODO:
+- Port all code from the 2019 source code to here in php 
+- Port the Frontend to Lavarel (if possible)
+- Add a proper asset delivery system (keeping both Roblox and custom assets)
+- Add a proper user system (with roles and permissions)
+- Add a proper admin panel
+- Remove adminer (and replace with PGAdmin or similar)
+- Re-route all Authentication system to a new one using Roblox's ones.

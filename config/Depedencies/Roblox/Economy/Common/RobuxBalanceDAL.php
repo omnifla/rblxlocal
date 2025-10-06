@@ -43,7 +43,7 @@ class RobuxBalanceDAL
 			throw new Exception("Required value not specified: Amount.");
 		}
         $getvalue = self::Get(self::$UserID);
-        if(!$getUser)
+        if(!$getvalue)
         {
             throw new Exception("User Requested is not valid.");
         }

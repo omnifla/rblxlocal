@@ -74,6 +74,11 @@ class UserAsset
         return $dal ? new self($dal) : null;
     }
 
+    public static function exists(int $userId, int $assetId): bool
+    {
+        return UserAssetDAL::exists($userId, $assetId);
+    }
+    
     public static function getUserAssets(int $userId, int $assetTypeId): array
     {
         $ids = UserAssetDAL::getUserAssetIDs($userId, $assetTypeId);

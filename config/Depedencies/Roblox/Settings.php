@@ -6,6 +6,8 @@ namespace Roblox;
 
 class Settings {
     public array $settings = [
+        "DefaultHomePageVideoUrl" => "http://www.youtube.com/v/OBUlpvyInzg&amp;hl=en&amp;fs=1&amp;rel=0&amp;color1=0x3a3a3a&amp;color2=0x999999",
+        "BCPrepaidPromoValidDays" => 5,
         "MaxFileSize" => 50000000,
         "UserGroupJoinLimit" => 5,
         "CostToCreateGroupInRobux" => 100,

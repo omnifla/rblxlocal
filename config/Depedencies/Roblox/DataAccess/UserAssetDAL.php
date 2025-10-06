@@ -85,6 +85,14 @@ class UserAssetDAL
         $dal->updated = $row['updated'];
         return $dal;
     }
+    
+    public static function exists(int $userId, int $assetId): bool
+    {
+        global $conn;
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM user_assets WHERE user_id = :user_id AND asset_id = :asset_id");
+        $stmt->execute([':user_id' => $userId, ':asset_id' => $assetId]);
+        return (int)$stmt->fetchColumn() > 0;
+    }
 
     public static function getUserAssetIDs(int $user_id, int $asset_type_id): array
     {
