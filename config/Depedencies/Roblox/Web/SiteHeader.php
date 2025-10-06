@@ -2,327 +2,401 @@
 // written by meditext & SkylerClock
 namespace Roblox\Web;
 use Roblox\Authentication as Auth;
-use Roblox\Economy\Common\RobuxBalance;
-use Roblox\Economy\Common\TicketsBalance;
+use Roblox\Economy\Common\UserBalance;
 use Roblox\Alert;
+use Roblox\Controls\NavBarItems;
+use Roblox\Controls\NavBarItem;
+use Roblox\Controls\Panel;
+// specialized area for the translation process
+// todo: make all the translations and original labels be processed into a CSV file (just so to make our lifes easier)
 
 class SiteHeader{
     private bool $isAuthenticated;
-    public static function render()
+    public static array $translated_labels = [
+        // top bar (header)
+        "Games" => [
+            "pt" => "Jogos",
+            "en" => "Games",
+            "de" => "Spiele",
+        ],
+        "Catalog" => [
+            "pt" => "Catálogo",
+            "en" => "Catalog",
+            "de" => "Katalog"
+        ],
+        "Develop" => [
+            "pt" => "Desenvolver",
+            "en" => "Develop",
+            "de" => "Entwickeln",
+        ],
+        "Search" => [
+            "pt" => "Procurar",
+            "en" => "Search",
+            "de" => "Suche",
+        ],
+        " in People" => [
+            "pt" => " em Pessoas",
+            "en" => " in People",
+            "de" => " in Personen"
+        ],
+        " in Games" => [
+            "pt" => " em Jogos",
+            "en" => " in Games",
+            "de" => " in Spielen"
+        ],
+        " in Catalog" => [
+            "pt" => " no Catálogo",
+            "en" => " in Catalog",
+            "de" => " in Katalog"
+        ],
+        " in Groups" => [
+            "pt" => " em Grupos",
+            "en" => " in Groups",
+            "de" => " in Gruppen"
+        ],
+        " in Library" => [
+            "pt" => " na Biblioteca",
+            "en" => " in Library",
+            "de" => " in der Bibliothek",
+        ],
+        "Sign Up" => [
+            "pt" => "Registrar",
+            "en" => "Sign Up",
+            "de" => "Registrieren"
+        ],
+        "Log In" => [
+            "pt" => "Entrar",
+            "en" => "Log In",
+            "de" => "Einloggen",
+        ],
+        "Settings" => [
+            "pt" => "Configurações",
+            "en" => "Settings",
+            "de" => "Einstellungen"
+        ],
+        "Help" => [
+            "pt" => "Ajuda",
+            "en" => "Help",
+            "de" => "Helfen",
+        ],
+        "Logout" => [
+            "pt" => "Sair",
+            "en" => "Logout",
+            "de" => "Ausloggen"
+        ],
+        "Trade Currency" => [
+            "pt" => "Troca de Currencia",
+            "en" => "Trade Currency",
+            "de" => "Handelswährung"
+        ],
+        "Buy ROBUX" => [
+            "pt" => "Comprar ROBUX",
+            "en" => "Buy ROBUX",
+            "de" => "ROBUX kaufen"
+        ],
+        "Home" => [
+            "pt" => "Início",
+            "en" => "Home",
+            "de" => "Startseite"
+        ],
+        "Profile" => [
+            "pt" => "Perfil",
+            "en" => "Profile",
+            "de" => "Profil"
+        ],
+        "Messages" => [
+            "pt" => "Mensagens",
+            "en" => "Messages",
+            "de" => "Nachrichten"
+        ],
+        "Friends" => [
+            "pt" => "Amigos",
+            "en" => "Friends",
+            "de" => "Freundschaft"
+        ],
+        "Character" => [
+            "pt" => "Personagem",
+            "en" => "Character",
+            "de" => "Charakter",
+        ],
+        "Inventory" => [
+            "pt" => "Inventário",
+            "en" => "Inventory",
+            "de" => "Inventar"
+        ],
+        "Trade" => [
+            "pt" => "Trocar",
+            "en" => "Trade",
+            "de" => "Handel"
+        ],
+        "Groups" => [
+            "pt" => "Grupos",
+            "en" => "Groups",
+            "de" => "Gruppen"
+        ],
+        "Upgrade Now" => [
+            "pt" => "Atualizar Agora",
+            "en" => "Upgrade Now",
+            "de" => "Jetzt upgraden"
+        ],
+        // bottom header
+    ];
+       public static function render(): string
     {
         global $site_properties;
-        if(!Auth::GetAuthenticatedUser()){
-            return <<<HTML
-            <div id="header" class="navbar-fixed-top rbx-header" role="navigation">
+
+        $user = Auth::GetAuthenticatedUser();
+        if (!$user) {
+            $nav = new NavBarItems();
+            $nav->cssClass = "nav rbx-navbar hidden-xs hidden-sm col-md-4 col-lg-3";
+            $nav->addItem(new NavBarItem("Games", "/games"));
+            $nav->addItem(new NavBarItem("Catalog", "/catalog"));
+            $nav->addItem(new NavBarItem("Develop", "/develop"));
+            $nav->addItem(new NavBarItem("ROBUX", "/upgrades/robux", "buy-robux"));
+
+            $headerPanel = new Panel("header");
+            $headerPanel->cssClass = "navbar-fixed-top rbx-header";
+
+            $scriptTag = '<script type="text/javascript" src="//js.rbxcdn.com/9715e76471ffacd5f6d9c24a5ab101ad.js"></script>';
+
+            $headerPanel->addChild(<<<HTML
                 <div class="container-fluid">
                     <div class="rbx-navbar-header">
-                        <div data-behavior="nav-notification" class="rbx-nav-collapse" onselectstart="return false;">
-                                        </div>
+                        <div data-behavior="nav-notification" class="rbx-nav-collapse" onselectstart="return false;"></div>
                         <div class="navbar-header">
                             <a class="navbar-brand" href="/"><span class="logo"></span></a>
                         </div>
                     </div>
-                    <ul class="nav rbx-navbar hidden-xs hidden-sm col-md-4 col-lg-3">
-                        <li>
-                            <a href="/games">Games</a>
-                        </li>
-                        <li>
-                            <a href="/catalog">Catalog</a>
-                        </li>
-                        <li>
-                            <a href="/develop">Develop</a>
-                        </li>
-                        <li>
-                            <a class="buy-robux" href="/upgrades/robux">ROBUX</a>
-                        </li>
-                    </ul><!--rbx-navbar-->
-                    <div id="navbar-universal-search" class="navbar-left rbx-navbar-search col-xs-5 col-sm-6 col-md-3" data-behavior="univeral-search" role="search">
-                        <div class="input-group rbx-input-group">
+            HTML
+            );
 
-                            <input id="navbar-search-input" class="form-control rbx-input-field" type="text" placeholder="Search" maxlength="120" />
-                            <div class="input-group-btn rbx-input-group-btn">
-                                <button id="navbar-search-btn" class="rbx-input-addon-btn" type="submit">
-                                    <span class="rbx-icon-nav-search"></span>
-                                </button>
-                            </div>
-                        </div>
-                        <ul data-toggle="dropdown-menu" class="rbx-dropdown-menu" role="menu">
-                            <li class="rbx-navbar-search-option selected" data-searchurl="/users/search?keyword=">
-                                <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in People</span>
-                            </li>
-                                    <li class="rbx-navbar-search-option" data-searchurl="/games/?Keyword=">
-                                        <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Games</span>
-                                    </li>
-                                    <li class="rbx-navbar-search-option" data-searchurl="/catalog/browse.aspx?CatalogContext=1&amp;Keyword=">
-                                        <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Catalog</span>
-                                    </li>
-                                    <li class="rbx-navbar-search-option" data-searchurl="/groups/search.aspx?val=">
-                                        <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Groups</span>
-                                    </li>
-                                    <li class="rbx-navbar-search-option" data-searchurl="/develop/library?CatalogContext=2&amp;Category=6&amp;Keyword=">
-                                        <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Library</span>
-                                    </li>
-                        </ul>
-                    </div><!--rbx-navbar-search-->
-                    <div class="navbar-right rbx-navbar-right col-xs-4 col-sm-3">
-                            <ul class="nav navbar-right rbx-navbar-right-nav" data-display-opened="False">
-                                <li>
-                                    <a id="header-login" class="rbx-navbar-login" data-behavior="login" data-toggle="popover" data-bind="popover-login" data-viewport="#header">Log In</a>
-                                </li>
-                                <div id="iFrameLogin" class="rbx-popover-content" data-toggle="popover-login" role="menu">
-                                    <iframe class="rbx-navbar-login-iframe" src="/Login/iFrameLogin.aspx?loginRedirect=True&amp;parentUrl=http%3a%2f%2fwww.roblox.com%2fuser.aspx%3fID%3d1" scrolling="no" frameborder="0" width="320"></iframe>
-                                </div>
-                                <li>
-                                    <a class="rbx-navbar-signup" href="/Login/NewAge.aspx">Sign Up</a>
-                                </li>
-                                <li class="rbx-navbar-right-search" data-toggle="toggle-search">
-                                    <a class="rbx-menu-icon">
-                                        <span class="rbx-icon-nav-search-white"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                    </div><!-- navbar right-->
-                    <ul class="nav rbx-navbar hidden-md hidden-lg col-xs-12">
-                        <li>
-                            <a href="/games">Games</a>
-                        </li>
-                        <li>
-                            <a href="/catalog">Catalog</a>
-                        </li>
-                        <li>
-                            <a href="/develop">Develop</a>
-                        </li>
-                        <li>
-                            <a class="buy-robux" href="/upgrades/robux">ROBUX</a>
-                        </li>
-                    </ul><!--rbx-navbar-->
-                </div>
-            </div>
-            <!-- LEFT NAV MENU -->
+            $headerPanel->addChild($nav->render());
 
-            HTML;
-        }else{
-            $user = Auth::GetAuthenticatedUserInfo();
-            $username = htmlspecialchars($user["username"], ENT_QUOTES, 'UTF-8');
-            $userId = (int)$user["id"];
-            $tickets = new TicketsBalance($userId);
-            $tickets = $tickets->Value;
-            $robux = new RobuxBalance($userId);
-            $robux = $robux->Value;
-            function formatNumberToAbbreviation($number) {
-                if ($number >= 1000000000000) {
-                    return round($number / 1000000000000, 1) . 'T';
-                } elseif ($number >= 1000000000) {
-                    return round($number / 1000000000, 1) . 'B';
-                } elseif ($number >= 1000000) {
-                    return round($number / 1000000, 1) . 'M';
-                } elseif ($number >= 1000) {
-                    return round($number / 1000, 1) . 'K';
-                } else {
-                    return $number;
-                }
-            }
-            $formated_t = formatNumberToAbbreviation($tickets);
-            $formated_r = formatNumberToAbbreviation($robux);
-
-$html = <<<HTML
-                <script type="text/javascript" src="//js.rbxcdn.com/9715e76471ffacd5f6d9c24a5ab101ad.js"></script>
-            	<div id="header" class="navbar-fixed-top rbx-header" role="navigation">
-                <div class="container-fluid">
-                    <div class="rbx-navbar-header">
-                        <div data-behavior="nav-notification" class="rbx-nav-collapse" onselectstart="return false;">
-                                <span class="rbx-icon-nav-menu"></span>
-                            
-                            
-                            <div class="rbx-nav-notification hide rbx-font-xs"
-                                   title="0">
-                                
-                                
-                            </div>
-                            
-                            
-                        </div>
-                        <div class="navbar-header">
-                            <a class="navbar-brand" href="/"><span class="logo"></span></a>
+            $headerPanel->addChild(<<<HTML
+                <div id="navbar-universal-search" class="navbar-left rbx-navbar-search col-xs-5 col-sm-6 col-md-3" data-behavior="univeral-search" role="search">
+                    <div class="input-group rbx-input-group">
+                        <input id="navbar-search-input" class="form-control rbx-input-field" type="text" placeholder="Search" maxlength="120" />
+                        <div class="input-group-btn rbx-input-group-btn">
+                            <button id="navbar-search-btn" class="rbx-input-addon-btn" type="submit">
+                                <span class="rbx-icon-nav-search"></span>
+                            </button>
                         </div>
                     </div>
-                    <ul class="nav rbx-navbar hidden-xs hidden-sm col-md-4 col-lg-3">
-                        <li>
-                            <a href="/games">Games</a>
+                    <ul data-toggle="dropdown-menu" class="rbx-dropdown-menu" role="menu">
+                        <li class="rbx-navbar-search-option selected" data-searchurl="/users/search?keyword=">
+                            <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in People</span>
                         </li>
-                        <li>
-                            <a href="/catalog">Catalog</a>
+                        <li class="rbx-navbar-search-option" data-searchurl="/games/?Keyword=">
+                            <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Games</span>
                         </li>
-                        <li>
-                            <a href="/develop">Develop</a>
+                        <li class="rbx-navbar-search-option" data-searchurl="/catalog/browse.aspx?CatalogContext=1&amp;Keyword=">
+                            <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Catalog</span>
                         </li>
-                        <li>
-                            <a class="buy-robux" href="/upgrades/robux?ctx=nav">ROBUX</a>
+                        <li class="rbx-navbar-search-option" data-searchurl="/groups/search.aspx?val=">
+                            <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Groups</span>
                         </li>
-                    </ul><!--rbx-navbar-->
-                    <div id="navbar-universal-search" class="navbar-left rbx-navbar-search col-xs-5 col-sm-6 col-md-3" data-behavior="univeral-search" role="search">
-                        <div class="input-group rbx-input-group">
-                    
-                    
-                            <input id="navbar-search-input" class="form-control rbx-input-field" type="text" placeholder="Search" maxlength="120" />
-                            <div class="input-group-btn rbx-input-group-btn">
-                                <button id="navbar-search-btn" class="rbx-input-addon-btn" type="submit">
-                                    <span class="rbx-icon-nav-search"></span>
-                                </button>
-                            </div>
-                        </div>
-                        <ul data-toggle="dropdown-menu" class="rbx-dropdown-menu" role="menu">
-                            <li class="rbx-navbar-search-option selected" data-searchurl="/search/users?keyword=">
-                                <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in People</span>
-                            </li>
-                                    <li class="rbx-navbar-search-option" data-searchurl="/games/?Keyword=">
-                                        <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Games</span>
-                                    </li>
-                                    <li class="rbx-navbar-search-option" data-searchurl="/catalog/browse.aspx?CatalogContext=1&amp;amp;Keyword=">
-                                        <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Catalog</span>
-                                    </li>
-                                    <li class="rbx-navbar-search-option" data-searchurl="/groups/search.aspx?val=">
-                                        <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Groups</span>
-                                    </li>
-                                    <li class="rbx-navbar-search-option" data-searchurl="/develop/library?CatalogContext=2&amp;amp;Category=6&amp;amp;Keyword=">
-                                        <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Library</span>
-                                    </li>
-                        </ul>
-                    </div><!--rbx-navbar-search-->
-                    <div class="navbar-right rbx-navbar-right col-xs-4 col-sm-3">
-                    
-                    
-            <ul class="nav navbar-right rbx-navbar-icon-group">
-                <li>
-                    <a class="rbx-menu-item" data-toggle="popover" data-bind="popover-setting" data-viewport="#header">
-                        <span class="rbx-icon-nav-settings" id="nav-settings"></span>
-                        <span class="rbx-font-xs nav-setting-highlight hidden">0</span>
-                    </a>
-                    <div class="rbx-popover-content" data-toggle="popover-setting">
-                        <ul class="rbx-dropdown-menu" role="menu">
-                            <li>
-                                <a class="rbx-menu-item" href="/my/account">
-                                    Settings
-                                    <span class="rbx-font-xs nav-setting-highlight hidden">0</span>
-                                </a>
-                            </li>
-                            <li><a href="/Help/Builderman.aspx" target="_blank">Help</a></li>
-                            <li><a data-behavior="logout" data-bind="/authentication/logout">Logout</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <a class="rbx-menu-item" data-toggle="popover" data-bind="popover-tix" data-viewport="#header">
-                        <span class="rbx-icon-nav-tix" id="nav-tix"></span>
-                        <span class="rbx-text-navbar-right" id="nav-tix-amount">{$formated_t}</span>
-                    </a>
-                    <div class="rbx-popover-content" data-toggle="popover-tix">
-                        <ul class="rbx-dropdown-menu" role="menu">
-                            <li><a href="/My/Money.aspx#/#Summary_tab" id="nav-tix-balance">{$tickets} Tickets</a></li>
-                            <li><a href="/my/money.aspx?tab=TradeCurrency">Trade Currency</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <a id="nav-robux-icon" class="rbx-menu-item" data-toggle="popover" data-bind="popover-robux">
-                        <span class="rbx-icon-nav-robux" id="nav-robux"></span>
-                        <span class="rbx-text-navbar-right" id="nav-robux-amount">{$formated_r}</span>
-                    </a>
-                    <div class="rbx-popover-content" data-toggle="popover-robux">
-                        <ul class="rbx-dropdown-menu" role="menu">
-                            <li><a href="/My/Money.aspx#/#Summary_tab" id="nav-robux-balance">{$robux} ROBUX</a></li>
-                            <li><a href="/upgrades/robux?ctx=navpopover">Buy ROBUX</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="rbx-navbar-right-search" data-toggle="toggle-search">
-                    <a class="rbx-menu-icon">
-                        <span class="rbx-icon-nav-search-white"></span>
-                    </a>
-                </li>
-            </ul>        </div><!-- navbar right-->
-                    <ul class="nav rbx-navbar hidden-md hidden-lg col-xs-12">
-                        <li>
-                            <a href="/games">Games</a>
+                        <li class="rbx-navbar-search-option" data-searchurl="/develop/library?CatalogContext=2&amp;Category=6&amp;Keyword=">
+                            <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Library</span>
                         </li>
-                        <li>
-                            <a href="/catalog">Catalog</a>
-                        </li>
-                        <li>
-                            <a href="/develop">Develop</a>
-                        </li>
-                        <li>
-                            <a class="buy-robux" href="/upgrades/robux?ctx=nav">ROBUX</a>
-                        </li>
-                    </ul><!--rbx-navbar-->
-                </div>
-            </div>
-                    
-            <!-- LEFT NAV MENU -->
-                <div id="navigation" class="rbx-left-col" data-behavior="left-col">
-                    <ul>
-                        <li class="rbx-lead">
-                            <a href="/user.aspx">{$username}</a>
-                        </li>
-                        <li class="rbx-divider"></li>
                     </ul>
-                    <div class="rbx-scrollbar" data-toggle="scrollbar" onselectstart="return false;">
-                        <ul>
-                            <li><a href="/home" id="nav-home"><span class="rbx-icon-nav-home"></span><span>Home</span></a></li>
-                            <li><a href="/User.aspx?ID={$userId}" id="nav-profile"><span class="rbx-icon-nav-profile"></span><span>Profile</span></a></li>
-                            <li>
-                                <a href="/my/messages/#!/inbox" id="nav-message" data-count="0">
-                                    <span class="rbx-icon-nav-message"></span><span>Messages</span>
-                                    <span class="rbx-highlight" title="0"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/friends.aspx" id="nav-friends" data-count="0">
-                                    <span class="rbx-icon-nav-friends"></span><span>Friends</span>
-                                    <span class="rbx-highlight" title="0"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/My/Character.aspx" id="nav-character">
-                                    <span class="rbx-icon-nav-charactercustomizer"></span><span>Character</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/My/Stuff.aspx" id="nav-inventory">
-                                    <span class="rbx-icon-nav-inventory"></span><span>Inventory</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/My/Money.aspx#/#TradeItems_tab" id="nav-trade">
-                                    <span class="rbx-icon-nav-trade"></span><span>Trade</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/My/Groups.aspx" id="nav-group">
-                                    <span class="rbx-icon-nav-group"></span><span>Groups</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/Forum/default.aspx" id="nav-forum">
-                                    <span class="rbx-icon-nav-forum"></span><span>Forum</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://blog.{$site_properties['hostname']}" id="nav-blog">
-                                    <span class="rbx-icon-nav-blog"></span><span>Blog</span>
-                                </a>
-                            </li>
-                            <li class="rbx-upgrade-now">
-                                <a href="/Upgrades/BuildersClubMemberships.aspx?ctx=leftnav" class="rbx-btn-secondary-xs" id="upgrade-now-button">Upgrade Now</a>
-                            </li>
-                        </ul>
+                </div>
+            HTML
+            );
+            
+            $headerPanel->addChild(<<<HTML
+                <div class="navbar-right rbx-navbar-right col-xs-4 col-sm-3">
+                    <ul class="nav navbar-right rbx-navbar-right-nav" data-display-opened="False">
+                        <li><a id="header-login" class="rbx-navbar-login" data-behavior="login">Log In</a></li>
+                        <div id="iFrameLogin" class="rbx-popover-content" data-toggle="popover-login" role="menu">
+                            <iframe class="rbx-navbar-login-iframe" src="/Login/iFrameLogin.aspx?loginRedirect=True" scrolling="no" frameborder="0" width="320"></iframe>
+                        </div>
+                        <li><a class="rbx-navbar-signup" href="/Login/NewAge.aspx">Sign Up</a></li>
+                        <li class="rbx-navbar-right-search" data-toggle="toggle-search"><a class="rbx-menu-icon"><span class="rbx-icon-nav-search-white"></span></a></li>
+                    </ul>
+                </div>
+            HTML
+            );
+            $nav = new NavBarItems();
+            $nav->cssClass = "nav rbx-navbar hidden-md hidden-lg col-xs-12";
+            $nav->addItem(new NavBarItem("Games", "/games"));
+            $nav->addItem(new NavBarItem("Catalog", "/catalog"));
+            $nav->addItem(new NavBarItem("Develop", "/develop"));
+            $nav->addItem(new NavBarItem("ROBUX", "/upgrades/robux", "buy-robux"));
+            $headerPanel->addChild("" . $nav->render() .  <<<HTML
+                </div> <!--container-fluid-->
+            HTML
+            );
+
+            return $scriptTag . $headerPanel->render();
+        }
+
+        $translated_labels = self::$translated_labels;
+        $userInfo = $user;
+        $username = htmlspecialchars($userInfo["username"] ?? '', ENT_QUOTES, 'UTF-8');
+        $userId = (int)($userInfo["id"] ?? 0);
+
+        $userbalance = new UserBalance($userId);
+        $tickets = $userbalance->GetTicketsBalance();
+        $robux = $userbalance->GetRobuxBalance();
+
+        $lang = $userInfo['language'] ?? "en";
+        if (!in_array($lang, ["en", "pt", "de"])) { $lang = "en"; }
+
+        $formatNumber = function ($number) {
+            if ($number >= 1000000000000) return round($number / 1000000000000, 1) . 'T';
+            if ($number >= 1000000000)    return round($number / 1000000000, 1) . 'B';
+            if ($number >= 1000000)       return round($number / 1000000, 1) . 'M';
+            if ($number >= 1000)          return round($number / 1000, 1) . 'K';
+            return $number;
+        };
+
+        $formated_t = $formatNumber($tickets);
+        $formated_r = $formatNumber($robux);
+
+        $scriptTag = '<script type="text/javascript" src="//js.rbxcdn.com/9715e76471ffacd5f6d9c24a5ab101ad.js"></script>';
+
+        $headerPanel = new Panel("header");
+        $headerPanel->cssClass = "navbar-fixed-top rbx-header";
+
+        $headerPanel->addChild(<<<HTML
+            <div class="container-fluid">
+                <div class="rbx-navbar-header">
+                    <div data-behavior="nav-notification" class="rbx-nav-collapse" onselectstart="return false;">
+                        <span class="rbx-icon-nav-menu"></span>
+                        <div class="rbx-nav-notification hide rbx-font-xs" title="0"></div>
+                    </div>
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/"><span class="logo"></span></a>
                     </div>
                 </div>
-            HTML;
-            return $html;
-        }
+        HTML
+        );
+
+        $nav = new NavBarItems();
+        $nav->cssClass = "nav rbx-navbar hidden-xs hidden-sm col-md-4 col-lg-3";
+        $nav->addItem(new NavBarItem($translated_labels['Games'][$lang], "/games"));
+        $nav->addItem(new NavBarItem($translated_labels['Catalog'][$lang], "/catalog"));
+        $nav->addItem(new NavBarItem($translated_labels['Develop'][$lang], "/develop"));
+        $nav->addItem(new NavBarItem("ROBUX", "/upgrades/robux?ctx=nav", "buy-robux"));
+        $headerPanel->addChild($nav->render());
+
+        $headerPanel->addChild(<<<HTML
+            <div id="navbar-universal-search" class="navbar-left rbx-navbar-search col-xs-5 col-sm-6 col-md-3" data-behavior="univeral-search" role="search">
+                <div class="input-group rbx-input-group">
+                    <input id="navbar-search-input" class="form-control rbx-input-field" type="text" placeholder="{$translated_labels['Search'][$lang]}" maxlength="120" />
+                    <div class="input-group-btn rbx-input-group-btn">
+                        <button id="navbar-search-btn" class="rbx-input-addon-btn" type="submit">
+                            <span class="rbx-icon-nav-search"></span>
+                        </button>
+                    </div>
+                </div>
+                <ul data-toggle="dropdown-menu" class="rbx-dropdown-menu" role="menu">
+                    <li class="rbx-navbar-search-option selected" data-searchurl="/search/users?keyword=">
+                        <span class="rbx-navbar-search-text">{$translated_labels['Search'][$lang]} <span class="rbx-navbar-search-string"></span>{$translated_labels[' in People'][$lang]}</span>
+                    </li>
+                    <li class="rbx-navbar-search-option" data-searchurl="/games/?Keyword=">
+                        <span class="rbx-navbar-search-text">{$translated_labels['Search'][$lang]} <span class="rbx-navbar-search-string"></span>{$translated_labels[' in Games'][$lang]}</span>
+                    </li>
+                    <li class="rbx-navbar-search-option" data-searchurl="/catalog/browse.aspx?CatalogContext=1&amp;Keyword=">
+                        <span class="rbx-navbar-search-text">{$translated_labels['Search'][$lang]} <span class="rbx-navbar-search-string"></span>{$translated_labels[' in Catalog'][$lang]}</span>
+                    </li>
+                    <li class="rbx-navbar-search-option" data-searchurl="/groups/search.aspx?val=">
+                        <span class="rbx-navbar-search-text">{$translated_labels['Search'][$lang]} <span class="rbx-navbar-search-string"></span>{$translated_labels[' in Groups'][$lang]}</span>
+                    </li>
+                    <li class="rbx-navbar-search-option" data-searchurl="/develop/library?CatalogContext=2&amp;Category=6&amp;Keyword=">
+                        <span class="rbx-navbar-search-text">{$translated_labels['Search'][$lang]} <span class="rbx-navbar-search-string"></span>{$translated_labels[' in Library'][$lang]}</span>
+                    </li>
+                </ul>
+            </div>
+        HTML
+        );
+        $headerPanel->addChild(<<<HTML
+            <div class="navbar-right rbx-navbar-right col-xs-4 col-sm-3">
+                <ul class="nav navbar-right rbx-navbar-icon-group">
+                    <li>
+                        <a class="rbx-menu-item" data-toggle="popover" data-bind="popover-setting" data-viewport="#header">
+                            <span class="rbx-icon-nav-settings" id="nav-settings"></span>
+                            <span class="rbx-font-xs nav-setting-highlight hidden">0</span>
+                        </a>
+                        <div class="rbx-popover-content" data-toggle="popover-setting">
+                            <ul class="rbx-dropdown-menu" role="menu">
+                                <li><a class="rbx-menu-item" href="/my/account">{$translated_labels['Settings'][$lang]}<span class="rbx-font-xs nav-setting-highlight hidden">0</span></a></li>
+                                <li><a href="/Help/Builderman.aspx" target="_blank">{$translated_labels['Help'][$lang]}</a></li>
+                                <li><a data-behavior="logout" data-bind="/authentication/logout">{$translated_labels['Logout'][$lang]}</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="rbx-menu-item" data-toggle="popover" data-bind="popover-tix" data-viewport="#header">
+                            <span class="rbx-icon-nav-tix" id="nav-tix"></span>
+                            <span class="rbx-text-navbar-right" id="nav-tix-amount">{$formated_t}</span>
+                        </a>
+                        <div class="rbx-popover-content" data-toggle="popover-tix">
+                            <ul class="rbx-dropdown-menu" role="menu">
+                                <li><a href="/My/Money.aspx#/#Summary_tab" id="nav-tix-balance">{$tickets} Tickets</a></li>
+                                <li><a href="/my/money.aspx?tab=TradeCurrency">{$translated_labels['Trade Currency'][$lang]}</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a id="nav-robux-icon" class="rbx-menu-item" data-toggle="popover" data-bind="popover-robux">
+                            <span class="rbx-icon-nav-robux" id="nav-robux"></span>
+                            <span class="rbx-text-navbar-right" id="nav-robux-amount">{$formated_r}</span>
+                        </a>
+                        <div class="rbx-popover-content" data-toggle="popover-robux">
+                            <ul class="rbx-dropdown-menu" role="menu">
+                                <li><a href="/My/Money.aspx#/#Summary_tab" id="nav-robux-balance">{$robux} ROBUX</a></li>
+                                <li><a href="/upgrades/robux?ctx=navpopover">{$translated_labels['Buy ROBUX'][$lang]}</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="rbx-navbar-right-search" data-toggle="toggle-search">
+                        <a class="rbx-menu-icon"><span class="rbx-icon-nav-search-white"></span></a>
+                    </li>
+                </ul>
+            </div>
+        HTML
+        );
+        $nav = new NavBarItems();
+            $nav->cssClass = "nav rbx-navbar hidden-md hidden-lg col-xs-12";
+            $nav->addItem(new NavBarItem("Games", "/games"));
+            $nav->addItem(new NavBarItem("Catalog", "/catalog"));
+            $nav->addItem(new NavBarItem("Develop", "/develop"));
+            $nav->addItem(new NavBarItem("ROBUX", "/upgrades/robux", "buy-robux"));
+        $headerPanel->addChild("" . $nav->render() .  <<<HTML
+            </div> <!--container-fluid-->
+        HTML
+        );
+
+        $leftNavHtml = <<<HTML
+        <!-- LEFT NAV MENU -->
+        <div id="navigation" class="rbx-left-col" data-behavior="left-col">
+            <ul>
+                <li class="rbx-lead"><a href="/user.aspx">{$username}</a></li>
+                <li class="rbx-divider"></li>
+            </ul>
+            <div class="rbx-scrollbar" data-toggle="scrollbar" onselectstart="return false;">
+                <ul>
+                    <li><a href="/home" id="nav-home"><span class="rbx-icon-nav-home"></span><span>{$translated_labels['Home'][$lang]}</span></a></li>
+                    <li><a href="/User.aspx?ID={$userId}" id="nav-profile"><span class="rbx-icon-nav-profile"></span><span>{$translated_labels['Profile'][$lang]}</span></a></li>
+                    <li><a href="/my/messages/#!/inbox" id="nav-message" data-count="0"><span class="rbx-icon-nav-message"></span><span>{$translated_labels['Messages'][$lang]}</span><span class="rbx-highlight" title="0"></span></a></li>
+                    <li><a href="/friends.aspx" id="nav-friends" data-count="0"><span class="rbx-icon-nav-friends"></span><span>{$translated_labels['Friends'][$lang]}</span><span class="rbx-highlight" title="0"></span></a></li>
+                    <li><a href="/My/Character.aspx" id="nav-character"><span class="rbx-icon-nav-charactercustomizer"></span><span>{$translated_labels['Character'][$lang]}</span></a></li>
+                    <li><a href="/My/Stuff.aspx" id="nav-inventory"><span class="rbx-icon-nav-inventory"></span><span>{$translated_labels['Inventory'][$lang]}</span></a></li>
+                    <li><a href="/My/Money.aspx#/#TradeItems_tab" id="nav-trade"><span class="rbx-icon-nav-trade"></span><span>{$translated_labels['Trade'][$lang]}</span></a></li>
+                    <li><a href="/My/Groups.aspx" id="nav-group"><span class="rbx-icon-nav-group"></span><span>{$translated_labels['Groups'][$lang]}</span></a></li>
+                    <li><a href="/Forum/default.aspx" id="nav-forum"><span class="rbx-icon-nav-forum"></span><span>Forum</span></a></li>
+                    <li><a href="http://blog.{$site_properties['hostname']}" id="nav-blog"><span class="rbx-icon-nav-blog"></span><span>Blog</span></a></li>
+                    <li class="rbx-upgrade-now"><a href="/Upgrades/BuildersClubMemberships.aspx?ctx=leftnav" class="rbx-btn-secondary-xs" id="upgrade-now-button">{$translated_labels['Upgrade Now'][$lang]}</a></li>
+                </ul>
+            </div>
+        </div>
+        HTML;
+
+        return $scriptTag . $headerPanel->render() . $leftNavHtml;
     }
 }
+
 class SiteFooter{
     private bool $isAuthenticated;
     public static function render()

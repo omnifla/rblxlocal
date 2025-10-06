@@ -5,10 +5,14 @@ use \Firebase\JWT\JWT;
 use \Firebase\JWT\Key;
 use Roblox\BrickColor as BrickColor;
 use Roblox\TextFilter\BasicTextFilter;
-use Roblox\UserLoginAward;
+use Roblox\Economy\UserLoginAward;
 use Roblox\User;
 use Roblox\Economy\Common\RobuxBalance;
 use Roblox\Economy\Common\TicketsBalance;
+use Roblox\Economy\Common\TransactionHistory;
+use Roblox\Economy\Common\TransactionType;
+use Roblox\Economy\Common\TransactionOriginType;
+// Just a quick notice (9/8/2025, edited 10/6/2025), most of this is going to be moved to a diverse microservices that collects all info from the user itself. This is going to be deprecated and rerouted with other functions, so don't rely on this too much.
 
 class Authentication {
     public static function isGlobalFlooding(): bool { // added this global flood checker because HOLY CRAP ITS JUST TO MUCH ACCOUNTS BEING CREATED.
@@ -41,16 +45,26 @@ class Authentication {
         if ($award->tryAward()) {
             // ticket incrementation
             $ticket->Credit(10);
-            switch($userinfo['membership_type']){
-                case 1:
-                    $robux->Credit(15);
-                    break;
-                case 2:
-                    $robux->Credit(35);
-                    break;
-                case 3:
-                    $robux->Credit(60);
-                    break;
+            if($userinfo['membership_type'] > 0) {
+                switch($userinfo['membership_type']){
+                    case 1:
+                        $credit_stipend = 15;
+                        break;
+                    case 2:
+                        $credit_stipend = 35;
+                        break;
+                    case 3:
+                        $credit_stipend = 60;
+                        break;
+                }
+                $robux->Credit($credit_stipend); // credit robux for bc members
+                TransactionHistory::submit(
+                    $userinfo['id'], 
+                    TransactionType::CreditID, 
+                    TransactionOriginType::BuildersClubStipendBonusID, 
+                    1, 
+                    $credit_stipend
+                );
             }
         }
         return $userinfo;
@@ -110,7 +124,7 @@ class Authentication {
             throw new \InvalidArgumentException("Usernames may only contain letters and numbers.");
         }
         $check = $conn->prepare("SELECT COUNT(*) FROM users WHERE LOWER(username) = LOWER(:username)");
-        $check->execute([':username' => $username]); // new system for checking usernames (case unsensitive
+        $check->execute([':username' => $username]); // new system for checking usernames (case unsensitive)
         if($check->fetchColumn() > 0) {
             throw new \InvalidArgumentException("This username is already in use.");
         }

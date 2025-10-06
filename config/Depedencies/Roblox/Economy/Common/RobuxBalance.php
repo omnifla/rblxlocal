@@ -13,7 +13,16 @@ class RobuxBalance {
         $this->Value = RobuxBalanceDAL::Get($userId);
 		$this->dal = RobuxBalanceDAL::BuildDAL($userId, $this->Value);
     }
-
+	public static function Get($userId) : ?RobuxBalance
+	{
+		$dal = RobuxBalanceDAL::Get($userId);
+		if ($dal)
+		{
+			return new RobuxBalance($userId);
+		}
+		return null;
+	}
+	
 	public function Credit(int $amount = 0)
 	{
 		if ($amount != 0)
@@ -24,7 +33,7 @@ class RobuxBalance {
 
 	public function TryDebit(int $amount) : bool
 	{
-		$num = self::$dal->TryDebit($amount);
+		$num = $this->dal->TryDebit($amount);
 		return $num;
 	}
 }

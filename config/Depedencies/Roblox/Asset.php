@@ -6,6 +6,8 @@ use Roblox\DataAccess\AssetDAL;
 use Roblox\AssetOption;
 use Roblox\AssetType;
 use Roblox\Settings;
+use Roblox\Platform\AssetOwnershipAuthority;
+use Roblox\Platform\UserAssetOwnershipAuthority;
 use Exception;
 
 function sanitizeNameForUrl(string $name): string {
@@ -25,7 +27,6 @@ class Asset {
         $this->_EntityDAL = $dal ?? new AssetDAL();
     }
 
-    // === Properties ===
     public function getID(): int { return $this->_EntityDAL->ID; }
     public function setID(int $id): void { $this->_EntityDAL->ID = $id; }
     public function getAssetTypeID(): int { return $this->_EntityDAL->AssetTypeID; }
@@ -56,7 +57,41 @@ class Asset {
     }
     public function getCreated(): string { return $this->_EntityDAL->Created; }
     public function getUpdated(): string { return $this->_EntityDAL->Updated; }
+    public function isOwnedByUser(int $userId): bool {
+        return AssetOwnershipAuthority::doesUserOwnAsset($userId, $this->getID());
+    }
+    public function awardToUser(int $userId): UserAsset {
+        return AssetOwnershipAuthority::awardAsset($userId, $this->getID(), $this->getAssetTypeID());
+    }
+    public function revokeFromUser(int $userId): void {
+        UserAssetOwnershipAuthority::revokeAllUserAssets($userId, $this->getID());
+    }
+    public function getUserAssets(int $userId): array {
+        $all = UserAssetOwnershipAuthority::getUserAssets($userId, $this->getAssetTypeID());
+        return array_filter($all, fn($ua) => $ua->getAssetId() === $this->getID());
+    }
+    
+    public function CanUserUseAsset(?array $user): bool {
+        if ($this->getIsArchived() || !$this->CanBeTakenDown()) {
+            return false;
+        }
+        if (!$this->MembershipLevelOk($user)) {
+            return false;
+        }
+        if ($this->IsPlace()) {
+            return true;
+        }
+        if ($user === null) {
+            return false;
+        }
+        $userId = $user["id"] ?? 0;
+        if ($userId <= 0) {
+            return false;
+        }
+        return $this->isOwnedByUser($userId);
+    }
 
+    
     public function Save(): void {
         if (empty($this->_EntityDAL->ID)) {
             $this->_EntityDAL->CreatedUtc = date("Y-m-d H:i:s");

@@ -1,11 +1,12 @@
 <?php
 // ported by meditext
-// this is a trimmed-down version of UserLoginAward.cs with only the necessary features
 
-namespace Roblox;
-
+namespace Roblox\Economy;
+use Roblox\Economy\UserLoginAwardDAL;
+use Roblox\Economy\Common\TransactionHistory;
+use Roblox\Economy\Common\TransactionType;
+use Roblox\Economy\Common\TransactionOriginType;
 use DateTime;
-use Roblox\DataAccess\UserLoginAwardDAL;
 
 class UserLoginAward
 {
@@ -27,6 +28,13 @@ class UserLoginAward
             return false;
         }
 
+        TransactionHistory::submit(
+            $this->dal->userId,
+            TransactionType::CreditID,
+            TransactionOriginType::DailyLoginAwardID,
+            2,
+            10
+        );
         return $this->dal->trySetDailyAward();
     }
 }

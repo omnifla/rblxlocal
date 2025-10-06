@@ -1,17 +1,10 @@
 <?php
 // ported by meditext
-// this is maybe my first attempt to write the whole code by simply merging both DAL and base itself.
 namespace Roblox\Economy;
 
 use PDO;
 use DateTime;
 use Exception;
-
-enum LookupFilter
-{
-	case AssetID;
-	case ID;
-}
 
 class Product {
     private PDO $db;
@@ -32,8 +25,9 @@ class Product {
     public DateTime $Created;
     public DateTime $Updated;
 
-    public function __construct(PDO $db) {
-        $this->db = $db;
+    public function __construct() {
+        global $conn;
+        $this->db = $conn;
         $this->Created = new DateTime();
         $this->Updated = new DateTime();
     }
@@ -44,7 +38,7 @@ class Product {
         }
 
         $stmt = $this->db->prepare("
-            INSERT INTO products (product_type_id, is_public_domain, is_for_sale, price_in_robux,price_in_tickets, roblox_product_id, asset_id, asset_type_id,creator_id, asset_genres, asset_categories, affiliate_fee_percentage,created, updated)
+            INSERT INTO products ( product_type_id, is_public_domain, is_for_sale, price_in_robux, price_in_tickets, roblox_product_id, asset_id, asset_type_id, creator_id, asset_genres, asset_categories, affiliate_fee_percentage, created, updated)
             VALUES (:product_type_id, :is_public_domain, :is_for_sale, :price_in_robux, :price_in_tickets, :roblox_product_id, :asset_id, :asset_type_id, :creator_id, :asset_genres, :asset_categories, :affiliate_fee_percentage, NOW(), NOW())
             RETURNING id, created, updated
         ");
@@ -111,14 +105,15 @@ class Product {
         $stmt->execute([':id' => $this->ID]);
     }
 
-    public static function GetById(PDO $db, int $id): ?Product {
-        $stmt = $db->prepare("SELECT * FROM products WHERE id = :id");
+    public static function GetById(int $id): ?Product {
+        global $conn;
+        $stmt = $conn->prepare("SELECT * FROM products WHERE id = :id");
         $stmt->execute([':id' => $id]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$row) return null;
 
-        $product = new Product($db);
+        $product = new Product();
         $product->hydrate($row);
         return $product;
     }
