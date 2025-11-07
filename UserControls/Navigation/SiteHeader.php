@@ -1,6 +1,6 @@
 <?php
 // written by meditext & SkylerClock
-namespace Roblox\Web;
+namespace UserControls\Navigation;
 use Roblox\Authentication as Auth;
 use Roblox\Economy\Common\UserBalance;
 use Roblox\Alert;

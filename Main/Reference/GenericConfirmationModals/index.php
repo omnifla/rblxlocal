@@ -3,8 +3,8 @@
 include_once $_SERVER["DOCUMENT_ROOT"] . "/../config/main.php";
 
 use Roblox\Authentication as Auth;
-use Roblox\Web\SiteHeader;
-use Roblox\Web\SiteFooter;
+use UserControls\Navigation\SiteHeader;
+use UserControls\Navigation\SiteFooter;
 use Roblox\Web\ConfirmationModal;
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" id="www-roblox-com">

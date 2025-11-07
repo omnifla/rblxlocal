@@ -9,11 +9,18 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php';
 spl_autoload_register(function ($class) {
     if (class_exists($class, false) || interface_exists($class, false)) return;
 
-    $base_dir = __DIR__ . '/Depedencies/';
-    $file = $base_dir . str_replace('\\', '/', $class) . '.php';
-
-    if (file_exists($file)) {
-        require $file;
+    // Roblox namespace
+    if (strpos($class, 'Roblox\\') === 0) {
+        $base_dir = __DIR__ . '/Depedencies/';
+        $file = $base_dir . str_replace('\\', '/', $class) . '.php';
+        if (file_exists($file)) require $file;
+    }
+    // UserControls namespace
+    elseif (strpos($class, 'UserControls\\') === 0) {
+        $base_dir = __DIR__ . '/../UserControls/';
+        $relative = str_replace('UserControls\\', '', $class);
+        $file = $base_dir . str_replace('\\', '/', $relative) . '.php';
+        if (file_exists($file)) require $file;
     }
 });
 

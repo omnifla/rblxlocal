@@ -1,7 +1,7 @@
 <?php
 // written by meditext
 namespace Roblox\Web;
-
+use Roblox\Web\GenericModal;
 class ConfirmationModal
 {
     public static function render()
@@ -18,8 +18,8 @@ class ConfirmationModal
             <div class="Message"></div>
         </div>
         <div class="ConfirmationModalButtonContainer">
-            <a href roblox-confirm-btn><span></span></a>
-            <a href roblox-decline-btn><span></span></a>
+            <a href class=roblox-confirm-btn><span></span></a>
+            <a href class= roblox-decline-btn><span></span></a>
         </div>
         <div class="ConfirmationModalFooter">
         

@@ -1,8 +1,8 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
-use Roblox\Web\SiteHeader;
-use Roblox\Web\SiteFooter;
-use Roblox\Web\SiteAlert;
+use UserControls\Navigation\SiteHeader;
+use UserControls\Navigation\SiteFooter;
+use UserControls\Navigation\SiteAlert;
 $forum_id = isset($_GET['ForumID']) ? intval($_GET['ForumID']) : 0;
 if ($forum_id === 0) {
     header("Location: /Forum/Default.aspx");
