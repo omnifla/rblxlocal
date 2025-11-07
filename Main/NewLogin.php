@@ -2,8 +2,8 @@
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use Roblox\Authentication as Auth;
 use Roblox\Web\ConfirmationModal;
-use Roblox\Web\SiteHeader;
-use Roblox\Web\SiteAlert;
+use UserControls\Navigation\SiteHeader;
+use UserControls\Navigation\SiteAlert;
 if(Auth::GetAuthenticatedUser()){
     header("Location: /Home");
     exit;

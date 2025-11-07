@@ -1,7 +1,7 @@
 <?php
 // written by meditext
 include_once $_SERVER['DOCUMENT_ROOT']."/../config/main.php";
-use Roblox\Web\SiteHeader;
+use UserControls\Navigation\SiteHeader;
 ?>
 
 <!DOCTYPE html>

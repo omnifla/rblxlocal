@@ -1,7 +1,7 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use Roblox\Authentication as Auth;
-use Roblox\Web\SiteHeaderVideos;
+use UserControls\Navigation\SiteHeaderVideos;
 use Roblox\Videos;
 $user = Auth::GetAuthenticatedUserInfo();
 $videos = Videos::getRecent(10);

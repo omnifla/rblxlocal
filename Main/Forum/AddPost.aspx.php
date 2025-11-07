@@ -2,9 +2,9 @@
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 
 use Roblox\Authentication as Auth;
-use Roblox\Web\SiteHeader;
-use Roblox\Web\SiteFooter;
-use Roblox\Web\SiteAlert;
+use UserControls\Navigation\SiteHeader;
+use UserControls\Navigation\SiteFooter;
+use UserControls\Navigation\SiteAlert;
 
 // Check if user is authenticated
 $current_user = Auth::GetAuthenticatedUser();

@@ -3,7 +3,7 @@
 // Markdown to html, used for feedifications.
 // TODO: Might also add usage for descriptions, if i feel interested into.
 
-namespace Roblox\Web;
+namespace UserControls;
 
 class Markdown {
     private $text;

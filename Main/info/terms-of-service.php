@@ -1,9 +1,9 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use Roblox\Authentication as Auth;
-use Roblox\Web\SiteHeader;
-use Roblox\Web\SiteFooter;
-use Roblox\Web\SiteAlert;
+use UserControls\Navigation\SiteHeader;
+use UserControls\Navigation\SiteFooter;
+use UserControls\Navigation\SiteAlert;
 $user = Auth::GetAuthenticatedUserInfo();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

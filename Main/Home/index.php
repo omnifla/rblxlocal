@@ -4,12 +4,12 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use Roblox\Authentication as Auth;
-use Roblox\Web\SiteHeader;
-use Roblox\Web\SiteFooter;
-use Roblox\Web\SiteAlert;
+use UserControls\Navigation\SiteHeader;
+use UserControls\Navigation\SiteFooter;
+use UserControls\Navigation\SiteAlert;
 use Roblox\UserFeed;
 use Roblox\DataAccess\FeedificationDAL;
-use Roblox\Web\Markdown;
+use UserControls\Markdown;
 // e
 // redirects the user to /newlogin?redirect-url=url if not logged in (used to show 401 error before)
 if(!Auth::GetAuthenticatedUser()){
@@ -137,45 +137,68 @@ $user = Auth::GetAuthenticatedUserInfo();
      data-update-status-url="/home/updatestatus"
      data-should-show-enable-two-step-verification-call-to-action=False>
 <script>
-// written by meditext.
-// this is just a placeholder used to replace the UpdateStatus.js file, since for some ODD reason, it wasn't bundled the original code.
-// so i had to write from scratch this simple JS code that handles status (or commonly referred as "feed").
-$(function(){
-  const $aS=$("#txtStatusMessage"),$bS=$("#groupYes .rbx-control-label"),$cS=$("#shareButton"),$dS=$("#loadingImage"),$eS=$("#HomeContainer"),fS=$eS.data("update-status-url");
-  $bS.hide();
-  $cS.on("click",function(e){
-    e.preventDefault();
-    const gS=$aS.val().trim();
-    if(!gS){
-      $bS.text("Status cannot be empty.").attr("style","display:block;");
-      return;
+$(function() {
+    function n() {
+        if ($("#txtStatusMessage").prop("disabled"))
+            return !1;
+        var t = $("#HomeContainer").data("update-status-url")
+          , i = $("#txtStatusMessage").val()
+          , n = $("#statusForm")
+          , r = $("#sendToFacebook").is(":checked")
+          , u = {
+            status: i,
+            sendToFacebook: r
+        };
+        $("#shareButton").hide(),
+        $("#loadingImage").show(),
+        $.post(t, u).done(function(t) {
+            $("#txtStatusMessage").val(t.message),
+            n.find(".rbx-form-group").removeClass("rbx-form-has-error"),
+            n.find(".rbx-control-label").hide()
+        }).fail(function() {
+            $("#txtStatusMessage").val(""),
+            n.find(".rbx-form-group").addClass("rbx-form-has-error"),
+            n.find(".rbx-control-label").show()
+        }).always(function() {
+            $("#txtStatusMessage").blur(),
+            $("#shareButton").show(),
+            $("#loadingImage").hide()
+        })
     }
-    $bS.text("").attr("style","");
-    $dS.show();
-    $cS.hide();
-    $.ajax({
-      url:fS,
-      method:"POST",
-      data:{status:gS},
-      dataType:"json"
-    })
-    .done(function(res){
-      if(res&&res.success){
-        $bS.text(res.message||"Status updated successfully.").attr("style","display:block;");
-        $aS.val("");
-      }else{
-        $bS.text((res&&res.message)||"An error occurred.").attr("style","display:block;");
-      }
-    })
-    .fail(function(){
-      $bS.text("Network error, please try again later.").attr("style","display:block;");
-    })
-    .always(function(){
-      $dS.hide();
-      $cS.show();
+    var i = $("#HomeContainer").data("facebook-share"), t;
+    $("#btnFacebookShare").click(function() {
+        $.post(i, function(n) {
+            $("#btnFacebookShare").removeClass(),
+            n.success ? $("#facebookShareResult").addClass("status-confirm") : $("#facebookShareResult").addClass("status-error"),
+            $("#facebookShareResult").text(n.message),
+            $("#facebookShareResult").fadeIn().delay(5e3).fadeOut()
+        })
+    }),
+    $("#HomeContainer *[data-retry-url]").loadRobloxThumbnails(),
+    $("#shareButton").click(function() {
+        n()
+    }),
+    $("#txtStatusMessage").keypress(function(t) {
+        t.which == "13" && n()
     });
-  });
+    $(document).on("GuttersHidden", function() {
+        $("#LeftGutterAdContainer").hide(),
+        $("#RightGutterAdContainer").hide()
+    });
+    t = function() {
+        var n = {
+            titleText: "Two Step Verification",
+            bodyContent: "Your account does not have two step verification enabled. Enabling it will make your account more secure. Would you like to enable it now?",
+            onAccept: function() {
+                window.location.href = "/my/account?tab=security"
+            }
+        };
+        Roblox.GenericConfirmation.open(n)
+    }
+   //var n = $("#HomeContainer").attr("data-should-show-enable-two-step-verification-call-to-action") === "True";
+    t()
 });
+
 </script>
 
 

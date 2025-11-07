@@ -1,9 +1,9 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 
-use Roblox\Web\SiteHeader;
-use Roblox\Web\SiteFooter;
-use Roblox\Web\SiteAlert;
+use UserControls\Navigation\SiteHeader;
+use UserControls\Navigation\SiteFooter;
+use UserControls\Navigation\SiteAlert;
 
 // Fetch forum groups
 $groups = $conn->query('SELECT id, name FROM forum_groups ORDER BY sort_order ASC')->fetchAll(PDO::FETCH_ASSOC);
