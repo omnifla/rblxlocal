@@ -41,6 +41,15 @@ $site_properties = [
     "hostname" => $_SERVER['SERVER_NAME'], // CAN YOU ALL STOP PUTTING AFTWLD.XYZ EVERYWHERE?
     "baseUrl" => "https://" . $_SERVER['SERVER_NAME'], // maybe we should discontinue this
 ];
+// we will use the landing page here
+$accepted = $_COOKIE['AgreedToSafetyFilters'] ?? null;
+if ($accepted !== "true"
+ && !str_contains($_SERVER['REQUEST_URI'], '/Main/Landing/Home.php') 
+ && !str_contains($_SERVER['REQUEST_URI'], '/game/') 
+ && !str_contains($_SERVER['REQUEST_URI'], '/mobileapi/')) {
+    header("Location: /Landing/Home.php");
+    exit;
+}
 ClientScriptCreator::init();
 
 // db connect. I'm sorry..
