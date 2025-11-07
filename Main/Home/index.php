@@ -12,6 +12,109 @@ use Roblox\DataAccess\FeedificationDAL;
 use UserControls\Markdown;
 // e
 // redirects the user to /newlogin?redirect-url=url if not logged in (used to show 401 error before)
+$translated_contents = [
+    'en' => [
+        'home_title' => 'ROBLOX Home',
+        'hello' => 'Hello, ',
+        'friends_label' => 'Friends',
+        'see_all' => 'See All',
+        'announcement' => 'Announcement',
+        'recently_played' => 'Recently Played',
+        'myfeed' => 'My Feed',
+        'share' => 'Share',
+    ],
+    'es' => [
+        'home_title' => 'Inicio de ROBLOX',
+        'hello' => 'Hola, ',
+        'friends_label' => 'Amigos',
+        'see_all' => 'Ver todo',
+        'announcement' => 'Anuncio',
+        'recently_played' => 'Jugados Recientemente',
+        'myfeed' => 'Mi Feed',
+        'share' => 'Compartir',
+    ],
+    'fr' => [
+        'home_title' => 'Accueil ROBLOX',
+        'hello' => 'Bonjour, ',
+        'friends_label' => 'Amis',
+        'see_all' => 'Voir tout',
+        'announcement' => 'Annonce',
+        'recently_played' => 'Joués Récemment',
+        'myfeed' => 'Mon Fil',
+        'share' => 'Partager',
+    ],
+    'de' => [
+        'home_title' => 'ROBLOX Startseite',
+        'hello' => 'Hallo, ',
+        'friends_label' => 'Freunde',
+        'see_all' => 'Alle ansehen',
+        'announcement' => 'Ankündigung',
+        'recently_played' => 'Kürzlich gespielt',
+        'myfeed' => 'Mein Feed',
+        'share' => 'Teilen',
+    ],
+    'pt' => [
+        'home_title' => 'Início - ROBLOX',
+        'hello' => 'Olá, ',
+        'friends_label' => 'Amigos',
+        'see_all' => 'Ver tudo',
+        'announcement' => 'Anúncio',
+        'recently_played' => 'Jogados Recentemente',
+        'myfeed' => 'Meu Feed',
+        'share' => 'Compartilhar',
+    ],
+    "ru" => [
+        'home_title' => 'Главная страница ROBLOX',
+        'hello' => 'Здравствуйте, ',
+        'friends_label' => 'Друзья',
+        'see_all' => 'Показать все',
+        'announcement' => 'Объявление',
+        'recently_played' => 'Недавно играли',
+        'myfeed' => 'Моя лента',
+        'share' => 'Поделиться',
+    ],
+    "cr" => [
+        'home_title' => 'ROBLOX Početna',
+        'hello' => 'Zdravo, ',
+        'friends_label' => 'Prijatelji',
+        'see_all' => 'Pogledaj sve',
+        'announcement' => 'Obaveštenje',
+        'recently_played' => 'ZADNJE IGRANO',
+        'myfeed' => 'MOJ FID',
+        'share' => 'Podeli',
+    ],
+    "sb" => [
+        'home_title' => 'ROBLOX Početna',
+        'hello' => 'Zdravo, ',
+        'friends_label' => 'Prijatelji',
+        'see_all' => 'Pogledaj sve',
+        'announcement' => 'Obaveštenje',
+        'recently_played' => 'Nedavno igrano',
+        'myfeed' => 'MOJ FID',
+        'share' => 'Podeli',
+    ],
+    "it" => [
+        'home_title' => 'Home - ROBLOX',
+        'hello' => 'Ciao, ',
+        'friends_label' => 'Amici',
+        'see_all' => 'Vedi tutti',
+        'announcement' => 'Annuncio',
+        'recently_played' => 'Giocati di recente',
+        'myfeed' => 'Il mio Feed',
+        'share' => 'Condividi',
+    ],
+    "du" => [
+        'home_title' => 'ROBLOX Startpagina',
+        'hello' => 'Hallo, ',
+        'friends_label' => 'Vrienden',
+        'see_all' => 'Alles bekijken',
+        'announcement' => 'Aankondiging',
+        'recently_played' => 'Onlangs gespeeld',
+        'myfeed' => 'Mijn Feed',
+        'share' => 'Delen',
+    ],
+
+];
 if(!Auth::GetAuthenticatedUser()){
     $url = $_SERVER['REQUEST_URI'];
     $redirect = '/newlogin?redirect-url=' . urlencode($url);
@@ -33,7 +136,7 @@ $user = Auth::GetAuthenticatedUserInfo();
     
     
 
-    <title>ROBLOX Home</title>
+    <title><?= $translated_contents[$user['language']]['home_title'] ?></title>
     <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
     
     
@@ -207,15 +310,15 @@ $(function() {
             <img alt="avatar" src="/Thumbs/Avatar.ashx?userId=<?= $user['id'] ?>&x=250&y=250" />
         </a>
         <div class="home-header-content ">
-            <h1><a href="/User.aspx">Hello, <?= htmlspecialchars($user['username']) ?>!</a>
+            <h1><a href="/User.aspx"><?= $translated_contents[$user['language']]['hello'].htmlspecialchars($user['username']) ?>!</a>
             </h1>
                 <span class="rbx-icon-tbc"></span>
         </div>
     </div>
         <div class="col-xs-12 section home-friends">
             <div class="container-header">
-                <h3>Friends (1)</h3>
-                <a  href="/friends.aspx#FriendsTab" class="rbx-btn-secondary-xs btn-more">See All</a>
+                <h3><?= $translated_contents[$user['language']]['friends_label'] ?> (1)</h3>
+                <a  href="/friends.aspx#FriendsTab" class="rbx-btn-secondary-xs btn-more"><?= $translated_contents[$user['language']]['see_all'] ?></a>
             </div>
             
             
@@ -237,8 +340,8 @@ $(function() {
 
         <div id="recently-visited-places" class="col-xs-12 container-list home-games">
             <div class="container-header">
-                <h3>Recently Played</h3>
-<a  href="/games?sortFilter=6" class="rbx-btn-secondary-xs btn-more">See All</a>            </div>
+                <h3><?= $translated_contents[$user['language']]['recently_played'] ?></h3>
+<a  href="/games?sortFilter=6" class="rbx-btn-secondary-xs btn-more"><?= $translated_contents[$user['language']]['see_all'] ?></a>            </div>
             
             
 
@@ -267,7 +370,7 @@ if(count($feed) > 0) {
 <<<HTML
 <div class="section">
             <div class="section-header">
-                <h3>ANNOUNCEMENT</h3>
+                <h3>{$translated_contents[$user['language']]['announcement']}</h3>
                 
             </div>
 <div>
@@ -327,14 +430,14 @@ HTML;
     <div class="col-xs-12 col-sm-6 home-left-col">
         <div class="section">
             <div class="section-header">
-                <h3>My Feed</h3>
+                <h3><?= $translated_contents[$user['language']]['myfeed'] ?></h3>
             </div>
             <div class="rbx-form-horizontal" id="statusForm" role="form">
                 <div class="rbx-form-group" id="groupYes">
                     <input class="form-control rbx-input-field" id="txtStatusMessage" maxlength="254" placeholder="What are you up to?" />
                     <p class="rbx-control-label">Status update failed.</p>
                 </div>
-                <a  type="button" class="rbx-btn-primary-sm" id="shareButton">Share</a>
+                <a  type="button" class="rbx-btn-primary-sm" id="shareButton"><?= $translated_contents[$user['language']]['share'] ?></a>
                 <img id="loadingImage" class="share-login" style="display: none" alt="Sharing..." src="https://images.rbxcdn.com/ec4e85b0c4396cf753a06fade0a8d8af.gif" height="17" width="48" />
             </div>
             

@@ -16,58 +16,6 @@ $userId = (int)$user['id'];
 $errors = [];
 $success = false;
 // this code will be repositioned to /My/Account/Update.php
-/*
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $birthMonth = (int)($_POST['BirthMonth'] ?? 0);
-    $birthDay = (int)($_POST['BirthDay'] ?? 0);
-    $birthYear = (int)($_POST['BirthYear'] ?? 0);
-    $gender = ($_POST['gender'] ?? '');
-    $description = trim($_POST['PersonalBlurb'] ?? '');
-    $chat = $_POST['ChatVisibilityPrivacy'] ?? 'All';
-    $party = $_POST['PartyInvitePrivacy'] ?? 'All';
-    $pm = $_POST['PrivateMessagePrivacy'] ?? 'All';
-    $follow = $_POST['FollowPrivacy'] ?? 'All';
-    $inv = $_POST['InventoryPrivacy'] ?? 'All';
-
-    if (!$birthMonth || !$birthDay || !$birthYear) {
-        $errors[] = 'Please select a valid birthday.';
-    }
-    if ($gender !== 'Male' && $gender !== 'Female') {
-        $errors[] = 'Please select a gender.';
-    }
-    if (strlen($description) > 255) {
-        $errors[] = 'Personal blurb must be 255 characters or less.';
-    }
-
-    if (!$errors) {
-        $stmt = $conn->prepare("
-            UPDATE users SET
-              birthdate = :birthdate,
-              gender = :gender,
-              description = :description,
-              \"ChatVisibilityPrivacy\" = :chat,
-              \"PartyInvitePrivacy\" = :party,
-              \"PrivateMessagePrivacy\" = :pm,
-              \"FollowPrivacy\" = :follow,
-              \"InventoryPrivacy\" = :inv,
-              updated = NOW()
-            WHERE id = :id
-        ");
-        $stmt->execute([
-            'birthdate'=> sprintf('%04d-%02d-%02d',$birthYear,$birthMonth,$birthDay),
-            'gender'=> ($gender==='Male') ? 1 : 2,
-            'description'=>$description,
-            'chat'=>$chat,'party'=>$party,'pm'=>$pm,'follow'=>$follow,'inv'=>$inv,
-            'id'=>$userId
-        ]);
-        $success = true;
-    }
-} else {
-    $birthYear = isset($user['birthdate']) ? (int)substr($user['birthdate'],0,4) : null;
-    $birthMonth = isset($user['birthdate']) ? (int)substr($user['birthdate'],5,2) : null;
-    $birthDay = isset($user['birthdate']) ? (int)substr($user['birthdate'],8,2) : null;
-}
-*/
 ?>
 <!DOCTYPE html>
 <html>
@@ -214,8 +162,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <div id="LanguageTypeSettings" class="SettingSubTitle">
             <span class="settingLabel form-label">Language:</span>
             <select class="accountPageChangeMonitor form-select valid" data-val="true" data-val-number="The field LanguageId must be a number." data-val-required="The LanguageId field is required." id="LanguageList" name="LanguageId">
-              <option selected="selected" value="1">English</option>
-              <option value="3">Deutsch</option>
+              <?php
+              $language = $user['language'] ?? 'en';
+              $language_options = [
+                  'en' => 1,
+                  'pt' => 2,
+                  'de' => 3,
+                  'es' => 4,
+                  'cr' => 5,
+                  'sb' => 6,
+                  'fr' => 7,
+                  'it' => 8,
+                  'du' => 9,
+                  'ru' => 10,
+              ];
+              $selected_option = $language_options[$language] ?? 1;
+              ?>
+              <option <?= ($selected_option == 1) ? 'selected="selected"' : '' ?> value="1">English</option>
+              <option <?= ($selected_option == 2) ? 'selected="selected"' : '' ?> value="2">Português</option>
+              <option <?= ($selected_option == 3) ? 'selected="selected"' : '' ?> value="3">Deutsch</option>
+              <option <?= ($selected_option == 4) ? 'selected="selected"' : '' ?> value="4">Español</option>
+              <option <?= ($selected_option == 5) ? 'selected="selected"' : '' ?> value="5">Hrvatski</option>
+              <option <?= ($selected_option == 6) ? 'selected="selected"' : '' ?> value="6">Cрпски</option>
+              <option <?= ($selected_option == 7) ? 'selected="selected"' : '' ?> value="7">Français</option>
+              <option <?= ($selected_option == 8) ? 'selected="selected"' : '' ?> value="8">Italiano</option>
+              <option <?= ($selected_option == 9) ? 'selected="selected"' : '' ?> value="9">Nederlands</option>
+              <option <?= ($selected_option == 10) ? 'selected="selected"' : '' ?> value="10">Русский</option>
             </select>
             <span class="field-validation-valid" data-valmsg-for="LanguageId" data-valmsg-replace="true"></span>
           </div>
