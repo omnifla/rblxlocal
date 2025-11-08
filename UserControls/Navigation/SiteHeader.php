@@ -47,7 +47,7 @@ class SiteHeader{
             "it" => "Sviluppa",
             "ru" => "Развивать",
             "cr" => "Razvijati",
-            "sb" => "Razvijati",
+            "sb" => "Razvij",
             "du" => "Ontwikkelen"
         ],
         "Search" => [
@@ -58,8 +58,8 @@ class SiteHeader{
             "fr" => "Chercher",
             "it" => "Cerca",
             "ru" => "Искать",
-            "cr" => "Pretraži",
-            "sb" => "Pretraži",
+            "cr" => "Korisnicima",
+            "sb" => "Korisnicima",
             "du" => "Zoeken"
         ],
         " in People" => [
@@ -71,7 +71,7 @@ class SiteHeader{
             "it" => " nelle Persone",
             "ru" => " в Людях",
             "cr" => " u Ljude",
-            "sb" => " u Ljude",
+            "sb" => " u Korisnicima",
             "du" => " in Mensen"
         ],
         " in Games" => [
@@ -83,7 +83,7 @@ class SiteHeader{
             "it" => " nei Giochi",
             "ru" => " в Играх",
             "cr" => " u Igre",
-            "sb" => " u Igre",
+            "sb" => " u Igrama",
             "du" => " in Spellen"
         ],
         " in Catalog" => [
@@ -95,7 +95,7 @@ class SiteHeader{
             "it" => " nel Catalogo",
             "ru" => " в Каталоге",
             "cr" => " u Katalog",
-            "sb" => " u Katalog",
+            "sb" => " u Katalogu",
             "du" => " in Catalogus"
         ],
         " in Groups" => [
@@ -107,7 +107,7 @@ class SiteHeader{
             "it" => " nei Gruppi",
             "ru" => " в Группах",
             "cr" => " u Grupe",
-            "sb" => " u Grupe",
+            "sb" => " u Grupama",
             "du" => " in Groepen"
         ],
         " in Library" => [
@@ -119,7 +119,7 @@ class SiteHeader{
             "it" => " nella Libreria",
             "ru" => " в Библиотеке",
             "cr" => " u Biblioteka",
-            "sb" => " u Biblioteka",
+            "sb" => " u Biblioteci",
             "du" => " in Bibliotheek"
         ],
         "Sign Up" => [
@@ -155,7 +155,7 @@ class SiteHeader{
             "it" => "Impostazioni",
             "ru" => "Настройки",
             "cr" => "Postavke",
-            "sb" => "Postavke",
+            "sb" => "Podešavanja",
             "du" => "Instellingen"
         ],
         "Help" => [
@@ -262,8 +262,8 @@ class SiteHeader{
             "fr" => "Personnage",
             "it" => "Personaggio",
             "ru" => "Персонаж",
-            "cr" => "Lik",
-            "sb" => "Lik",
+            "cr" => "Karakter",
+            "sb" => "Karakter",
             "du" => "Karakter"
         ],
         "Inventory" => [
@@ -286,8 +286,8 @@ class SiteHeader{
             "fr" => "Commerce",
             "it" => "Commercio",
             "ru" => "Торговля",
-            "cr" => "Trgovina",
-            "sb" => "Trgovina",
+            "cr" => "Razmeni",
+            "sb" => "Razmeni",
             "du" => "Handel"
         ],
         "Groups" => [
