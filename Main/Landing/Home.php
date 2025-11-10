@@ -25,7 +25,7 @@ if ($cookie == "true") {
         <div class="container">
             <center><h1>Safety Filters Agreement</h1></center>
             <div style="margin:0 auto;position:relative;width:970px;">
-                <p>As ROBLOX Corporation is trying to crack down revivals and partnered with an anti-phising AI project to prevent sites that mimic their official ones, we put this page as a landing to intentionally deflect the detection.</p>
+                <p>As ROBLOX Corporation is trying to crack down revivals and partnered with an anti-phishing AI project to prevent sites that mimic their official ones, we put this page as a landing to intentionally deflect the detection.</p>
                 <p>By clicking "Agree", you acknowledge that:</p>
                 <ul>
                     <li>This site is not affiliated with ROBLOX Corporation.</li>
