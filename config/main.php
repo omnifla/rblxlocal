@@ -23,6 +23,9 @@ spl_autoload_register(function ($class) {
         if (file_exists($file)) require $file;
     }
 });
+// important stuff:
+require_once __DIR__ . '/Depedencies/IncludeHelper.php';
+require_once __DIR__ . '/Depedencies/PrivateLogger.php';
 
 // load .env and other stuff
 use Dotenv\Dotenv;
