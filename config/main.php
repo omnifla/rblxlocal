@@ -48,9 +48,9 @@ $site_properties = [
 $accepted = $_COOKIE['AgreedToSafetyFilters'] ?? null;
 if ($accepted !== "true"
  && !str_contains($_SERVER['REQUEST_URI'], '/Main/Landing/Home.php') 
- && !str_contains($_SERVER['REQUEST_URI'], '/game/') 
+ && !str_contains(strtolower($_SERVER['REQUEST_URI']), '/game/') 
  && !str_contains($_SERVER['REQUEST_URI'], '/mobileapi/')
- && !str_contains($_SERVER['REQUEST_URI'], '/asset')
+ && !str_contains(strtolower($_SERVER['REQUEST_URI']), '/asset')
  && !str_contains($_SERVER['REQUEST_URI'], '/Setting')) {
     header("Location: /Landing/Home.php");
     exit;
