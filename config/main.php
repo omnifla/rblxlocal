@@ -48,7 +48,7 @@ if ($accepted !== "true"
  && !str_contains($_SERVER['REQUEST_URI'], '/game/') 
  && !str_contains($_SERVER['REQUEST_URI'], '/mobileapi/')
  && !str_contains($_SERVER['REQUEST_URI'], '/asset')
- && !str_contains($_SERVER['REQUEST_URI'], '/Settings')) {
+ && !str_contains($_SERVER['REQUEST_URI'], '/Setting')) {
     header("Location: /Landing/Home.php");
     exit;
 }
