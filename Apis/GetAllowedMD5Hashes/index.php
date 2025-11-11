@@ -5,7 +5,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 header('Content-Type: application/json');
 $data = [];
 $all_clients = $conn->query("SELECT * FROM \"clients\"");
-while ($row = $all_clients->fetchAll()) {
+$rows = $all_clients->fetchAll();
+foreach($rows as $row) {
     $data[] = $row['binary_checksum'];
 }
 exit(json_encode(["data" => $data]));
