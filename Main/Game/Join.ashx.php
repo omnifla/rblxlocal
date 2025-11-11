@@ -14,15 +14,6 @@
     
     Add support for fetching PlaceId and UniverseId from the database (based on the JobId, or based on the defined PlaceID, which is going to randomly pick an avaliable server or generated a new one)
     Add support for ChatStyle fetching from the database (Classic, Bubble, etc)
-
-    Add SessionIds under this format:
-        959cdb8b-e662-4a6a-a44a-ea50434fc519|00000000-0000-0000-0000-000000000000|0|207.241.225.235|5|2016-05-21T07:23:35.8439589Z|0|null|null
-    Format: SessionGUID|JobId|UserId|ClientIP|Status|JoinTime|PlaceId|UniverseID|null
-    UserId: fetched from the ticket or .ROBLOSECURITY
-    Status: I dont have much idea, but i will define it as 5 for now.
-    JoinTime: in UTC, format: Y-m-d\TH:i:s.u\Z
-    PlaceId: fetched from the defined information
-    UniverseID: fetched via PlaceID
 */
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 use Roblox\Game\ClientHelper;
