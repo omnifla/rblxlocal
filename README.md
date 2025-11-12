@@ -44,3 +44,4 @@ Coming soon...
 
 ## Legalese
 rblx-local does not use any official ROBLOX and ROBLOX Corporation code, all of this is our own code loosely based on legacy ROBLOX code.
+exrand's note: if we say that we based our code in legacy ROBLOX **propietary** code, we might be risking a DMCA.
