@@ -20,7 +20,7 @@ use Roblox\Game\ClientHelper;
 use Roblox\Authentication as Auth;
 header('Content-Type: application/json');
 // Arguments
-$jobId = $_GET['jobid'] ?? $_GET['jobId'] ?? $_GET['jobID'] ?? "00000000-0000-0000-0000-000000000000"; 
+$jobId = $_GET['jobid'] ?? $_GET['jobId'] ?? $_GET['jobID'] ?? "Test"; 
 $server = $_GET['server'] ?? $_GET['Server'] ?? $_GET['MachineAddress'] ?? "localhost";
 $serverPort = $_GET['serverPort'] ?? 53640;
 $token = $_GET['token'] ?? null;
