@@ -21,6 +21,9 @@ class ClientScriptCreator {
         'gameserver' => [
             "GameServer.lua"
         ],
+        'place-info' => [
+            "PlaceInfo.lua"
+        ],
         'rcc-player' => [
             'RCC/BaseRenderScript.lua',
             'RCC/PlayerRender.lua'

@@ -24,7 +24,7 @@ $jobId = $_GET['jobid'] ?? $_GET['jobId'] ?? $_GET['jobID'] ?? "00000000-0000-00
 $server = $_GET['server'] ?? $_GET['Server'] ?? $_GET['MachineAddress'] ?? "localhost";
 $serverPort = $_GET['serverPort'] ?? 53640;
 $token = $_GET['token'] ?? null;
-$universeId = $_GET['universeId'] ?? null; // fetched from DB
+$universeId = $_GET['universeId'] ?? 1818; // fetched from DB
 $placeId = $_GET['placeId'] ?? 1818; // fetched from DB
 $clientPort = $_GET['clientPort'] ?? 0;
 // extra
