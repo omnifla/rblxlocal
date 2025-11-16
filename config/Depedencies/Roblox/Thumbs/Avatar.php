@@ -66,7 +66,9 @@ class Avatar {
         $user = $this->getUser($userId); 
         $imageParameters = $this->createImageParameters($width, $height, $imageFormat, $thumbnailFormatId); 
         $thumbResult = $this->getThumbnailUrl($user, $imageParameters); 
-
+        if(!$thumbResult['url'] && $imageFormat == 'obj'){
+            return $thumbResult; // since obj generation outputs without a url
+        }
         return ['url' => $thumbResult['url'], 'isSecure' => $this->isSecureConnection()]; 
     } 
     private function getThumbnailFormat($thumbnailFormatId) {
@@ -106,13 +108,15 @@ class Avatar {
             return ['url' => null];
         }
         // normalize the response
-        $base64 = null;
+        if ($parameters['format'] === 'obj') {
+            return $this->handleObjExport($output);
+        }
         $base64 = $output;
 
         if (empty($base64)) {
-            exit("No base64 data returned for avatar {$avatarAssetHashId}");
-            return ['url' => null];
+            throw \Exception("No base64 data returned for avatar {$avatarAssetHashId}");
         }
+
 
         $storageDir = $_SERVER["DOCUMENT_ROOT"] . "/../thumbnail_renders/";
         if (!is_dir($storageDir)) {
@@ -140,6 +144,60 @@ class Avatar {
 
         $url = "https://thumbs.{$rootDomain}/" . $filename;
         return ['url' => $url];
+    }
+
+    private function handleObjExport($output) {
+        $json = json_decode($output, true);
+        if (!$json || !isset($json['files'])) {
+            error_log("OBJ thumbnail error: invalid JSON returned");
+            return ['url' => null];
+        }
+    
+        $relativePath = "/../thumbnail_renders/";
+        $cdnPath = $_SERVER['DOCUMENT_ROOT'] . $relativePath;
+    
+        if (!is_dir($cdnPath)) {
+            mkdir($cdnPath, 0777, true);
+        }
+    
+        $obj = base64_decode($json['files']['scene.obj']['content']);
+        $objHash = md5($obj);
+        $objFilename = $objHash . ".obj";
+        file_put_contents($cdnPath . $objFilename, $obj);
+    
+        $mtl = base64_decode($json['files']['scene.mtl']['content']);
+        $mtlHash = md5($mtl);
+        $mtlFilename = $mtlHash . ".mtl";
+    
+        $textureReplacements = [];
+    
+        $textures = [];
+        foreach ($json['files'] as $filename => $file) {
+            if (str_ends_with($filename, ".png")) {
+                $tex = base64_decode($file['content']);
+                $texHash = md5($tex);
+                $texFilename = $texHash . ".png";
+            
+                file_put_contents($cdnPath . $texFilename, $tex);
+            
+                $textureReplacements[$filename] = $texFilename;
+                $textures[] = $texFilename;
+            }
+        }
+    
+        foreach ($textureReplacements as $old => $new) {
+            $mtl = str_replace($old, $new, $mtl);
+        }
+    
+        file_put_contents($cdnPath . $mtlFilename, $mtl);
+    
+        return [
+            "obj"      => $objFilename,
+            "mtl"      => $mtlFilename,
+            "textures" => $textures,
+            "camera"   => $json["camera"],
+            "aabb"     => $json["AABB"],
+        ];
     }
 
     private function getAvatarAssetHashId($user) {

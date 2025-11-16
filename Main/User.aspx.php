@@ -129,13 +129,13 @@ if ($m === 3) giveBadge($db, $uid, 16, $badgeMap);
 <script type='text/javascript' src='//ajax.aspnetcdn.com/ajax/4.0/1/MicrosoftAjax.js'></script>
 <script type='text/javascript'>window.Sys || document.write("<script type='text/javascript' src='/js/Microsoft/MicrosoftAjax.js'><\/script>")</script>
 
-<script type='text/javascript' src='//js.rbxcdn.com/8db10b38268e9779c510b84268538ec8.js'></script>
+<script type='text/javascript' src='//js.rbxcdn.com/4c42bda98e20213d2da09f4953dc9332.js'></script>
 <script type='text/javascript'>Roblox.config.externalResources = ['/js/jquery/jquery-1.7.2.min.js','/js/json2.min.js'];Roblox.config.paths['jQuery'] = '//js.rbxcdn.com/29cf397a226a92ca602cb139e9aae7d7.js';Roblox.config.paths['Pages.Catalog'] = '//js.rbxcdn.com/7123e398c0433de33356ac718bab90d5.js';Roblox.config.paths['Pages.CatalogShared'] = '//js.rbxcdn.com/4eb48eec34ca711d5a7b08a4291ac753.js';Roblox.config.paths['Pages.Messages'] = '//js.rbxcdn.com/9b1b88b531c486003bbf39ae61963c27.js';Roblox.config.paths['Resources.Messages'] = '//js.rbxcdn.com/fb9cb43a34372a004b06425a1c69c9c4.js';Roblox.config.paths['Widgets.AvatarImage'] = '//js.rbxcdn.com/a404577733d1b68e3056a8cd3f31614c.js';Roblox.config.paths['Widgets.DropdownMenu'] = '//js.rbxcdn.com/ff651da6797160efb3ebbb2c2f98fb86.js';Roblox.config.paths['Widgets.GroupImage'] = '//js.rbxcdn.com/3e692c7b60e1e28ce639184f793fdda9.js';Roblox.config.paths['Widgets.HierarchicalDropdown'] = '//js.rbxcdn.com/e8b579b8e31f8e7722a5d10900191fe7.js';Roblox.config.paths['Widgets.ItemImage'] = '//js.rbxcdn.com/f676cf25d820c731b5adb4bf362bcd90.js';Roblox.config.paths['Widgets.PlaceImage'] = '//js.rbxcdn.com/08e1942c5b0ef78773b03f02bffec494.js';Roblox.config.paths['Widgets.Suggestions'] = '//js.rbxcdn.com/a63d457706dfbc230cf66a9674a1ca8b.js';Roblox.config.paths['Widgets.SurveyModal'] = '//js.rbxcdn.com/d6e979598c460090eafb6d38231159f6.js';</script><script type="text/javascript">
     $(function () {
         Roblox.JSErrorTracker.initialize({ 'suppressConsoleError': true, 'internalEventListenerPixelEnabled': true});
     });
 </script>
-<script type='text/javascript' src='//js.rbxcdn.com/1e3dc2b22269576ba0a4616bd6f78f8d.js'></script>
+<script type='text/javascript' src='//js.rbxcdn.com/a2144683b28c827b54bffdcff692386a.js'></script>
 
 </head>
 <body class="">
@@ -483,7 +483,11 @@ $(function() {
                     <div style="margin-bottom: 10px;">
                         
                     </div>
-                    <a id="ctl00_cphRoblox_rbxUserPane_AvatarImage" disabled="disabled" class=" notranslate" title="<?= $user['username'] ?>" class=" notranslate" onclick="return false" style="display:inline-block;height:352px;width:352px;"><img src="/Thumbs/Avatar.ashx?userId=<?= $user['id'] ?>&x=352&y=352" height="352" width="352" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="<?= htmlspecialchars($user['username']) ?>" class="notranslate" /></a>
+                    <div id="UserAvatar" class="thumbnail-holder" data-3d-thumbs-enabled data-url="<?= $site_properties['baseUrl']."/thumbnail/user-avatar?userId=".$userId."&amp;thumbnailFormatId=124&amp;width=352&amp;height=352" ?>" style="width:352px; height:352px;">
+    <span class="thumbnail-span" data-3d-url="/avatar-thumbnail-3d/json?userId=<?php echo intval($userId); ?>" data-js-files="//js.rbxcdn.com/2cdabe2b5b7eb87399a8e9f18dd7ea05.js"><img alt="<?php echo $row['Username']; ?>" class="" <?php echo'src="/Thumbs/Avatar.ashx?userId='.$row['UserId'].'"'; ?>/></span>
+        <img class="user-avatar-overlay-image" src="//image.rbxcdn.com/bf448d2ee7f7c482b345427936c128a3.png" alt=""/>
+    <span class="enable-three-dee btn-control btn-control-small"></span>
+</div>
                     <br />
                     <div class="PointsContainer">
                         
@@ -1653,7 +1657,7 @@ if(typeof __utmSetVar !== 'undefined'){ __utmSetVar(''); }if(typeof __utmSetVar 
 <iframe id="downloadInstallerIFrame" style="visibility:hidden;height:0;width:1px;position:absolute"></iframe>
 
 
-<script type='text/javascript' src='//js.rbxcdn.com/d387e54149ead170a1a8d204d0e7f1ed.js'></script>
+<script type='text/javascript' src='//js.rbxcdn.com/4726cb4f73131ee2d1c2694e87e9d495.js'></script>
 
 <script type="text/javascript">
     Roblox.Client._skip = null;
@@ -1687,7 +1691,7 @@ if(typeof __utmSetVar !== 'undefined'){ __utmSetVar(''); }if(typeof __utmSetVar 
 
 
 
-<script type='text/javascript' src='https://js.rbxcdn.com/507606ba77acf2ff29dd3ec7cb668f06.js'></script>
+<script type='text/javascript' src='https://js.rbxcdn.com/e59cc9c921c25a5cd61d18f0a7fd5ac8.js'></script>
 
     <div id="videoPrerollPanel" style="display:none">
         <div id="videoPrerollTitleDiv">
