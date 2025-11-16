@@ -8,6 +8,7 @@ use Roblox\Thumbs\Avatar;
 header('Content-Type: application/json');
 
 $userid = (int)$_GET['userId'];
+$avatar = new Avatar();
 $output = $avatar->requestThumbnail($id, $width, $height, 'obj');
 if($output['url'] === null) {
     http_response_code(404);
