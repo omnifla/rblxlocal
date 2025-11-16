@@ -10,7 +10,7 @@ header('Content-Type: application/json');
 $userid = (int)$_GET['userId'];
 $avatar = new Avatar();
 $output = $avatar->requestThumbnail($userid, 320, 320, 'obj');
-if($output['url'] === null) {
+if(isset($output['url'])) {
     http_response_code(404);
     exit("failed to generate avatar thumbnail");
 }

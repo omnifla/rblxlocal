@@ -66,7 +66,7 @@ class Avatar {
         $user = $this->getUser($userId); 
         $imageParameters = $this->createImageParameters($width, $height, $imageFormat, $thumbnailFormatId); 
         $thumbResult = $this->getThumbnailUrl($user, $imageParameters); 
-        if(!$thumbResult['url'] && $imageFormat == 'obj'){
+        if(!isset($thumbResult['url']) && $imageFormat == 'obj'){
             return $thumbResult; // since obj generation outputs without a url
         }
         return ['url' => $thumbResult['url'], 'isSecure' => $this->isSecureConnection()]; 
