@@ -21,6 +21,7 @@ $success = false;
 <html>
 <head>
     <title>My Account - <?= $site_properties['Title'] ?></title>
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600,700" rel="stylesheet" type="text/css">
     <link href="/CSS/Pages/Accounts/AccountMVC.css" rel="stylesheet">
     <link rel="stylesheet" href="/CSS/Base/CSS/FetchCSS?path=main___93d7b975be9106ab72cfa4deac3a5583_m.css">
     <link href="/CSS/Base/CSS/FetchCSS?path=page___6d7bcbdfd9dfa4d697c4e627e71f4fc1_m.css" rel="stylesheet">
@@ -52,6 +53,8 @@ $success = false;
 <body>
 <?= SiteHeader::render() ?>
 <?= SiteAlert::render() ?>
+<div id="navContent" class="nav-content">
+<div class="nav-content-inner">
 <div id="MasterContainer">
   <div id="BodyWrapper"><div id="RepositionBody"><div id="Body" style="width:970px">
     <div id="AccountPageContainer" data-missingparentemail="false" data-userabove13="true" data-currentdateyear="<?=date("Y")?>" data-currentdatemonth="<?=date("n")?>" data-currentdateday="<?=date("j")?>">
@@ -307,29 +310,29 @@ $success = false;
     </form>
   </div>
   <div id="AccountPageRight">
-    <div id="UpgradeAccount" style="margin-left: 10px">
-      <h3 style="margin: 10px 0;">
-        Upgrade Account
-      </h3>
-      <div id="buyRobux" class="upgrade-account-button">
-        <a href="/upgrades/robux.aspx" class="btn-medium btn-primary">Buy Robux
-        <span class="btn-text">Buy Robux</span></a>
-      </div>
-      <div id="JoinBuildersClub" class="upgrade-account-button">
-        <a href="/Upgrades/BuildersClubMemberships.aspx" class="btn-medium btn-primary">
-        Join Builders Club
-        <span class="btn-text">Join Builders Club</span></a>
-      </div>
-      <div id="AdvertisementRight">
-        <div style="margin-top: 10px">
-          <iframe allowtransparency="true" frameborder="0" height="270" scrolling="no" src="/userads/3" width="300" data-js-adtype="iframead" style="display: none !important;"></iframe>
+          <div id="UpgradeAccount" style="margin-left: 10px">
+            <h3 style="margin: 10px 0;"> Upgrade Account</h3>
+            <div id="buyRobux" class="upgrade-account-button">
+              <a href="/upgrades/robux" class="buyRobux btn-medium btn-primary">Buy Robux <span class="btn-text">Buy Robux</span>
+              </a>
+            </div>
+            <div id="JoinBuildersClub" class="upgrade-account-button">
+              <a href="/Upgrades/BuildersClubMemberships.aspx" class="buyRobux btn-medium btn-primary"> Join Builders Club</a>
+            </div>
+            <div id="AdvertisementRight">
+              <div style="margin-top: 10px">
+                <iframe allowtransparency="true" frameborder="0" height="270" scrolling="no" src="/userads/3" width="300" data-js-adtype="iframead"></iframe>
+              </div>
+            </div>
+          </div>
+          <div style="clear: both"></div>
         </div>
-      </div>
-    </div>
-    <div style="clear: both"></div>
-  </div>
-</div>
-<div class="GenericModal modalPopup unifiedModal smallModal" style="display:none;">
+            </div>
+
+          </div>
+            </div>
+
+            <div class="GenericModal modalPopup unifiedModal smallModal" style="display:none;">
   <div class="Title"></div>
   <div class="GenericModalBody">
     <div>
@@ -344,6 +347,7 @@ $success = false;
     </div>
   </div>
 </div>
+<?= SiteFooter::render() ?>
 <style type="text/css">
   #Body  /*Needs to be on the Page to override MasterPage #Body */
   {
@@ -455,6 +459,6 @@ $success = false;
 <div style="clear:both"></div>
   </div></div></div>
 </div>
-<?= SiteFooter::render() ?>
+
 </body>
 </html>

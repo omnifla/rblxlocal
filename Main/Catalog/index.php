@@ -1,4 +1,5 @@
 <?php
+exit("Disabled until we finish porting Assets.");
 require_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 
 function sanitizeNameForUrl(string $name): string {
