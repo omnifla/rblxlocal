@@ -12,8 +12,8 @@ $accoutrements = Accoutrement::getUserAccoutrements($user_id);
 $str = "http://{$site_properties['hostname']}/Asset/BodyColors.ashx?userId={$user_id};";
 // get accoutrements
 foreach ($accoutrements as $accoutrement) {
-    $assetIds[] = $accoutrement->getDAL()->user_asset_id;
-    $str .= "http://{$site_properties['hostname']}/Asset?id=".$accoutrement->getDAL()->user_asset_id . ";";
+    $assetIds[] = $accoutrement->getUserAsset()->getAssetId();
+    $str .= "http://{$site_properties['hostname']}/Asset?id=".$accoutrement->getUserAsset()->getAssetId(). ";";
     if ($accoutrement->isEquipped()) {
         $equippedGearId = $accoutrement->getDAL()->user_asset_id;
     }
