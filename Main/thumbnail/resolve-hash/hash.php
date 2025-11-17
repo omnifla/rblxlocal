@@ -4,10 +4,10 @@ $domain = $_SERVER['HTTP_HOST'];
 $domain_parts = explode('.', $domain);
 
 if (count($domain_parts) == 2) {
-    array_unshift($domain_parts, "tr");
+    array_unshift($domain_parts, "thumbs");
 }
 else {
-    $domain_parts[0] = "tr";
+    $domain_parts[0] = "thumbs";
 }
 
 $base_domain = implode('.', $domain_parts);
