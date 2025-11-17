@@ -484,7 +484,7 @@ $(function() {
                         
                     </div>
                     <div id="UserAvatar" class="thumbnail-holder" data-3d-thumbs-enabled data-url="<?= $site_properties['baseUrl']."/thumbnail/user-avatar?userId=".$userId."&amp;thumbnailFormatId=124&amp;width=352&amp;height=352" ?>" style="width:352px; height:352px;">
-    <span class="thumbnail-span" data-3d-url="/avatar-thumbnail-3d/json?userId=<?php echo intval($userId); ?>" data-js-files="//js.rbxcdn.com/2cdabe2b5b7eb87399a8e9f18dd7ea05.js"><img alt="<?php echo $user['username']; ?>" class="" <?php echo'src="/Thumbs/Avatar.ashx?userId='.$userId.'"'; ?>/></span>
+    <span class="thumbnail-span" data-3d-url="/avatar-thumbnail-3d/json?userId=<?php echo intval($user['id']); ?>" data-js-files="//js.rbxcdn.com/2cdabe2b5b7eb87399a8e9f18dd7ea05.js"><img alt="<?php echo $user['username']; ?>" class="" <?php echo'src="/Thumbs/Avatar.ashx?userId='.$user['id'].'"'; ?>/></span>
         <img class="user-avatar-overlay-image" src="//image.rbxcdn.com/bf448d2ee7f7c482b345427936c128a3.png" alt=""/>
     <span class="enable-three-dee btn-control btn-control-small"></span>
 </div>
