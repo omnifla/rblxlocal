@@ -18,6 +18,7 @@ An open source 2015E ROBLOX clone, using the ported ROBLOX Site backend
 - [newuser](https://github.com/therealestnewuser)
 - [fowntain](https://github.com/fowntain)
 - [watrabi](https://github.com/watrabi)
+- [Kar](https://github.com/kar-the-dev)
 
 ## Contributors
 - [Waylon](https://github.com/WayloFunk)
