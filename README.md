@@ -37,12 +37,11 @@ Coming soon...
 - [x] Working User renders
 - [x] Working Daily rewards
 ## Roadmap
-- [-] Add forums 
-- [-] Add working launcher
-- [-] Add renders
+- [x] Add forums 
+- [x] Add working launcher
+- [x] Add renders
 - [ ] Admin panel
 - [ ] Add api.site.com apis other than /Setting/QuietGet
 
-## Legalese
-rblx-local does not use any official ROBLOX and ROBLOX Corporation code, all of this is our own code loosely based on legacy ROBLOX code.
-exrand's note: if we say that we based our code in legacy ROBLOX **propietary** code, we might be risking a DMCA.
+## Legal Disclaimer
+RBLX.Local is not affiliated with, endorsed by, or in any way officially connected to Roblox Corporation. Roblox and the Roblox logo are registered trademarks of Roblox Corporation. Any references to Roblox on this site are for descriptive purposes only and do not imply any sponsorship, endorsement, or partnership. Use of third-party trademarks and content is subject to the rights of their respective owners.
