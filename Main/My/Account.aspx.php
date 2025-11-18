@@ -293,7 +293,7 @@ $success = false;
             <div style="position: absolute; top: 0px; left: -5px; width: 2px; height: 23px; z-index: 1000; background-color: rgb(255, 255, 255); opacity: 0;"></div>
           </div>
           <div style="clear: both;">
-            <a class="btn-medium btn-neutral updateSettingsBtn btn-update btn-neutral btn-medium" id="UpdateSettingsBtn2">Update<span class="btn-text">Update</span></a>
+            <a class="btn-medium btn-neutral updateSettingsBtn2 btn-update btn-neutral btn-medium" id="UpdateSettingsBtn2">Update<span class="btn-text">Update</span></a>
           </div>
         </div>
       </div>
