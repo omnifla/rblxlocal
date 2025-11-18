@@ -1,14 +1,14 @@
 ## IIS Deployment 
 
-Before you deploy this on your main hardware, make sure you have installed the following stuff
+Before deploying RBLX.Local yourself, please make sure you have installed the following dependencies.
 > [!NOTE]
-> *extra note for noobies: php 8.3+ required*
+> *Please note php 8.3+ required!*
 - [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 - [![IIS](https://img.shields.io/badge/IIS-0078D7?style=for-the-badge&logo=microsoft&logoColor=white)](https://learn.microsoft.com/en-us/iis/)
 - [![Composer](https://img.shields.io/badge/Composer-885630?style=for-the-badge&logo=composer&logoColor=white)](https://getcomposer.org/download/)
 
 1. Setup IIS and PostgreSQL
-2. Extract PHP and put it on `C:\PHP`
+2. Extract PHP and to `C:\PHP`
 3. Go to `PHP.ini` (dev or prod) and enable `PDO_pgsql` and also enable `openssl` and other shit if the site requires that
 4. Go to IIS and create a new CGI handle on Module Mapping with the request path being *.php and Module being `FastCGIModule` and the executable being `C:\php\php-cgi.exe` (this will allow IIS to use PHP and if u don't have `FastCGIModule` enable it on windows features it should be called CGI there)
 5. In Default Documents add `index.php` there.
@@ -30,12 +30,13 @@ _____________________________________________________________________
 
 ## Apache Deployment
 
-Before you deploy this on your main hardware, make sure you have installed the following stuff
+Before deploying RBLX.Local yourself, please make sure you have installed the following dependencies.
 > [!NOTE]
-> *extra note for noobies: php 8.3+ required*
+> *Please note php 8.3+ required!*
 - [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 - [![Composer](https://img.shields.io/badge/Composer-885630?style=for-the-badge&logo=composer&logoColor=white)](https://getcomposer.org/download/)
 - [![Apache](https://img.shields.io/badge/Apache-D22128?style=for-the-badge&logo=apache&logoColor=white)](https://https.apache.org/)
 
-1. Make someone else write Apache instructions
-2. Follow those instruction
+
+> [!CAUTION]
+> *An Apache Deployment guide has not been made yet! Sorry, if you can contribute, please feel free to make a pull request!*
