@@ -11,20 +11,20 @@
 <script type="text/javascript">window.Sys || document.write("<script type='text/javascript' src='/js/Microsoft/MicrosoftAjax.js'><\/script>")</script>
 
     
-<link rel="stylesheet" href="http://www.aftwld.xyz/CSS/Base/CSS/page___3b466252a2cd9644b50ab2cc94badcce_m.css"/>
+<link rel="stylesheet" href="http://www.$_SERVER['SERVER_NAME']/CSS/Base/CSS/page___3b466252a2cd9644b50ab2cc94badcce_m.css"/>
 
-    <script type="text/javascript" src="http://www.aftwld.xyz/rbxcdn_js/19fc2cf00b071c88456901559592396f.js"></script>
+    <script type="text/javascript" src="http://www.$_SERVER['SERVER_NAME']/rbxcdn_js/19fc2cf00b071c88456901559592396f.js"></script>
 
     
     <script type="text/javascript">Roblox.config.externalResources = [];Roblox.config.paths['Pages.Catalog'] = 'http://js.rbxcdn.com/a2ff3787d1fd8d3c2492b5f5c5ec70b6.js';Roblox.config.paths['Pages.CatalogShared'] = 'http://js.rbxcdn.com/4eb48eec34ca711d5a7b08a4291ac753.js';Roblox.config.paths['Pages.Messages'] = 'http://js.rbxcdn.com/e8cbac58ab4f0d8d4c707700c9f97630.js';Roblox.config.paths['Resources.Messages'] = 'http://js.rbxcdn.com/fb9cb43a34372a004b06425a1c69c9c4.js';Roblox.config.paths['Widgets.AvatarImage'] = 'http://js.rbxcdn.com/bbaeb48f3312bad4626e00c90746ffc0.js';Roblox.config.paths['Widgets.DropdownMenu'] = 'http://js.rbxcdn.com/7b436bae917789c0b84f40fdebd25d97.js';Roblox.config.paths['Widgets.GroupImage'] = 'http://js.rbxcdn.com/33d82b98045d49ec5a1f635d14cc7010.js';Roblox.config.paths['Widgets.HierarchicalDropdown'] = 'http://js.rbxcdn.com/fbb86cf0752d23f389f983419d3085b4.js';Roblox.config.paths['Widgets.ItemImage'] = 'http://js.rbxcdn.com/838ec9c8067ba6fd6793a8bdbdb48a5c.js';Roblox.config.paths['Widgets.PlaceImage'] = 'http://js.rbxcdn.com/f2697119678d0851cfaa6c2270a727ed.js';Roblox.config.paths['Widgets.SurveyModal'] = 'http://js.rbxcdn.com/d6e979598c460090eafb6d38231159f6.js';</script>
         <script type="text/javascript">
-            function editTemplateInStudio(play_placeId) { RobloxLaunch._GoogleAnalyticsCallback = function() { var isInsideRobloxIDE = 'website'; if (Roblox && Roblox.Client && Roblox.Client.isIDE && Roblox.Client.isIDE()) { isInsideRobloxIDE = 'Studio'; };GoogleAnalyticsEvents.FireEvent(['Edit Location', 'Guest', isInsideRobloxIDE]);GoogleAnalyticsEvents.FireEvent(['Edit', 'Guest', '']); };  Roblox.Client.WaitForRoblox(function() { RobloxLaunch.StartGame('http://www.www.aftwld.xyz//Game/edit.ashx?PlaceID='+play_placeId+'&upload=', 'edit.ashx', 'http://www.www.aftwld.xyz//Login/Negotiate.ashx', 'FETCH', true); }); }
+            function editTemplateInStudio(play_placeId) { RobloxLaunch._GoogleAnalyticsCallback = function() { var isInsideRobloxIDE = 'website'; if (Roblox && Roblox.Client && Roblox.Client.isIDE && Roblox.Client.isIDE()) { isInsideRobloxIDE = 'Studio'; };GoogleAnalyticsEvents.FireEvent(['Edit Location', 'Guest', isInsideRobloxIDE]);GoogleAnalyticsEvents.FireEvent(['Edit', 'Guest', '']); };  Roblox.Client.WaitForRoblox(function() { RobloxLaunch.StartGame('http://www.www.$_SERVER['SERVER_NAME']//Game/edit.ashx?PlaceID='+play_placeId+'&upload=', 'edit.ashx', 'http://www.www.$_SERVER['SERVER_NAME']//Login/Negotiate.ashx', 'FETCH', true); }); }
         </script>
 </head>
 <body id="StudioWelcomeBody">
     <div class="header">
             <div id="header-login-wrapper" class="iframe-login-signup" data-display-opened="">
-                <a href="http://www.aftwld.xyz/Login/NewAge.aspx" target="_blank" class="btn-control btn-control-large translate" id="header-signup"><span>Sign Up</span></a>
+                <a href="http://www.$_SERVER['SERVER_NAME']/Login/NewAge.aspx" target="_blank" class="btn-control btn-control-large translate" id="header-signup"><span>Sign Up</span></a>
                 <span id="header-or">or</span>
                 <span class="studioiFrameLogin">
                     <span id="login-span">
@@ -32,14 +32,14 @@
                     </span>
 
                     <div id="iFrameLogin" class="studioiFrameLogin" style="display: none">
-                        <iframe class="login-frame" src="http://www.aftwld.xyz/Login/iFrameLogin.aspx?loginRedirect=True&amp;parentUrl=http%3a%2f%2fwww.www.aftwld.xyz%2fide%2fwelcome" scrolling="no" frameborder="0"></iframe>
+                        <iframe class="login-frame" src="http://www.$_SERVER['SERVER_NAME']/Login/iFrameLogin.aspx?loginRedirect=True&amp;parentUrl=http%3a%2f%2fwww.www.$_SERVER['SERVER_NAME']%2fide%2fwelcome" scrolling="no" frameborder="0"></iframe>
                     </div>
                 </span>
             </div>
         <!-- This is only after the login stuff because IE7 demands floated elements be before non-floated -->
-        <img src="http://www.aftwld.xyz/images/IDE/img-studio_title.png" alt="Roblox Studio Title"/>
+        <img src="/images/IDE/img-studio_title.png" alt="Roblox Studio Title"/>
         <p id="HomeLink">
-            <a class="text-link" href="http://www.aftwld.xyz/develop">Switch to Classic View</a>
+            <a class="text-link" href="http://www.$_SERVER['SERVER_NAME']/develop">Switch to Classic View</a>
         </p>
     </div>
     <div class="container">
@@ -107,8 +107,8 @@
     <h2 id="latest-articles">LATEST WIKI ARTICLES</h2>
     <div id="article-container">
             <div class="item-box">
-                <a href="http://wiki.www.aftwld.xyz/index.php?title=Joint" title="Joints">
-                    <img class="item-box-image" src="http://wiki.www.aftwld.xyz/index.php/Special:FilePath/JointExample1.png" data-animated-src="http://wiki.www.aftwld.xyz/index.php/Special:FilePath/JointExample1.png" data-static-src="http://wiki.www.aftwld.xyz/index.php/Special:FilePath/JointExample1.png" alt="Joints"/>
+                <a href="http://wiki.www.$_SERVER['SERVER_NAME']/index.php?title=Joint" title="Joints">
+                    <img class="item-box-image" src="http://wiki.$_SERVER['SERVER_NAME']/index.php/Special:FilePath/JointExample1.png" data-animated-src="http://wiki.www.$_SERVER['SERVER_NAME']/index.php/Special:FilePath/JointExample1.png" data-static-src="http://wiki.www.$_SERVER['SERVER_NAME']/index.php/Special:FilePath/JointExample1.png" alt="Joints"/>
                     <div class="item-box-text">
                         <p class="article-title">Joints</p>
                     </div>
@@ -116,8 +116,8 @@
                 <p class="article-summary">Learn how the ROBLOX joint system works.</p>
             </div>
             <div class="item-box">
-                <a href="http://wiki.www.aftwld.xyz/index.php?title=Custom_loading_screen" title="Custom Loading Screen">
-                    <img class="item-box-image" src="http://wiki.www.aftwld.xyz/index.php/Special:FilePath/CustomLoadingScreenStatic.png" data-animated-src="http://wiki.www.aftwld.xyz/index.php/Special:FilePath/CustomLoadingScreen.gif" data-static-src="http://wiki.www.aftwld.xyz/index.php/Special:FilePath/CustomLoadingScreenStatic.png" alt="Custom Loading Screen"/>
+                <a href="http://wiki.www.$_SERVER['SERVER_NAME']/index.php?title=Custom_loading_screen" title="Custom Loading Screen">
+                    <img class="item-box-image" src="http://wiki.www.$_SERVER['SERVER_NAME']/index.php/Special:FilePath/CustomLoadingScreenStatic.png" data-animated-src="http://wiki.www.$_SERVER['SERVER_NAME']/index.php/Special:FilePath/CustomLoadingScreen.gif" data-static-src="http://wiki.www.$_SERVER['SERVER_NAME']/index.php/Special:FilePath/CustomLoadingScreenStatic.png" alt="Custom Loading Screen"/>
                     <div class="item-box-text">
                         <p class="article-title">Custom Loading Screen</p>
                     </div>
@@ -125,8 +125,8 @@
                 <p class="article-summary">Use ReplicatedFirst to display your own loading screen.</p>
             </div>
             <div class="item-box">
-                <a href="http://wiki.www.aftwld.xyz/index.php?title=Custom_teleport_ui" title="Custom Teleport GUI">
-                    <img class="item-box-image" src="http://wiki.www.aftwld.xyz/index.php/Special:FilePath/CustomTeleportGUIStatic.png" data-animated-src="http://wiki.www.aftwld.xyz/index.php/Special:FilePath/CustomTeleportGUI.gif" data-static-src="http://wiki.www.aftwld.xyz/index.php/Special:FilePath/CustomTeleportGUIStatic.png" alt="Custom Teleport GUI"/>
+                <a href="http://wiki.www.$_SERVER['SERVER_NAME']/index.php?title=Custom_teleport_ui" title="Custom Teleport GUI">
+                    <img class="item-box-image" src="http://wiki.www.$_SERVER['SERVER_NAME']/index.php/Special:FilePath/CustomTeleportGUIStatic.png" data-animated-src="http://wiki.www.$_SERVER['SERVER_NAME']/index.php/Special:FilePath/CustomTeleportGUI.gif" data-static-src="http://wiki.www.$_SERVER['SERVER_NAME']/index.php/Special:FilePath/CustomTeleportGUIStatic.png" alt="Custom Teleport GUI"/>
                     <div class="item-box-text">
                         <p class="article-title">Custom Teleport GUI</p>
                     </div>
@@ -134,8 +134,8 @@
                 <p class="article-summary">Replace ROBLOX&#39;s default teleport GUI with your own custom one.</p>
             </div>
             <div class="item-box">
-                <a href="http://wiki.www.aftwld.xyz/index.php?title=Script_analysis" title="Script Analysis">
-                    <img class="item-box-image" src="http://wiki.www.aftwld.xyz/index.php/Special:FilePath/ScriptAnalysisThumbnail.png" data-animated-src="http://wiki.www.aftwld.xyz/index.php/Special:FilePath/ScriptAnalysisThumbnail.png" data-static-src="http://wiki.www.aftwld.xyz/index.php/Special:FilePath/ScriptAnalysisThumbnail.png" alt="Script Analysis"/>
+                <a href="http://wiki.www.$_SERVER['SERVER_NAME']/index.php?title=Script_analysis" title="Script Analysis">
+                    <img class="item-box-image" src="http://wiki.www.$_SERVER['SERVER_NAME']/index.php/Special:FilePath/ScriptAnalysisThumbnail.png" data-animated-src="http://wiki.www.$_SERVER['SERVER_NAME']/index.php/Special:FilePath/ScriptAnalysisThumbnail.png" data-static-src="http://wiki.www.$_SERVER['SERVER_NAME']/index.php/Special:FilePath/ScriptAnalysisThumbnail.png" alt="Script Analysis"/>
                     <div class="item-box-text">
                         <p class="article-title">Script Analysis</p>
                     </div>
@@ -143,8 +143,8 @@
                 <p class="article-summary">Learn how to use the Script Analysis tool in Studio to check your code.</p>
             </div>
             <div class="item-box">
-                <a href="http://wiki.www.aftwld.xyz/index.php?title=Solid_modeling" title="Solid Modeling">
-                    <img class="item-box-image" src="http://wiki.www.aftwld.xyz/index.php/Special:FilePath/SolidModelingSample1.png" data-animated-src="http://wiki.www.aftwld.xyz/index.php/Special:FilePath/Negate.gif" data-static-src="http://wiki.www.aftwld.xyz/index.php/Special:FilePath/SolidModelingSample1.png" alt="Solid Modeling"/>
+                <a href="http://wiki.www.$_SERVER['SERVER_NAME']/index.php?title=Solid_modeling" title="Solid Modeling">
+                    <img class="item-box-image" src="http://wiki.www.$_SERVER['SERVER_NAME']/index.php/Special:FilePath/SolidModelingSample1.png" data-animated-src="http://wiki.www.$_SERVER['SERVER_NAME']/index.php/Special:FilePath/Negate.gif" data-static-src="http://wiki.www.$_SERVER['SERVER_NAME']/index.php/Special:FilePath/SolidModelingSample1.png" alt="Solid Modeling"/>
                     <div class="item-box-text">
                         <p class="article-title">Solid Modeling</p>
                     </div>
