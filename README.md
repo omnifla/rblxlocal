@@ -2,8 +2,8 @@
 > This revival is in **heavy development**, if you encounter bugs or anything related, please make an issue at the **Issues** tab.
 
 <p align="center">
-    <img src="https://github.com/rblx-local/rblxlocal/blob/main/n6a3dp.png#gh-dark-mode-only" width="420">
-    <img src="https://github.com/rblx-local/rblxlocal/blob/main/n6a3dp.png#gh-light-mode-only" width="420">
+    <img src="https://github.com/rblx-local/rblxlocal/blob/main/logo.png#gh-dark-mode-only" width="420">
+    <img src="https://github.com/rblx-local/rblxlocal/blob/main/logo.png#gh-light-mode-only" width="420">
 </p>
 
 <div align="center">
