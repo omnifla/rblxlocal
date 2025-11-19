@@ -16,19 +16,16 @@ parse_str($rawPostData, $parsedPost);
 $username = $parsedPost['username'];
 $password = $parsedPost['password'];
 try{
-    $login = Auth::Login($username, $password);
+    $user = Auth::Login($username, $password);
 }catch(Exception $e){
     exit(json_encode(["Status" => "Error", "Message" => $e->getMessage()]));
 }
-$user = Auth::GetAuthenticatedUser();
-if(!$user)
-    exit(json_encode(["Status" => "Error", "Message" => "Login attempt failed; Please try again."]));
 
 $robux = RobuxBalance::Get($user['id']);
 $tickets = TicketsBalance::Get($user['id']);
 $response = [
-        "Status" => "OK",
-        "UserInfo" => [
+    "Status" => "OK",
+    "UserInfo" => [
 		"UserID" => $user['id'],
 		"UserName" => $user['username'],
 		"RobuxBalance" => $robux->Value,

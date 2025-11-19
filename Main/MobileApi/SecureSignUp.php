@@ -28,11 +28,11 @@ if (!$dt) {
 $dateOfBirth = $dt->format('Y-m-d');
 $email = $parsedPost['email'] ?? "";
 try{
-    Auth::Register($username, $password, $dateOfBirth, $gender, $email);
+    $uid = Auth::Register($username, $password, $dateOfBirth, $gender, $email);
 }catch(Exception $e){
     exit(json_encode(["Status" => "Error", "Message" => $e->getMessage()]));
 }
-$user = Auth::GetAuthenticatedUser();
+$user = Auth::GetUserInfo($uid);
 if(!$user)
     exit(json_encode(["Status" => "Error", "Message" => "Account Registration failed, Please try again."]));
 

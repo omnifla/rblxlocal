@@ -107,7 +107,7 @@ class Authentication {
             'samesite' => 'Lax'
         ]);
 
-        return true;
+        return $user;
     }
     public static function ValidateUsername(string $username) {
         global $conn;
