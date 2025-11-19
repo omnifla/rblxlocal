@@ -71,5 +71,5 @@ if (passwordTooLong($password)) {
         $status = true;
     }
 }
-exit(json_encode(["success" => $status, "message" => $message]));
+exit(json_encode(["success" => $status]));
 ?>
