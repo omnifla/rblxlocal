@@ -15,20 +15,15 @@ parse_str($rawPostData, $parsedPost);
 
 $username = $parsedPost['userName'];
 $password = $parsedPost['password'];
-$gender = $parsedPost['gender']; // Male or Female, convert to integers
-if($gender === 'Male'){
-    $gender = 1;
-}else{
-    $gender = 2;
-}
+$gender = $parsedPost['gender'] == "Male" ? 1 : 2;
 $dt = DateTime::createFromFormat('m/d/Y', $parsedPost['dateOfBirth']);
 if (!$dt) {
     exit(json_encode(["Status" => "Error", "Message" => "Invalid DateOfBirth format"]));
 }
 $dateOfBirth = $dt->format('Y-m-d');
-$email = $parsedPost['email'] ?? "";
+$email = $parsedPost['email'] ?? ""; // maybe we will ignore emails for now.
 try{
-    $uid = Auth::Register($username, $password, $dateOfBirth, $gender, $email);
+    $uid = Auth::Register($username, $password,  $gender, $email, $dateOfBirth);
 }catch(Exception $e){
     exit(json_encode(["Status" => "Error", "Message" => $e->getMessage()]));
 }
@@ -36,8 +31,6 @@ $user = Auth::GetUserInfo($uid);
 if(!$user)
     exit(json_encode(["Status" => "Error", "Message" => "Account Registration failed, Please try again."]));
 
-$robux = RobuxBalance::Get($user['id']);
-$tickets = TicketsBalance::Get($user['id']);
 $response = [
     "Status" => "OK",
     "UserInfo" => [

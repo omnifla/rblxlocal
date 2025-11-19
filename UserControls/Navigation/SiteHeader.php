@@ -319,7 +319,10 @@ class SiteHeader{
        public static function render(): string
     {
         global $site_properties;
-
+        // do not render the header if we are accessing the site from an inherited Roblox/ useragent:
+        if(isset($_SERVER['HTTP_USER_AGENT']) && str_contains($_SERVER['HTTP_USER_AGENT'], 'Roblox/')){
+            return "";
+        }
         $user = Auth::GetAuthenticatedUser();
         if (!$user) {
             $nav = new NavBarItems();
