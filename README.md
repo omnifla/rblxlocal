@@ -1,5 +1,5 @@
 > [!CAUTION]
-> This revival is in **heavy development**, if you encounter bugs or anything related, please make an issue at the **Issues** tab.
+> RBLX.local is source code, not a revival. However, we host the project at [RBLX.cloud](https;//rblx.cloud).
 
 <p align="center">
     <img src="https://github.com/rblx-local/rblxlocal/blob/main/logo.png#gh-dark-mode-only" width="420">
@@ -7,7 +7,7 @@
 </p>
 
 <div align="center">
-An open source 2015E ROBLOX clone, using the ported ROBLOX Site backend
+An open-source 2015E Roblox Revival built from ported Roblox site backend.
 </div>
 
 ## Authors
@@ -33,7 +33,7 @@ Coming soon...
 
 ## Features
 - [x] Working feeds
-- [x] Working user profiles (i think)
+- [x] Working user profiles
 - [x] Working User renders
 - [x] Working Daily rewards
 ## Roadmap
