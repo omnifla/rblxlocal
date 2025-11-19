@@ -43,8 +43,8 @@ $response = [
     "UserInfo" => [
 		"UserID" => $user['id'],
 		"UserName" => $user['username'],
-		"RobuxBalance" => $robux->Value,
-		"TicketsBalance" => $tickets->Value,
+		"RobuxBalance" => $user['robux'],
+		"TicketsBalance" => $user['tickets'],
 		"IsAnyBuildersClubMember" => $user['membership_type'] > 0,
 		"ThumbnailUrl" => $site_properties['baseUrl'] . "/Thumbs/Avatar.ashx?userId=" . $user['id'],
 	]

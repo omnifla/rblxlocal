@@ -20,16 +20,13 @@ try{
 }catch(Exception $e){
     exit(json_encode(["Status" => "Error", "Message" => $e->getMessage()]));
 }
-
-$robux = RobuxBalance::Get($user['id']);
-$tickets = TicketsBalance::Get($user['id']);
 $response = [
     "Status" => "OK",
     "UserInfo" => [
 		"UserID" => $user['id'],
 		"UserName" => $user['username'],
-		"RobuxBalance" => $robux->Value,
-		"TicketsBalance" => $tickets->Value,
+		"RobuxBalance" => $user['robux'],
+		"TicketsBalance" => $user['tickets'],
 		"IsAnyBuildersClubMember" => $user['membership_type'] > 0,
 		"ThumbnailUrl" => $site_properties['baseUrl'] . "/Thumbs/Avatar.ashx?userId=" . $user['id'],
 	]
