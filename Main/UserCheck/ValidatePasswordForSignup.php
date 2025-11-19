@@ -1,6 +1,7 @@
 <?php
 // ported by meditext
 // port of the json password algorithm from roblox
+/*
 header('Content-Type: application/json');
 $status = false;
 $password = $_GET['password'] ?? '';
@@ -72,4 +73,7 @@ if (passwordTooLong($password)) {
     }
 }
 exit(json_encode(["success" => $status]));
+*/
+// scrapped it from now
 ?>
+{'success': true}
