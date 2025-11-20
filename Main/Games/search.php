@@ -2,7 +2,7 @@
 // written by meditext
 // this is my attempt to recreate ROBLOX's game listing page from 2012-2015.
 require_once $_SERVER['DOCUMENT_ROOT'] . "/../config/main.php";
-$search_query = $_GET['Keyword'] ?? '';
+$search_query = $_GET['keyword'] ?? '';
 ?>
 <!DOCTYPE html>
 <html lang="en">
