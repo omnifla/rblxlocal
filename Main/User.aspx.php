@@ -379,56 +379,66 @@ if (isset($user['membership_type'])) {
     $recent_Feed = $get_recent_Feed->fetch(PDO::FETCH_ASSOC);
     $textStatus = htmlspecialchars($recent_Feed["content"] ?? "");
     $scr = '<script>
-$(function() {
-    const $updateLink = $("#ctl00_cphRoblox_rbxHeaderPane_updateStatusLink");
-    const $updateBox = $("#updateStatusBox");
-    const $statusRegion = $("#ctl00_cphRoblox_rbxHeaderPane_statusRegion");
-    const $txt = $("#ctl00_cphRoblox_rbxHeaderPane_txtStatusMessage");
-    const $saveBtn = $("#ctl00_cphRoblox_rbxHeaderPane_btnUpdateStatus");
-    const $cancelBtn = $updateBox.find("input[type=button]");
+document.addEventListener("DOMContentLoaded", () => {
+    const updateLink = document.querySelector("#ctl00_cphRoblox_rbxHeaderPane_updateStatusLink");
+    const updateBox = document.querySelector("#updateStatusBox");
+    const statusRegion = document.querySelector("#ctl00_cphRoblox_rbxHeaderPane_statusRegion");
+    const txt = document.querySelector("#ctl00_cphRoblox_rbxHeaderPane_txtStatusMessage");
+    const saveBtn = document.querySelector("#ctl00_cphRoblox_rbxHeaderPane_btnUpdateStatus");
+    const cancelBtn = updateBox.querySelector("input[type=button]");
     const updateUrl = "/Home/UpdateStatus";
-
-    $updateLink.on("click", function(e) {
+    const show = el => el.style.display = "";
+    const hide = el => el.style.display = "none";
+    updateLink.addEventListener("click", e => {
         e.preventDefault();
-        $updateLink.hide();
-        $updateBox.show();
-        $txt.focus();
+        hide(updateLink);
+        show(updateBox);
+        txt.focus();
     });
-
-    $cancelBtn.on("click", function(e) {
+    cancelBtn.addEventListener("click", e => {
         e.preventDefault();
-        $updateBox.hide();
-        $updateLink.show();
-        $txt.val($statusRegion.text().replace(/"/g, \'\'));
+        hide(updateBox);
+        show(updateLink);
+        txt.value = statusRegion.textContent.replace(/"/g, "");
     });
-
-    $saveBtn.on("click", function(e) {
+    saveBtn.addEventListener("click", async e => {
         e.preventDefault();
-        const message = $txt.val().trim();
+
+        const message = txt.value.trim();
         if (!message) return;
 
-        $.ajax({
-            url: updateUrl,
-            type: "POST",
-            data: { status: message }
-        }).done(function(res) {
+        try {
+            const response = await fetch(updateUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: new URLSearchParams({ status: message })
+            });
+            let res;
+            try {
+                res = await response.json();
+            } catch {
+                res = await response.text();
+            }
             // if backend responds with plain text instead of JSON:
             if (typeof res === "string") {
-                $statusRegion.html(`<i>"${message}"</i>`);
-                $updateBox.hide();
-                $updateLink.show();
+                statusRegion.innerHTML = `<i>"${message}"</i>`;
+                hide(updateBox);
+                show(updateLink);
             }
             // if backend does JSON with success flag:
             else if (res.success) {
-                $statusRegion.html(`<i>"${message}"</i>`);
-                $updateBox.hide();
-                $updateLink.show();
-            } else {
-                alert((res.message) ? res.message : "An error occurred.");
+                statusRegion.innerHTML = `<i>"${message}"</i>`;
+                hide(updateBox);
+                show(updateLink);
             }
-        }).fail(function() {
+            else {
+                alert(res.message || "An error occurred.");
+            }
+        } catch {
             alert("Network error, please try again later.");
-        });
+        }
     });
 });
 </script>

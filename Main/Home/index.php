@@ -240,69 +240,123 @@ $user = Auth::GetAuthenticatedUserInfo();
      data-update-status-url="/home/updatestatus"
      data-should-show-enable-two-step-verification-call-to-action=False>
 <script>
-$(function() {
-    function n() {
-        if ($("#txtStatusMessage").prop("disabled"))
-            return !1;
-        var t = $("#HomeContainer").data("update-status-url")
-          , i = $("#txtStatusMessage").val()
-          , n = $("#statusForm")
-          , r = $("#sendToFacebook").is(":checked")
-          , u = {
-            status: i,
-            sendToFacebook: r
-        };
-        $("#shareButton").hide(),
-        $("#loadingImage").show(),
-        $.post(t, u).done(function(t) {
-            $("#txtStatusMessage").val(t.message),
-            n.find(".rbx-form-group").removeClass("rbx-form-has-error"),
-            n.find(".rbx-control-label").hide()
-        }).fail(function() {
-            $("#txtStatusMessage").val(""),
-            n.find(".rbx-form-group").addClass("rbx-form-has-error"),
-            n.find(".rbx-control-label").show()
-        }).always(function() {
-            $("#txtStatusMessage").blur(),
-            $("#shareButton").show(),
-            $("#loadingImage").hide()
-        })
-    }
-    var i = $("#HomeContainer").data("facebook-share"), t;
-    $("#btnFacebookShare").click(function() {
-        $.post(i, function(n) {
-            $("#btnFacebookShare").removeClass(),
-            n.success ? $("#facebookShareResult").addClass("status-confirm") : $("#facebookShareResult").addClass("status-error"),
-            $("#facebookShareResult").text(n.message),
-            $("#facebookShareResult").fadeIn().delay(5e3).fadeOut()
-        })
-    }),
-    $("#HomeContainer *[data-retry-url]").loadRobloxThumbnails(),
-    $("#shareButton").click(function() {
-        n()
-    }),
-    $("#txtStatusMessage").keypress(function(t) {
-        t.which == "13" && n()
+// ported by meditext
+// i am genuinely so sick of getting issues with the clunky code from jquery that i had to port it all over to vanilla js.
+// well, i had no other options.
+function post(url, data) {
+    return fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(data),
+    }).then(res => res.json());
+}
+
+function submitStatus() {
+    const txt = document.querySelector("#txtStatusMessage");
+    if (!txt || txt.disabled) return false;
+
+    const home = document.querySelector("#HomeContainer");
+    const url = home?.dataset.updateStatusUrl;
+    const sendToFacebook = document.querySelector("#sendToFacebook")?.checked;
+    const form = document.querySelector("#statusForm");
+
+    const loading = document.querySelector("#loadingImage");
+    const shareButton = document.querySelector("#shareButton");
+
+    shareButton.style.display = "none";
+    loading.style.display = "block";
+
+    post(url, {
+        status: txt.value,
+        sendToFacebook: sendToFacebook
+    })
+    .then(t => {
+        txt.value = t.message || "";
+        form.querySelector(".rbx-form-group")?.classList.remove("rbx-form-has-error");
+        form.querySelector(".rbx-control-label")?.classList.add("hidden");
+    })
+    .catch(() => {
+        txt.value = "";
+        form.querySelector(".rbx-form-group")?.classList.add("rbx-form-has-error");
+        form.querySelector(".rbx-control-label")?.classList.remove("hidden");
+    })
+    .finally(() => {
+        txt.blur();
+        shareButton.style.display = "inline-block";
+        loading.style.display = "none";
     });
-    $(document).on("GuttersHidden", function() {
-        $("#LeftGutterAdContainer").hide(),
-        $("#RightGutterAdContainer").hide()
-    });
-    t = function() {
-        var n = {
-            titleText: "Two Step Verification",
-            bodyContent: "Your account does not have two step verification enabled. Enabling it will make your account more secure. Would you like to enable it now?",
-            onAccept: function() {
-                window.location.href = "/my/account?tab=security"
-            }
-        };
-        Roblox.GenericConfirmation.open(n)
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const share = document.querySelector("#shareButton");
+    if (share) {
+        share.addEventListener("click", (e) => {
+            e.preventDefault();
+            submitStatus();
+        });
     }
-   //var n = $("#HomeContainer").attr("data-should-show-enable-two-step-verification-call-to-action") === "True";
-    t()
+
+    const txt = document.querySelector("#txtStatusMessage");
+    if (txt) {
+        txt.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") submitStatus();
+        });
+    }
+    const fbButton = document.querySelector("#btnFacebookShare");
+    const home = document.querySelector("#HomeContainer");
+    const fbUrl = home?.dataset.facebookShare;
+
+    if (fbButton && fbUrl) {
+        fbButton.addEventListener("click", () => {
+            post(fbUrl, {}).then(result => {
+                fbButton.className = "";
+
+                const resultBox = document.querySelector("#facebookShareResult");
+                if (!resultBox) return;
+
+                resultBox.classList.remove("status-confirm", "status-error");
+
+                if (result.success) {
+                    resultBox.classList.add("status-confirm");
+                } else {
+                    resultBox.classList.add("status-error");
+                }
+
+                resultBox.textContent = result.message;
+                resultBox.style.display = "block";
+
+                setTimeout(() => resultBox.style.display = "none", 5000);
+            });
+        });
+    }
 });
 
+document.addEventListener("GuttersHidden", () => {
+    document.querySelector("#LeftGutterAdContainer")?.style.setProperty("display","none");
+    document.querySelector("#RightGutterAdContainer")?.style.setProperty("display","none");
+});
+
+function showTwoStep() {
+    Roblox.GenericConfirmation.open({
+        titleText: "Two Step Verification",
+        bodyContent: "Your account does not have two step verification enabled. Enabling it will make your account more secure. Would you like to enable it now?",
+        onAccept: () => {
+            window.location.href = "/my/account?tab=security";
+        }
+    });
+}
+
+window.addEventListener("load", () => {
+    console.log("window loaded");
+
+    const home = document.querySelector("#HomeContainer");
+    const should = home?.dataset.shouldShowEnableTwoStepVerificationCallToAction === "True";
+
+    if (should) showTwoStep();
+});
 </script>
+
+
 
 
     <div class="col-xs-12 home-header">  
