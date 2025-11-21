@@ -556,6 +556,592 @@ CREATE TABLE "public"."users" (
     CONSTRAINT "users_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
 
+CREATE TABLE IF NOT EXISTS messages_v2 (
+    id BIGSERIAL PRIMARY KEY,
+    message_type_id INTEGER NOT NULL,
+    subject VARCHAR(256),
+    body TEXT,
+    author_id BIGINT,
+    recipient_id BIGINT,
+    is_system_message BOOLEAN NOT NULL DEFAULT FALSE,
+    is_broadcast_message BOOLEAN NOT NULL DEFAULT FALSE,
+    is_read BOOLEAN NOT NULL DEFAULT FALSE,
+    is_archived BOOLEAN NOT NULL DEFAULT FALSE,
+    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_messages_v2_recipient_id ON messages_v2(recipient_id);
+CREATE INDEX IF NOT EXISTS idx_messages_v2_author_id ON messages_v2(author_id);
+CREATE INDEX IF NOT EXISTS idx_messages_v2_created ON messages_v2(created DESC);
+CREATE INDEX IF NOT EXISTS idx_messages_v2_recipient_read ON messages_v2(recipient_id, is_read);
+CREATE INDEX IF NOT EXISTS idx_messages_v2_recipient_archived ON messages_v2(recipient_id, is_archived);
+CREATE INDEX IF NOT EXISTS idx_messages_v2_recipient_type ON messages_v2(recipient_id, message_type_id);
+
+CREATE OR REPLACE FUNCTION messages_v2_insert_message_v2(
+    p_message_type_id INTEGER,
+    p_subject VARCHAR(256),
+    p_body TEXT,
+    p_author_id BIGINT,
+    p_recipient_id BIGINT,
+    p_is_system_message BOOLEAN,
+    p_is_broadcast_message BOOLEAN,
+    p_is_read BOOLEAN,
+    p_is_archived BOOLEAN,
+    p_created TIMESTAMP,
+    p_updated TIMESTAMP
+)
+RETURNS BIGINT AS $$
+DECLARE
+    v_id BIGINT;
+BEGIN
+    INSERT INTO messages_v2 (
+        message_type_id, subject, body, author_id, recipient_id,
+        is_system_message, is_broadcast_message, is_read, is_archived,
+        created, updated
+    ) VALUES (
+        p_message_type_id, p_subject, p_body, p_author_id, p_recipient_id,
+        p_is_system_message, p_is_broadcast_message, p_is_read, p_is_archived,
+        p_created, p_updated
+    )
+    RETURNING id INTO v_id;
+    
+    RETURN v_id;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_update_message_v2_by_id(
+    p_id BIGINT,
+    p_message_type_id INTEGER,
+    p_subject VARCHAR(256),
+    p_body TEXT,
+    p_author_id BIGINT,
+    p_recipient_id BIGINT,
+    p_is_system_message BOOLEAN,
+    p_is_broadcast_message BOOLEAN,
+    p_is_read BOOLEAN,
+    p_is_archived BOOLEAN,
+    p_created TIMESTAMP,
+    p_updated TIMESTAMP
+)
+RETURNS VOID AS $$
+BEGIN
+    UPDATE messages_v2
+    SET 
+        message_type_id = p_message_type_id,
+        subject = p_subject,
+        body = p_body,
+        author_id = p_author_id,
+        recipient_id = p_recipient_id,
+        is_system_message = p_is_system_message,
+        is_broadcast_message = p_is_broadcast_message,
+        is_read = p_is_read,
+        is_archived = p_is_archived,
+        created = p_created,
+        updated = p_updated
+    WHERE id = p_id;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_delete_message_v2_by_id(p_id BIGINT)
+RETURNS VOID AS $$
+BEGIN
+    DELETE FROM messages_v2 WHERE id = p_id;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_get_message_v2_by_id(p_id BIGINT)
+RETURNS TABLE (
+    id BIGINT,
+    message_type_id INTEGER,
+    subject VARCHAR(256),
+    body TEXT,
+    author_id BIGINT,
+    recipient_id BIGINT,
+    is_system_message BOOLEAN,
+    is_broadcast_message BOOLEAN,
+    is_read BOOLEAN,
+    is_archived BOOLEAN,
+    created TIMESTAMP,
+    updated TIMESTAMP
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        m.id, m.message_type_id, m.subject, m.body, m.author_id, m.recipient_id,
+        m.is_system_message, m.is_broadcast_message, m.is_read, m.is_archived,
+        m.created, m.updated
+    FROM messages_v2 m
+    WHERE m.id = p_id;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_get_messages_v2_by_ids(p_ids BIGINT[])
+RETURNS TABLE (
+    id BIGINT,
+    message_type_id INTEGER,
+    subject VARCHAR(256),
+    body TEXT,
+    author_id BIGINT,
+    recipient_id BIGINT,
+    is_system_message BOOLEAN,
+    is_broadcast_message BOOLEAN,
+    is_read BOOLEAN,
+    is_archived BOOLEAN,
+    created TIMESTAMP,
+    updated TIMESTAMP
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        m.id, m.message_type_id, m.subject, m.body, m.author_id, m.recipient_id,
+        m.is_system_message, m.is_broadcast_message, m.is_read, m.is_archived,
+        m.created, m.updated
+    FROM messages_v2 m
+    WHERE m.id = ANY(p_ids);
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_get_message_v2_ids(
+    p_exclusive_start_id BIGINT,
+    p_maximum_rows INTEGER
+)
+RETURNS TABLE (id BIGINT) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT m.id
+    FROM messages_v2 m
+    WHERE m.id > p_exclusive_start_id
+    ORDER BY m.id
+    LIMIT p_maximum_rows;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_get_message_v2_ids_by_recipient_id_paged_and_sorted(
+    p_recipient_id BIGINT,
+    p_start_row_index BIGINT,
+    p_maximum_rows INTEGER,
+    p_sort_expression VARCHAR(50)
+)
+RETURNS TABLE (id BIGINT) AS $$
+DECLARE
+    v_order_clause TEXT;
+BEGIN
+    v_order_clause := CASE 
+        WHEN p_sort_expression = 'Created DESC' THEN 'created DESC'
+        WHEN p_sort_expression = 'Created ASC' THEN 'created ASC'
+        ELSE 'created DESC'
+    END;
+
+    RETURN QUERY EXECUTE format('
+        SELECT m.id
+        FROM messages_v2 m
+        WHERE m.recipient_id = $1
+        ORDER BY %s
+        OFFSET $2 LIMIT $3
+    ', v_order_clause)
+    USING p_recipient_id, p_start_row_index - 1, p_maximum_rows;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_get_message_v2_ids_excluding_invitations_by_recipient_id_paged_and_sorted(
+    p_recipient_id BIGINT,
+    p_start_row_index BIGINT,
+    p_maximum_rows INTEGER,
+    p_sort_expression VARCHAR(50)
+)
+RETURNS TABLE (id BIGINT) AS $$
+DECLARE
+    v_order_clause TEXT;
+BEGIN
+    v_order_clause := CASE 
+        WHEN p_sort_expression = 'Created DESC' THEN 'created DESC'
+        WHEN p_sort_expression = 'Created ASC' THEN 'created ASC'
+        ELSE 'created DESC'
+    END;
+
+    RETURN QUERY EXECUTE format('
+        SELECT m.id
+        FROM messages_v2 m
+        WHERE m.recipient_id = $1 AND m.message_type_id != 2
+        ORDER BY %s
+        OFFSET $2 LIMIT $3
+    ', v_order_clause)
+    USING p_recipient_id, p_start_row_index - 1, p_maximum_rows;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_get_unread_message_v2_ids_excluding_invitations_by_recipient_id_paged_and_sorted(
+    p_recipient_id BIGINT,
+    p_start_row_index BIGINT,
+    p_maximum_rows INTEGER,
+    p_sort_expression VARCHAR(50)
+)
+RETURNS TABLE (id BIGINT) AS $$
+DECLARE
+    v_order_clause TEXT;
+BEGIN
+    v_order_clause := CASE 
+        WHEN p_sort_expression = 'Created DESC' THEN 'created DESC'
+        WHEN p_sort_expression = 'Created ASC' THEN 'created ASC'
+        ELSE 'created DESC'
+    END;
+
+    RETURN QUERY EXECUTE format('
+        SELECT m.id
+        FROM messages_v2 m
+        WHERE m.recipient_id = $1 
+            AND m.message_type_id != 2
+            AND m.is_read = FALSE
+        ORDER BY %s
+        OFFSET $2 LIMIT $3
+    ', v_order_clause)
+    USING p_recipient_id, p_start_row_index - 1, p_maximum_rows;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_get_archived_message_v2_ids_excluding_invitations_by_recipient_id_paged_and_sorted(
+    p_recipient_id BIGINT,
+    p_start_row_index BIGINT,
+    p_maximum_rows INTEGER,
+    p_sort_expression VARCHAR(50)
+)
+RETURNS TABLE (id BIGINT) AS $$
+DECLARE
+    v_order_clause TEXT;
+BEGIN
+    v_order_clause := CASE 
+        WHEN p_sort_expression = 'Created DESC' THEN 'created DESC'
+        WHEN p_sort_expression = 'Created ASC' THEN 'created ASC'
+        ELSE 'created DESC'
+    END;
+
+    RETURN QUERY EXECUTE format('
+        SELECT m.id
+        FROM messages_v2 m
+        WHERE m.recipient_id = $1 
+            AND m.message_type_id != 2
+            AND m.is_archived = TRUE
+        ORDER BY %s
+        OFFSET $2 LIMIT $3
+    ', v_order_clause)
+    USING p_recipient_id, p_start_row_index - 1, p_maximum_rows;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_get_unarchived_message_v2_ids_excluding_invitations_by_recipient_id_paged_and_sorted(
+    p_recipient_id BIGINT,
+    p_start_row_index BIGINT,
+    p_maximum_rows INTEGER,
+    p_sort_expression VARCHAR(50)
+)
+RETURNS TABLE (id BIGINT) AS $$
+DECLARE
+    v_order_clause TEXT;
+BEGIN
+    v_order_clause := CASE 
+        WHEN p_sort_expression = 'Created DESC' THEN 'created DESC'
+        WHEN p_sort_expression = 'Created ASC' THEN 'created ASC'
+        ELSE 'created DESC'
+    END;
+
+    RETURN QUERY EXECUTE format('
+        SELECT m.id
+        FROM messages_v2 m
+        WHERE m.recipient_id = $1 
+            AND m.message_type_id != 2
+            AND m.is_archived = FALSE
+        ORDER BY %s
+        OFFSET $2 LIMIT $3
+    ', v_order_clause)
+    USING p_recipient_id, p_start_row_index - 1, p_maximum_rows;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_get_unread_archived_message_v2_ids_excluding_invitations_by_recipient_id_paged_and_sorted(
+    p_recipient_id BIGINT,
+    p_start_row_index BIGINT,
+    p_maximum_rows INTEGER,
+    p_sort_expression VARCHAR(50)
+)
+RETURNS TABLE (id BIGINT) AS $$
+DECLARE
+    v_order_clause TEXT;
+BEGIN
+    v_order_clause := CASE 
+        WHEN p_sort_expression = 'Created DESC' THEN 'created DESC'
+        WHEN p_sort_expression = 'Created ASC' THEN 'created ASC'
+        ELSE 'created DESC'
+    END;
+
+    RETURN QUERY EXECUTE format('
+        SELECT m.id
+        FROM messages_v2 m
+        WHERE m.recipient_id = $1 
+            AND m.message_type_id != 2
+            AND m.is_read = FALSE
+            AND m.is_archived = TRUE
+        ORDER BY %s
+        OFFSET $2 LIMIT $3
+    ', v_order_clause)
+    USING p_recipient_id, p_start_row_index - 1, p_maximum_rows;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_get_unread_unarchived_message_v2_ids_excluding_invitations_by_recipient_id_paged_and_sorted(
+    p_recipient_id BIGINT,
+    p_start_row_index BIGINT,
+    p_maximum_rows INTEGER,
+    p_sort_expression VARCHAR(50)
+)
+RETURNS TABLE (id BIGINT) AS $$
+DECLARE
+    v_order_clause TEXT;
+BEGIN
+    v_order_clause := CASE 
+        WHEN p_sort_expression = 'Created DESC' THEN 'created DESC'
+        WHEN p_sort_expression = 'Created ASC' THEN 'created ASC'
+        ELSE 'created DESC'
+    END;
+
+    RETURN QUERY EXECUTE format('
+        SELECT m.id
+        FROM messages_v2 m
+        WHERE m.recipient_id = $1 
+            AND m.message_type_id != 2
+            AND m.is_read = FALSE
+            AND m.is_archived = FALSE
+        ORDER BY %s
+        OFFSET $2 LIMIT $3
+    ', v_order_clause)
+    USING p_recipient_id, p_start_row_index - 1, p_maximum_rows;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_get_system_messages_v2_by_recipient_id_paged(
+    p_recipient_id BIGINT,
+    p_start_row_index BIGINT,
+    p_maximum_rows INTEGER
+)
+RETURNS TABLE (id BIGINT) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT m.id
+    FROM messages_v2 m
+    WHERE m.recipient_id = p_recipient_id 
+        AND m.is_system_message = TRUE
+    ORDER BY m.created DESC
+    OFFSET p_start_row_index - 1 LIMIT p_maximum_rows;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_get_unarchived_messages_v2_excluding_invitations_and_system_by_recipient_id_paged(
+    p_recipient_id BIGINT,
+    p_start_row_index BIGINT,
+    p_maximum_rows INTEGER
+)
+RETURNS TABLE (id BIGINT) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT m.id
+    FROM messages_v2 m
+    WHERE m.recipient_id = p_recipient_id 
+        AND m.message_type_id != 2
+        AND m.is_system_message = FALSE
+        AND m.is_archived = FALSE
+    ORDER BY m.created DESC
+    OFFSET p_start_row_index - 1 LIMIT p_maximum_rows;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_get_archived_message_v2_ids_excluding_invitations_and_system_by_recipient_id_paged(
+    p_recipient_id BIGINT,
+    p_start_row_index BIGINT,
+    p_maximum_rows INTEGER
+)
+RETURNS TABLE (id BIGINT) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT m.id
+    FROM messages_v2 m
+    WHERE m.recipient_id = p_recipient_id 
+        AND m.message_type_id != 2
+        AND m.is_system_message = FALSE
+        AND m.is_archived = TRUE
+    ORDER BY m.created DESC
+    OFFSET p_start_row_index - 1 LIMIT p_maximum_rows;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_get_message_v2_ids_excluding_invitations_by_author_id_paged(
+    p_author_id BIGINT,
+    p_start_row_index BIGINT,
+    p_maximum_rows INTEGER
+)
+RETURNS TABLE (id BIGINT) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT m.id
+    FROM messages_v2 m
+    WHERE m.author_id = p_author_id 
+        AND m.message_type_id != 2
+    ORDER BY m.created DESC
+    OFFSET p_start_row_index - 1 LIMIT p_maximum_rows;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_get_total_number_of_messages_v2_by_recipient_id(p_recipient_id BIGINT)
+RETURNS INTEGER AS $$
+DECLARE
+    v_count INTEGER;
+BEGIN
+    SELECT COUNT(*)::INTEGER INTO v_count
+    FROM messages_v2
+    WHERE recipient_id = p_recipient_id;
+    RETURN v_count;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_get_total_number_of_messages_v2_excluding_invitations_by_recipient_id(p_recipient_id BIGINT)
+RETURNS INTEGER AS $$
+DECLARE
+    v_count INTEGER;
+BEGIN
+    SELECT COUNT(*)::INTEGER INTO v_count
+    FROM messages_v2
+    WHERE recipient_id = p_recipient_id 
+        AND message_type_id != 2;
+    RETURN v_count;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_get_total_number_of_unread_messages_v2_excluding_invitations_by_recipient_id(p_recipient_id BIGINT)
+RETURNS INTEGER AS $$
+DECLARE
+    v_count INTEGER;
+BEGIN
+    SELECT COUNT(*)::INTEGER INTO v_count
+    FROM messages_v2
+    WHERE recipient_id = p_recipient_id 
+        AND message_type_id != 2
+        AND is_read = FALSE;
+    RETURN v_count;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_get_total_number_of_archived_messages_v2_excluding_invitations_by_recipient_id(p_recipient_id BIGINT)
+RETURNS INTEGER AS $$
+DECLARE
+    v_count INTEGER;
+BEGIN
+    SELECT COUNT(*)::INTEGER INTO v_count
+    FROM messages_v2
+    WHERE recipient_id = p_recipient_id 
+        AND message_type_id != 2
+        AND is_archived = TRUE;
+    RETURN v_count;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_get_total_number_of_unarchived_messages_v2_excluding_invitations_by_recipient_id(p_recipient_id BIGINT)
+RETURNS INTEGER AS $$
+DECLARE
+    v_count INTEGER;
+BEGIN
+    SELECT COUNT(*)::INTEGER INTO v_count
+    FROM messages_v2
+    WHERE recipient_id = p_recipient_id 
+        AND message_type_id != 2
+        AND is_archived = FALSE;
+    RETURN v_count;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_get_total_number_of_unread_archived_messages_v2_excluding_invitations_by_recipient_id(p_recipient_id BIGINT)
+RETURNS INTEGER AS $$
+DECLARE
+    v_count INTEGER;
+BEGIN
+    SELECT COUNT(*)::INTEGER INTO v_count
+    FROM messages_v2
+    WHERE recipient_id = p_recipient_id 
+        AND message_type_id != 2
+        AND is_read = FALSE
+        AND is_archived = TRUE;
+    RETURN v_count;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_get_total_number_of_unread_unarchived_messages_v2_excluding_invitations_by_recipient_id(p_recipient_id BIGINT)
+RETURNS INTEGER AS $$
+DECLARE
+    v_count INTEGER;
+BEGIN
+    SELECT COUNT(*)::INTEGER INTO v_count
+    FROM messages_v2
+    WHERE recipient_id = p_recipient_id 
+        AND message_type_id != 2
+        AND is_read = FALSE
+        AND is_archived = FALSE;
+    RETURN v_count;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_get_total_number_of_unarchived_messages_v2_excluding_invitations_and_system_by_recipient_id(p_recipient_id BIGINT)
+RETURNS INTEGER AS $$
+DECLARE
+    v_count INTEGER;
+BEGIN
+    SELECT COUNT(*)::INTEGER INTO v_count
+    FROM messages_v2
+    WHERE recipient_id = p_recipient_id 
+        AND message_type_id != 2
+        AND is_system_message = FALSE
+        AND is_archived = FALSE;
+    RETURN v_count;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_get_total_number_of_archived_messages_v2_excluding_invitations_and_system_by_recipient_id(p_recipient_id BIGINT)
+RETURNS INTEGER AS $$
+DECLARE
+    v_count INTEGER;
+BEGIN
+    SELECT COUNT(*)::INTEGER INTO v_count
+    FROM messages_v2
+    WHERE recipient_id = p_recipient_id 
+        AND message_type_id != 2
+        AND is_system_message = FALSE
+        AND is_archived = TRUE;
+    RETURN v_count;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_get_total_number_of_system_messages_v2_by_recipient_id(p_recipient_id BIGINT)
+RETURNS INTEGER AS $$
+DECLARE
+    v_count INTEGER;
+BEGIN
+    SELECT COUNT(*)::INTEGER INTO v_count
+    FROM messages_v2
+    WHERE recipient_id = p_recipient_id 
+        AND is_system_message = TRUE;
+    RETURN v_count;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION messages_v2_get_total_number_of_sent_messages_v2_excluding_invitations_by_author_id(p_author_id BIGINT)
+RETURNS INTEGER AS $$
+DECLARE
+    v_count INTEGER;
+BEGIN
+    SELECT COUNT(*)::INTEGER INTO v_count
+    FROM messages_v2
+    WHERE author_id = p_author_id 
+        AND message_type_id != 2;
+    RETURN v_count;
+END;
+$$ LANGUAGE plpgsql;
 
 ALTER TABLE ONLY "public"."forums" ADD CONSTRAINT "forums_group_id_fkey" FOREIGN KEY (group_id) REFERENCES forum_groups(id) NOT DEFERRABLE;
 
