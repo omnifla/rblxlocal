@@ -6,7 +6,7 @@ namespace Roblox\Game\Asset;
 use IncludeHelper;
 use Roblox\Settings;
 use Roblox\Game\ClientHelper;
-use Roblox\AssetTypes;
+use Roblox\AssetType;
 
 class AssetFetcher {
     public bool $cacheAssets;
@@ -54,7 +54,7 @@ class AssetFetcher {
         }
 
         $fileContents = file_get_contents($jsonContents->location);
-        $isLuaFile = $jsonContents->assetTypeId == AssetTypes::$PantsID; // modern roblox uses different asset types, models are now 10
+        $isLuaFile = $jsonContents->assetTypeId == AssetType::$PantsID; // modern roblox uses different asset types, models are now 10
         echo $isLuaFile;
 
         $assetReplaceList = [
