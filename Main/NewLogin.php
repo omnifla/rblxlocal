@@ -17,10 +17,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         Auth::Login($username, $password);
     } catch (\Exception $e) {
-        exit($e->getMessage());
+        $error = $e->getMessage();
     }
-    header("Location: " . $returnUrl);
+    if(!isset($error)){header("Location: " . $returnUrl);
     exit;
+    }
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -195,9 +196,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 <![endif]-->
 <h1>Login to ROBLOX</h1>
 <div>
+    <?php
+    if(isset($error)){
+        echo("<p><span class=\"status-error\">{$error}</span></p>");
+    }
+    ?>
 <form action="/newlogin" id="loginForm" method="post">            <div id="loginarea" class="divider-bottom">
                 <div id="leftArea">
                     <div id="loginPanel">   
+                        
                         <table id="logintable">
                             <tr id="username">
                                 <td><label class="form-label" for="Username">Username:</label></td>
@@ -604,9 +611,38 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
          Roblox.Client._installSuccess = function() { GoogleAnalyticsEvents && GoogleAnalyticsEvents.ViewVirtual('InstallSuccess'); };
     </script>
 
-
-<?= Roblox\Web\ConfirmationModal::render() ?>
-
+<div class="ConfirmationModal modalPopup unifiedModal smallModal" data-modal-handle="confirmation" style="display:none;">
+    <a class="genericmodal-close ImageButton closeBtnCircle_20h"></a>
+    <div class="Title"></div>
+    <div class="GenericModalBody">
+        <div class="TopBody">
+            <div class="ImageContainer roblox-item-image" data-image-size="small" data-no-overlays data-no-click>
+                <img class="GenericModalImage" alt="generic image" />
+            </div>
+            <div class="Message"></div>
+        </div>
+        <div class="ConfirmationModalButtonContainer">
+            <a href class=roblox-confirm-btn><span></span></a>
+            <a href class= roblox-decline-btn><span></span></a>
+        </div>
+        <div class="ConfirmationModalFooter">
+        
+        </div>  
+    </div>  
+    <script type="text/javascript">
+        var Roblox = Roblox || {};
+        Roblox.GenericConfirmation = Roblox.GenericConfirmation || {};
+        
+        //<sl:translate>
+        Roblox.GenericConfirmation.Resources = {
+            yes: "Yes",
+            No: "No",
+            Confirm: "Confirm",
+            Cancel: "Cancel"
+        };
+        //</sl:translate>
+    </script>
+</div>
 
 
 </body>
