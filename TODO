@@ -6,3 +6,4 @@ TODO:
 - Add a proper admin panel
 - Remove adminer (and replace with PGAdmin or similar)
 - Re-route all Authentication system to a new one using Roblox's ones.
+- Add support for nginx and Docker (in order to make setup less harder)
