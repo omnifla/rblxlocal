@@ -11,7 +11,7 @@ spl_autoload_register(function ($class) {
 
     // Roblox namespace
     if (strpos($class, 'Roblox\\') === 0) {
-        $base_dir = __DIR__ . '/Depedencies/';
+        $base_dir = __DIR__ . '/../Depedencies/';
         $file = $base_dir . str_replace('\\', '/', $class) . '.php';
         if (file_exists($file)) require $file;
     }
@@ -24,8 +24,8 @@ spl_autoload_register(function ($class) {
     }
 });
 // important stuff:
-require_once __DIR__ . '/Depedencies/IncludeHelper.php';
-require_once __DIR__ . '/Depedencies/PrivateLogger.php';
+require_once __DIR__ . '/IncludeHelper.php';
+require_once __DIR__ . '/PrivateLogger.php';
 
 // load .env and other stuff
 use Dotenv\Dotenv;
