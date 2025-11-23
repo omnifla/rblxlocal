@@ -2,7 +2,7 @@
 // DEFINITIVELY NOT WRITTEN BY MEDITEXT
 require_once $_SERVER['DOCUMENT_ROOT']. "/../config/main.php";
 use Roblox\Authentication;
-$url = urlencode($site_properties['baseUrl']."/Game/PlaceLauncher.ashx?placeId=1818");
+$url = urlencode(str_replace("https:", "http:",$site_properties['baseUrl']."/Game/PlaceLauncher.ashx?placeId=1818"));
 $time = time();
 $cookie = $_COOKIE['_ROBLOSECURITY'] ?? 0;
 ?>
