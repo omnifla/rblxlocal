@@ -1,4 +1,4 @@
-# APIKey
+# FFlag Deployer
 > [!IMPORTANT]  
 > FFlagDeployer is now deprecated and superseded by rbx-api-service. Do not use this class anymore.
 
