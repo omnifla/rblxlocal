@@ -1,8 +1,5 @@
-> [!CAUTION]
-> RBLX.local is source code, not a revival. However, we host the project at [RBLX.cloud](https;//rblx.cloud).
-
 > [!WARNING]
-> This will become the legacy repo for RBLX.local, please refer to https://github.com/rblx-local/rblx-local-web. Please finish your commits/pull requests by the end of the month (Jan 2026).
+> This source code is heavily incomplete, not all features were implemented on it hence why I'd say that if u wanna use it, you'd have to implement all of the other stuff by yourself
 
 <p align="center">
     <img src="https://github.com/rblx-local/rblxlocal/blob/main/logo.png#gh-dark-mode-only" width="420">
