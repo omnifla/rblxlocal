@@ -1,6 +1,9 @@
 > [!WARNING]
 > This source code is heavily incomplete, not all features were implemented on it hence why I'd say that if u wanna use it, you'd have to implement all of the other stuff by yourself
 
+> [!NOTE]
+> Skyler's Fridge does not own the rights to RBLXLocal or any of it's assets and we do not claim ownership of the source code.
+
 <p align="center">
     <img src="https://github.com/rblx-local/rblxlocal/blob/main/logo.png#gh-dark-mode-only" width="420">
     <img src="https://github.com/rblx-local/rblxlocal/blob/main/logo.png#gh-light-mode-only" width="420">
@@ -10,7 +13,7 @@
 An open-source 2015E Roblox Revival built from ported Roblox site backend.
 </div>
 
-## Authors
+## Developers
 - [meditext](https://github.com/TheGuyWhoIsIdiot)
 - [Carbon](https://github.com/Carbonapi)
 - [SkylerClock](https://github.com/SkylerClockYT)
