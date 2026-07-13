@@ -1,0 +1,14 @@
+RewriteEngine On
+
+RewriteRule ^userads/([123])$ userads/index.php?type=$1 [L]
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^([a-zA-Z0-9_\-/]+)$ $1.php [L]
+
+RewriteCond %{REQUEST_URI} ^/userads/([0-9]+)$
+RewriteCond %1 !^(1|2|3)$
+RewriteRule ^ userads/invalid-redirect [R=302,L]
+RewriteRule ^userads/invalid-redirect$ /RobloxDefaultErrorPage.aspx?code=404 [R=302,L]
+
+ErrorDocument 403 /RobloxDefaultErrorPage.aspx?code=403
+ErrorDocument 404 /RobloxDefaultErrorPage.aspx?code=404
+ErrorDocument 500 /RobloxDefaultErrorPage.aspx?code=500

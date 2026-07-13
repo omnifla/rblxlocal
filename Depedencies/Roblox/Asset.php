@@ -55,8 +55,8 @@ class Asset {
         if ($this->_OriginalIsArchived === null) $this->_OriginalIsArchived = $this->_EntityDAL->IsArchived;
         $this->_EntityDAL->IsArchived = $value;
     }
-    public function getCreated(): string { return $this->_EntityDAL->CreatedUtc; }
-    public function getUpdated(): string { return $this->_EntityDAL->UpdatedUtc; }
+    public function getCreated(): string { return $this->_EntityDAL->Created; }
+    public function getUpdated(): string { return $this->_EntityDAL->Updated; }
     public function isOwnedByUser(int $userId): bool {
         return AssetOwnershipAuthority::doesUserOwnAsset($userId, $this->getID());
     }

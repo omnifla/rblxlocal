@@ -21,17 +21,17 @@ class AssetCounter
 
     public function getID(): int
     {
-        return $this->_EntityDAL->id;
+        return $this->_EntityDAL->ID;
     }
 
     public function getAssetID(): int
     {
-        return $this->_EntityDAL->asset_id;
+        return $this->_EntityDAL->AssetID;
     }
 
     public function setAssetID(int $value): void
     {
-        $this->_EntityDAL->asset_id = $value;
+        $this->_EntityDAL->AssetID = $value;
     }
 
     public function getAssetCounterTypeID(): int
@@ -41,27 +41,27 @@ class AssetCounter
 
     public function setAssetCounterTypeID(int $value): void
     {
-        $this->_EntityDAL->asset_counter_type_id = $value;
+        $this->_EntityDAL->AssetCounterTypeID = $value;
     }
 
     public function getValue(): int
     {
-        return $this->_EntityDAL->value;
+        return $this->_EntityDAL->Value;
     }
 
     public function setValue(int $value): void
     {
-        $this->_EntityDAL->value = $value;
+        $this->_EntityDAL->Value = $value;
     }
 
     public function getCreated(): \DateTime
     {
-        return $this->_EntityDAL->created;
+        return $this->_EntityDAL->Created;
     }
 
     public function getUpdated(): \DateTime
     {
-        return $this->_EntityDAL->updated;
+        return $this->_EntityDAL->Updated;
     }
 
     public function increment(int $amount = 1): void
