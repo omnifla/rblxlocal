@@ -1,0 +1,98 @@
+<?php
+// adds a 'secure' api system
+// the point of this is for people to not abuse apis to the point of death
+// TODO: add a logging system
+
+namespace Roblox\Web\SecureAPI;
+
+class SecureRoot {
+    // class constants rather than enums because its a php 8.1 feature only
+    public const SUCCESS = 'SUCCESS';
+    public const INVAILD = 'INVAILD';
+
+    function __construct() {}
+
+    public function getChecksum(string $givenStr) : string {
+        // TODO: do more with this function rather than this
+        return hash('sha256', $givenStr, false);
+    }
+
+    // https://stackoverflow.com/a/15699240
+    // i feel like this shouldn't be here, oh well!
+    public function getIPAddress() : string {
+        $ipaddress = '';
+        if (isset($_SERVER['HTTP_CLIENT_IP']))
+            $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+        else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        else if(isset($_SERVER['HTTP_X_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+        else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+        else if(isset($_SERVER['HTTP_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED'];
+        else if(isset($_SERVER['REMOTE_ADDR']))
+            $ipaddress = $_SERVER['REMOTE_ADDR'];
+        else
+            $ipaddress = 'UNKNOWN';
+        return $ipaddress;
+    }
+}
+
+class APIKey extends SecureRoot {
+    private $defaultAPIKey;
+    private $apiKey;
+    private $hashKey;
+
+    function __construct(?string $key = null) {
+        $this->defaultAPIKey = 'defaultApiKey';
+        if (!$key)
+            $key = $this->defaultAPIKey;
+
+        $this->apiKey = htmlspecialchars($key);
+        $this->hashKey = $this->getChecksum($this->apiKey); // don't waste memory
+    }
+
+    public function processRequest() : string {
+        if (!isset($_GET['apiKey']))
+            throw new \InvalidArgumentException('apiKey does not exist in the given request, not good.');
+
+        $givenKey = htmlspecialchars((string)$_GET['apiKey']); // we're only putting this through a checksum, is it really important to keep it here?
+        $newKey = $this->getChecksum($givenKey);
+        if ($newKey == $this->hashKey)
+            return self::SUCCESS;
+
+        return self::INVAILD;
+    }
+}
+
+// this is way better than apikey, the only way someone
+// can access this is via a rat in the gameservers
+class IPList extends SecureRoot {
+    private array $ipList;
+    private string $failedGrabHash;
+
+    public const NO_IPGIVEN = 'NOIPGIVEN';
+
+    function __construct(array $ipList, bool $isHashed = false) {
+        $mainIPList = $ipList;
+        if ($isHashed) {
+            $mainIPList = [];
+            foreach ($ipList as $unhashedIP)
+                array_push($mainIPList, $this->getChecksum($unhashedIP));
+        }
+
+        $this->ipList = $ipList;
+        $this->failedGrabHash = '23759997b3c59884dc4c0ff5320d6301b0e7f63bf0f6483a7b54d7d43bc5ccd1';
+    }
+
+    public function processRequest() : string {
+        $hashedIP = $this->getChecksum($this->getIPAddress());
+        if ($hashedIP == $this->failedGrabHash)
+            return self::NO_IPGIVEN; // debating myself if we should use this
+        if (array_search($hashedIP, $this->ipList, false))
+            return self::SUCCESS;
+
+        return self::INVAILD;
+    }
+}

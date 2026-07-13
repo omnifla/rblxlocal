@@ -1,0 +1,1141 @@
+<?php
+// ported by meditext
+namespace Roblox\Thumbs;
+/// This script is responsible for the /Thumbs/Asset.ashx and other parts known so far that renders the Thumbnail.
+use Roblox\Data;
+use Roblox\Grid;
+use Roblox\Grid\Rcc;
+use Roblox\Grid\Lua;
+
+/// Creates Asset thumbnails and provides Urls to the thumbnails
+/// This web service is coupled with AssetImage.js and the AssetImage control
+
+abstract class BodyPartRequest {
+	protected override GridRequest.JobCategory Category
+	{
+		get { return JobCategory.FastJob; }
+	}
+	protected virtual long CustomTextureAssetID
+	{
+		get { return -1; }
+	}
+	protected string script
+	{
+		get
+		{
+			string val = string.Empty;
+			if (!string.IsNullOrEmpty(Properties.Settings.Default.BodyPartScriptOverride))
+				val = Properties.Settings.Default.BodyPartScriptOverride;
+			else
+				val = _BodyPartScript;
+			return val;
+		}
+	}
+	public override bool RequiresDeepModeration
+	{
+		get { return false; }
+	}
+	public BodyPartRequest(long assetHashId, ImageParameters imageParameters)
+		: base(assetHashId, imageParameters)
+	{
+	}
+	protected override ScriptExecution GetScript(Size size)
+	{
+		string customTextureUrl = _AssetRequest + CustomTextureAssetID;
+		return Lua.NewScript(
+			Key,
+			script,
+			AssetHashUrl,
+			_Url,
+			ImageParameters.FileExtension,
+			size.Width,
+			size.Height,
+			_MannequinUrl,
+			customTextureUrl
+		);
+	}
+}
+class Asset {
+    private static $accessKeyParameter;
+    private static $assetHashRequest;
+    private static $assetRequest;
+    private static $assetVersionRequest;
+    private static $bodyPartScript;
+    private static $decalScript;
+    private static $faceScript;
+    private static $gearScript;
+    private static $headScript;
+    private static $hatScript;
+    private static $mannequinId = 1785197;
+    private static $mannequinUrl;
+    private static $modelScript;
+    private static $packageScript;
+    private static $pantsScript;
+    private static $placeScript;
+    private static $scriptPngPath;
+    private static $shirtScript;
+    private static $toolPngPath;
+    private static $url;
+
+    public static function init() {
+        self::$accessKeyParameter   = "&accesskey=" . \Roblox\Common\Web::getAccessKey();
+        self::$assetHashRequest     = \Roblox\Common\Web::getApplicationURL() . "/Asset/?hash=";
+        self::$assetRequest         = \Roblox\Common\Web::getApplicationURL() . "/Asset/?id=";
+        self::$assetVersionRequest  = \Roblox\Common\Web::getApplicationURL() . "/Asset/?versionid=";
+        // TODO: load resources instead of Resources.Roblox_Thumbs_* from C#
+        self::$bodyPartScript       = file_get_contents(__DIR__ . "/BodyPartScript.lua");
+        self::$decalScript          = file_get_contents(__DIR__ . "/DecalScript.lua"); // missing, planning to use from internalscripts file
+        self::$faceScript           = file_get_contents(__DIR__ . "/FaceScript.lua"); // missing, planning to use from internalscripts file
+        self::$gearScript           = file_get_contents(__DIR__ . "/GearScript.lua");
+        self::$headScript           = file_get_contents(__DIR__ . "/HeadScript.lua");
+        self::$hatScript            = file_get_contents(__DIR__ . "/HatScript.lua"); // missing, planning to use from internalscripts file
+        self::$mannequinUrl         = self::$assetRequest . self::$mannequinId . self::$accessKeyParameter;
+        self::$modelScript          = file_get_contents(__DIR__ . "/ModelScript.lua");
+        self::$packageScript        = file_get_contents(__DIR__ . "/PackageScript.lua"); // missing, planning to use from internalscripts file
+        self::$pantsScript          = file_get_contents(__DIR__ . "/PantsScript.lua"); // missing, planning to reutilize from ShirtScript.lua
+        self::$placeScript          = file_get_contents(__DIR__ . "/PlaceScript.lua");
+        self::$scriptPngPath        = \Roblox\Common\Web::getApplicationURL() . "/Thumbs/Script.png";
+        self::$shirtScript          = file_get_contents(__DIR__ . "/ShirtScript.lua");
+        self::$toolPngPath          = \Roblox\Common\Web::getApplicationURL() . "/Thumbs/Tool.png";
+        self::$url                  = \Roblox\Common\Web::getApplicationURL() . "/";
+    }
+
+    public static function getMrGrayId() {
+        return self::$mannequinId;
+    }
+}
+
+class BodyPartRequest {
+
+    protected function getCustomTextureAssetId() {
+        return -1;
+    }
+
+    protected function getScriptContent() {
+        return Asset::$bodyPartScript;
+    }
+
+    public function requiresDeepModeration() {
+        return false;
+    }
+
+    protected function getScript($size) {
+        $customTextureUrl = Asset::$assetRequest . $this->getCustomTextureAssetId();
+        return Lua::NewScript(
+            $this->key,
+            $this->getScriptContent(),
+            $this->assetHashUrl,
+            Asset::$url,
+            $this->imageParameters->fileExtension,
+            $size["width"],
+            $size["height"],
+            Asset::$mannequinUrl,
+            $customTextureUrl
+        );
+    }
+}
+
+class ClothingRequest extends \Roblox\Grid\GridRequest {
+    abstract protected function getScriptContent();
+
+    protected function getCategory() {
+        return \Roblox\Grid\JobCategory::FAST_JOB;
+    }
+
+    public function requiresDeepModeration() {
+        return true;
+    }
+
+    protected function NewScript($size) {
+        return Lua::newScript(
+            $this->key,
+            $this->getScriptContent(),
+            $this->assetHashUrl,
+            $this->imageParameters->fileExtension,
+            $size["width"],
+            $size["height"],
+            Asset::$url
+        );
+    }
+}
+class Asset
+{
+	class LeftArmRequest : BodyPartRequest
+	{
+		protected override long CustomTextureAssetID
+		{
+			get { return Properties.Settings.Default.LeftArmShirtTextureAssetID; }
+		}
+		public override string TypeIdentifier
+		{
+			get { return "LeftArm"; }
+		}
+		public LeftArmRequest(long assetHashId, ImageParameters imageParameters)
+			: base(assetHashId, imageParameters)
+		{
+		}
+	}
+	class RightArmRequest : BodyPartRequest
+	{
+		protected override long CustomTextureAssetID
+		{
+			get { return Properties.Settings.Default.RightArmShirtTextureAssetID; }
+		}
+		public override string TypeIdentifier
+		{
+			get { return "RightArm"; }
+		}
+		public RightArmRequest(long assetHashId, ImageParameters imageParameters)
+			: base(assetHashId, imageParameters)
+		{
+		}
+	}
+	class ArmsRequest : BodyPartRequest
+	{
+		protected override long CustomTextureAssetID
+		{
+			get { return Properties.Settings.Default.ArmsShirtTextureAssetID; }
+		}
+		public override string TypeIdentifier
+		{
+			get { return "Arms"; }
+		}
+		public ArmsRequest(long assetHashId, ImageParameters, imageParameters)
+			: base(assetHashId, imageParameters)
+		{
+		}
+	}
+	class LegsRequest : BodyPartRequest
+	{
+		protected override long CustomTextureAssetID
+		{
+			get { return Properties.Settings.Default.LegsPantsTextureAssetID; }
+		}
+		public override string TypeIdentifier
+		{
+			get { return "Legs"; }
+		}
+		public LegsRequest(long assetHashId, ImageParameters imageParameters)
+			: base(assetHashId, imageParameters)
+		{
+		}
+	}
+	class LeftLegRequest : BodyPartRequest
+	{
+		protected override long CustomTextureAssetID
+		{
+			get { return Properties.Settings.Default.LeftLegPantsTextureAssetID; }
+		}
+		public override string TypeIdentifier
+		{
+			get { return "LeftLeg"; }
+		}
+		public LeftLegRequest(long assetHashId, ImageParameters imageParameters)
+			: base(assetHashId, imageParameters)
+		{
+		}
+	}
+	class RightLegRequest : BodyPartRequest
+	{
+		protected override long CustomTextureAssetID
+		{
+			get { return Properties.Settings.Default.RightLegPantsTextureAssetID; }
+		}
+		public override string TypeIdentifier
+		{
+			get { return "RightLeg"; }
+		}
+		public RightLegRequest(long assetHashId, ImageParameters imageParameters)
+			: base(assetHashId, imageParameters)
+		{
+		}
+	}
+	class TorsoRequest : BodyPartRequest
+	{
+		protected override long CustomTextureAssetID
+		{
+			get { return Properties.Settings.Default.TorsoShirtTextureAssetID; }
+		}
+		public override string TypeIdentifier
+		{
+			get { return "Torso"; }
+		}
+		public TorsoRequest(long assetHashId, ImageParameters imageParameters)
+			: base(assetHashId, imageParameters)
+		{
+		}
+	}
+	class DecalRequest : GridRequest
+	{
+		protected override JobCategory Category
+		{
+			get { return JobCategory.FastJob; }
+		}
+		public override bool RequiresDeepModeration
+		{
+			get { return true; }
+		}
+		public override string TypeIdentifier
+		{
+			get { return "Decal"; }
+		}
+		protected static string script
+		{
+			get
+			{
+				if (!string.IsNullOrEmpty(Properties.Settings.Default.DecalScriptOverride))
+					return Properties.Settings.Default.DecalScriptOverride;
+				else
+					return _DecalScript;
+			}
+		}
+		public DecalRequest(long assetHashId, ImageParameters imageParameters)
+			: base(assetHashId, imageParameters)
+		{
+		}
+		protected override ScriptExecution GetScript(Size size)
+		{
+			return Grid.Lua.NewScript(
+				Key,
+				script,
+				AssetHashUrl,
+				ImageParameters.FileExtension,
+				size.Width,
+				size.Height,
+				_Url
+			);
+		}
+	}
+	class FaceRequest : GridRequest
+	{
+		protected override JobCategory Category
+		{
+			get { return JobCategory.FastJob; }
+		}
+		public override bool RequiresDeepModeration
+		{
+			get { return true; }
+		}
+		public override string TypeIdentifier
+		{
+			get { return "Face"; }
+		}
+		protected static string script
+		{
+			get
+			{
+				string val = string.Empty;
+				if (!string.IsNullOrEmpty(Properties.Settings.Default.FaceScriptOverride))
+					val = Properties.Settings.Default.FaceScriptOverride;
+				else
+					val = _FaceScript;
+				return string.Format(val, MrGrayID, Roblox.Common.Web.AccessKey);
+			}
+		}
+		public FaceRequest(long assetHashId, ImageParameters imageParameters)
+			: base(assetHashId, imageParameters)
+		{
+		}
+		protected override ScriptExecution GetScript(Size size)
+		{
+			return Grid.Lua.NewScript(
+				Key,
+				script,
+				AssetHashUrl,
+				ImageParameters.FileExtension,
+				size.Width,
+				size.Height,
+				_Url
+			);
+		}
+	}
+	class GearRequest : GridRequest
+	{
+		protected override JobCategory Category
+		{
+			get { return JobCategory.RegularJob; }
+		}
+		public override bool RequiresDeepModeration
+		{
+			get { return false; }
+		}
+		public override string TypeIdentifier
+		{
+			get { return "Gear"; }
+		}
+		protected static string script
+		{
+			get
+			{
+				string val = string.Empty;
+				if (!string.IsNullOrEmpty(Properties.Settings.Default.GearScriptOverride))
+					val = Properties.Settings.Default.GearScriptOverride;
+				else
+					val = _GearScript;
+				return val;
+			}
+		}
+		public GearRequest(long assetHashId, ImageParameters imageParameters)
+			: base(assetHashId, imageParameters)
+		{
+		}
+		protected override ScriptExecution GetScript(Size size)
+		{
+			string assetHashUrl = AssetHashUrl + _AccessKeyParameter;
+			return Grid.Lua.NewScript(
+				Key,
+				script,
+				assetHashUrl,
+				ImageParameters.FileExtension,
+				size.Width,
+				size.Height,
+				_Url
+			);
+		}
+	}
+	class HatRequest : GridRequest
+	{
+		protected override JobCategory Category
+		{
+			get { return JobCategory.RegularJob; }
+		}
+		public override bool RequiresDeepModeration
+		{
+			get { return true; }
+		}
+		public override string TypeIdentifier
+		{
+			get { return "Hat"; }
+		}
+		protected static string script
+		{
+			get
+			{
+				string val = string.Empty;
+				if (!string.IsNullOrEmpty(Properties.Settings.Default.HatScriptOverride))
+					val = Properties.Settings.Default.HatScriptOverride;
+				else
+					val = _HatScript;
+				return val;
+			}
+		}
+		public HatRequest(long assetHashId, ImageParameters imageParameters)
+			: base(assetHashId, imageParameters)
+		{
+		}
+		protected override ScriptExecution GetScript(Size size)
+		{
+			string assetHashUrl = AssetHashUrl + _AccessKeyParameter;
+			return Grid.Lua.NewScript(
+				Key,
+				script,
+				assetHashUrl,
+				ImageParameters.FileExtension,
+				size.Width,
+				size.Height,
+				_Url
+			);
+		}
+	}
+	class HeadRequest : GridRequest
+	{
+		protected override JobCategory Category
+		{
+			get { return JobCategory.FastJob; }
+		}
+		public override bool RequiresDeepModeration
+		{
+			get { return true; }
+		}
+		public override string TypeIdentifier
+		{
+			get { return "Head"; }
+		}
+		protected static string script
+		{
+			get
+			{
+				string val = string.Empty;
+				if (!string.IsNullOrEmpty(Properties.Settings.Default.HeadScriptOverride))
+					val = Properties.Settings.Default.HeadScriptOverride;
+				else
+					val = _HeadScript;
+				return string.Format(val, MrGrayID, Roblox.Common.Web.AccessKey);
+			}
+		}
+		public HeadRequest(long assetHashId, ImageParameters imageParameters)
+			: base(assetHashId, imageParameters)
+		{
+		}
+		protected override ScriptExecution GetScript(Size size)
+		{
+			return Grid.Lua.NewScript(
+				Key,
+				script,
+				AssetHashUrl,
+				ImageParameters.FileExtension,
+				size.Width,
+				size.Height,
+				_Url
+			);
+		}
+	}
+	class ModelRequest : GridRequest
+	{
+		protected override JobCategory Category
+		{
+			get { return JobCategory.FastJob; }
+		}
+		public override bool RequiresDeepModeration
+		{
+			get { return false; }
+		}
+		public override string TypeIdentifier
+		{
+			get { return "Model"; }
+		}
+		protected static string script
+		{
+			get
+			{
+				string val = string.Empty;
+				if (!string.IsNullOrEmpty(Properties.Settings.Default.ModelScriptOverride))
+					val = Properties.Settings.Default.ModelScriptOverride;
+				else
+					val = _ModelScript;
+				return val;
+			}
+		}
+		public ModelRequest(long assetHashId, ImageParameters imageParameters)
+			: base(assetHashId, imageParameters)
+		{
+		}
+		protected override ScriptExecution GetScript(Size size)
+		{
+			string assetHashUrl = AssetHashUrl + _AccessKeyParameter;
+			return Lua.NewScript(
+				Key,
+				script,
+				assetHashUrl,
+				ImageParameters.FileExtension,
+				size.Width,
+				size.Height,
+				_ScriptPngPath,
+				_ToolPngPath,
+				_Url
+			);
+		}
+	}
+	class PackageRequest : GridRequest
+	{
+		private IAsset _Package;
+		protected override JobCategory Category
+		{
+			get { return JobCategory.FastJob; }
+		}
+		public override bool RequiresDeepModeration
+		{
+			get { return false; }
+		}
+		public override string TypeIdentifier
+		{
+			get { return "Package"; }
+		}
+		protected static string script
+		{
+			get
+			{
+				if (!string.IsNullOrEmpty(Properties.Settings.Default.PackageScriptOverride))
+					return Properties.Settings.Default.PackageScriptOverride;
+				else
+					return _PackageScript;
+			}
+		}
+		public PackageRequest(IAsset package, ImageParameters imageParameters)
+			: base(package.AssetHashID, imageParameters)
+		{
+			_Package = package;
+		}
+		protected override ScriptExecution GetScript(Size size)
+		{
+			string asseturls = string.Empty;
+			string guyurl = string.Format("{0}/Asset/?id={1}&accesskey={2}", Common.Web.ApplicationURL, MrGrayID, Common.Web.AccessKey);
+			string customtextureurls = string.Empty;
+			bool shirtTextureAlreadyApplied = false;
+			bool legsTextureAlreadyApplied = false;
+			// This will loop through the packaged items and add the checkered texture for each one of them.
+			List<AccoutrementPackageItem> packagedItems = (List<AccoutrementPackageItem>)AccoutrementPackageItem.GetAccoutrementPackageItems(_Package.CurrentVersion.AssetID);
+			foreach (var asset in packagedItems)
+			{
+				// Add the asset to the list of assets
+				asseturls += string.Format("{0}/Asset/?versionid={1};", Common.Web.ApplicationURL, asset.Asset.CurrentVersionID);
+				// Get the blue checkered texture
+				long customTextureId = 0;
+				if (asset.AssetTypeID == AssetType.LeftArmID || asset.AssetTypeID == AssetType.RightArmID)
+				{
+					if (shirtTextureAlreadyApplied)
+						continue;
+					// See if there is a torso, if so, we need to use the full upper body texture, other wise just the two arm texture (assume always another arm)
+					if (packagedItems.Find((a) => (a.AssetTypeID == AssetType.TorsoID)) != null)
+						customTextureId = Properties.Settings.Default.FullUpperBodyShirtTextureAssetID;
+					else
+						customTextureId = Properties.Settings.Default.ArmsShirtTextureAssetID;
+					shirtTextureAlreadyApplied = true;
+				}
+				else if (asset.AssetTypeID == AssetType.LeftLegID || asset.AssetTypeID == AssetType.RightLegID)
+				{
+					if (legsTextureAlreadyApplied)
+						continue;
+					customTextureId = Properties.Settings.Default.LegsPantsTextureAssetID;
+					legsTextureAlreadyApplied = true;
+				}
+				else if (asset.AssetTypeID == AssetType.TorsoID)
+				{
+					if (shirtTextureAlreadyApplied)
+						continue;
+					// If a right arm exists it means a left arm exists (Requirement to Marketing team)
+					// this also means that we're using the full upper body texture, otherwise just torso
+					if (packagedItems.Find((e) => (a.AssetTypeID == AssetType.RightArmID)) != null)
+						customTextureId = Properties.Settings.Default.FullUpperBodyShirtTextureAssetID;
+					else
+						customTextureId = Properties.Settings.Default.TorsoShirtTextureAssetID;
+					shirtTextureAlreadyApplied = true;
+				}
+				if (customTextureId != 0)
+					customtextureurls += string.Format("{0}/Asset/?id={1};", Common.Web.ApplicationURL, customTextureId);
+			}
+			return Lua.NewScript(
+				Key,
+				script,
+				asseturls,
+				_Url,
+				ImageParameters.FileExtension,
+				size.Width,
+				size.Height,
+				guyurl,
+				customtextureurls
+			);
+		}
+	}
+	class PlaceRequest : GridRequest
+	{
+		protected override JobCategory Category
+		{
+			get { return JobCategory.RegularJob; }
+		}
+		public override bool RequiresDeepModeration
+		{
+			get { return false; }
+		}
+		public override string TypeIdentifier
+		{
+			get { return "Place"; }
+		}
+		protected static string script
+		{
+			get
+			{
+				string val = string.Empty;
+				if (!string.IsNullOrEmpty(Properties.Settings.Default.PlaceScriptOverride))
+					val = Properties.Settings.Default.PlaceScriptOverride;
+				else
+					val = _PlaceScript;
+				return val;
+			}
+		}
+		public PlaceRequest(long assetHashId, ImageParameters imageParameters)
+			: base(assetHashId, imageParameters)
+		{
+		}
+		protected override ScriptExecution GetScript(Size size)
+		{
+			string assetHashUrl = AssetHashUrl + _AccessKeyParameter;
+			return Lua.NewScript(
+				Key,
+				script,
+				assetHashUrl,
+				ImageParameters.FileExtension,
+				size.Width,
+				size.Height,
+				_Url
+			);
+		}
+	}
+	class PantsRequest : ClothingRequest
+	{
+		protected static string Script
+		{
+			get
+			{
+				string val = string.Empty;
+				if (!string.IsNullOrEmpty(Properties.Settings.Default.PantsScriptOverride))
+					val = Properties.Settings.Default.PantsScriptOverride;
+				else
+					val = _PantsScript;
+				return string.Format(val, MrGrayID, Roblox.Common.Web.AccessKey);
+			}
+		}
+		public override string TypeIdentifier
+		{
+			get { return "Pants"; }
+		}
+		public PantsRequest(long assetHashId, ImageParameters imageParameters)
+			: base(assetHashId, imageParameters)
+		{
+		}
+	}
+	class ShirtRequest : ClothingRequest
+	{
+		protected static string Script
+		{
+			get
+			{
+				string val = string.Empty;
+				if (!string.IsNullOrEmpty(Properties.Settings.Default.ShirtScriptOverride))
+					val = Properties.Settings.Default.ShirtScriptOverride;
+				else
+					val = _ShirtScript;
+				return string.Format(val, MrGrayID, Roblox.Common.Web.AccessKey);
+			}
+		}
+		public override string TypeIdentifier
+		{
+			get { return "Shirt"; }
+		}
+		public ShirtRequest(long assetHashId, ImageParameters imageParameters)
+			: base(assetHashId, imageParameters)
+		{
+		}
+	}
+	class BadgeRequest : ThumbnailRequest
+	{
+		private Roblox.IAsset _Badge;
+		public override bool RequiresDeepModeration
+		{
+			get { return false; }
+		}
+		public override string TypeIdentifier
+		{
+			get { return "Badge"; }
+		}
+		public BadgeRequest(IAsset badge, ImageParameters imageParameters)
+			: base(badge.AssetBadgeID, imageParameters)
+		{
+			_Badge = badge;
+		}
+		internal override Bitmap GenerateBitmap(ref ICollection<AssetReference> assetReferences)
+		{
+			AssetVersion currentVerion = _Badge.CurrentVersion;
+			var assetBadgeOption = AssetBadgeOption.GetAssetBadgeOption.LookupFilter.AssetID, currentVersion.AssetID);
+			var badgeImageAsset = Roblox.Asset.Get(assetBadgeOption.BadgeImageID);
+			var badgeImageAssetReference = new AssetReference(badgeImageAsset, AssetReference.AssetReferenceTypes.AssetSubscription);
+			assetReferences.Add(badgeImageAssetReference);
+			var scaledBitmap = new Bitmap(ImageParameters.Width, ImageParameters.Height, PixelFormat.Format32bppArgb);
+			if (!badgeImageAsset.IsReviewed)
+			{
+				using (Bitmap bitmap = Dispatcher.Singleton.CreatePendingReviewBitmap(ImageParameters.Width, ImageParameters.Height)
+				{
+					Thumbnails.DrawInto(bitmap, scaledBitmap);
+				}
+			}
+			else if (!_Badge.IsApproved || !badgeImageAsset.IsApproved)
+			{
+				using (Bitmap bitmap = Dispatcher.Singleton.CreateUnapprovedBitmap(ImageParameters.Width, ImageParameters.Height))
+				{
+					Thumbnails.DrawInto(bitmap, scaledBitmap);
+				}
+			}
+			else
+			{
+				using (MemoryStream memoryStream = FilesManager.Singleton.GetStream(badgeImageAsset.Hash))
+				{
+					using (var image = Image.FromStream(memoryStream))
+					{
+						Thumbnails.DrawInto(image, scaledBitmap);
+					}
+				}
+			}
+			return scaledBitmap;
+		}
+	}
+	class ImageRequest : ThumbnailRequest
+	{
+		public override bool RequiresDeepModeration
+		{
+			get { return false; }
+		}
+		public override string TypeIdentifier
+		{
+			get { return "Image"; }
+		}
+		public ImageRequest(long assetHashId, ImageParameters imageParameters)
+			: base(assetHashId, imageParameters)
+		{
+		}
+		internal override Bitmap GenerateBitmap(ref ICollection<AssetReference> assetReferences)
+		{
+			var scaledBitmap = new Bitmap(ImageParameters.Width, ImageParameters.Height, PixelFormat.Format32bppArgb);
+			using (MemoryStream memoryStream = FilesManager.Singleton.GetStream(AssetHash))
+			{
+				using (var image = Image.FromStream(memoryStream))
+				{
+					Thumbnails.DrawInto(image, scaledBitmap);
+				}
+			}
+			return scaledBitmap;
+		}
+	}
+	class StaticImageRequest : ThumbnailRequest
+	{
+		private Bitmap _Bitmap;
+		private string _TypeIdentifier;
+		protected override string InstanceIdentifier
+		{
+			get { return "000000000000000000000000000000000"; }
+		}
+		public bool PreserveAspectRatio = false;
+		public override bool RequiresDeepModeration
+		{
+			get { return false; }
+		}
+		public override string TypeIdentifier
+		{
+			get { return _TypeIdentifier; }
+		}
+		public StaticImageRequest(ImageParameters imageParameters, Bitmap bitmap, string typeIdentifier)
+			: base(Roblox.AssetHash.GetOrCreate(AssetType.ImageID, typeIdentifier, Roblox.User.RobloxAccount).ID, imageParameters)
+		{
+			_TypeIdentifier = typeIdentifier;
+			_Bitmap = bitmap;
+		}
+		internal override Bitmap GenerateBitmap(ref ICollection<AssetReference> assetReferences)
+		{
+			var scaledBitmap = new Bitmap(ImageParameters.Width, ImageParameters.Height, PixelFormat.Format32bppArgb);
+			if (PreserveAspectRatio)
+			{
+				Thumbnails.DrawInto(_Bitmap, scaledBitmap);
+			}
+			else
+			{
+				using (var graphics = Graphics.FromImage(scaledBitmap))
+				{
+					graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+					graphics.DrawImage(_Bitmap, 0, 0, ImageParameters.Width, ImageParameters.Height);
+				}
+			}
+			return scaledBitmap;
+		}
+	}
+	class TeeShirtRequest : ThumbnailRequest
+	{
+		private Roblox.IAsset _TeeShirt;
+		public override bool RequiresDeepModeration
+		{
+			get { return true; }
+		}
+		public override string TypeIdentifier
+		{
+			get { return "TeeShirt"; }
+		}
+		//private static string _TeeShirtFile = HostingEnvironment.MapPath("~/App_Data/tshirt.png");
+		public TeeShirtRequest(IAsset teeShirt, ImageParameters imageParameters)
+			: base(teeShirt.AssetHashID, imageParameters)
+		{
+			_TeeShirt = teeShirt;
+		}
+		internal override Bitmap GenerateBitmap(ref ICollection<AssetReference> assetReferences)
+		{
+			var teeShirtDocument = new XmlDocument();
+			using (MemoryStream teeShirtMemoryStream = FilesManager.Singleton.GetStream(AssetHash))
+			{
+				teeShirtDocument.Load(teeShirtMemoryStream);
+			}
+			AssetReference teeShirtImageAssetReference = TeeShirt.GetImageAssetReference(teeShirtDocument);
+			assetReferences.Add(teeShirtImageAssetReference);
+			// Overlay the graphic inside the TeeShirt
+			RectangleF teeShirtBox;
+			var scaledBitmap = new Bitmap(ImageParameters.Width, ImageParameters.Height, PixelFormat.Format32bppArgb);
+			teeShirtBox = Thumbnails.DrawInto(Resources.TeeShirtThumbnail, scaledBitmap);
+			//using (var teeShirtImage = Image.FromFile(_TeeShirtFile))
+			//{
+			//    teeShirtBox = Thumbnails.DrawInto(teeShirtImage, scaledBitmap);
+			//}
+			IAsset teeShirtImageAsset = teeShirtImageAssetReference.ReferredAsset;
+			bool isReviewed = teeShirtImageAsset.IsReviewed;
+			bool isApproved = _TeeShirt.IsApproved && teeShirtImageAsset.IsApproved;
+			if (isReviewed && isApproved)
+			{
+				teeShirtBox.Inflate(-0.2f * teeShirtBox.Width, -0.2f * teeShirtBox.Height);
+				using (var image = TeeShirt.GetImage(teeShirtDocument))
+				{
+					Thumbnails.DrawInto(image, scaledBitmap, teeShirtBox);
+				}
+			}
+			else if (!isReviewed)
+			{
+				teeShirtBox.Inflate(-0.2f * teeShirtBox.Width, -0.2f * teeShirtBox.Height);
+				using (var Bitmap bitmap = Dispatcher.Singleton.CreatePendingReviewBitmap(ImageParameters.Width, ImageParameters.Height))
+				{
+					Thumbnails.DrawInto(image, scaledBitmap, teeShirtBox);
+				}
+			}
+			else if (!isApproved)
+			{
+				teeShirtBox.Inflate(-0.2f * teeShirtBox.Width, -0.2f * teeShirtBox.Height);
+				using (var Bitmap bitmap = Dispatcher.Singleton.CreateUnapprovedBitmap(ImageParameters.Width, ImageParameters.Height))
+				{
+					Thumbnails.DrawInto(image, scaledBitmap, teeShirtBox);
+				}
+			}
+			return scaledBitmap;
+		}
+	}
+	class UnapprovedRequest : StaticImageRequest
+	{
+		public UnapprovedRequest(ImageParameters imageParameters)
+			: base(imageParameters, Resources.UnapprovedThumbnail, "Unapproved2")
+		{
+		}
+	}
+	class UnreviewedRequest : StaticImageRequest
+	{
+		public UnreviewedRequest(ImageParameters imageParameters)
+			: base(imageParameters, Resources.UnapprovedThumbnail, "Unreviewed2")
+		{
+		}
+	}
+	//class UnapprovedRequest : StaticImageRequest
+	//{
+	//    public UnapprovedRequest(ImageParameters imageParameters)
+	//        : base(imageParameters, "~/thumbs/unapproved.png", "Unapproved2")
+	//        {
+	//        }
+	//}
+	//class UnreviewedRequest : StaticImageRequest
+	//{
+	//    public UnreviewedRequest(ImageParameters imageParameters)
+	//        : base(imageParameters, "~/thumbs/ReviewPending.png", "Unreviewed2")
+	//        {
+	//        }
+	//}
+	[WebMethod]
+	[ScriptMethod(UseHttpGet = true)]
+	public ScriptThumbResult RequestThumbnail(long assetId, long? assetVersionId, int? width, int? height, string imageFormat, int thumbnailFormatId, bool overrideModeration)
+	{
+		//If width and height passed as null, get from the thumbnail format
+		if (!width.HasValue || !height.HasValue)
+		{
+			var thumbnailFormat = ThumbnailFormat.Get(thumbnailFormatId);
+			width = thumbnailFormat.Width;
+			height = thumbnailFormat.Height;
+		}
+		IAsset iAsset;
+		if (assetVersionId.HasValue && (assetVersionId.Value != default(long)))
+			iAsset = Roblox.AssetVersion.Get(assetVersionId.Value);
+		else
+			iAsset = Roblox.Asset.Get(assetId);
+		var imageParameters = new ImageParameters(width.Value, height.Value, imageFormat, thumbnailFormatId);
+		ThumbResult thumbResult = GetThumbnailUrl(iAsset, imageParameters, overrideModeration);
+		var scriptThumbResult = new ScriptThumbResult(thumbResult, Context.Request.IsSecureConnection);
+		return scriptThumbResult
+	}
+	[WebMethod]
+	[ScriptMethod(UseHttpGet = true)]
+	public ScriptThumbResult RequestThumbnail_v2(long assetId, long? assetVersionId, int? width, int? height, string imageFormat, int thumbnailFormatId, bool overrideModeration)
+	{
+		return RequestThumbnail(assetId, assetVersionId, width, height, imageFormat, thumbnailFormatId, overrideModeration);
+	}
+	private static AssetReference BuildAssetReference(IAsset asset)
+	{
+		var a = asset as Roblox.Asset;
+		if (a != null)
+			return new AssetReference(AssetReference.AssetReferenceTypes.AssetSubscription);
+		var av = asset as Roblox.AssetVersion;
+		if (av != null)
+			return new AssetReference(AssetReference.AssetReferenceTypes.AssetVersion);
+		var ua = asset as Roblox.UserAsset;
+		if (ua != null)
+			return new AssetReference(ua.GetAsset(), AssetReference.AssetReferenceTypes.AssetSubscription);
+		throw new ArgumentException("Asset instance is not a valid IAsset.");
+	}
+	private static string GetAssetUrl(IAsset asset)
+	{
+		var a = asset as Roblox.Asset;
+		if (a != null)
+			return _AssetRequest + a.ID;
+		var av = asset as Roblox.AssetVersion;
+		if (av != null)
+			return _AssetVersionRequest + av.ID;
+		var ua = asset as Roblox.UserAsset;
+		if (ua != null)
+			return _AssetRequest + ua.AssetID;
+		throw new ArgumentException("Asset instance is not a valid IAsset.");
+	}
+	private static ThumbResult GetUnapprovedThumbnailUrl(ImageParameters imageParameters)
+	{
+		return Dispatcher.Singleton.RequestUnapproved(imageParameters);
+	}
+	private static ThumbResult GetUnreviewedThumbnailUrl(ImageParameters imageParameters)
+	{
+		return Dispatcher.Singleton.RequestUnreviewed(imageParameters);
+	}
+	public static ThumbResult GetThumbnailUrl(IAsset asset, ImageParameters imageParameters)
+	{
+		return GetThumbnailUrl(asset, imageParameters, false);
+	}
+	public static ThumbResult GetThumbnailUrl(IAsset asset, ImageParameters imageParameters, bool overrideModeration)
+	{
+		try
+		{
+			if (asset == null)
+				return Dispatcher.Singleton.RequestBroken(imageParameters);
+			AssetType assetType = asset.Type;
+			bool isApproved = asset.IsApproved;
+			bool isReviewed = asset.IsReviewed;
+			/*
+			 *
+			 *   Requires Review | Reviewed | Approved | Image          
+			 *   ----------------+----------+----------+----------------
+			 *          F        |     -    |    F     |  BAD!          
+			 *          F        |     -    |    T     |  Good          
+			 *          T        |     F    |    -     |  Pending Review
+			 *          T        |     T    |    F     |  BAD!
+			 *          T        |     T    |    T     |  Good
+			 *
+			 */
+			if (!Account.IsCurrentAccountInRole("RBXModerators") && !overrideModeration)
+			{
+				if (!isApproved && (isReviewed || !assetType.RequiresReview))
+					return GetUnapprovedThumbnailUrl(imageParameters);
+				if (!isReviewed && assetType.RequiresReview)
+					return GetUnreviewedThumbnailUrl(imageParameters);
+			}
+			int assetTypeId = assetType.ID;
+			ThumbnailRequest thumbnailRequest;
+			if (assetTypeId == AssetType.ImageID)
+				thumbnailRequest = new ImageRequest(asset.AssetHashID, imageParameters);
+			else if (assetTypeId == AssetType.BadgeID)
+				thumbnailRequest = new BadgeRequest(asset, imageParameters);
+			else if (assetTypeId == AssetType.DecalID)
+				thumbnailRequest = new DecalRequest(asset.AssetHashID, imageParameters);
+			else if (assetTypeId == AssetType.HatID)
+				thumbnailRequest = new HatRequest(asset.AssetHashID, imageParameters);
+			else if (assetTypeId == AssetType.HeadID)
+				thumbnailRequest = new HeadRequest(asset.AssetHashID, imageParameters);
+			else if (assetTypeId == AssetType.FaceID)
+				thumbnailRequest = new FaceRequest(asset.AssetHashID, imageParameters);
+			else if (assetTypeId == AssetType.GearID)
+				thumbnailRequest = new GearRequest(asset.AssetHashID, imageParameters);
+			else if (assetTypeId == AssetType.ModelID)
+				thumbnailRequest = new ModelRequest(asset.AssetHashID, imageParameters);
+			else if (assetTypeId == AssetType.PantsID)
+				thumbnailRequest = new PantsRequest(asset.AssetHashID, imageParameters);
+			else if (assetTypeId == AssetType.PlaceID)
+				thumbnailRequest = new PlaceRequest(asset.AssetHashID, imageParameters);
+			else if (assetTypeId == AssetType.ShirtID)
+				thumbnailRequest = new ShirtRequest(asset.AssetHashID, imageParameters);
+			else if (assetTypeId == AssetType.TeeShirtID)
+				thumbnailRequest = new TeeShirtRequest(asset, imageParameters);
+			else if (assetTypeId == AssetType.ArmsID)
+				thumbnailRequest = new ArmsRequest(asset.AssetHashID, imageParameters);
+			else if (assetTypeId == AssetType.LeftArmID)
+				thumbnailRequest = new LeftArmRequest(asset.AssetHashID, imageParameters);
+			else if (assetTypeId == AssetType.RightArmID)
+				thumbnailRequest = new RightArmRequest(asset.AssetHashID, imageParameters);
+			else if (assetTypeId == AssetType.LegsID)
+				thumbnailRequest = new LegsRequest(asset.AssetHashID, imageParameters);
+			else if (assetTypeId == AssetType.LeftLegID)
+				thumbnailRequest = new LeftLegRequest(asset.AssetHashID, imageParameters);
+			else if (assetTypeId == AssetType.RightLegID)
+				thumbnailRequest = new RightLegRequest(asset.AssetHashID, imageParameters);
+			else if (assetTypeId == AssetType.TorsoID)
+				thumbnailRequest = new TorsoRequest(asset.AssetHashID, imageParameters);
+			else if (assetTypeId == AssetType.PackageID)
+				thumbnailRequest = new PackageRequest(asset, imageParameters);
+			else if (assetTypeId == AssetType.AudioID)
+				thumbnailRequest = new StaticImageRequest(imageParameters, Resources.AudioThumbnail, "Audio") { PreserveAspectRatio = true };
+			//thumbnailRequest = new StaticImageRequest(imageParameters, "~/thumbs/audio.png", "Audio") {PreserveAspectRatio = true };
+			else if (assetTypeId == AssetType.LuaID)
+				thumbnailRequest = new StaticImageRequest(imageParameters, Resources.ScriptThumbnail, AssetType.LuaValue) { PreserveAspectRatio = true };
+			//thumbnailRequest = new StaticImageRequest(imageParameters, "~/thumbs/script.png", AssetType.LuaValue) {PreserveAspectRatio = true };
+			else
+				thumbnailRequest = new StaticImageRequest(imageParameters, Resources.UnknownThumbnail, "Unknown") { PreserveAspectRatio = true };
+			//thumbnailRequest = new StaticImageRequest(imageParameters, "~/thimbs/unknown.png", "Unknown") {PreserveAspectRatio = true };
+			return Dispatcher.Singleton.RequestThumbnail(thumbnailRequest);
+		}
+		catch (Exception ex)
+		{
+			ExceptionHandler.LogException(ex);
+			if (Roblox.GlobalProperties.IsTestingSite)
+				throw ex;
+			return Dispatcher.Singleton.RequestBroken(imageParameters);
+		}
+	}
+	#region IHttpHandler Members
+	public bool IsReusable
+	{
+		get { return true; }
+	}
+	public void ProcessRequest(HttpContext context)
+	{
+		HttpRequest request = context.Request;
+		var queryString = request.QueryString;
+		IAsset thumbAsset = null;
+		long assetId = default(long);
+		string id_str = queryString["userassetid"];
+		if (!string.IsNullOrEmpty(id_str))
+		{
+			long id = Convert.ToInt64(id_str);
+			var userAsset = UserAsset.Get(id);
+			thumbAsset = userAsset.CurrentVersion;
+		}
+		else
+		{
+			id_str = queryString["assetversion"];
+			if (!string.IsNullOrEmpty(id_str))
+			{
+				long id = Convert.ToInt64(id_str);
+				var assetVersion = AssetVersion.Get(id);
+				assetId = assetVersion.AssetID;
+				thumbAsset = assetVersion;
+			}
+			else
+			{
+				id_str = queryString["assetid"];
+				if (!string.IsNullOrEmpty(id_str) && (id_str != "undefined"))
+				{
+					assetId = Convert.ToInt64(id_str);
+					var asset = Roblox.Asset.Get(assetId);
+					thumbAsset = asset.CurrentVersion;
+				}
+			}
+		}
+		int thumbAssetTypeId = thumbAsset.Type.ID;
+		// Unfortunately, if it's a mesh, image, or sound, we need to let them access it for thumbnailing.
+		// If it's a gear item, hat, or face however, we can restrict access...
+		if (
+			(
+				(thumbAssetTypeId == AssetType.GearID)
+				|| (thumbAssetTypeId == AssetType.HatID)
+				|| (thumbAssetTypeId == AssetType.FaceID)
+			)
+			&& (DelayedReleaseAsset.IsDelayedAsset(assetId))
+		)
+		{
+			var authenticatedUser = Roblox.User.GetCurrent(context);
+			if (
+				(authenticatedUser == null)
+				|| !authenticatedUser.TestIsAdministrator()
+			)
+			{
+				context.Response.StatusCode = 500;
+				return;
+			}
+		}
+		var imageParameters = new ImageParameters(request);
+		ThumbResult thumbResult = GetThumbnailUrl(thumbAsset, imageParameters);
+		string url = thumbResult.GetUrl(request.IsSecureConnection);
+		context.Response.Redirect(url, false);
+	}
+	#endregion
+}
