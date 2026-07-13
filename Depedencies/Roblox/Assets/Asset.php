@@ -2,8 +2,7 @@
 // ported by meditext
 // i made a mistake here, this is a small unimportant depedency that is part of Roblox.Assets, rather than what i actually expected.
 namespace Roblox\Assets;
-use Roblox\Assets\DataAccess\AssetDAL;
-use Roblox\Settings;
+use Roblox\Assets\AssetDAL;
 // The asset class should ideally have it's own assembly to make it easily portable between projects, this a crude beginning
 class Asset
 {

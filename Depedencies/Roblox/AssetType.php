@@ -256,7 +256,7 @@ class AssetType {
         $indexOfAssetType += 11;
         $endIndex = strpos($xml,'\"', $indexOfAssetType);
         $assetType = substr($xml,$indexOfAssetType, $endIndex - $indexOfAssetType);
-        $actualtype = self::get($assetType);
+        $actualtype = self::get(assetType);
         return $actualtype;
     }
 }

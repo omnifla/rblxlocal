@@ -8,7 +8,6 @@ use Roblox\Cache\CacheManager;
 use Roblox\Common\EntityHelper;
 use Roblox\Common\Converters;
 use Roblox\Assets\AssetDAL;
-use Roblox\AssetType;
 
 class AssetCategory
 {
@@ -283,8 +282,8 @@ class AssetCategory
             true
         );
 
-        self::$AllTShirtCategoriesID = AssetCategoryDAL::getByName(AssetType::TeeShirtID, "All")->ID;
-        self::$AllGearCategories = AssetCategoryDAL::getByName(AssetType::GearID, "All")->ID;
+        self::$AllTShirtCategoriesID = AssetCategoryDAL::getByName(\Roblox\DataAccess\AssetType::TeeShirtID, "All")->ID;
+        self::$AllGearCategories = AssetCategoryDAL::getByName(\Roblox\DataAccess\AssetType::GearID, "All")->ID;
 
         self::initializeGearNames();
     }

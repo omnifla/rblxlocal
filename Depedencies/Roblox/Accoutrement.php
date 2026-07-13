@@ -3,9 +3,6 @@
 namespace Roblox;
 use Roblox\DataAccess\AccoutrementDAL;
 use Roblox\UserAvatar;
-use Roblox\User;
-use Roblox\UserAsset;
-use Roblox\Asset;
 use Exception;
 
 class AssetEquippedState
@@ -51,11 +48,11 @@ class Accoutrement {
     }
 
     public function getUser(): User {
-        return User::MustGet($this->dal->user_id);
+        return User::mustGet($this->dal->user_id);
     }
 
     public function getUserAsset(): UserAsset {
-        return UserAsset::MustGet($this->dal->user_asset_id);
+        return UserAsset::mustGet($this->dal->user_asset_id);
     }
 
     public static function createNew(UserAsset $userAsset): Accoutrement {
@@ -103,7 +100,7 @@ class Accoutrement {
             $assetTypeId = $userAsset->asset_type_id;
             $count = $assetTypesWorn[$assetTypeId] ?? 0;
 
-            if (($count < 1) || ($assetTypeId === AssetType::$HatID && $count < 3)) {
+            if (($count < 1) || ($assetTypeId === AssetType::HAT_ID && $count < 3)) {
                 $assetTypesWorn[$assetTypeId] = $count + 1;
                 $filteredAccoutrements[] = $accoutrement;
             } else {

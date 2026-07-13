@@ -15,7 +15,7 @@ class Punishment
     public ?string $endDate;
     public bool $active;
 
-    public ?string $ipAddress;
+    public ?string $ipAddress; // this is really insecure, please change it later
 
     private static array $types = [
         1 => ['name' => 'Warn', 'duration' => null],
