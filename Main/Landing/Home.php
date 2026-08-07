@@ -25,14 +25,14 @@ if ($cookie == "true") {
         <div class="container">
             <center><h1>Safety Filters Agreement</h1></center>
             <div style="margin:0 auto;position:relative;width:970px;">
-                <p>As ROBLOX Corporation is trying to crack down revivals and partnered with an anti-phishing AI project to prevent sites that mimic their official ones, we put this page as a landing to intentionally deflect the detection.</p>
+                <p>As ROBLOX Corporation is trying to crack down on revivals and has partnered with an anti-phishing AI project to prevent sites that mimic their official ones, we put this page as a landing to intentionally deflect the detection.</p>
                 <p>By clicking "Agree", you acknowledge that:</p>
                 <ul>
                     <li>This site is not affiliated with ROBLOX Corporation.</li>
                     <li>You are accessing a third-party website (not an official one).</li>
                     <li>You agree to use this site at your <b>own risk</b>.</li>
                     <li>You understand that this site has <b>no</b> relation with any of the transactions done on ROBLOX, and your accounts aren't linked by.</li>
-                    <li>You agree to <b>follow</b> ROBLOX's and RBLX.local's Terms of Service and Community Standsards while using this site.<span class="info-tool-tip tooltip" title="Any term broken inside this site may lead you to a permament ban."></span></li>
+                    <li>You agree to <b>follow</b> ROBLOX's and RBLX.local's Terms of Service and Community Standards while using this site.<span class="info-tool-tip tooltip" title="Any term broken inside this site may lead you to a permament ban."></span></li>
                 </ul>
                 <button class="btn-medium btn-primary" id="agreeButton">Agree</button>
             </div>
