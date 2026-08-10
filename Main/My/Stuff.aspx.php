@@ -18,6 +18,10 @@ $userId = (int)$user["id"];
   </title>
   <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=main___dac4a444950639c02cc831a484c826f5_m.css' />
   <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=page___1b22aeedd7f4e73ab0700a149f589336_m.css' />
+    <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=leanbase___213b3e760be9513b17fafaa821f394bf_m.css' />
+  <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=page___775166e336ea1267d5b2fe066340251f_m.css' />
+  <link rel='stylesheet' href='/CSS/Pages/User/UserPane.css' />
+  <link rel='stylesheet' href='/CSS/Pages/Inventory/Inventory.css' />
 </head>
 <body class="">
 <div>
