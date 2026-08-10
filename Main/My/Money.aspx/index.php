@@ -4,6 +4,9 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/../config/main.php');
 use Roblox\Authentication as Auth;
 use UserControls\Navigation\SiteHeader;
 use UserControls\Navigation\SiteFooter;
+
+$currentUser = Auth::GetAuthenticatedUserInfo();
+$currentUserId = $currentUser ? (int) $currentUser['id'] : '';
 ?>
 
 
@@ -27,9 +30,9 @@ use UserControls\Navigation\SiteFooter;
 <script type='text/javascript' src='//ajax.aspnetcdn.com/ajax/4.0/1/MicrosoftAjax.js'></script>
 <script type='text/javascript'>window.Sys || document.write("<script type='text/javascript' src='/js/Microsoft/MicrosoftAjax.js'><\/script>")</script>
         <div id="EventStreamData"
-             data-default-url="//ecsv2.roblox.com/www/e.png"
-             data-www-url="//ecsv2.roblox.com/www/e.png"
-             data-studio-url="//ecsv2.roblox.com/pe?t=studio"></div>
+             data-default-url="//ecsv2.roblox.local/www/e.png"
+             data-www-url="//ecsv2.roblox.local/www/e.png"
+             data-studio-url="//ecsv2.roblox.local/pe?t=studio"></div>
 
 
 <div id="page-heartbeat-event-data-model"
@@ -90,72 +93,72 @@ Roblox.AdsHelper.slots = Roblox.AdsHelper.slots || []; Roblox.AdsHelper.slots.pu
 if (typeof(Roblox) === "undefined") { Roblox = {}; }
 Roblox.Endpoints = Roblox.Endpoints || {};
 Roblox.Endpoints.Urls = Roblox.Endpoints.Urls || {};
-Roblox.Endpoints.Urls['/asset/'] = '//assetgame.roblox.com/asset/';
-Roblox.Endpoints.Urls['/client-status/set'] = '//www.roblox.com/client-status/set';
-Roblox.Endpoints.Urls['/client-status'] = '//www.roblox.com/client-status';
-Roblox.Endpoints.Urls['/game/'] = '//assetgame.roblox.com/game/';
-Roblox.Endpoints.Urls['/game/edit.ashx'] = '//assetgame.roblox.com/game/edit.ashx';
-Roblox.Endpoints.Urls['/game/getauthticket'] = '//assetgame.roblox.com/game/getauthticket';
-Roblox.Endpoints.Urls['/game/placelauncher.ashx'] = '//assetgame.roblox.com/game/placelauncher.ashx';
-Roblox.Endpoints.Urls['/game/report-stats'] = '//assetgame.roblox.com/game/report-stats';
-Roblox.Endpoints.Urls['/game/report-event'] = '//assetgame.roblox.com/game/report-event';
-Roblox.Endpoints.Urls['/chat/chat'] = '//misc.roblox.com/chat/chat';
-Roblox.Endpoints.Urls['/presence/users'] = '//www.roblox.com/presence/users';
-Roblox.Endpoints.Urls['/presence/user'] = '//www.roblox.com/presence/user';
-Roblox.Endpoints.Urls['/friends/list'] = '//www.roblox.com/friends/list';
-Roblox.Endpoints.Urls['/navigation/getCount'] = '//www.roblox.com/navigation/getCount';
-Roblox.Endpoints.Urls['/catalog/browse.aspx'] = '//www.roblox.com/catalog/browse.aspx';
-Roblox.Endpoints.Urls['/catalog/html'] = '//search.roblox.com/catalog/html';
-Roblox.Endpoints.Urls['/catalog/json'] = '//search.roblox.com/catalog/json';
-Roblox.Endpoints.Urls['/catalog/contents'] = '//search.roblox.com/catalog/contents';
-Roblox.Endpoints.Urls['/catalog/lists.aspx'] = '//search.roblox.com/catalog/lists.aspx';
-Roblox.Endpoints.Urls['/asset-hash-thumbnail/image'] = '//assetgame.roblox.com/asset-hash-thumbnail/image';
-Roblox.Endpoints.Urls['/asset-hash-thumbnail/json'] = '//assetgame.roblox.com/asset-hash-thumbnail/json';
-Roblox.Endpoints.Urls['/asset-thumbnail-3d/json'] = '//assetgame.roblox.com/asset-thumbnail-3d/json';
-Roblox.Endpoints.Urls['/asset-thumbnail/image'] = '//assetgame.roblox.com/asset-thumbnail/image';
-Roblox.Endpoints.Urls['/asset-thumbnail/json'] = '//assetgame.roblox.com/asset-thumbnail/json';
-Roblox.Endpoints.Urls['/asset-thumbnail/url'] = '//assetgame.roblox.com/asset-thumbnail/url';
-Roblox.Endpoints.Urls['/asset/request-thumbnail-fix'] = '//assetgame.roblox.com/asset/request-thumbnail-fix';
-Roblox.Endpoints.Urls['/avatar-thumbnail-3d/json'] = '//www.roblox.com/avatar-thumbnail-3d/json';
-Roblox.Endpoints.Urls['/avatar-thumbnail/image'] = '//www.roblox.com/avatar-thumbnail/image';
-Roblox.Endpoints.Urls['/avatar-thumbnail/json'] = '//www.roblox.com/avatar-thumbnail/json';
-Roblox.Endpoints.Urls['/avatar-thumbnails'] = '//www.roblox.com/avatar-thumbnails';
-Roblox.Endpoints.Urls['/avatar/request-thumbnail-fix'] = '//www.roblox.com/avatar/request-thumbnail-fix';
-Roblox.Endpoints.Urls['/bust-thumbnail/json'] = '//www.roblox.com/bust-thumbnail/json';
-Roblox.Endpoints.Urls['/group-thumbnails'] = '//www.roblox.com/group-thumbnails';
-Roblox.Endpoints.Urls['/groups/getprimarygroupinfo.ashx'] = '//www.roblox.com/groups/getprimarygroupinfo.ashx';
-Roblox.Endpoints.Urls['/headshot-thumbnail/json'] = '//www.roblox.com/headshot-thumbnail/json';
-Roblox.Endpoints.Urls['/item-thumbnails'] = '//www.roblox.com/item-thumbnails';
-Roblox.Endpoints.Urls['/outfit-thumbnail/json'] = '//www.roblox.com/outfit-thumbnail/json';
-Roblox.Endpoints.Urls['/place-thumbnails'] = '//www.roblox.com/place-thumbnails';
-Roblox.Endpoints.Urls['/thumbnail/asset/'] = '//www.roblox.com/thumbnail/asset/';
-Roblox.Endpoints.Urls['/thumbnail/avatar-headshot'] = '//www.roblox.com/thumbnail/avatar-headshot';
-Roblox.Endpoints.Urls['/thumbnail/avatar-headshots'] = '//www.roblox.com/thumbnail/avatar-headshots';
-Roblox.Endpoints.Urls['/thumbnail/user-avatar'] = '//www.roblox.com/thumbnail/user-avatar';
-Roblox.Endpoints.Urls['/thumbnail/resolve-hash'] = '//www.roblox.com/thumbnail/resolve-hash';
-Roblox.Endpoints.Urls['/thumbnail/place'] = '//www.roblox.com/thumbnail/place';
-Roblox.Endpoints.Urls['/thumbnail/get-asset-media'] = '//www.roblox.com/thumbnail/get-asset-media';
-Roblox.Endpoints.Urls['/thumbnail/remove-asset-media'] = '//www.roblox.com/thumbnail/remove-asset-media';
-Roblox.Endpoints.Urls['/thumbnail/set-asset-media-sort-order'] = '//www.roblox.com/thumbnail/set-asset-media-sort-order';
-Roblox.Endpoints.Urls['/thumbnail/place-thumbnails'] = '//www.roblox.com/thumbnail/place-thumbnails';
-Roblox.Endpoints.Urls['/thumbnail/place-thumbnails-partial'] = '//www.roblox.com/thumbnail/place-thumbnails-partial';
-Roblox.Endpoints.Urls['/thumbnail_holder/g'] = '//www.roblox.com/thumbnail_holder/g';
-Roblox.Endpoints.Urls['/users/{id}/profile'] = '//www.roblox.com/users/{id}/profile';
+Roblox.Endpoints.Urls['/asset/'] = '//assetgame.roblox.local/asset/';
+Roblox.Endpoints.Urls['/client-status/set'] = '//www.roblox.local/client-status/set';
+Roblox.Endpoints.Urls['/client-status'] = '//www.roblox.local/client-status';
+Roblox.Endpoints.Urls['/game/'] = '//assetgame.roblox.local/game/';
+Roblox.Endpoints.Urls['/game/edit.ashx'] = '//assetgame.roblox.local/game/edit.ashx';
+Roblox.Endpoints.Urls['/game/getauthticket'] = '//assetgame.roblox.local/game/getauthticket';
+Roblox.Endpoints.Urls['/game/placelauncher.ashx'] = '//assetgame.roblox.local/game/placelauncher.ashx';
+Roblox.Endpoints.Urls['/game/report-stats'] = '//assetgame.roblox.local/game/report-stats';
+Roblox.Endpoints.Urls['/game/report-event'] = '//assetgame.roblox.local/game/report-event';
+Roblox.Endpoints.Urls['/chat/chat'] = '//misc.roblox.local/chat/chat';
+Roblox.Endpoints.Urls['/presence/users'] = '//www.roblox.local/presence/users';
+Roblox.Endpoints.Urls['/presence/user'] = '//www.roblox.local/presence/user';
+Roblox.Endpoints.Urls['/friends/list'] = '//www.roblox.local/friends/list';
+Roblox.Endpoints.Urls['/navigation/getCount'] = '//www.roblox.local/navigation/getCount';
+Roblox.Endpoints.Urls['/catalog/browse.aspx'] = '//www.roblox.local/catalog/browse.aspx';
+Roblox.Endpoints.Urls['/catalog/html'] = '//search.roblox.local/catalog/html';
+Roblox.Endpoints.Urls['/catalog/json'] = '//search.roblox.local/catalog/json';
+Roblox.Endpoints.Urls['/catalog/contents'] = '//search.roblox.local/catalog/contents';
+Roblox.Endpoints.Urls['/catalog/lists.aspx'] = '//search.roblox.local/catalog/lists.aspx';
+Roblox.Endpoints.Urls['/asset-hash-thumbnail/image'] = '//assetgame.roblox.local/asset-hash-thumbnail/image';
+Roblox.Endpoints.Urls['/asset-hash-thumbnail/json'] = '//assetgame.roblox.local/asset-hash-thumbnail/json';
+Roblox.Endpoints.Urls['/asset-thumbnail-3d/json'] = '//assetgame.roblox.local/asset-thumbnail-3d/json';
+Roblox.Endpoints.Urls['/asset-thumbnail/image'] = '//assetgame.roblox.local/asset-thumbnail/image';
+Roblox.Endpoints.Urls['/asset-thumbnail/json'] = '//assetgame.roblox.local/asset-thumbnail/json';
+Roblox.Endpoints.Urls['/asset-thumbnail/url'] = '//assetgame.roblox.local/asset-thumbnail/url';
+Roblox.Endpoints.Urls['/asset/request-thumbnail-fix'] = '//assetgame.roblox.local/asset/request-thumbnail-fix';
+Roblox.Endpoints.Urls['/avatar-thumbnail-3d/json'] = '//www.roblox.local/avatar-thumbnail-3d/json';
+Roblox.Endpoints.Urls['/avatar-thumbnail/image'] = '//www.roblox.local/avatar-thumbnail/image';
+Roblox.Endpoints.Urls['/avatar-thumbnail/json'] = '//www.roblox.local/avatar-thumbnail/json';
+Roblox.Endpoints.Urls['/avatar-thumbnails'] = '//www.roblox.local/avatar-thumbnails';
+Roblox.Endpoints.Urls['/avatar/request-thumbnail-fix'] = '//www.roblox.local/avatar/request-thumbnail-fix';
+Roblox.Endpoints.Urls['/bust-thumbnail/json'] = '//www.roblox.local/bust-thumbnail/json';
+Roblox.Endpoints.Urls['/group-thumbnails'] = '//www.roblox.local/group-thumbnails';
+Roblox.Endpoints.Urls['/groups/getprimarygroupinfo.ashx'] = '//www.roblox.local/groups/getprimarygroupinfo.ashx';
+Roblox.Endpoints.Urls['/headshot-thumbnail/json'] = '//www.roblox.local/headshot-thumbnail/json';
+Roblox.Endpoints.Urls['/item-thumbnails'] = '//www.roblox.local/item-thumbnails';
+Roblox.Endpoints.Urls['/outfit-thumbnail/json'] = '//www.roblox.local/outfit-thumbnail/json';
+Roblox.Endpoints.Urls['/place-thumbnails'] = '//www.roblox.local/place-thumbnails';
+Roblox.Endpoints.Urls['/thumbnail/asset/'] = '//www.roblox.local/thumbnail/asset/';
+Roblox.Endpoints.Urls['/thumbnail/avatar-headshot'] = '//www.roblox.local/thumbnail/avatar-headshot';
+Roblox.Endpoints.Urls['/thumbnail/avatar-headshots'] = '//www.roblox.local/thumbnail/avatar-headshots';
+Roblox.Endpoints.Urls['/thumbnail/user-avatar'] = '//www.roblox.local/thumbnail/user-avatar';
+Roblox.Endpoints.Urls['/thumbnail/resolve-hash'] = '//www.roblox.local/thumbnail/resolve-hash';
+Roblox.Endpoints.Urls['/thumbnail/place'] = '//www.roblox.local/thumbnail/place';
+Roblox.Endpoints.Urls['/thumbnail/get-asset-media'] = '//www.roblox.local/thumbnail/get-asset-media';
+Roblox.Endpoints.Urls['/thumbnail/remove-asset-media'] = '//www.roblox.local/thumbnail/remove-asset-media';
+Roblox.Endpoints.Urls['/thumbnail/set-asset-media-sort-order'] = '//www.roblox.local/thumbnail/set-asset-media-sort-order';
+Roblox.Endpoints.Urls['/thumbnail/place-thumbnails'] = '//www.roblox.local/thumbnail/place-thumbnails';
+Roblox.Endpoints.Urls['/thumbnail/place-thumbnails-partial'] = '//www.roblox.local/thumbnail/place-thumbnails-partial';
+Roblox.Endpoints.Urls['/thumbnail_holder/g'] = '//www.roblox.local/thumbnail_holder/g';
+Roblox.Endpoints.Urls['/users/{id}/profile'] = '//www.roblox.local/users/{id}/profile';
 Roblox.Endpoints.addCrossDomainOptionsToAllRequests = true;
 </script>
 <script type="text/javascript">
 if (typeof(Roblox) === "undefined") { Roblox = {}; }
 Roblox.Endpoints = Roblox.Endpoints || {};
 Roblox.Endpoints.Urls = Roblox.Endpoints.Urls || {};
-Roblox.Endpoints.Urls['/authentication/is-logged-in'] = '//www.roblox.com/authentication/is-logged-in';
+Roblox.Endpoints.Urls['/authentication/is-logged-in'] = '//www.roblox.local/authentication/is-logged-in';
 </script>
 
 <script type="text/javascript">
     // IMPORTANT! If the user is logged in, set to user_id; else, set to ''
-    var _user_id = '65367932';
+    var _user_id = '<?php echo htmlspecialchars((string) $currentUserId, ENT_QUOTES, 'UTF-8'); ?>';
 
     // IMPORTANT! Set to a unique session ID for the visitor's current browsing session.
-    var _session_id = '65367932';
+    var _session_id = '<?php echo htmlspecialchars((string) $currentUserId, ENT_QUOTES, 'UTF-8'); ?>';
 
     var _sift = window._sift = window._sift || [];
 
@@ -226,7 +229,7 @@ function __doPostBack(eventTarget, eventArgument) {
 
 <script src="/ScriptResource.axd?d=PNxpIlDNxHhNQn8qOu3HPlzJIgROLYl7r-S2vBjZOfnwsFi0I7f5c8cbqCpQFoBqk-PMsxQr12YK88iZ3Zln99R2klscvuI7_3geHZC10UEM_pbL-jX2TFndzF1aWhx5W6x2KxNZC6j8vSGuu6LiB6EaVAsRY8xUxtE1elPTg-fwfpS9Rmmq5Ti1SDnHkC6dmJh5Ya3Ya_3-sHcAOFuU4Edi4wpVSYiUzDp7SVFcRuHpOgCTzsFVGIa50pu28mZVUul-iK5RAckd_BkPeIcySx1TBuhYGdkXhvduLZ2XxrUnRm5Nlo1Zv2ndQz2Qb8us5lZx9gWbo-hp10wSMNxBZuY1gUE2XYt_RJOL8ekvpm5kUVZg9UQ6VSSSJRp6EznSIklBAuA-ukSSw-BMELNxeHOb73N7dk18xwtfp10Tc3UjwCEu0" type="text/javascript"></script>
 <script src="/js/Trade/InventoryItem.js" type="text/javascript"></script>
-<script src="../Marketplace/EconomyServices.asmx/js" type="text/javascript"></script>
+<script src="/Marketplace/EconomyServices.asmx/js" type="text/javascript"></script>
 <script src="/WebResource.axd?d=JoBkLzP19aTuxbWOhHobYsfcr93ZedSC25cVo3dMJeknBRMaHtDPkvHM2u4z5zv_3l0fDg2&amp;t=635589219571259667" type="text/javascript"></script>
 <script type="text/javascript">
 //<![CDATA[
@@ -348,7 +351,7 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ctl00$ScriptManager', 'aspnet
                     <span> - </span>
                     <a href="" class="UpsellAdButton" title="Click to learn how to remove ads!">Why am I seeing ads?</a>
             </span>
-                <a class="BadAdButton" href="//www.roblox.com/Ads/ReportAd.aspx" title="click to report an offensive ad">Report</a>
+                <a class="BadAdButton" href="//www.roblox.local/Ads/ReportAd.aspx" title="click to report an offensive ad">Report</a>
         </div>
     <script type="text/javascript">
         googletag.cmd.push(function () {
@@ -408,7 +411,7 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ctl00$ScriptManager', 'aspnet
             
         </ul>
     </div>
-    <a href=https://www.roblox.com/upgrades/robux?ctx=money class="BuyRobuxButton btn-medium btn-primary">Buy Robux</a>
+    <a href=https://www.roblox.local/upgrades/robux?ctx=money class="BuyRobuxButton btn-medium btn-primary">Buy Robux</a>
     <div class="StandardPanelContainer">
         <div id="TabsContentContainer" class="StandardPanelWhite">
         
@@ -1063,11 +1066,11 @@ $(function() {
 </div>
 <div>
     <div class="form-label">ROBLOX url:</div>
-    <input type="text" id="LinkGeneratorInput" data-rbx-id="65367932" />
+    <input type="text" id="LinkGeneratorInput" data-rbx-id="<?php echo htmlspecialchars((string) $currentUserId, ENT_QUOTES, 'UTF-8'); ?>" />
 </div>
 <div>
     <div class="form-label">Promotion link:</div>
-    <div id="LinkGeneratorOutput">Please link to a page on www.roblox.com!</div>
+    <div id="LinkGeneratorOutput">Please link to a page on www.roblox.local!</div>
 </div>
 <ul class="nav nav-pills">
     <li class="active" data-rbx-time="hourly"><a>Hourly</a></li>
@@ -1165,7 +1168,7 @@ $(function() {
             <span class="ad-identification">
                 Advertisement
             </span>
-                <a class="BadAdButton" href="//www.roblox.com/Ads/ReportAd.aspx" title="click to report an offensive ad">Report</a>
+                <a class="BadAdButton" href="//www.roblox.local/Ads/ReportAd.aspx" title="click to report an offensive ad">Report</a>
         </div>
     <script type="text/javascript">
         googletag.cmd.push(function () {
@@ -1185,7 +1188,7 @@ $(function() {
     </div>
 
 </div>
-<div id="TradeRequest" class="modalPopup unifiedModal smallModal TraderSystemRobux" UserID="65367932" style="display:none;">
+<div id="TradeRequest" class="modalPopup unifiedModal smallModal TraderSystemRobux" UserID="<?php echo htmlspecialchars((string) $currentUserId, ENT_QUOTES, 'UTF-8'); ?>" style="display:none;">
 	
     <div style="height:38px;padding-top:2px;">
         <span>Trade Request</span>
@@ -1314,19 +1317,19 @@ $(function() {
         
             <div id="Footer" class="footer-container">
     <div class="FooterNav">
-        <a href="//www.roblox.com/info/Privacy.aspx">Privacy Policy</a>
+        <a href="//www.roblox.local/info/Privacy.aspx">Privacy Policy</a>
         &nbsp;|&nbsp;
-        <a href="//corp.roblox.com/advertise-on-roblox" class="roblox-interstitial">Advertise with Us</a>
+        <a href="//corp.roblox.local/advertise-on-roblox" class="roblox-interstitial">Advertise with Us</a>
         &nbsp;|&nbsp;
-        <a href="//corp.roblox.com/press" class="roblox-interstitial">Press</a>
+        <a href="//corp.roblox.local/press" class="roblox-interstitial">Press</a>
         &nbsp;|&nbsp;
-        <a href="//corp.roblox.com/contact-us" class="roblox-interstitial">Contact Us</a>
+        <a href="//corp.roblox.local/contact-us" class="roblox-interstitial">Contact Us</a>
         &nbsp;|&nbsp;
-            <a href="//corp.roblox.com/about" class="roblox-interstitial">About Us</a>
-&nbsp;|&nbsp;        <a href="//blog.roblox.com">Blog</a>
+            <a href="//corp.roblox.local/about" class="roblox-interstitial">About Us</a>
+&nbsp;|&nbsp;        <a href="//blog.roblox.local">Blog</a>
         &nbsp;|&nbsp;
-            <a href="//corp.roblox.com/careers" class="roblox-interstitial">Jobs</a>
-&nbsp;|&nbsp;        <a href="//corp.roblox.com/parents" class="roblox-interstitial">Parents</a>
+            <a href="//corp.roblox.local/careers" class="roblox-interstitial">Jobs</a>
+&nbsp;|&nbsp;        <a href="//corp.roblox.local/parents" class="roblox-interstitial">Parents</a>
     </div>
     <div class="legal">
             <div class="left">
@@ -1338,9 +1341,9 @@ $(function() {
             </div>
             <div class="right">
                 <p class="Legalese">
-    ROBLOX, "Online Building Toy", characters, logos, names, and all related indicia are trademarks of <a href="//corp.roblox.com/" ref="footer-smallabout" class="roblox-interstitial">ROBLOX Corporation</a>, ©2015. Patents pending.
+    ROBLOX, "Online Building Toy", characters, logos, names, and all related indicia are trademarks of <a href="//corp.roblox.local/" ref="footer-smallabout" class="roblox-interstitial">ROBLOX Corporation</a>, ©2015. Patents pending.
     ROBLOX is not sponsored, authorized or endorsed by any producer of plastic building bricks, including The LEGO Group, MEGA Brands, and K'Nex, and no resemblance to the products of these companies is intended.
-    Use of this site signifies your acceptance of the <a href="//www.roblox.com/info/terms-of-service" ref="footer-terms">Terms and Conditions</a>.
+    Use of this site signifies your acceptance of the <a href="//www.roblox.local/info/terms-of-service" ref="footer-terms">Terms and Conditions</a>.
 </p>
             </div>
         <div class="clear"></div>
@@ -1354,7 +1357,7 @@ $(function() {
 
 <div id="usernotifications-data-model"
      class="hidden"
-     data-notificationsdomain="https://notifications.roblox.com/"
+     data-notificationsdomain="https://notifications.roblox.local/"
      data-notificationstestinterval="5000"
      data-notificationsmaxconnectiontime="43200000">
 </div>
@@ -1443,7 +1446,7 @@ document.getElementById('ctl00_ctl00_cphRoblox_cphMyRobloxContent_ctl00_WantAmou
             DialogMinimizeTemplate: "chat-dialog-minimize"
         };
         Roblox.Chat = {
-            SoundFile: "//www.roblox.com/Chat/sound/chatsound.mp3"
+            SoundFile: "//www.roblox.local/Chat/sound/chatsound.mp3"
         };
         Roblox.Party = {};
         Roblox.Party.SetGoogleAnalyticsCallback = function () {
@@ -1465,16 +1468,16 @@ document.getElementById('ctl00_ctl00_cphRoblox_cphMyRobloxContent_ctl00_WantAmou
      chat-data
      chat-view-model="chatViewModel"
      chat-library="chatLibrary"
-     data-userid="65367932"
-     data-domain="roblox.com"
-     data-gamespagelink="//www.roblox.com/games"
-     data-chatdomain="https://chat.roblox.com"
+     data-userid="<?php echo htmlspecialchars((string) $currentUserId, ENT_QUOTES, 'UTF-8'); ?>"
+     data-domain="roblox.local"
+     data-gamespagelink="//www.roblox.local/games"
+     data-chatdomain="https://chat.roblox.local"
      data-numberofmembersforpartychrome="6"
      data-avatarheadshotsmultigetlimit="100"
      data-userpresencemultigetlimit="100"
      data-intervalofchangetitleforpartychrome="500"
      data-spinner="//images.rbxcdn.com/4bed93c91f909002b1f17f05c0ce13d1.gif"
-     data-notificationsdomain="https://notifications.roblox.com/"
+     data-notificationsdomain="https://notifications.roblox.local/"
      data-devicetype="Computer"
      data-inapp=false
      data-smallerchatenabled=true
@@ -2224,7 +2227,7 @@ document.getElementById('ctl00_ctl00_cphRoblox_cphMyRobloxContent_ctl00_WantAmou
 <script type="text/javascript">
     Roblox.Client._skip = null;
     Roblox.Client._CLSID = '76D50904-6780-4c8b-8986-1A7EE0B1716D';
-    Roblox.Client._installHost = 'setup.roblox.com';
+    Roblox.Client._installHost = 'setup.roblox.local';
     Roblox.Client.ImplementsProxy = true;
     Roblox.Client._silentModeEnabled = true;
     Roblox.Client._bringAppToFrontEnabled = false;
@@ -2321,7 +2324,7 @@ document.getElementById('ctl00_ctl00_cphRoblox_cphMyRobloxContent_ctl00_WantAmou
                 </button>
             </div>
             <div class="rbx-small rbx-text-notes">
-                <a href="https://en.help.roblox.com/hc/en-us/articles/204473560" class="rbx-link" target="_blank">Click here for help</a>
+                <a href="https://en.help.roblox.local/hc/en-us/articles/204473560" class="rbx-link" target="_blank">Click here for help</a>
             </div>
 
         </div>
@@ -2355,7 +2358,7 @@ document.getElementById('ctl00_ctl00_cphRoblox_cphMyRobloxContent_ctl00_WantAmou
         </div>
         <div id="videoPrerollJoinBC">
             <span>Get more with Builders Club!</span>
-            <a href="https://www.roblox.com/premium/membership?ctx=preroll" target="_blank" class="btn-medium btn-primary" id="videoPrerollJoinBCButton">Join Builders Club</a>
+            <a href="https://www.roblox.local/premium/membership?ctx=preroll" target="_blank" class="btn-medium btn-primary" id="videoPrerollJoinBCButton">Join Builders Club</a>
         </div>
     </div>   
     <script type="text/javascript">
@@ -2403,8 +2406,8 @@ document.getElementById('ctl00_ctl00_cphRoblox_cphMyRobloxContent_ctl00_WantAmou
         <div style="clear:both; height:25px;"></div>
         <div class="RevisedFooter">
             <div style="width:200px;margin:10px auto 0 auto;">
-                <a href="//www.roblox.com/?returnUrl=http%3A%2F%2Fwww.roblox.com%2FMy%2FMoney.aspx"><div class="RevisedCharacterSelectSignup"></div></a>
-                <a class="HaveAccount" href="https://www.roblox.com/newlogin?returnUrl=http%3A%2F%2Fwww.roblox.com%2FMy%2FMoney.aspx">I have an account</a>
+                <a href="//www.roblox.local/?returnUrl=http%3A%2F%2Fwww.roblox.local%2FMy%2FMoney.aspx"><div class="RevisedCharacterSelectSignup"></div></a>
+                <a class="HaveAccount" href="https://www.roblox.local/newlogin?returnUrl=http%3A%2F%2Fwww.roblox.local%2FMy%2FMoney.aspx">I have an account</a>
             </div>
         </div>
     </div>
@@ -2475,7 +2478,7 @@ document.getElementById('ctl00_ctl00_cphRoblox_cphMyRobloxContent_ctl00_WantAmou
 
     <script type="text/javascript">
         $(function () {
-            Roblox.CookieUpgrader.domain = 'roblox.com';
+            Roblox.CookieUpgrader.domain = 'roblox.local';
             Roblox.CookieUpgrader.upgrade("GuestData", { expires: Roblox.CookieUpgrader.thirtyYearsFromNow });
             Roblox.CookieUpgrader.upgrade("RBXSource", { expires: function (cookie) { return Roblox.CookieUpgrader.getExpirationFromCookieValue("rbx_acquisition_time", cookie); } });
             Roblox.CookieUpgrader.upgrade("RBXViralAcquisition", { expires: function (cookie) { return Roblox.CookieUpgrader.getExpirationFromCookieValue("time", cookie); } });
