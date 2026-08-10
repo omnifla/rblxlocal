@@ -154,15 +154,12 @@ Roblox.Endpoints.Urls['/authentication/is-logged-in'] = '//www.roblox.local/auth
 </script>
 
 <script type="text/javascript">
-    // IMPORTANT! If the user is logged in, set to user_id; else, set to ''
     var _user_id = '<?php echo htmlspecialchars((string) $currentUserId, ENT_QUOTES, 'UTF-8'); ?>';
 
-    // IMPORTANT! Set to a unique session ID for the visitor's current browsing session.
     var _session_id = '<?php echo htmlspecialchars((string) $currentUserId, ENT_QUOTES, 'UTF-8'); ?>';
 
     var _sift = window._sift = window._sift || [];
 
-    // IMPORTANT! Insert your JavaScript snippet key here!
     _sift.push(['_setAccount', '5238aa5d58']);
 
     _sift.push(['_setUserId', _user_id]);
