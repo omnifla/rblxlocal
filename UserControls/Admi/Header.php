@@ -30,7 +30,7 @@ class Header
     <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="/js/Microsoft/MicrosoftAjaxTreeView.js" type="text/javascript"></script>
-    <script src="/js/JsTree/jquery.js" type="text/javascript"></script>
+    <script src="/js/jquery/jquery-1.11.1.js" type="text/javascript"></script>
     <script src="/js/JsTree/jstree.js" type="text/javascript"></script>
     <link rel="stylesheet" href="/CSS/Base/CSS/Roblox.css">
     <link rel="stylesheet" href="/CSS/RBXCommon.css">
