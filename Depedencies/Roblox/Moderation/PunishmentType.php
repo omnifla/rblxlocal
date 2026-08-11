@@ -9,9 +9,9 @@ class PunishmentType
         3 => 'Ban 1 Day',
         4 => 'Ban 3 Days',
         5 => 'Ban 7 Days',
-        5 => 'Ban 14 Days',
-        6 => 'Delete',
-        7 => 'Poison',
+        6 => 'Ban 14 Days',
+        7 => 'Delete',
+        8 => 'Poison',
     ];
 
     public static function GetById(int $id): ?string
