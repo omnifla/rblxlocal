@@ -8,7 +8,7 @@ $username = $_GET["username"];
 try {
    Auth::ValidateUsername($username);
 } catch (\Exception $e) {
-   exit('{"success": false}');
+   exit('{"success": true}');
 }
-exit('{"success": true}');
+exit('{"success": false}');
 ?>
