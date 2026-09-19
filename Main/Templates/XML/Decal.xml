@@ -8,7 +8,7 @@
       <float name="Shiny">20</float>
       <float name="Specular">0</float>
       <Content name="Texture">
-        <url>http://aftwld.xyz/asset/?id=$ID</url>
+        <url>http://roblox.local/asset/?id=$ID</url>
       </Content>
       <bool name="archivable">true</bool>
     </Properties>

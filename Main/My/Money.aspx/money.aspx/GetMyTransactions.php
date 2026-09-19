@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/../config/main.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
 header('Content-Type: application/json');
 
 use Roblox\Authentication;
@@ -8,14 +8,13 @@ use Roblox\Economy\Common\TransactionType;
 use Roblox\Economy\Common\TransactionOriginType;
 use Roblox\Economy\Sale;
 use Roblox\Economy\Product;
-use Roblox\Economy\ProductType;
 use Roblox\Economy\RobloxProduct;
 use Roblox\Asset;
-
+use Roblox\Economy\ProductType;
 
 $input = json_decode(file_get_contents("php://input"), true);
 $transactionType = $input["transactiontype"] ?? null;
-$startIndex = intval($input["startindex"] ?? 0);
+$startIndex = (int) ($input["startindex"] ?? 0);
 $pageSize = 10;
 
 $user = Authentication::GetAuthenticatedUser();
@@ -23,16 +22,16 @@ if (!$user) {
     http_response_code(403);
     exit(json_encode(["error" => "Not logged in."]));
 }
-$userId = (int)$user["id"];
+$userId = (int) $user["id"];
 
 $transactionTypes = [
     "purchase" => TransactionType::DebitID,
     "sale" => TransactionType::CreditID,
-    "affiliatesale" => TransactionType::AffiliateSaleID ?? null, // gonna define later this
-    "grouppayout" => TransactionType::AdjustmentID ?? null
+    "affiliatesale" => TransactionType::AffiliateSaleID,
+    "grouppayout" => TransactionType::AdjustmentID,
 ];
 
-if (!isset($transactionTypes[$transactionType])) {
+if (!array_key_exists($transactionType, $transactionTypes) || $transactionTypes[$transactionType] === null) {
     http_response_code(400);
     exit(json_encode(["error" => "Invalid transaction type."]));
 }
@@ -53,7 +52,7 @@ foreach ($transactions as $t) {
         $productLink = null;
         // lets get the product type
         // if the product type is not set, lets just use origin types to determine the description.
-    
+
         switch (ProductType::Get($productObj->ProductTypeID)) {
             case "ROBLOX Product":
                 $rbxproduct = RobloxProduct::getById($productObj->RobloxProductID);
@@ -61,7 +60,7 @@ foreach ($transactions as $t) {
                 break;
             default: // User Product
                 $product = $productObj && $productObj->AssetID ? Asset::Get($productObj->AssetID) : null;
-                $productLink = $product ? "/Item.aspx?id=".$product->id : null;
+                $productLink = $product ? "/Item.aspx?id=" . $product->id : null;
                 break;
         }
     } catch (TypeError $e) {
@@ -80,12 +79,12 @@ foreach ($transactions as $t) {
         $tag = "tickets";
     }
     $data[] = json_encode([
-        "Date" => date("m/d/Y", strtotime($t->createdAt ?? 'now')),
+        "Date" => date("m/d/Y", strtotime($t->created ?? 'now')),
         "Member" => $creator["username"] ?? "Unknown",
         "Member_ID" => $creator["id"] ?? 0,
         "MemberIsGroup" => "False",
         "Group_ID" => "",
-        "Description" => get_debug_type($productObj) == "Product" ? TransactionType::GetName($t->getDAL()->transactionTypeId) : "Earned ".TransactionType::GetName($t->getDAL()->transactionTypeId),
+        "Description" => get_debug_type($productObj) == "Product" ? TransactionType::GetName($t->getDAL()->transactionTypeId) : "Earned " . TransactionType::GetName($t->getDAL()->transactionTypeId),
         "Amount" => ($amount >= 0
             ? "<span class='{$tag} notranslate'>{$amount}</span>"
             : "<span>{$amount}</span>"),

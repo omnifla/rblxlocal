@@ -90,12 +90,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 <script type='text/javascript'>window.Sys || document.write("<script type='text/javascript' src='/js/Microsoft/MicrosoftAjax.js'><\/script>")</script>
 
     
-<script type='text/javascript' src='https://s3.amazonaws.com/js.roblox.com/2a5ce47757f35b2741813080d8a7cc23.js'></script>
+<script type='text/javascript' src='//s3.amazonaws.com/js.roblox.com/2a5ce47757f35b2741813080d8a7cc23.js'></script>
 
-    <script type='text/javascript'>Roblox.config.externalResources = ['/js/jquery/jquery-1.7.2.min.js','/js/json2.min.js'];Roblox.config.paths['jQuery'] = 'https://s3.amazonaws.com/js.roblox.com/29cf397a226a92ca602cb139e9aae7d7.js';Roblox.config.paths['Pages.Catalog'] = 'https://s3.amazonaws.com/js.roblox.com/7123e398c0433de33356ac718bab90d5.js';Roblox.config.paths['Pages.CatalogShared'] = 'https://s3.amazonaws.com/js.roblox.com/4eb48eec34ca711d5a7b08a4291ac753.js';Roblox.config.paths['Pages.Messages'] = 'https://s3.amazonaws.com/js.roblox.com/9b1b88b531c486003bbf39ae61963c27.js';Roblox.config.paths['Resources.Messages'] = 'https://s3.amazonaws.com/js.roblox.com/fb9cb43a34372a004b06425a1c69c9c4.js';Roblox.config.paths['Widgets.AvatarImage'] = 'https://s3.amazonaws.com/js.roblox.com/e62257426488086a962edc938c73af47.js';Roblox.config.paths['Widgets.DropdownMenu'] = 'https://s3.amazonaws.com/js.roblox.com/ff651da6797160efb3ebbb2c2f98fb86.js';Roblox.config.paths['Widgets.GroupImage'] = 'https://s3.amazonaws.com/js.roblox.com/02a15e93afbd750f4d10a76c106d5993.js';Roblox.config.paths['Widgets.HierarchicalDropdown'] = 'https://s3.amazonaws.com/js.roblox.com/e8b579b8e31f8e7722a5d10900191fe7.js';Roblox.config.paths['Widgets.ItemImage'] = 'https://s3.amazonaws.com/js.roblox.com/cdf392f4ea913f856dd792de27a7e917.js';Roblox.config.paths['Widgets.PlaceImage'] = 'https://s3.amazonaws.com/js.roblox.com/95cde5634c888fd071eef0d20c23f0ce.js';Roblox.config.paths['Widgets.Suggestions'] = 'https://s3.amazonaws.com/js.roblox.com/a63d457706dfbc230cf66a9674a1ca8b.js';Roblox.config.paths['Widgets.SurveyModal'] = 'https://s3.amazonaws.com/js.roblox.com/d6e979598c460090eafb6d38231159f6.js';</script>
+    <script type='text/javascript'>Roblox.config.externalResources = ['/js/jquery/jquery-1.7.2.min.js','/js/json2.min.js'];Roblox.config.paths['jQuery'] = '//s3.amazonaws.com/js.roblox.com/29cf397a226a92ca602cb139e9aae7d7.js';Roblox.config.paths['Pages.Catalog'] = '//s3.amazonaws.com/js.roblox.com/7123e398c0433de33356ac718bab90d5.js';Roblox.config.paths['Pages.CatalogShared'] = '//s3.amazonaws.com/js.roblox.com/4eb48eec34ca711d5a7b08a4291ac753.js';Roblox.config.paths['Pages.Messages'] = '//s3.amazonaws.com/js.roblox.com/9b1b88b531c486003bbf39ae61963c27.js';Roblox.config.paths['Resources.Messages'] = '//s3.amazonaws.com/js.roblox.com/fb9cb43a34372a004b06425a1c69c9c4.js';Roblox.config.paths['Widgets.AvatarImage'] = '//s3.amazonaws.com/js.roblox.com/e62257426488086a962edc938c73af47.js';Roblox.config.paths['Widgets.DropdownMenu'] = '//s3.amazonaws.com/js.roblox.com/ff651da6797160efb3ebbb2c2f98fb86.js';Roblox.config.paths['Widgets.GroupImage'] = '//s3.amazonaws.com/js.roblox.com/02a15e93afbd750f4d10a76c106d5993.js';Roblox.config.paths['Widgets.HierarchicalDropdown'] = '//s3.amazonaws.com/js.roblox.com/e8b579b8e31f8e7722a5d10900191fe7.js';Roblox.config.paths['Widgets.ItemImage'] = '//s3.amazonaws.com/js.roblox.com/cdf392f4ea913f856dd792de27a7e917.js';Roblox.config.paths['Widgets.PlaceImage'] = '//s3.amazonaws.com/js.roblox.com/95cde5634c888fd071eef0d20c23f0ce.js';Roblox.config.paths['Widgets.Suggestions'] = '//s3.amazonaws.com/js.roblox.com/a63d457706dfbc230cf66a9674a1ca8b.js';Roblox.config.paths['Widgets.SurveyModal'] = '//s3.amazonaws.com/js.roblox.com/d6e979598c460090eafb6d38231159f6.js';</script>
     
     
-<script type='text/javascript' src='https://s3.amazonaws.com/js.roblox.com/d0ba6b6557864e523bf57c51fb825489.js'></script>
+<script type='text/javascript' src='//s3.amazonaws.com/js.roblox.com/d0ba6b6557864e523bf57c51fb825489.js'></script>
 
 
 <script type="text/javascript">
@@ -395,7 +395,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div id="PlaceLauncherStatusPanel" style="display:none;width:300px">
     <div class="modalPopup blueAndWhite PlaceLauncherModal" style="min-height: 160px">
         <div id="Spinner" class="Spinner" style="margin:0 1em 1em 0; padding:20px 0;">
-            <img src="https://s3.amazonaws.com/images.<?= $site_properties["hostname"] ?>/e998fb4c03e8c2e30792f2f3436e9416.gif" height="32" width="32" alt="Progress" />
+            <img src="//s3.amazonaws.com/images.<?= $site_properties["hostname"] ?>/e998fb4c03e8c2e30792f2f3436e9416.gif" height="32" width="32" alt="Progress" />
         </div>
         <div id="status" style="min-height:40px;text-align:center;margin:5px 20px">
             <div id="Starting" class="PlaceLauncherStatus MadStatusStarting" style="display:block">
@@ -412,7 +412,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-<script type='text/javascript' src='https://s3.amazonaws.com/js.roblox.com/507606ba77acf2ff29dd3ec7cb668f06.js'></script>
+<script type='text/javascript' src='//s3.amazonaws.com/js.roblox.com/507606ba77acf2ff29dd3ec7cb668f06.js'></script>
 
     <div id="videoPrerollPanel" style="display:none">
         <div id="videoPrerollTitleDiv">
@@ -598,7 +598,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 <iframe id="downloadInstallerIFrame" style="visibility:hidden;height:0;width:1px;position:absolute"></iframe>
 
 
-<script type='text/javascript' src='https://s3.amazonaws.com/js.roblox.com/d387e54149ead170a1a8d204d0e7f1ed.js'></script>
+<script type='text/javascript' src='//s3.amazonaws.com/js.roblox.com/d387e54149ead170a1a8d204d0e7f1ed.js'></script>
 
 <script type="text/javascript">
     Roblox.Client._skip = '/install/unsupported.aspx';

@@ -1341,9 +1341,36 @@ if (!isset($id)) {
     $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 }
 
-$canViewInventory = true;
-if ($user['InventoryPrivacy'] !== 'All' && (!isset($_SESSION['id']) || $_SESSION['id'] !== $id)) {
-    $canViewInventory = false;
+function isFriendsWith(PDO $db, int $userA, int $userB, bool $bestOnly = false): bool {
+    $stmt = $db->prepare('
+        SELECT bestfriend FROM friends
+        WHERE status = 2
+          AND ((fromid = :a AND toid = :b) OR (fromid = :b AND toid = :a))
+        LIMIT 1
+    ');
+    $stmt->execute([':a' => $userA, ':b' => $userB]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$row) return false;
+    return $bestOnly ? (bool)$row['bestfriend'] : true;
+}
+
+$viewedUserId = (int)$user['id'];
+$isOwner = $userId !== 0 && $userId === $viewedUserId;
+
+switch ($user['InventoryPrivacy']) {
+    case 'All':
+        $canViewInventory = true;
+        break;
+    case 'BestFriends':
+        $canViewInventory = $isOwner || ($userId !== 0 && isFriendsWith($db, $userId, $viewedUserId, true));
+        break;
+    case 'Friends':
+        $canViewInventory = $isOwner || ($userId !== 0 && isFriendsWith($db, $userId, $viewedUserId, false));
+        break;
+    case 'Noone':
+    default:
+        $canViewInventory = $isOwner;
+        break;
 }
 ?>
 

@@ -19,7 +19,7 @@ if (!$user) {
 
 $input = json_decode(file_get_contents('php://input'), true) ?: [];
 $timePeriod = $input['timePeriod'] ?? null;
-$userId = (int)$user['id'];
+$userId = (int) $user['id'];
 
 $summary = [
     "R_SaleOfGoods" => 0,
@@ -71,9 +71,12 @@ try {
     $R_total = 0;
     $T_total = 0;
     foreach ($summary as $k => $v) {
-        if ($k === 'R_Total' || $k === 'T_Total') continue;
-        if (strpos($k, 'R_') === 0 || ($k == "CurrencyPurchase" || strpos($k, 'BCStipend') === 0 || $k == "PromotedPageConversionRevenue" || $k == "GamePageConversionRevenue")) $R_total += (int)$v;
-        if (strpos($k, 'T_') === 0 || ($k == "LoginAward" || $k == "PlaceTraffic")) $T_total += (int)$v;
+        if ($k === 'R_Total' || $k === 'T_Total')
+            continue;
+        if (strpos($k, 'R_') === 0 || ($k == "CurrencyPurchase" || strpos($k, 'BCStipend') === 0 || $k == "PromotedPageConversionRevenue" || $k == "GamePageConversionRevenue"))
+            $R_total += (int) $v;
+        if (strpos($k, 'T_') === 0 || ($k == "LoginAward" || $k == "PlaceTraffic"))
+            $T_total += (int) $v;
     }
     $summary['R_Total'] = $R_total;
     $summary['T_Total'] = $T_total;
