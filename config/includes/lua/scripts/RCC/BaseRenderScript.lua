@@ -6,7 +6,7 @@ local ThumbnailGenerator = game:GetService("ThumbnailGenerator")
 local ScriptContext = game:GetService("ScriptContext")
 local ContentProvider = game:GetService("ContentProvider")
 
-local DEFAULT_BASE_URL = "http://roblox.com/"
+local DEFAULT_BASE_URL = "http://roblox.local/"
 local initEnv = function(baseUrl)
     if not baseUrl then
         warn("baseUrl is nil, please define it. Using " .. DEFAULT_BASE_URL)

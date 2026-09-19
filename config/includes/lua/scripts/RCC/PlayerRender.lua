@@ -11,7 +11,7 @@ local createObject = function()
         local character = player.Character
         local head = character.Head
         local face = head:WaitForChild("face")
-        face.Texture = "http://rblx.local/asset?id=1819"
+        face.Texture = "http://roblox.local/asset?id=1819"
     end
 end
 

@@ -1,5 +1,8 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
+use UserControls\Navigation\SiteHeader;
+use UserControls\Navigation\SiteFooter;
+use UserControls\Navigation\SiteAlert;
 
 $forum_group_id = isset($_GET['ForumGroupID']) ? intval($_GET['ForumGroupID']) : 0;
 
@@ -48,8 +51,9 @@ $forums = $forums_stmt->fetchAll(PDO::FETCH_ASSOC);
 <head id="ctl00_Head1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true" />
     <title><?= $site_properties['Title'] ?>.com</title>
-    <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=main___3254191a0cea4af8e8a0fecd1a2685b0_m.css' />
-    <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=page___d0a32d7530b30a6f5d85fd297f8b6898_m.css' />
+    <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=main___7634deb09c3bdd97711664ae7c70ca3a_m.css' />
+    <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=page___b020e2e0e723aff431cc1c9d2a2941bf_m.css' />
+    <link rel='stylesheet' href='/Forum/skins/default/style/default.css' />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="Content-Language" content="en-us" />
     <meta name="author" content="ROBLOX Corporation" />
@@ -306,53 +310,8 @@ $forums = $forums_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-                        <div class="site-header">
-                            <div id="navigation-container">
-                                <a href="/Default.aspx" class="btn-logo" data-se="nav-logo"></a>
-                                <div id="navigation-menu">
-                                    <ul>
-                                        <li><a href="/home" ref="nav-myroblox" data-se="nav-myhome">Home</a></li>
-                                        <li><a data-se="nav-games" href="/games" ref="nav-games" title="Games">Games</a> </li>
-                                        <li><a data-se="nav-catalog" href="/Catalog" ref="nav-catalog" title="Catalog">Catalog</a></li>
-
-                                        <li><a data-se="nav-leaderboards" href="/leaderboards" title="Leaderboards" ref="nav-leaderboards">Leaderboards</a></li>
-
-                                        <li><a data-se="nav-upgrade" href="/Upgrades/BuildersClubMemberships.aspx" title="Upgrade" ref="nav-buildersclub">Upgrade</a></li>
-                                        <li><a data-se="nav-forum" href="/Forum/Default.aspx" title="Forum" ref="nav-forum">Forum</a></li>
-                                        <li class="more-list-item" drop-down-nav-button="more-list-item">
-                                            <div class="more-link-container">
-                                                <a id="nav-more" title="More" data-se="nav-more" ref="nav-more">More<span id="more-menu-toggle"></span></a>
-                                            </div>
-                                            <div class="dropdownnavcontainer" style="display:none;" data-drop-down-nav-container="more-list-item">
-                                                <div class="dropdownmainnav" style="z-index:1023">
-                                                    <a class="dropdownoption" data-se="nav-more-browse" href="/Browse.aspx" title="People" ref="nav-people"><span>People</span></a>
-                                                    <a class="dropdownoption roblox-interstitial" data-se="nav-more-blog" href="http://blog.roblox.com" title="Blog" ref="nav-news"><span>Blog</span></a>
-                                                    <a class="dropdownoption" data-se="nav-more-sponsoredpage" href="/event/summergames" title="Summer Games" ref="nav-sponsoredpage">
-                                                        <span style="display:block;">
-                                                            <img src="http://images.rbxcdn.com/358a463df4043bcc48f4313f7475f4d1" />
-                                                        </span>
-                                                    </a>
-                                                    <a class="dropdownoption" data-se="nav-more-help" href="/Help/Builderman.aspx" title="Help" ref="nav-help"><span>Help</span></a>
-                                                    <div style="clear:both;"></div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div id="header-login-container">
-                                    <div id="header-login-wrapper" class="iframe-login-signup" data-display-opened="">
-                                        <a id="header-signup" href="/Login/NewAge.aspx">Sign Up</a>
-                                        <span id="header-or">or</span>
-                                        <span id="login-span">
-                                            <a id="header-login" class="btn-control btn-control-large">Login <span class="grey-arrow">▼</span></a>
-                                        </span>
-                                        <div id="iFrameLogin" style="display:none">
-                                            <iframe class="login-frame" src="https://www.roblox.com/Login/iFrameLogin.aspx?loginRedirect=True&amp;parentUrl=http%3a%2f%2fwww.roblox.com%2fForum%2fShowForumGroup.aspx%3fForumGroupID%3d1" scrolling="no" frameborder="0"></iframe>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?= SiteHeader::render() ?>
+                        <?= SiteAlert::render() ?>
                         <script type="text/javascript">
                             $(function() {
                                 $('.more-list-item').bind('showDropDown', function() {
@@ -557,83 +516,7 @@ $forums = $forums_stmt->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                 </div>
 
-                <div id="Footer" class="footer-container">
-                    <div class="FooterNav">
-                        <a href="/info/Privacy.aspx">Privacy Policy</a>
-                        &nbsp;|&nbsp;
-                        <a href="http://corp.roblox.com/advertise-on-roblox" class="roblox-interstitial">Advertise with Us</a>
-                        &nbsp;|&nbsp;
-                        <a href="http://corp.roblox.com/roblox-press" class="roblox-interstitial">Press</a>
-                        &nbsp;|&nbsp;
-                        <a href="http://corp.roblox.com/contact-us" class="roblox-interstitial">Contact Us</a>
-                        &nbsp;|&nbsp;
-                        <a href="http://corp.roblox.com/" class="roblox-interstitial">About Us</a>
-                        &nbsp;|&nbsp;
-                        <a href="http://blog.roblox.com" class="roblox-interstitial">Blog</a>
-                        &nbsp;|&nbsp;
-                        <a href="http://corp.roblox.com/jobs" class="roblox-interstitial">Jobs</a>
-                        &nbsp;|&nbsp;
-                        <a href="http://corp.roblox.com/parents" class="roblox-interstitial">Parents</a>
-                        <span class="LanguageOptionElement">&nbsp;|&nbsp;</span>
-                        <span ref="footer-parents" class="LanguageOptionElement LanguageTrigger roblox-interstitial" drop-down-nav-button="LanguageTrigger">English&nbsp;<span class="FooterArrow">▼</span>
-                            <div class="dropuplanguagecontainer" style="display:none;" data-drop-down-nav-container="LanguageTrigger">
-                                <div class="dropdownmainnav" style="z-index:1023">
-                                    <a href="/UserLanguage/LanguageRedirect?languageCode=de&amp;relativePath=%2fForum%2fShowForumGroup.aspx%3fForumGroupID%3d1" class="LanguageOption js-lang" data-js-langcode="de"><span class="notranslate">Deutsch</span>&nbsp;(German) </a>
-                                </div>
-                            </div>
-                        </span>
-                    </div>
-                    <div class="FooterNav">
-                        <div id="SEOGenreLinks" class="SEOGenreLinks">
-                            <a href="/all-games">All Games</a>
-                            <span>|</span>
-                            <a href="/building-games">Building</a>
-                            <span>|</span>
-                            <a href="/horror-games">Horror</a>
-                            <span>|</span>
-                            <a href="/town-and-city-games">Town and City</a>
-                            <span>|</span>
-                            <a href="/military-games">Military</a>
-                            <span>|</span>
-                            <a href="/comedy-games">Comedy</a>
-                            <span>|</span>
-                            <a href="/medieval-games">Medieval</a>
-                            <span>|</span>
-                            <a href="/adventure-games">Adventure</a>
-                            <span>|</span>
-                            <a href="/sci-fi-games">Sci-Fi</a>
-                            <span>|</span>
-                            <a href="/naval-games">Naval</a>
-                            <span>|</span>
-                            <a href="/fps-games">FPS</a>
-                            <span>|</span>
-                            <a href="/rpg-games">RPG</a>
-                            <span>|</span>
-                            <a href="/sports-games">Sports</a>
-                            <span>|</span>
-                            <a href="/fighting-games">Fighting</a>
-                            <span>|</span>
-                            <a href="/western-games">Western</a>
-
-                        </div>
-                    </div>
-                    <div class="legal">
-                        <div class="left">
-                            <div id="a15b1695-1a5a-49a9-94f0-9cd25ae6c3b2">
-                                <a href="//privacy.truste.com/privacy-seal/Roblox-Corporation/validation?rid=2428aa2a-f278-4b6d-9095-98c4a2954215" title="TRUSTe Children privacy certification" target="_blank">
-                                    <img style="border: none" src="//privacy-policy.truste.com/privacy-seal/Roblox-Corporation/seal?rid=2428aa2a-f278-4b6d-9095-98c4a2954215" width="133" height="45" alt="TRUSTe Children privacy certification" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="right">
-                            <p class="Legalese">
-                                ROBLOX, "Online Building Toy", characters, logos, names, and all related indicia are trademarks of <a href="http://corp.roblox.com/" ref="footer-smallabout" class="roblox-interstitial">ROBLOX Corporation</a>, ©2014. Patents pending.
-                                ROBLOX is not sponsored, authorized or endorsed by any producer of plastic building bricks, including The LEGO Group, MEGA Brands, and K'Nex, and no resemblance to the products of these companies is intended. Use of this site signifies your acceptance of the <a href="/info/terms-of-service" ref="footer-terms">Terms and Conditions</a>.
-                            </p>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                </div>
+               <?= SiteFooter::render() ?>
 
             </div>
         </div>

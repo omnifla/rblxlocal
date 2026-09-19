@@ -39,7 +39,7 @@ $count_stmt->execute(['thread_id' => $thread_id]);
 $total_posts = $count_stmt->fetch(PDO::FETCH_ASSOC)['total'];
 $total_pages = ceil($total_posts / $posts_per_page);
 $posts_stmt = $conn->prepare("
-    SELECT p.id, p.content as body, p.created_at, u.id as user_id, u.username, u.post_count, u.created_at as join_date
+    SELECT p.id, p.content as body, p.created_at, u.id as user_id, u.username, u.post_count, u.created as join_date
     FROM posts p
     JOIN users u ON p.user_id = u.id
     WHERE p.thread_id = :thread_id
@@ -59,6 +59,7 @@ SiteHeader::render(["pageTitle" => $page_title]);
     <title><?= $site_properties['Title'] ?>.com</title>
     <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=main___3254191a0cea4af8e8a0fecd1a2685b0_m.css' />
     <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=page___d0a32d7530b30a6f5d85fd297f8b6898_m.css' />
+    <link rel='stylesheet' href='/CSS/Legacy/Navigation.css' />
     <link rel='stylesheet' href='/Forum/skins/default/style/default.css' />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
@@ -83,15 +84,15 @@ SiteHeader::render(["pageTitle" => $page_title]);
                                                 <span name="Whereami1">
                                                     <div>
                                                         <nobr>
-                                                            <a class="linkMenuSink notranslate" href="/Forum/Default.aspx.php">ROBLOX Forum</a>
+                                                            <a class="linkMenuSink notranslate" href="/Forum/Default.aspx">ROBLOX Forum</a>
                                                         </nobr>
                                                         <nobr>
                                                             <span class="normalTextSmallBold"> » </span>
-                                                            <a class="linkMenuSink notranslate" href="/Forum/ShowForumGroup.aspx.php?ForumGroupID=<?= $thread['forum_group_id'] ?>"><?= htmlspecialchars($thread['forum_group_name']) ?></a>
+                                                            <a class="linkMenuSink notranslate" href="/Forum/ShowForumGroup.aspx?ForumGroupID=<?= $thread['forum_group_id'] ?>"><?= htmlspecialchars($thread['forum_group_name']) ?></a>
                                                         </nobr>
                                                         <nobr>
                                                             <span class="normalTextSmallBold"> » </span>
-                                                            <a class="linkMenuSink notranslate" href="/Forum/ShowForum.aspx.php?ForumID=<?= $thread['forum_id'] ?>"><?= htmlspecialchars($thread['forum_name']) ?></a>
+                                                            <a class="linkMenuSink notranslate" href="/Forum/ShowForum.aspx?ForumID=<?= $thread['forum_id'] ?>"><?= htmlspecialchars($thread['forum_name']) ?></a>
                                                         </nobr>
                                                     </div>
                                                 </span>
@@ -99,8 +100,8 @@ SiteHeader::render(["pageTitle" => $page_title]);
                                             <td align="right">
                                                 <span>
                                                     <div id="forum-nav" style="text-align: right; font-size: 14px">
-                                                        <a class="menuTextLink first" href="/Forum/Default.aspx.php">Home</a>
-                                                        <a class="menuTextLink" href="/Forum/Search/default.aspx.php">Search</a>
+                                                        <a class="menuTextLink first" href="/Forum/Default.aspx">Home</a>
+                                                        <a class="menuTextLink" href="/Forum/Search/default.aspx">Search</a>
                                                     </div>
                                                 </span>
                                             </td>
@@ -142,10 +143,10 @@ SiteHeader::render(["pageTitle" => $page_title]);
                                                     <table border="0">
                                                         <tbody>
                                                             <tr>
-                                                                <td><b><a class="normalTextSmallBold notranslate" href="/User.php?id=<?= $post['user_id'] ?>"><?= htmlspecialchars($post['username']) ?></a></b><br></td>
+                                                                <td><b><a class="normalTextSmallBold notranslate" href="/User.aspx?id=<?= $post['user_id'] ?>"><?= htmlspecialchars($post['username']) ?></a></b><br></td>
                                                             </tr>
                                                             <tr>
-                                                                <td><a href="/User.php?id=<?= $post['user_id'] ?>" style="width:100px;height:100px;position:relative;"><img src="/Images/Placeholder1024x1024.png" style="border-width:0px;width:100px;height:100px;"></a></td>
+                                                                <td><a href="/User.aspx?id=<?= $post['user_id'] ?>" style="width:100px;height:100px;position:relative;"><img src="/Images/Placeholder1024x1024.png" style="border-width:0px;width:100px;height:100px;"></a></td>
                                                             </tr>
                                                             <tr>
                                                                 <td><span class="normalTextSmaller"><b>Joined:</b> <?= date("d M Y", strtotime($post['join_date'])) ?></span></td>
