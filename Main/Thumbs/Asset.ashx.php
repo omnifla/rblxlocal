@@ -7,16 +7,21 @@ $height = $_GET['Height'] ?? '';
 $placeholder = '/Images/Placeholder1024x1024.png';
 $imagePath = __DIR__ . "/RenderedAssets/$id.png";
 
-if (!preg_match('/^\d+$/', $id) || !preg_match('/^\d+$/', $width) || !preg_match('/^\d+$/', $height)) {
+// default dimensions used whenever Width/Height aren't valid positive integers
+$defaultWidth = 352;
+$defaultHeight = 352;
+
+if (!preg_match('/^\d+$/', $width)) {
+    $width = $defaultWidth;
+}
+if (!preg_match('/^\d+$/', $height)) {
+    $height = $defaultHeight;
+}
+
+if (!preg_match('/^\d+$/', $id) || !file_exists($imagePath)) {
     $src = $placeholder;
-    $width = 352;
-    $height = 352;
-} elseif (file_exists($imagePath)) {
-    $src = "/Thumbs/RenderedAssets/$id.png";
 } else {
-    $src = $placeholder;
-    $width = 352;
-    $height = 352;
+    $src = "/Thumbs/RenderedAssets/$id.png";
 }
 
 header('Content-Type: image/png');
