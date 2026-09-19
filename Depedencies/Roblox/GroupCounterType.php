@@ -5,9 +5,12 @@ use Roblox\DataAccess\GroupCounterTypeDAL;
 use Roblox\Caching\CacheInfo;
 use Roblox\Caching\CacheabilitySettings;
 use Roblox\Caching\LazyWithRetry;
+use Roblox\Caching\ICacheableObject;
+use Roblox\Common\IRobloxEntity;
+use Roblox\Common\EntityHelper;
 use Exception;
 
-class GroupCounterType implements Interfaces\IRobloxEntity, Interfaces\ICacheableObject
+class GroupCounterType implements IRobloxEntity, ICacheableObject
 {
     private GroupCounterTypeDAL $dal;
 

@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
 <wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://roblox.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://roblox.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://roblox.com/">
-=======
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://rblx.local/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://rblx.local/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <wsdl:types>
-    <s:schema elementFormDefault="qualified" targetNamespace="http://rblx.local/">
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -471,11 +465,7 @@
   <wsdl:binding name="RCCServiceSoap" type="tns:RCCServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="HelloWorld">
-<<<<<<< HEAD
       <soap:operation soapAction="http://roblox.com/HelloWorld" style="document" />
-=======
-      <soap:operation soapAction="http://rblx.local/HelloWorld" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -484,11 +474,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetVersion">
-<<<<<<< HEAD
       <soap:operation soapAction="http://roblox.com/GetVersion" style="document" />
-=======
-      <soap:operation soapAction="http://rblx.local/GetVersion" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -497,11 +483,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetStatus">
-<<<<<<< HEAD
       <soap:operation soapAction="http://roblox.com/GetStatus" style="document" />
-=======
-      <soap:operation soapAction="http://rblx.local/GetStatus" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -510,11 +492,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="OpenJob">
-<<<<<<< HEAD
       <soap:operation soapAction="http://roblox.com/OpenJob" style="document" />
-=======
-      <soap:operation soapAction="http://rblx.local/OpenJob" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -523,11 +501,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="OpenJobEx">
-<<<<<<< HEAD
       <soap:operation soapAction="http://roblox.com/OpenJobEx" style="document" />
-=======
-      <soap:operation soapAction="http://rblx.local/OpenJobEx" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -536,11 +510,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="RenewLease">
-<<<<<<< HEAD
       <soap:operation soapAction="http://roblox.com/RenewLease" style="document" />
-=======
-      <soap:operation soapAction="http://rblx.local/RenewLease" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -549,11 +519,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="Execute">
-<<<<<<< HEAD
       <soap:operation soapAction="http://roblox.com/Execute" style="document" />
-=======
-      <soap:operation soapAction="http://rblx.local/Execute" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -562,11 +528,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="ExecuteEx">
-<<<<<<< HEAD
       <soap:operation soapAction="http://roblox.com/ExecuteEx" style="document" />
-=======
-      <soap:operation soapAction="http://rblx.local/ExecuteEx" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -575,11 +537,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="CloseJob">
-<<<<<<< HEAD
       <soap:operation soapAction="http://roblox.com/CloseJob" style="document" />
-=======
-      <soap:operation soapAction="http://rblx.local/CloseJob" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -588,11 +546,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="BatchJob">
-<<<<<<< HEAD
       <soap:operation soapAction="http://roblox.com/BatchJob" style="document" />
-=======
-      <soap:operation soapAction="http://rblx.local/BatchJob" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -601,11 +555,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="BatchJobEx">
-<<<<<<< HEAD
       <soap:operation soapAction="http://roblox.com/BatchJobEx" style="document" />
-=======
-      <soap:operation soapAction="http://rblx.local/BatchJobEx" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -614,11 +564,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetExpiration">
-<<<<<<< HEAD
       <soap:operation soapAction="http://roblox.com/GetExpiration" style="document" />
-=======
-      <soap:operation soapAction="http://rblx.local/GetExpiration" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -627,11 +573,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetAllJobs">
-<<<<<<< HEAD
       <soap:operation soapAction="http://roblox.com/GetAllJobs" style="document" />
-=======
-      <soap:operation soapAction="http://rblx.local/GetAllJobs" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -640,11 +582,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetAllJobsEx">
-<<<<<<< HEAD
       <soap:operation soapAction="http://roblox.com/GetAllJobsEx" style="document" />
-=======
-      <soap:operation soapAction="http://rblx.local/GetAllJobsEx" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -653,11 +591,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="CloseExpiredJobs">
-<<<<<<< HEAD
       <soap:operation soapAction="http://roblox.com/CloseExpiredJobs" style="document" />
-=======
-      <soap:operation soapAction="http://rblx.local/CloseExpiredJobs" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -666,11 +600,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="CloseAllJobs">
-<<<<<<< HEAD
       <soap:operation soapAction="http://roblox.com/CloseAllJobs" style="document" />
-=======
-      <soap:operation soapAction="http://rblx.local/CloseAllJobs" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -679,11 +609,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="Diag">
-<<<<<<< HEAD
       <soap:operation soapAction="http://roblox.com/Diag" style="document" />
-=======
-      <soap:operation soapAction="http://rblx.local/Diag" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -692,11 +618,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="DiagEx">
-<<<<<<< HEAD
       <soap:operation soapAction="http://roblox.com/DiagEx" style="document" />
-=======
-      <soap:operation soapAction="http://rblx.local/DiagEx" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -708,11 +630,7 @@
   <wsdl:binding name="RCCServiceSoap12" type="tns:RCCServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="HelloWorld">
-<<<<<<< HEAD
       <soap12:operation soapAction="http://roblox.com/HelloWorld" style="document" />
-=======
-      <soap12:operation soapAction="http://rblx.local/HelloWorld" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -721,11 +639,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetVersion">
-<<<<<<< HEAD
       <soap12:operation soapAction="http://roblox.com/GetVersion" style="document" />
-=======
-      <soap12:operation soapAction="http://rblx.local/GetVersion" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -734,11 +648,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetStatus">
-<<<<<<< HEAD
       <soap12:operation soapAction="http://roblox.com/GetStatus" style="document" />
-=======
-      <soap12:operation soapAction="http://rblx.local/GetStatus" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -747,11 +657,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="OpenJob">
-<<<<<<< HEAD
       <soap12:operation soapAction="http://roblox.com/OpenJob" style="document" />
-=======
-      <soap12:operation soapAction="http://rblx.local/OpenJob" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -760,11 +666,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="OpenJobEx">
-<<<<<<< HEAD
       <soap12:operation soapAction="http://roblox.com/OpenJobEx" style="document" />
-=======
-      <soap12:operation soapAction="http://rblx.local/OpenJobEx" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -773,11 +675,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="RenewLease">
-<<<<<<< HEAD
       <soap12:operation soapAction="http://roblox.com/RenewLease" style="document" />
-=======
-      <soap12:operation soapAction="http://rblx.local/RenewLease" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -786,11 +684,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="Execute">
-<<<<<<< HEAD
       <soap12:operation soapAction="http://roblox.com/Execute" style="document" />
-=======
-      <soap12:operation soapAction="http://rblx.local/Execute" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -799,11 +693,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="ExecuteEx">
-<<<<<<< HEAD
       <soap12:operation soapAction="http://roblox.com/ExecuteEx" style="document" />
-=======
-      <soap12:operation soapAction="http://rblx.local/ExecuteEx" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -812,11 +702,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="CloseJob">
-<<<<<<< HEAD
       <soap12:operation soapAction="http://roblox.com/CloseJob" style="document" />
-=======
-      <soap12:operation soapAction="http://rblx.local/CloseJob" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -825,11 +711,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="BatchJob">
-<<<<<<< HEAD
       <soap12:operation soapAction="http://roblox.com/BatchJob" style="document" />
-=======
-      <soap12:operation soapAction="http://rblx.local/BatchJob" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -838,11 +720,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="BatchJobEx">
-<<<<<<< HEAD
       <soap12:operation soapAction="http://roblox.com/BatchJobEx" style="document" />
-=======
-      <soap12:operation soapAction="http://rblx.local/BatchJobEx" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -851,11 +729,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetExpiration">
-<<<<<<< HEAD
       <soap12:operation soapAction="http://roblox.com/GetExpiration" style="document" />
-=======
-      <soap12:operation soapAction="http://rblx.local/GetExpiration" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -864,11 +738,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetAllJobs">
-<<<<<<< HEAD
       <soap12:operation soapAction="http://roblox.com/GetAllJobs" style="document" />
-=======
-      <soap12:operation soapAction="http://rblx.local/GetAllJobs" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -877,11 +747,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetAllJobsEx">
-<<<<<<< HEAD
       <soap12:operation soapAction="http://roblox.com/GetAllJobsEx" style="document" />
-=======
-      <soap12:operation soapAction="http://rblx.local/GetAllJobsEx" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -890,11 +756,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="CloseExpiredJobs">
-<<<<<<< HEAD
       <soap12:operation soapAction="http://roblox.com/CloseExpiredJobs" style="document" />
-=======
-      <soap12:operation soapAction="http://rblx.local/CloseExpiredJobs" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -903,11 +765,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="CloseAllJobs">
-<<<<<<< HEAD
       <soap12:operation soapAction="http://roblox.com/CloseAllJobs" style="document" />
-=======
-      <soap12:operation soapAction="http://rblx.local/CloseAllJobs" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -916,11 +774,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="Diag">
-<<<<<<< HEAD
       <soap12:operation soapAction="http://roblox.com/Diag" style="document" />
-=======
-      <soap12:operation soapAction="http://rblx.local/Diag" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -929,11 +783,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="DiagEx">
-<<<<<<< HEAD
       <soap12:operation soapAction="http://roblox.com/DiagEx" style="document" />
-=======
-      <soap12:operation soapAction="http://rblx.local/DiagEx" style="document" />
->>>>>>> be30b1efc4b418a9cbc2ff7a211ce786f1afb4c3
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

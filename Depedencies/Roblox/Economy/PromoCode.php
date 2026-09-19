@@ -3,6 +3,9 @@
 namespace Roblox\Economy;
 
 use Roblox\DataAccess\PromoCodeDAL;
+use Roblox\Economy\Common\RobuxBalance;
+use Roblox\Economy\Common\TicketsBalance;
+use Roblox\Platform\OwnershipV1UserAssetFactory;
 use Exception;
 use DateTime;
 
@@ -96,10 +99,44 @@ class PromoCode
         $this->_EntityDAL->reward_membership_type = $value;
     }
 
+    public function applyToUser(int $userId): void
+    {
+        if ($this->getRewardRobux() > 0) {
+            $robux = new RobuxBalance($userId);
+            $robux->Credit($this->getRewardRobux());
+        }
+
+        if ($this->getRewardTickets() > 0) {
+            $tickets = new TicketsBalance($userId);
+            $tickets->Credit($this->getRewardTickets());
+        }
+
+        $assetId = $this->getRewardAssetId();
+        $assetTypeId = $this->getRewardAssetTypeId();
+        if ($assetId !== null && $assetTypeId !== null) {
+            OwnershipV1UserAssetFactory::awardAsset($userId, $assetId, $assetTypeId);
+        }
+
+        $membershipType = $this->getRewardMembershipType();
+        if ($membershipType !== null) {
+            global $conn;
+            $stmt = $conn->prepare("SELECT membership_type FROM users WHERE id = :id LIMIT 1");
+            $stmt->execute([':id' => $userId]);
+            $current = (int)$stmt->fetchColumn();
+            if ($membershipType > $current) {
+                $update = $conn->prepare("UPDATE users SET membership_type = :membership_type, updated = NOW() WHERE id = :id");
+                if (!$update->execute([':membership_type' => $membershipType, ':id' => $userId])) {
+                    throw new Exception("Failed to apply membership reward.");
+                }
+            }
+        }
+    }
+
     public function getCreated(): string
     {
         return $this->_EntityDAL->Created;
     }
+
     public function getUpdated(): string
     {
         return $this->_EntityDAL->Updated;
@@ -116,8 +153,6 @@ class PromoCode
             $this->_EntityDAL->Update();
         }
     }
-
-
 
     public static function Get(int $id): ?PromoCode
     {

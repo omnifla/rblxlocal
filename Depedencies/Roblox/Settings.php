@@ -140,6 +140,10 @@ class Settings {
         "DefaultHeads" => [],
     ];
     public function get(string $key): mixed {
-        return $this->settings[$key] ?? null;
+         return $this->settings[$key] ?? null;
+    }
+
+    public function set(string $key, mixed $value): void {
+        $this->settings[$key] = $value;
     }
 }

@@ -15,7 +15,9 @@ class Punishment
     public ?string $endDate;
     public bool $active;
 
-    public ?string $ipAddress; // this is really insecure, please change it later
+    public ?int $moderatorId;
+
+    public ?string $ipAddress;
 
     private static array $types = [
         1 => ['name' => 'Warn', 'duration' => null],
@@ -61,7 +63,7 @@ class Punishment
         self::deactivateExpiredPunishments();
         global $conn;
         $stmt = $conn->prepare("
-            SELECT id, user_id, punishment_type, reason, start_date, end_date, active, ip_address
+            SELECT id, user_id, punishment_type, reason, start_date, end_date, active, moderator_id
             FROM punishments
             WHERE user_id = :uid
             ORDER BY start_date DESC
@@ -84,7 +86,8 @@ class Punishment
             $p->startDate = $row['start_date'] ?? null;
             $p->endDate = $row['end_date'] ?? null;
             $p->active = (bool) $row['active'];
-            $p->ipAddress = $row['ip_address'] ?? null;
+            $p->moderatorId = (int) $row['moderator_id'] !== null ? (int) $row['moderator_id'] : 1;
+            $p->ipAddress = null;
             $result[] = $p;
         }
 
@@ -112,7 +115,6 @@ class Punishment
 
         $type = (int) $p['punishment_type'];
 
-        // Account deleted or IP poisoned
         if ($type === 7 || $type === 8) {
             throw new \Exception("Account is terminated");
         }
@@ -189,12 +191,12 @@ class Punishment
         $count = self::getTotalNumberOfPunishmentsByUserID($userId);
 
         return match (true) {
-            $count === 0 => 1, // Warn
-            $count === 1 => 3, // 1 day
-            $count === 2 => 4, // 3 day
-            $count === 3 => 5, // 7 day
-            $count === 4 => 6, // 14 day
-            default => 7 // delete
+            $count === 0 => 1,
+            $count === 1 => 3,
+            $count === 2 => 4,
+            $count === 3 => 5,
+            $count === 4 => 6,
+            default => 7
         };
     }
 
@@ -210,21 +212,36 @@ class Punishment
 
         global $conn;
 
+        $hashedIp = md5($ip);
+
         $stmt = $conn->prepare("
+            SELECt id FROM users
+            WHERE ips::text @> :hashed::jsonb
+            LIMIT 1
+        ");
+        $stmt->execute([':hashed' => json_encode([$hashedIp])]);
+        $userIds = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+        if (empty($userIds))
+            return false;
+
+        $placeholders = implode(',', array_fill(0, count($userIds), '?'));
+        $pStmt = $conn->prepare("
         SELECT COUNT(*) FROM punishments
         WHERE punishment_type = 8
-        AND ip_address = :ip
         AND active = TRUE
-    ");
+        AND user_id IN ($placeholders)
+        ");
+        $pStmt->execute($userIds);
 
-        $stmt->execute([':ip' => $ip]);
-        return $stmt->fetchColumn() > 0;
+        return (int) $pStmt->fetchColumn() > 0;
     }
 
-    public static function create(int $userId, int $typeId, ?string $reason = null, ?int $customDurationDays = null): void
+    public static function create(int $userId, int $typeId, ?string $reason = null, ?int $customDurationDays = null, ?array $evidence = [], ?int $moderatorId = null): void
     {
-        $ip = $_SERVER['REMOTE_ADDR'] ?? null;
         global $conn;
+
+        $ip = $_SERVER['REMOTE_ADDR'] ?? null;
         $duration = $customDurationDays ?? self::getDurationInDays($typeId);
 
         $start = new DateTime();
@@ -235,10 +252,9 @@ class Punishment
         }
 
         if ($typeId === 8 && $ip && self::isIpPoisoned($ip)) {
-            $typeId = 7; // fallback to account deletion
+            $typeId = 7;
         }
 
-        // deactivate existing
         $deactivate = $conn->prepare("
             UPDATE punishments
             SET active = FALSE
@@ -249,8 +265,9 @@ class Punishment
         $deactivate->execute([':uid' => $userId]);
 
         $insert = $conn->prepare("
-            INSERT INTO punishments (user_id, punishment_type, reason, start_date, end_date, active, ip_address)
-            VALUES (:uid, :type, :reason, :start, :end, TRUE, :ip)
+            INSERT INTO punishments (user_id, punishment_type, reason, start_date, end_date, active, moderator_id, evidence)
+            VALUES
+            (:uid, :type, :reason, :start, :end, TRUE, :moderator_id, :evidence)
         ");
 
         $insert->execute([
@@ -259,37 +276,36 @@ class Punishment
             ':reason' => $reason,
             ':start' => $start->format('Y-m-d H:i:s'),
             ':end' => $end ? $end->format('Y-m-d H:i:s') : null,
-            ':ip' => $ip,
+            ':moderator_id' => $moderatorId,
+            ':evidence' => json_encode($evidence)
         ]);
 
         $conn->prepare("UPDATE users SET account_status_id = 2 WHERE id = :uid")
             ->execute([':uid' => $userId]);
 
         if ($typeId === 8 && $ip) {
-            $stmt = $conn->prepare("SELECT id FROM users WHERE last_ip = :ip");
-            $stmt->execute([':ip' => $ip]);
+            $stmt = $conn->prepare("SELECT id FROM users WHERE ips @> :ip");
+            $stmt->execute([':ip' => json_encode([$ip])]);
 
             $users = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
             foreach ($users as $uid) {
                 if ($uid != $userId) {
-                    // deactivate existing
                     $conn->prepare("
                 UPDATE punishments
-SET active = FALSE
-WHERE user_id = :uid
-AND active = TRUE
-AND punishment_type NOT IN (7, 8)
+                SET active = FALSE
+                WHERE user_id = :uid
+                AND active = TRUE
+                AND punishment_type NOT IN (7, 8)
             ")->execute([':uid' => $uid]);
 
-                    // directly insert delete punishment
                     $conn->prepare("
-                INSERT INTO punishments (user_id, punishment_type, reason, start_date, end_date, active, ip_address)
-                VALUES (:uid, 7, :reason, NOW(), NULL, TRUE, :ip)
+                INSERT INTO punishments (user_id, punishment_type, reason, start_date, end_date, active, moderator_id)
+                VALUES (:uid, 7, :reason, NOW(), NULL, TRUE, :moderator_id)
             ")->execute([
                                 ':uid' => $uid,
                                 ':reason' => "You are no longer welcome to Roblox.",
-                                ':ip' => $ip
+                                ':moderator_id' => $moderatorId
                             ]);
                 }
             }

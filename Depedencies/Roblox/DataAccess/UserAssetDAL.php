@@ -94,6 +94,49 @@ class UserAssetDAL
         return (int)$stmt->fetchColumn() > 0;
     }
 
+    public static function getByUserAndAsset(int $userId, int $assetId): ?self
+    {
+        global $conn;
+        $stmt = $conn->prepare("SELECT * FROM user_assets WHERE user_id = :user_id AND asset_id = :asset_id LIMIT 1");
+        $stmt->execute([':user_id' => $userId, ':asset_id' => $assetId]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$row) {
+            return null;
+        }
+
+        $dal = new self();
+        $dal->id = (int)$row['id'];
+        $dal->user_id = (int)$row['user_id'];
+        $dal->asset_id = (int)$row['asset_id'];
+        $dal->asset_type_id = (int)$row['asset_type_id'];
+        $dal->created = $row['created'];
+        $dal->updated = $row['updated'];
+        return $dal;
+    }
+
+    public static function getByUserId(int $userId): array
+    {
+        global $conn;
+        $stmt = $conn->prepare("SELECT * FROM user_assets WHERE user_id = :user_id ORDER BY id ASC");
+        $stmt->execute([':user_id' => $userId]);
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $dals = [];
+        foreach ($rows as $row) {
+            $dal = new self();
+            $dal->id = (int)$row['id'];
+            $dal->user_id = (int)$row['user_id'];
+            $dal->asset_id = (int)$row['asset_id'];
+            $dal->asset_type_id = (int)$row['asset_type_id'];
+            $dal->created = $row['created'];
+            $dal->updated = $row['updated'];
+            $dals[] = $dal;
+        }
+
+        return $dals;
+    }
+
     public static function getUserAssetIDs(int $user_id, int $asset_type_id): array
     {
         global $conn;

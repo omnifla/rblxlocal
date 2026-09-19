@@ -18,6 +18,14 @@ class AssetDAL {
     public string $CreatedUtc;
     public string $UpdatedUtc;
     public ?bool $IsArchived = null;
+    public ?int $PriceInRobux = null;
+    public ?int $PriceInTickets = null;
+    public bool $Limited = false;
+    public ?int $FavoriteCount = null;
+    public ?int $Likes = null;
+    public ?int $Dislikes = null;
+    public ?int $TimesSold = null;
+    public ?int $IsForSale = null;
 
     private static function db(): PDO {
         global $conn;
@@ -39,12 +47,20 @@ class AssetDAL {
         $dal->CreatedUtc = $row['CreationDate'];
         $dal->UpdatedUtc = $row['UpdatedDate'];
         $dal->IsArchived = $row['IsArchived'] !== null ? (bool)$row['IsArchived'] : null;
+        $dal->PriceInRobux = $row['PriceInRobux'] !== null ? (int)$row['PriceInRobux'] : null;
+        $dal->PriceInTickets = $row['PriceInTickets'] !== null ? (int)$row['PriceInTickets'] : null;
+        $dal->Limited = (bool)($row['Limited'] ?? false);
+        $dal->FavoriteCount = $row['FavoriteCount'] !== null ? (int)$row['FavoriteCount'] : null;
+        $dal->Likes = $row['Likes'] !== null ? (int)$row['Likes'] : null;
+        $dal->Dislikes = $row['Dislikes'] !== null ? (int)$row['Dislikes'] : null;
+        $dal->TimesSold = $row['TimesSold'] !== null ? (int)$row['TimesSold'] : null;
+        $dal->IsForSale = $row['IsForSale'] !== null ? (int)$row['IsForSale'] : null;
         return $dal;
     }
 
     public function Insert(): void {
-        $sql = "INSERT INTO assets (AssetType, HashId, Categories, Genres, hash, Name, Description, OwnerId, CurrentVersionId, CreationDate, UpdatedDate, IsArchived)
-            VALUES (:AssetType, :HashId, :Categories, :Genres, :hash, :Name, :Description, :OwnerId, :CurrentVersionId, NOW(), NOW(), :IsArchived)
+        $sql = "INSERT INTO assets (AssetType, HashId, Categories, Genres, hash, Name, Description, OwnerId, CurrentVersionId, CreationDate, UpdatedDate, IsArchived, PriceInRobux, PriceInTickets, Limited, FavoriteCount, Likes, Dislikes, TimesSold, IsForSale)
+            VALUES (:AssetType, :HashId, :Categories, :Genres, :hash, :Name, :Description, :OwnerId, :CurrentVersionId, NOW(), NOW(), :IsArchived, :PriceInRobux, :PriceInTickets, :Limited, :FavoriteCount, :Likes, :Dislikes, :TimesSold, :IsForSale)
             RETURNING assetid, CreationDate, UpdatedDate";
 
         $stmt = self::db()->prepare($sql);
@@ -59,6 +75,14 @@ class AssetDAL {
             ':OwnerId' => $this->CreatorID,
             ':CurrentVersionId' => $this->CurrentVersionID,
             ':IsArchived' => $this->IsArchived,
+            ':PriceInRobux' => $this->PriceInRobux,
+            ':PriceInTickets' => $this->PriceInTickets,
+            ':Limited' => $this->Limited,
+            ':FavoriteCount' => $this->FavoriteCount,
+            ':Likes' => $this->Likes,
+            ':Dislikes' => $this->Dislikes,
+            ':TimesSold' => $this->TimesSold,
+            ':IsForSale' => $this->IsForSale,
         ]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         $this->ID = (int)$row['assetid'];
@@ -69,7 +93,7 @@ class AssetDAL {
     public function Update(): void {
         if (!$this->ID) throw new Exception("Cannot update Asset without ID");
 
-        $sql = "UPDATE assets SET AssetType = :AssetType, HashId = :HashId, Categories = :Categories, Genres = :Genres, hash = :hash, Name = :Name, Description = :Description, OwnerId = :OwnerId, CurrentVersionId = :CurrentVersionId, IsArchived = :IsArchived, UpdatedDate = NOW() WHERE assetid = :id";
+        $sql = "UPDATE assets SET AssetType = :AssetType, HashId = :HashId, Categories = :Categories, Genres = :Genres, hash = :hash, Name = :Name, Description = :Description, OwnerId = :OwnerId, CurrentVersionId = :CurrentVersionId, IsArchived = :IsArchived, PriceInRobux = :PriceInRobux, PriceInTickets = :PriceInTickets, Limited = :Limited, FavoriteCount = :FavoriteCount, Likes = :Likes, Dislikes = :Dislikes, TimesSold = :TimesSold, IsForSale = :IsForSale, UpdatedDate = NOW() WHERE assetid = :id";
 
         $stmt = self::db()->prepare($sql);
         $stmt->execute([
@@ -84,6 +108,14 @@ class AssetDAL {
             ':OwnerId' => $this->CreatorID,
             ':CurrentVersionId' => $this->CurrentVersionID,
             ':IsArchived' => $this->IsArchived,
+            ':PriceInRobux' => $this->PriceInRobux,
+            ':PriceInTickets' => $this->PriceInTickets,
+            ':Limited' => $this->Limited,
+            ':FavoriteCount' => $this->FavoriteCount,
+            ':Likes' => $this->Likes,
+            ':Dislikes' => $this->Dislikes,
+            ':TimesSold' => $this->TimesSold,
+            ':IsForSale' => $this->IsForSale,
         ]);
     }
 

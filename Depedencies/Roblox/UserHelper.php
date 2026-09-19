@@ -75,7 +75,7 @@ class UserHelper
         $guestId = intval($orCreate->GuestId);
         if ($guestId === 0) {
             $guestId = self::GetGenderedGuestId($genderTypeId);
-        } else if (self::GetGuestGenderTypeById($guestId)->ID !== $genderTypeId) {
+        } elseif (self::GetGuestGenderTypeById($guestId) !== $genderTypeId) {
             $guestId = self::GetGenderedGuestId($genderTypeId);
         }
         $orCreate->GuestId = strval($guestId);

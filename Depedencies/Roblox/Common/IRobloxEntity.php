@@ -1,5 +1,5 @@
 <?php
-namespace Roblox\Interfaces;
+namespace Roblox\Common;
 
 interface IRobloxEntity
 {

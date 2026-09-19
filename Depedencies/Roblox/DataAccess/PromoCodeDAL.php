@@ -28,23 +28,28 @@ class PromoCodeDAL {
         $dal->Code = $row['code'];
         $dal->Expiration = $row['expiration'];
         $dal->MaxRedemptions = (int)$row['max_redemptions'];
-        $dal->reward_robux = ((int)$row['reward_robux'] ?? 0);
-        $dal->reward_tickets = ((int)$row['reward_tickets'] ?? 0);
-        $dal->reward_asset_id = (int)$row['reward_asset_id'];
-        $dal->reward_asset_type_id = (int)$row['reward_asset_type_id'];
-        $dal->reward_membership_type = (int)$row['reward_membership_type'];
+        $dal->reward_robux = isset($row['reward_robux']) ? (int)$row['reward_robux'] : 0;
+        $dal->reward_tickets = isset($row['reward_tickets']) ? (int)$row['reward_tickets'] : 0;
+        $dal->reward_asset_id = isset($row['reward_asset_id']) && $row['reward_asset_id'] !== null ? (int)$row['reward_asset_id'] : null;
+        $dal->reward_asset_type_id = isset($row['reward_asset_type_id']) && $row['reward_asset_type_id'] !== null ? (int)$row['reward_asset_type_id'] : null;
+        $dal->reward_membership_type = isset($row['reward_membership_type']) && $row['reward_membership_type'] !== null ? (int)$row['reward_membership_type'] : null;
         $dal->Created = $row['created'];
         $dal->Updated = $row['updated'];
         return $dal;
     }
 
     public function Insert(): void {
-        $sql = "INSERT INTO promocodes (code, expiration, max_redemptions, created, updated) VALUES (:code, :expiration, :max_redemptions, :created, :updated) RETURNING id";
+        $sql = "INSERT INTO promocodes (code, expiration, max_redemptions, reward_robux, reward_tickets, reward_asset_id, reward_asset_type_id, reward_membership_type, created, updated) VALUES (:code, :expiration, :max_redemptions, :reward_robux, :reward_tickets, :reward_asset_id, :reward_asset_type_id, :reward_membership_type, :created, :updated) RETURNING id";
         $stmt = self::db()->prepare($sql);
         $stmt->execute([
             ':code' => $this->Code,
             ':expiration' => $this->Expiration,
             ':max_redemptions' => $this->MaxRedemptions,
+            ':reward_robux' => $this->reward_robux,
+            ':reward_tickets' => $this->reward_tickets,
+            ':reward_asset_id' => $this->reward_asset_id,
+            ':reward_asset_type_id' => $this->reward_asset_type_id,
+            ':reward_membership_type' => $this->reward_membership_type,
             ':created' => $this->Created,
             ':updated' => $this->Updated,
         ]);
@@ -52,13 +57,18 @@ class PromoCodeDAL {
     }
 
     public function Update(): void {
-        $sql = "UPDATE promocodes SET code = :code, expiration = :expiration, max_redemptions = :max_redemptions, updated = :updated WHERE id = :id";
+        $sql = "UPDATE promocodes SET code = :code, expiration = :expiration, max_redemptions = :max_redemptions, reward_robux = :reward_robux, reward_tickets = :reward_tickets, reward_asset_id = :reward_asset_id, reward_asset_type_id = :reward_asset_type_id, reward_membership_type = :reward_membership_type, updated = :updated WHERE id = :id";
         $stmt = self::db()->prepare($sql);
         $stmt->execute([
             ':id' => $this->ID,
             ':code' => $this->Code,
             ':expiration' => $this->Expiration,
             ':max_redemptions' => $this->MaxRedemptions,
+            ':reward_robux' => $this->reward_robux,
+            ':reward_tickets' => $this->reward_tickets,
+            ':reward_asset_id' => $this->reward_asset_id,
+            ':reward_asset_type_id' => $this->reward_asset_type_id,
+            ':reward_membership_type' => $this->reward_membership_type,
             ':updated' => $this->Updated,
         ]);
     }

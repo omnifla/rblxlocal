@@ -1,7 +1,8 @@
 <?php
-namespace Roblox;
+namespace Roblox\Common;
 
 use Roblox\Caching\CacheInfo;
+use Roblox\GroupCounterType;
 
 class EntityHelper
 {

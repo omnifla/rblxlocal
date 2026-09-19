@@ -146,6 +146,14 @@ class AssetType {
         return $assetType;
     }
 
+    public static function getImage(): ?self {
+        return self::getByValue('Image');
+    }
+
+    public static function DecalID(): int {
+        return self::$DecalID ?? 13;
+    }
+
     public static function getByValue(string $value): ?AssetType {
         $dal = AssetTypeDAL::getByValue($value);
         return $dal ? self::buildFromDAL($dal) : null;
@@ -256,7 +264,7 @@ class AssetType {
         $indexOfAssetType += 11;
         $endIndex = strpos($xml,'\"', $indexOfAssetType);
         $assetType = substr($xml,$indexOfAssetType, $endIndex - $indexOfAssetType);
-        $actualtype = self::get(assetType);
+        $actualtype = self::get($assetType);
         return $actualtype;
     }
 }

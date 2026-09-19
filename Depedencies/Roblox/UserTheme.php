@@ -2,13 +2,15 @@
 
 namespace Roblox;
 
-use Roblox\UserThemeDAL;
-use Roblox\Cache\CacheInfo;
-use Roblox\Cache\CacheabilitySettings;
-// use Roblox\Premium\PremiumFeatureHelper;
-// use Roblox\Premium\PremiumFeatures;
-// use Roblox\Theme\ThemeType;
-
+use Roblox\DataAccess\UserThemeDAL;
+use Roblox\Caching\CacheInfo;
+use Roblox\Caching\CacheabilitySettings;
+use Roblox\Caching\ICacheableObject;
+use Roblox\Common\IRobloxEntity;
+use Roblox\Common\EntityHelper;
+use Roblox\Premium\PremiumFeatureHelper;
+use Roblox\Premium\PremiumFeatures;
+use Roblox\Theme\ThemeType;
 class UserTheme implements IRobloxEntity, ICacheableObject
 {
     private static $activationQueue;
@@ -40,12 +42,12 @@ class UserTheme implements IRobloxEntity, ICacheableObject
                         throw new \InvalidArgumentException("User not found for AccountID {$msg['key']}");
                     }
 
-                    $userTheme = self::getByUserID($user->ID);
+                    $userTheme = self::getByUserID($user->getID());
                     if ($userTheme) {
                         $userTheme->setThemeTypeID(ThemeType::OutrageousID);
                     } else {
                         $userTheme = new self();
-                        $userTheme->setUserID($user->ID);
+                        $userTheme->setUserID($user->getID());
                         $userTheme->setThemeTypeID(ThemeType::OutrageousID);
                     }
                     $userTheme->save();
@@ -60,13 +62,13 @@ class UserTheme implements IRobloxEntity, ICacheableObject
                         throw new \InvalidArgumentException("User not found for AccountID {$msg['key']}");
                     }
 
-                    $userTheme = self::getByUserID($user->ID);
+                    $userTheme = self::getByUserID($user->getID());
                     if ($userTheme && $userTheme->getThemeTypeID() === ThemeType::OutrageousID) {
                         $userTheme->setThemeTypeID(self::getAuthenticatedUserDefaultThemeTypeID());
                         $userTheme->save();
                     } elseif (!$userTheme) {
                         $userTheme = new self();
-                        $userTheme->setUserID($user->ID);
+                        $userTheme->setUserID($user->getID());
                         $userTheme->setThemeTypeID(self::getAuthenticatedUserDefaultThemeTypeID());
                         $userTheme->save();
                     }
@@ -75,14 +77,15 @@ class UserTheme implements IRobloxEntity, ICacheableObject
         });
     }
 
+    
     public function __construct()
     {
         $this->entityDAL = new UserThemeDAL();
     }
 
-    public function getID()
+    public function getID(): int
     {
-        return $this->entityDAL->ID;
+        return (int)($this->entityDAL->ID ?? 0);
     }
 
     public function getUserID()
@@ -159,68 +162,68 @@ class UserTheme implements IRobloxEntity, ICacheableObject
         $this->entityDAL = $dal;
     }
 
-    public function getCacheInfo()
+    public function getCacheInfo(): CacheInfo
     {
         return self::$entityCacheInfo;
     }
 
-    public function buildEntityIDLookups()
+    public function buildEntityIDLookups(): array
     {
         return ["UserID:{$this->getUserID()}"];
     }
 
-    public function buildStateTokenCollection()
+    public function buildStateTokenCollection(): array
     {
         return [];
     }
 
-    public static function getGuestUserThemeTypeID()
+    public function getGuestUserThemeTypeID()
     {
-        return Settings::get('GuestUserThemeTypeID');
+        return Settings::$settings['GuestUserThemeTypeID'];
     }
 
-    public static function getAuthenticatedUserDefaultThemeTypeID()
+    public function getAuthenticatedUserDefaultThemeTypeID()
     {
-        return Settings::get('AuthenticatedUserDefaultThemeTypeID');
+        return Settings::$settings['AuthenticatedUserDefaultThemeTypeID'] ?? null;
     }
 
     public static function isABThemeTestingEnabled()
     {
-        return Settings::get('ABThemeTestingEnabled');
+        return Settings::$settings['ABThemeTestingEnabled'];
     }
 
     public static function setABThemeTestingEnabled($enabled)
     {
-        Settings::set('ABThemeTestingEnabled', $enabled);
+        Settings::$settings['ABThemeTestingEnabled'] = $enabled;
     }
 
     public static function isOBCCastEnabled()
     {
-        return Settings::get('OBCCastEnabled');
+        return Settings::$settings['OBCCastEnabled'];
     }
 
     public static function setOBCCastEnabled($enabled)
     {
-        Settings::set('OBCCastEnabled', $enabled);
+        Settings::$settings['OBCCastEnabled'] = $enabled;
     }
 
     public static function getOBCCastDescription()
     {
-        return Settings::get('OBCCastDescription');
+        return Settings::$settings['OBCCastDescription'];
     }
 
     public static function setOBCCastDescription($desc)
     {
-        Settings::set('OBCCastDescription', $desc);
+        Settings::$settings['OBCCastDescription'] = $desc;
     }
 
     public static function getUsersCanChangeThemeEnabled()
     {
-        return Settings::get('UsersCanChangeThemeEnabled');
+        return Settings::$settings['UsersCanChangeThemeEnabled'];
     }
 
     public static function setUsersCanChangeThemeEnabled($enabled)
     {
-        Settings::set('UsersCanChangeThemeEnabled', $enabled);
+        Settings::$settings['UsersCanChangeThemeEnabled'] = $enabled;
     }
 }
