@@ -29,11 +29,11 @@ function sanitize_forum_html($html)
 
 $page_title = 'Preview: ' . htmlspecialchars($subject);
 
-SiteHeader::render(["pageTitle" => $page_title]);
+SiteHeader::render(["pageTitle" => $page_title]); // is this supposed to be here??
 ?>
 
 <head>
-    <title><?= $site_properties['Title'] ?>.com</title>
+    <title><?= $page_title ?> | <?= $site_properties['Title'] ?>.com</title>
     <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=main___3254191a0cea4af8e8a0fecd1a2685b0_m.css' />
     <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=page___d0a32d7530b30a6f5d85fd297f8b6898_m.css' />
     <link rel='stylesheet' href='/Forum/skins/default/style/default.css' />

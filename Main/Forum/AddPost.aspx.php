@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $conn->commit();
             
             // Redirect to the new thread
-            header("Location: /Forum/ShowPost.aspx.php?PostID={$thread_id}");
+            header("Location: /Forum/ShowPost.aspx?PostID={$thread_id}");
             exit;
             
         } catch (Exception $e) {
@@ -102,6 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title><?= $site_properties['Title'] ?>.com</title>
     <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=main___3254191a0cea4af8e8a0fecd1a2685b0_m.css' />
     <link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=page___d0a32d7530b30a6f5d85fd297f8b6898_m.css' />
+    <link rel='stylesheet' href='/CSS/Legacy/Navigation.css' />
     <link rel='stylesheet' href='/Forum/skins/default/style/default.css' />
 </head>
 
@@ -119,15 +120,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <td align="left"><span id="ctl00_cphRoblox_ThreadView1_ctl00_Whereami1" name="Whereami1">
                                 <div>
                                     <nobr>
-                                        <a class="linkMenuSink notranslate" href="/Forum/Default.aspx.php">ROBLOX Forum</a>
+                                        <a class="linkMenuSink notranslate" href="/Forum/Default.aspx">ROBLOX Forum</a>
                                     </nobr>
                                     <nobr>
                                         <span class="normalTextSmallBold"> » </span>
-                                        <a class="linkMenuSink notranslate" href="/Forum/ShowForumGroup.aspx.php?ForumGroupID=<?= $forum['group_id'] ?>"><?= htmlspecialchars($forum['group_name']) ?></a>
+                                        <a class="linkMenuSink notranslate" href="/Forum/ShowForumGroup.aspx?ForumGroupID=<?= $forum['group_id'] ?>"><?= htmlspecialchars($forum['group_name']) ?></a>
                                     </nobr>
                                     <nobr>
                                         <span class="normalTextSmallBold"> » </span>
-                                        <a class="linkMenuSink notranslate" href="/Forum/ShowForum.aspx.php?ForumID=<?= $forum['id'] ?>"><?= htmlspecialchars($forum['name']) ?></a>
+                                        <a class="linkMenuSink notranslate" href="/Forum/ShowForum.aspx?ForumID=<?= $forum['id'] ?>"><?= htmlspecialchars($forum['name']) ?></a>
                                     </nobr>
                                     <nobr>
                                         <span class="normalTextSmallBold"> » </span>
@@ -188,7 +189,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <td class="forum-table-cell" colspan="2" style="padding: 10px; text-align: center;">
                                         <input type="submit" value="Post" class="btn-control btn-control-medium forum-btn-control-medium" style="margin-right: 10px;">
                                         <input type="button" id="previewBtn" value="Preview" class="btn-control btn-control-medium forum-btn-control-medium" style="margin-right: 10px;" onclick="openPreview()">
-                                        <a href="/Forum/ShowForum.aspx.php?ForumID=<?= $forum_id ?>" class="btn-control btn-control-medium forum-btn-control-medium">Cancel</a>
+                                        <a href="/Forum/ShowForum.aspx?ForumID=<?= $forum_id ?>" class="btn-control btn-control-medium forum-btn-control-medium">Cancel</a>
                                     </td>
                                 </tr>
                             </table>
@@ -300,7 +301,7 @@ function openPreview() {
         return;
     }
 
-    var url = '/Forum/PreviewPost.aspx.php?subject=' + encodeURIComponent(subject) + '&content=' + encodeURIComponent(content) + '&forum=' + encodeURIComponent(forumName) + '&group=' + encodeURIComponent(groupName);
+    var url = '/Forum/PreviewPost.aspx?subject=' + encodeURIComponent(subject) + '&content=' + encodeURIComponent(content) + '&forum=' + encodeURIComponent(forumName) + '&group=' + encodeURIComponent(groupName);
     window.open(url, '_blank');
 }
 

@@ -46,7 +46,15 @@ $site_properties = [
 ];
 // we will use the landing page here
 $accepted = $_COOKIE['AgreedToSafetyFilters'] ?? null;
+$userAgent = strtolower($_SERVER['HTTP_USER_AGENT'] ?? '');
+$isRobloxClient = str_contains($userAgent, 'roblox/darwin')
+    || str_contains($userAgent, 'roblox/xboxone')
+    || str_contains($userAgent, 'roblox/wininet')
+    || str_contains($userAgent, 'robloxstudio')
+    || str_contains($userAgent, 'roblox android app');
+
 if ($accepted !== "true"
+ && !$isRobloxClient
  && !str_contains($_SERVER['REQUEST_URI'], '/Main/Landing/Home.php') 
  && !str_contains(strtolower($_SERVER['REQUEST_URI']), '/game/') 
  && !str_contains($_SERVER['REQUEST_URI'], '/mobileapi/')

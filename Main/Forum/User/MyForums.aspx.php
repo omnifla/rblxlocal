@@ -11,7 +11,7 @@ if (!$userInfo) {
     header('Location: ' . $redirect);
     exit;
 }
-$currentUserId = (int) $userInfo['UserId'];
+$currentUserId = (int) $userInfo['id'];
 $threads_stmt = $conn->prepare("SELECT t.id, t.subject, t.user_id, u.username AS author_name, t.replies_count, t.views_count, t.last_post_at, t.is_pinned, t.is_locked, t.is_popular, lp.username AS last_poster_name, f.name AS forum_name FROM threads t JOIN users u ON t.user_id = u.id LEFT JOIN users lp ON t.last_post_user_id = lp.id JOIN forums f ON t.forum_id = f.id WHERE t.user_id = :user_id ORDER BY t.is_pinned DESC, t.last_post_at DESC");
 $threads_stmt->execute(['user_id' => $currentUserId]);
 $threads = $threads_stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -94,7 +94,7 @@ $threads = $threads_stmt->fetchAll(PDO::FETCH_ASSOC);
     </td>
     <td class="notranslate" style="width:80px;width:90px;padding-right:12px;"></td>
     <td align="left" style="width:100px;">
-        <a class="post-list-author notranslate" href="http://www.roblox.com/User.aspx?UserName=<?= urlencode($thread['author_name']) ?>">
+        <a class="post-list-author notranslate" href="/User.aspx?UserName=<?= urlencode($thread['author_name']) ?>">
             <div class="thread-link-outer-wrapper">
                 <div class="normalTextSmaller thread-link-container">
                     <?= htmlspecialchars($thread['author_name']) ?>
@@ -105,7 +105,7 @@ $threads = $threads_stmt->fetchAll(PDO::FETCH_ASSOC);
     <td align="center" style="width:50px;"><span class="normalTextSmaller"><?= (int)$thread['replies_count'] ?></span></td>
     <td align="center" style="width:50px;"><span class="normalTextSmaller"><?= (int)$thread['views_count'] ?></span></td>
     <td align="center" style="width:100px;white-space:nowrap;">
-        <a class="last-post" href="http://forum.roblox.com/Forum/ShowPost.aspx?PostID=<?= htmlspecialchars($thread['thread_id']) ?>#last">
+        <a class="last-post" href="/Forum/ShowPost.aspx?PostID=<?= htmlspecialchars($thread['thread_id']) ?>#last">
             <div>
                 <span class="normalTextSmaller"><?= date('d M Y', strtotime($thread['last_post_at'])) ?></span>
             </div>
