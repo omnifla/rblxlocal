@@ -5,8 +5,8 @@
 > Skyler's Fridge does not own the rights to RBLXLocal or any of it's assets and we do not claim ownership of the source code.
 
 <p align="center">
-    <img src="https://github.com/rblx-local/rblxlocal/blob/main/logo.png#gh-dark-mode-only" width="420">
-    <img src="https://github.com/rblx-local/rblxlocal/blob/main/logo.png#gh-light-mode-only" width="420">
+    <img src="https://github.com/omnifla/rblxlocal/blob/main/logo.png#gh-dark-mode-only" width="420">
+    <img src="https://github.com/omnifla/rblxlocal/blob/main/logo.png#gh-light-mode-only" width="420">
 </p>
 
 <div align="center">
