@@ -42,22 +42,22 @@ class Alert
 
     public function getCreated(): \DateTime
     {
-        return $this->entityDAL->Created;
+        return new \DateTime($this->entityDAL->Created);
     }
 
     public function setCreated(\DateTime $dt): void
     {
-        $this->entityDAL->Created = $dt;
+        $this->entityDAL->Created = $dt->format(DATE_ATOM);
     }
 
     public function getUpdated(): \DateTime
     {
-        return $this->entityDAL->Updated;
+        return new \DateTime($this->entityDAL->Updated);
     }
 
     public function setUpdated(\DateTime $dt): void
     {
-        $this->entityDAL->Updated = $dt;
+        $this->entityDAL->Updated = $dt->format(DATE_ATOM);
     }
 
     public function getVisibilityTypeID(): int
@@ -74,11 +74,11 @@ class Alert
     {
         if ($this->entityDAL->ID === 0) {
             $now = new \DateTime();
-            $this->entityDAL->Created = $now;
-            $this->entityDAL->Updated = $now;
+            $this->setCreated($now);
+            $this->setUpdated($now);
             $this->entityDAL->insert();
         } else {
-            $this->entityDAL->Updated = new \DateTime();
+            $this->setUpdated(new \DateTime());
             $this->entityDAL->update();
         }
     }
@@ -88,7 +88,7 @@ class Alert
         $alert = new self();
         $alert->setUserID($userID);
         $alert->setText($text);
-        $alert->setVisibilityTypeID($visibilityType->id);
+        $alert->setVisibilityTypeID($visibilityType->getID());
         $alert->save();
         return $alert;
     }

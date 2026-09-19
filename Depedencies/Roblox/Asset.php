@@ -55,8 +55,19 @@ class Asset {
         if ($this->_OriginalIsArchived === null) $this->_OriginalIsArchived = $this->_EntityDAL->IsArchived;
         $this->_EntityDAL->IsArchived = $value;
     }
-    public function getCreated(): string { return $this->_EntityDAL->Created; }
-    public function getUpdated(): string { return $this->_EntityDAL->Updated; }
+    public function getCreated(): string { return $this->_EntityDAL->CreatedUtc; }
+    public function getUpdated(): string { return $this->_EntityDAL->UpdatedUtc; }
+    public function getPriceInRobux(): ?int { return $this->_EntityDAL->PriceInRobux; }
+    public function setPriceInRobux(?int $value): void { $this->_EntityDAL->PriceInRobux = $value; }
+    public function getPriceInTickets(): ?int { return $this->_EntityDAL->PriceInTickets; }
+    public function setPriceInTickets(?int $value): void { $this->_EntityDAL->PriceInTickets = $value; }
+    public function isLimited(): bool { return (bool)$this->_EntityDAL->Limited; }
+    public function setLimited(bool $value): void { $this->_EntityDAL->Limited = $value; }
+    public function getFavoriteCount(): ?int { return $this->_EntityDAL->FavoriteCount; }
+    public function getLikes(): ?int { return $this->_EntityDAL->Likes; }
+    public function getDislikes(): ?int { return $this->_EntityDAL->Dislikes; }
+    public function getTimesSold(): ?int { return $this->_EntityDAL->TimesSold; }
+    public function getIsForSale(): ?int { return $this->_EntityDAL->IsForSale; }
     public function isOwnedByUser(int $userId): bool {
         return AssetOwnershipAuthority::doesUserOwnAsset($userId, $this->getID());
     }
@@ -172,6 +183,15 @@ class Asset {
     public static function SearchByName(string $name, int $limit = 50, int $offset = 0): array {
         $dals = AssetDAL::SearchByName($name, $limit, $offset);
         return array_map(fn($dal) => new Asset($dal), $dals);
+    }
+
+    public static function testPlaceRestrictions(Asset $place, Asset $asset): bool {
+        if (!$place->IsPlace()) {
+            return false;
+        }
+
+        // Stub implementation. By default, all gear is allowed in valid place assets.
+        return true;
     }
 
     public function GetOptions(): AssetOption {

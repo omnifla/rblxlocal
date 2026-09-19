@@ -16,6 +16,13 @@ class BadgeType
     public const BuildersClub = 11;
     public const Veteran = 12;
     public const BuildersClubHardHat = 13;
+    public const Ambassador = 14;
+    public const OfficialModelMaker = 15;
+    public const WelcomeToTheClub = 16;
+    public const CombatInitiation2009 = 17;
+    public const Homestead2009 = 18;
+    public const Bricksmith2009 = 19;
+    public const Bloxer2009 = 20;
 
     private static array $allTypes = [];
 
@@ -58,12 +65,16 @@ class BadgeType
     // Load default badge types
     public static function init(): void
     {
+        if (!empty(self::$allTypes)) {
+            return;
+        }
+
         self::register("Administrator", self::Administrator, "Roblox administrator");
         self::register("Friendship", self::Friendship, "User made a friend");
         self::register("Veteran", self::Veteran, "Account is at least a year old");
         self::register("Inviter", self::Inviter, "User invited someone to Roblox");
         self::register("Ambassador", self::Ambassador);
-        self::register("Bloxer", self::Bloxer);
+        self::register("Bloxxer", self::Bloxxer);
         self::register("Warrior", self::Warrior);
         self::register("CombatInitiation", self::CombatInitiation);
         self::register("Bricksmith", self::Bricksmith);
@@ -78,4 +89,4 @@ class BadgeType
     }
 }
 
-\Roblox\Badges\BadgeType::init();
+BadgeType::init();

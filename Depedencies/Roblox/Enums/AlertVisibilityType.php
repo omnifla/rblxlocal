@@ -9,7 +9,7 @@ use Roblox\Caching\CacheabilitySettings;
 use Roblox\Common\IRobloxEntity;
 use Roblox\Caching\ICacheableObject;
 
-class AlertVisibilityType implements \Roblox\Common\IRobloxEntity, \Roblox\Caching\ICacheableObject
+class AlertVisibilityType implements IRobloxEntity, ICacheableObject
 {
     private AlertVisibilityTypeDAL $_EntityDAL;
 
@@ -31,37 +31,37 @@ class AlertVisibilityType implements \Roblox\Common\IRobloxEntity, \Roblox\Cachi
 
     public function getID(): int
     {
-        return $this->_EntityDAL->getID();
+        return $this->_EntityDAL->id;
     }
 
     public function getValue(): string
     {
-        return $this->_EntityDAL->Value;
+        return $this->_EntityDAL->value;
     }
 
     public function setValue(string $value): void
     {
-        $this->_EntityDAL->Value = $value;
+        $this->_EntityDAL->value = $value;
     }
 
     public function getCreated(): \DateTime
     {
-        return $this->_EntityDAL->Created;
+        return new \DateTime($this->_EntityDAL->created);
     }
 
     public function setCreated(\DateTime $created): void
     {
-        $this->_EntityDAL->Created = $created;
+        $this->_EntityDAL->created = $created->format(DATE_ATOM);
     }
 
     public function getUpdated(): \DateTime
     {
-        return $this->_EntityDAL->Updated;
+        return new \DateTime($this->_EntityDAL->updated);
     }
 
     public function setUpdated(\DateTime $updated): void
     {
-        $this->_EntityDAL->Updated = $updated;
+        $this->_EntityDAL->updated = $updated->format(DATE_ATOM);
     }
 
     public static function All(): ?AlertVisibilityType
@@ -87,11 +87,12 @@ class AlertVisibilityType implements \Roblox\Common\IRobloxEntity, \Roblox\Cachi
     public function Save(): void
     {
         EntityHelper::SaveEntity($this, function () {
-            $this->_EntityDAL->Created = new \DateTime();
-            $this->_EntityDAL->Updated = $this->_EntityDAL->Created;
+            $now = new \DateTime();
+            $this->setCreated($now);
+            $this->setUpdated($now);
             $this->_EntityDAL->Insert();
         }, function () {
-            $this->_EntityDAL->Updated = new \DateTime();
+            $this->setUpdated(new \DateTime());
             $this->_EntityDAL->Update();
         });
     }
@@ -125,7 +126,7 @@ class AlertVisibilityType implements \Roblox\Common\IRobloxEntity, \Roblox\Cachi
 
     public function BuildEntityIDLookups(): array
     {
-        return ["Value:" . $this->_EntityDAL->Value];
+        return ["Value:" . $this->_EntityDAL->value];
     }
 
     public function BuildStateTokenCollection(): array

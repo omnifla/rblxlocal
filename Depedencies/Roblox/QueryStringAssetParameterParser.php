@@ -87,7 +87,7 @@ class QueryStringAssetParameterParser
 
         if ($assetId !== null) {
             $a = Asset::Get((int)$assetId);
-            if ($a) return AssetReference::fromAssetSubscription($a->ID ?? $a->id);
+            if ($a) return AssetReference::fromAssetSubscription($a->ID ?? $a->getID());
         }
 
         if ($throwIfBadUrl) throw new \InvalidArgumentException('No asset reference in query');

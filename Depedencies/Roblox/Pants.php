@@ -21,8 +21,19 @@ class Pants
     public static function GetNode(\DOMDocument $doc): ?\DOMElement
     {
         foreach ($doc->childNodes as $child) {
-            if ($child->nodeName !== 'roblox') continue;
+            if (!$child instanceof \DOMElement) {
+                continue;
+            }
+
+            if ($child->nodeName !== 'roblox') {
+                continue;
+            }
+
             foreach ($child->childNodes as $item) {
+                if (!$item instanceof \DOMElement) {
+                    continue;
+                }
+
                 if ($item->nodeName === 'Item' && $item->getAttribute('class') === 'Pants') {
                     return $item;
                 }
@@ -34,11 +45,27 @@ class Pants
     public static function GetTextureNode(\DOMDocument $doc)
     {
         $node = self::GetNode($doc);
-        if (!$node) return null;
+        if (!$node) {
+            return null;
+        }
+
         foreach ($node->childNodes as $props) {
-            if ($props->nodeName !== 'Properties') continue;
+            if (!$props instanceof \DOMElement) {
+                continue;
+            }
+
+            if ($props->nodeName !== 'Properties') {
+                continue;
+            }
+
             foreach ($props->childNodes as $prop) {
-                if ($prop->getAttribute('name') === 'PantsTemplate') return $prop;
+                if (!$prop instanceof \DOMElement) {
+                    continue;
+                }
+
+                if ($prop->getAttribute('name') === 'PantsTemplate') {
+                    return $prop;
+                }
             }
         }
         return null;

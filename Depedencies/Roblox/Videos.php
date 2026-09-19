@@ -28,7 +28,7 @@ class Videos
 
     private function buildUrl(string $videoName): string
     {
-        $bucketDomain = "https://videoscdn.aftwld.xyz";
+        $bucketDomain = "https://videoscdn.roblox.local";
         return rtrim($bucketDomain, "/") . "/" . ltrim($videoName, "/");
     }
 

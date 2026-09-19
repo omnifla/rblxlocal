@@ -32,7 +32,7 @@ class Message
     private static $onMessageCreatedHandlers = [];
     private static $onMessageDeletedHandlers = [];
 
-    public function __construct(MessageDAL $dal = null)
+    public function __construct(MessageDAL $dal)
     {
         $this->entityDAL = $dal ?? new MessageDAL();
     }

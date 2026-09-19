@@ -2,6 +2,10 @@
 // ported by meditext
 namespace Roblox;
 
+use Roblox\Asset;
+use Roblox\AssetVersion;
+use Roblox\IAsset;
+
 class AssetReference
 {
     public const ASSET_SUBSCRIPTION = 0;

@@ -42,4 +42,21 @@ class OwnershipV1UserAssetFactory
         }
         return $out;
     }
+
+    public static function getByUserAssetId(int $userAssetId): ?object
+    {
+        $dal = UserAssetDAL::get($userAssetId);
+        if ($dal === null) {
+            return null;
+        }
+
+        $userAsset = new \stdClass();
+        $userAsset->id = $dal->id;
+        $userAsset->user_id = $dal->user_id;
+        $userAsset->assetId = $dal->asset_id;
+        $userAsset->asset_id = $dal->asset_id;
+        $userAsset->assetTypeId = $dal->asset_type_id;
+        $userAsset->asset_type_id = $dal->asset_type_id;
+        return $userAsset;
+    }
 }

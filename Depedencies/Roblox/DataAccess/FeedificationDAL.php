@@ -14,7 +14,13 @@ class FeedificationDAL
         $this->db = $conn;
     }
 
-    public function getRecent(int $limit = 1): array
+    public static function getRecent(int $limit = 1): array
+    {
+        $instance = new self();
+        return $instance->fetchRecent($limit);
+    }
+
+    public function fetchRecent(int $limit = 1): array
     {
         $sql = 'SELECT id, title, message, created_at FROM feedifications ORDER BY created_at DESC LIMIT :limit';
         $stmt = $this->db->prepare($sql);

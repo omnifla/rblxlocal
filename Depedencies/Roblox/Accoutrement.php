@@ -44,7 +44,7 @@ class Accoutrement {
 
     public function delete(): void {
         $this->dal->delete();
-        UserAvatar::getOrCreate($this->getUser())->appearanceChanged();
+        UserAvatar::getOrCreate($this->getUser()->getID())->appearanceChanged();
     }
 
     public function getUser(): User {
@@ -57,8 +57,8 @@ class Accoutrement {
 
     public static function createNew(UserAsset $userAsset): Accoutrement {
         $accoutrement = new Accoutrement();
-        $accoutrement->dal->user_id = $userAsset->user_id;
-        $accoutrement->dal->user_asset_id = $userAsset->id;
+        $accoutrement->dal->user_id = $userAsset->getUserId();
+        $accoutrement->dal->user_asset_id = $userAsset->getId();
         $accoutrement->dal->created = date('Y-m-d H:i:s');
         $accoutrement->save();
         return $accoutrement;
@@ -97,10 +97,10 @@ class Accoutrement {
                 continue;
             }
 
-            $assetTypeId = $userAsset->asset_type_id;
+            $assetTypeId = $userAsset->getAssetTypeId();
             $count = $assetTypesWorn[$assetTypeId] ?? 0;
 
-            if (($count < 1) || ($assetTypeId === AssetType::HAT_ID && $count < 3)) {
+            if (($count < 1) || ($assetTypeId === AssetType::$HatID && $count < 3)) {
                 $assetTypesWorn[$assetTypeId] = $count + 1;
                 $filteredAccoutrements[] = $accoutrement;
             } else {
@@ -112,19 +112,19 @@ class Accoutrement {
     }
 
     public static function wear(UserAsset $userAsset): void {
-        $userId = $userAsset->user_id;
+        $userId = $userAsset->getUserId();
 
-        if ($userId !== $userAsset->user_id) {
-            throw new Exception("User $userId is not the owner of UserAsset {$userAsset->id}.");
+        if ($userId !== $userAsset->getUserId()) {
+            throw new Exception("User $userId is not the owner of UserAsset {$userAsset->getId()}.");
         }
 
-        $assetTypeId = $userAsset->asset_type_id;
+        $assetTypeId = $userAsset->getAssetTypeId();
         if (!self::isValidAssetType($assetTypeId)) {
             throw new Exception("Invalid AssetTypeID: $assetTypeId.");
         }
 
         $currentlyWornAccoutrements = self::getUserAccoutrements($userId);
-        $currentlyWornOfType = array_filter($currentlyWornAccoutrements, fn($a) => $a->getUserAsset()->asset_type_id === $assetTypeId);
+        $currentlyWornOfType = array_filter($currentlyWornAccoutrements, fn($a) => $a->getUserAsset()->getAssetTypeId() === $assetTypeId);
 
         if (count($currentlyWornOfType) >= ($assetTypeId === AssetType::$HatID ? 3 : 1)) {
             foreach ($currentlyWornOfType as $accoutrement) {
@@ -157,11 +157,11 @@ class Accoutrement {
 
     public function isEquipped(): bool {
         $userAsset = $this->getUserAsset();
-        $assetTypeId = $userAsset->asset_type_id;
+        $assetTypeId = $userAsset->getAssetTypeId();
 
         if ($assetTypeId === AssetType::$GearID) {
             $equippedGearId = $this->getEquippedGearId();
-            return $equippedGearId === $userAsset->id;
+            return $equippedGearId === $userAsset->getId();
         }
 
         return true; // stub, this is not a good pratice.
@@ -184,23 +184,23 @@ class Accoutrement {
             }
 
             $asset = $userAsset->getAsset();
-            $assetTypeId = $asset->asset_type_id;
+            $assetTypeId = $asset->getAssetTypeID();
 
             if ($assetTypeId === AssetType::$GearID) {
                 if ($place && !Asset::testPlaceRestrictions($place, $asset)) {
                     continue;
                 }
-                $equippedGearId = $asset->id;
+                $equippedGearId = $asset->getID();
             }
 
-            $isEquipped = ($assetTypeId === AssetType::$GearID && $equippedGearId === $asset->id);
+            $isEquipped = ($assetTypeId === AssetType::$GearID && $equippedGearId === $asset->getID());
             $inventory[] = new AssetEquippedState($asset, $isEquipped);
         }
 
         if ($place) {
             $additionalGear = UserAsset::getUserAssets($userId, AssetType::$GearID);
             foreach ($additionalGear as $gearUserAsset) {
-                if ($gearUserAsset->id === $equippedGearId || $gearUserAsset->isExpired()) {
+                if ($gearUserAsset->getId() === $equippedGearId || $gearUserAsset->isExpired()) {
                     continue;
                 }
 

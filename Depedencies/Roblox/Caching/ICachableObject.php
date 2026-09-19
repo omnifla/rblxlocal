@@ -1,5 +1,5 @@
 <?php
-namespace Roblox\Interfaces;
+namespace Roblox\Caching;
 
 use Roblox\Caching\CacheInfo;
 

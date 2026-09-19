@@ -1,12 +1,14 @@
 <?php
-// ported and written by meditext 
+
 namespace Roblox\Thumbs;
-use IncludeHelper;
+
 use Roblox\Grid;
 use Roblox\Grid\Lua;
 use Roblox\Grid\Rcc as RBXGS;
-use Roblox\Authentication as Auth;
 use Roblox\Accoutrement;
+use Roblox\Authentication as Auth;
+use Exception;
+
 class AvatarRequest
 {
     private $userId;
@@ -16,7 +18,7 @@ class AvatarRequest
     public function __construct($parameters, $user, $avatarAssetHashId)
     {
         $this->parameters = $parameters;
-        $this->userId = $user['id'];
+        $this->userId = (int) $user['id'];
         $this->avatarAssetHashId = $avatarAssetHashId;
     }
 
@@ -24,45 +26,66 @@ class AvatarRequest
     {
         $equippedGearId = 0;
         $assetIds = [];
+
         $accoutrements = Accoutrement::getUserAccoutrements($this->userId);
+
         foreach ($accoutrements as $accoutrement) {
-            $assetIds[] = $accoutrement->getDAL()->user_asset_id;
+            if (!$accoutrement)
+                continue;
+
+            $dal = $accoutrement->getDAL();
+            if (!$dal)
+                continue;
+
+            $assetIds[] = $dal->user_asset_id;
+
             if ($accoutrement->isEquipped()) {
-                $equippedGearId = $accoutrement->getDAL()->user_asset_id;
+                $equippedGearId = $dal->user_asset_id;
             }
         }
-        $assetIdsString = implode(", ", $assetIds);
-        $avatarAccoutrementsUrl = sprintf(Avatar::$avatarAccoutrementsBaseUrl, $this->userId);
+
+        $avatarAccoutrementsUrl = sprintf(
+            Avatar::$avatarAccoutrementsBaseUrl,
+            $this->userId
+        );
+
         if ($equippedGearId !== 0) {
             $avatarAccoutrementsUrl .= "&EquippedGearId={$equippedGearId}";
         }
+
         $avatarcontent = Avatar::getAvatarScriptContent();
+
         return Lua::NewScriptWithArgs(
             $this->avatarAssetHashId,
             $avatarcontent,
             [
                 $avatarAccoutrementsUrl,
                 Avatar::$baseUrl,
-                $this->parameters['format'],
-                $size['width'],
-                $size['height']
+                $this->parameters['format'] ?? 'png',
+                $size['width'] ?? 100,
+                $size['height'] ?? 100
             ]
         );
     }
 }
+
 class Avatar
 {
     private static $avatarScriptOverride = null;
+
     public static $avatarScript = "AvatarScript.lua";
     public static $baseUrl = "http://%s/";
-    public static $avatarAccoutrementsBaseUrl = "%sAsset/CharacterFetch.ashx?userId=%s";
+    public static $avatarAccoutrementsBaseUrl = "%sAsset/CharacterFetch.ashx?userId=%d";
+
     public static function init()
     {
         self::$baseUrl = sprintf(self::$baseUrl, $_SERVER['SERVER_NAME']);
-        self::$avatarAccoutrementsBaseUrl = sprintf(self::$avatarAccoutrementsBaseUrl, self::$baseUrl, "%s");
+
+        self::$avatarAccoutrementsBaseUrl =
+            self::$baseUrl . "Asset/CharacterFetch.ashx?userId=%d";
     }
 
-    public function requestThumbnail($userId, $width = null, $height = null, $imageFormat = "png", $thumbnailFormatId = 1)
+    public function requestThumbnail($userId, $width = 100, $height = 100, $imageFormat = "png", $thumbnailFormatId = 1)
     {
         if (is_null($width) || is_null($height)) {
             $thumbnailFormat = $this->getThumbnailFormat($thumbnailFormatId);
@@ -70,26 +93,36 @@ class Avatar
             $height = $thumbnailFormat['height'];
         }
         $user = $this->getUser($userId);
-        $imageParameters = $this->createImageParameters($width, $height, $imageFormat, $thumbnailFormatId);
-        $thumbResult = $this->getThumbnailUrl($user, $imageParameters);
+        if (!$user) {
+            return ['url' => null];
+        }
+        $params = $this->createImageParameters($width, $height, $imageFormat, 1);
+        $thumbResult = $this->getThumbnailUrl($user, $params);
         if (!isset($thumbResult['url']) && $imageFormat == 'obj') {
             return $thumbResult; // since obj generation outputs without a url
         }
-        return ['url' => $thumbResult['url'], 'isSecure' => $this->isSecureConnection()];
+        return [
+            'url' => $thumbResult['url'] ?? null,
+            'isSecure' => $this->isSecureConnection()
+        ];
     }
     private function getThumbnailFormat($thumbnailFormatId)
     {
         // stub, return 100px2
         return ['width' => 100, 'height' => 100];
     }
+
     private function getUser($userId)
     {
         $user = Auth::GetUserInfo($userId);
+
         if (!$user) {
             exit("uhm what");
         }
+
         return ['id' => $user['id'], 'name' => $user['username'], 'bodycolor' => $user['bodycolor']];
     }
+
     private function createImageParameters($width, $height, $imageFormat, $thumbnailFormatId)
     {
         return [
@@ -99,11 +132,18 @@ class Avatar
             'thumbnailFormatId' => $thumbnailFormatId
         ];
     }
+
     private function getThumbnailUrl($user, $parameters)
     {
         $avatarAssetHashId = $this->getAvatarAssetHashId($user);
-        $avatarRequest = new AvatarRequest($parameters, $user, $avatarAssetHashId);
-        $avatarscript = $avatarRequest->getScript([
+
+        $avatarRequest = new AvatarRequest(
+            $parameters,
+            $user,
+            $avatarAssetHashId
+        );
+
+        $script = $avatarRequest->getScript([
             'width' => $parameters['width'],
             'height' => $parameters['height']
         ]);
@@ -111,24 +151,26 @@ class Avatar
         $rccservice = new RBXGS\RCCServiceSoap("127.0.0.1", 64989);
         $job = new RBXGS\Job($avatarAssetHashId);
 
-        $output = $rccservice->BatchJobEx($job, $avatarscript);
+        $output = $rccservice->BatchJobEx($job, $script);
 
         if (is_soap_fault($output) || $output === null) {
             exit("RCCService returned null or fault for avatar {$avatarAssetHashId}");
             return ['url' => null];
         }
+
         // normalize the response
         if ($parameters['format'] === 'obj') {
             return $this->handleObjExport($output);
         }
+
         $base64 = $output;
 
         if (empty($base64)) {
-            throw new \Exception("No base64 data returned for avatar {$avatarAssetHashId}");
+            throw \Exception("No base64 data returned for avatar {$avatarAssetHashId}");
         }
 
-
         $storageDir = $_SERVER["DOCUMENT_ROOT"] . "/../thumbnail_renders/";
+
         if (!is_dir($storageDir)) {
             mkdir($storageDir, 0777, true);
         }
@@ -136,29 +178,23 @@ class Avatar
         $filename = "{$avatarAssetHashId}.{$parameters['format']}";
         $filePath = $storageDir . $filename;
 
-        $data = base64_decode($base64);
-        if ($data !== false) {
-            file_put_contents($filePath, $data);
-        } else {
-            error_log("Failed to decode base64 for avatar {$avatarAssetHashId}");
+        $decoded = base64_decode($base64);
+
+        if ($decoded === false) {
             return ['url' => null];
         }
-        // parse domain to only let the actual root domain to be used (preventing subdomains)
-        $domainParts = explode('.', $_SERVER['SERVER_NAME']);
-        $domainCount = count($domainParts);
-        if ($domainCount >= 2) {
-            $rootDomain = $domainParts[$domainCount - 2] . '.' . $domainParts[$domainCount - 1];
-        } else {
-            $rootDomain = $_SERVER['SERVER_NAME'];
-        }
 
-        $url = "https://thumbs.{$rootDomain}/" . $filename;
+        file_put_contents($filePath, $decoded);
+
+        $url = "https://thumbs.{$_SERVER['SERVER_NAME']}/{$filename}";
+
         return ['url' => $url];
     }
 
     private function handleObjExport($output)
     {
         $json = json_decode($output, true);
+
         if (!$json || !isset($json['files'])) {
             error_log("OBJ thumbnail error: invalid JSON returned");
             return ['url' => null];
@@ -174,13 +210,10 @@ class Avatar
         $obj = base64_decode($json['files']['scene.obj']['content']);
         $objHash = md5($obj);
         $objFilename = $objHash . ".obj";
-        file_put_contents($cdnPath . $objFilename, $obj);
 
         $mtl = base64_decode($json['files']['scene.mtl']['content']);
         $mtlHash = md5($mtl);
         $mtlFilename = $mtlHash . ".mtl";
-
-        $textureReplacements = [];
 
         $textures = [];
         foreach ($json['files'] as $filename => $file) {
@@ -226,19 +259,11 @@ class Avatar
 
         return md5(implode(',', $hashComponents));
     }
+
     public static function getAvatarScriptContent()
     {
         $cont = self::$avatarScriptOverride ?? self::$avatarScript;
-
-        // Define the true local location of your thumbs assets
-        $targetPath = "C:\\rblxlocal\\Depedencies\\Roblox\\Thumbs\\" . $cont;
-
-        // Fallback safety check in case you move things later
-        if (!file_exists($targetPath)) {
-            $targetPath = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "Depedencies" . DIRECTORY_SEPARATOR . "Roblox" . DIRECTORY_SEPARATOR . "Thumbs" . DIRECTORY_SEPARATOR . $cont;
-        }
-
-        $val = file_get_contents($targetPath);
+        $val = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/../Depedencies/Roblox/Thumbs/" . $cont);
         return $val;
     }
     private function createAvatarRequest($parameters, $user, $avatarAssetHashId)
@@ -254,4 +279,5 @@ class Avatar
         return isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on';
     }
 }
+
 Avatar::init();

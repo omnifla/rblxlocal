@@ -47,7 +47,7 @@ class RobloxContent
 
     private static function validateContentType(AssetType $assetType): void
     {
-        if ($assetType->ID !== AssetType::DecalID()) {
+        if ($assetType->id !== AssetType::DecalID()) {
             throw new Exception("AssetType {$assetType->value} is not valid RobloxContent.");
         }
     }
@@ -61,7 +61,8 @@ class RobloxContent
 
         if ($resample) {
             $resampled = self::resampleTexture($assetType, $imageData);
-            $imageUserAsset = UserAsset::createNew($imageAssetType, $itemName, $imageDescription, $user->ID, $resampled);
+            $imageUserAsset = UserAsset::createNew($user->getID(), $imageAssetType->id, AssetType::getImage()->id);
+            $imageUserAsset->save();
         } else {
             $imageUserAsset = UserAsset::get($userImageAsset);
         }
@@ -70,13 +71,13 @@ class RobloxContent
             throw new Exception("Failed to create new Image UserAsset.");
         }
 
-        $imageUrl = self::$assetUrl . "?id=" . $imageUserAsset->AssetID;
+        $imageUrl = self::$assetUrl . "?id=" . $imageUserAsset->getAssetId();
         $xml = self::createTexturedItem($assetType, $imageUrl);
 
-        $itemUserAsset = UserAsset::createNew($assetType, $itemName, $itemDescription, $user->ID, $xml->saveXML());
+        $itemUserAsset = UserAsset::createNew($user->getID(), $assetType->id, $assetType->id);
 
         if (!$itemUserAsset) {
-            throw new Exception("Failed to create new {$assetType->Value} UserAsset.");
+            throw new Exception("Failed to create new {$assetType->value} UserAsset.");
         }
 
         return $itemUserAsset;
@@ -96,10 +97,12 @@ class Decal
 
     public static function getNode(DOMDocument $doc): ?DOMElement
     {
-        foreach ($doc->getElementsByTagName('roblox') as $robloxNode) {
-            foreach ($robloxNode->getElementsByTagName('Item') as $itemNode) {
-                if ($itemNode->getAttribute('class') === 'Decal') {
-                    return $itemNode;
+        foreach ($doc->childNodes as $child) {
+            if ($child instanceof DOMElement && $child->nodeName === 'roblox') {
+                foreach ($child->childNodes as $itemNode) {
+                    if ($itemNode instanceof DOMElement && $itemNode->nodeName === 'Item' && $itemNode->getAttribute('class') === 'Decal') {
+                        return $itemNode;
+                    }
                 }
             }
         }
@@ -110,10 +113,12 @@ class Decal
     {
         $itemNode = self::getNode($doc);
         if ($itemNode) {
-            foreach ($itemNode->getElementsByTagName('Properties') as $propsNode) {
-                foreach ($propsNode->childNodes as $child) {
-                    if ($child instanceof DOMElement && $child->getAttribute('class') === 'Texture') {
-                        return $child;
+            foreach ($itemNode->childNodes as $child) {
+                if ($child instanceof DOMElement && $child->nodeName === 'Properties') {
+                    foreach ($child->childNodes as $prop) {
+                        if ($prop instanceof DOMElement && $prop->getAttribute('class') === 'Texture') {
+                            return $prop;
+                        }
                     }
                 }
             }
@@ -123,6 +128,10 @@ class Decal
 
     public static function resampleTexture(string $imageData): string
     {
+        if (!class_exists('Imagick')) {
+            return $imageData;
+        }
+
         $imagick = new Imagick();
         $imagick->readImageBlob($imageData);
         $imagick->resizeImage(256, 256, Imagick::FILTER_LANCZOS, 1, true);
@@ -132,7 +141,7 @@ class Decal
 
     public static function isDecal(AssetVersion $assetVersion): bool
     {
-        return $assetVersion->AssetTypeID === AssetType::DecalID();
+        return $assetVersion->AssetTypeID === AssetType::DecalID() || $assetVersion->AssetTypeID === AssetType::DecalID();
     }
 }
 
