@@ -19,8 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head><meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true" /><title>
 	Site Offline
 </title>
-<link rel='stylesheet' href='https://<?= $site_properties['hostname'] ?>/CSS/Base/CSS/FetchCSS?path=main___749b78f438009cae9bcd61f019ec6eb2_m.css' />
-<link rel='stylesheet' href='https://<?= $site_properties['hostname'] ?>/CSS/Base/CSS/FetchCSS?path=page___8296fa601235ecc74a200a251e673c88_m.css' />
+<link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=main___749b78f438009cae9bcd61f019ec6eb2_m.css' />
+<link rel='stylesheet' href='/CSS/Base/CSS/FetchCSS?path=page___8296fa601235ecc74a200a251e673c88_m.css' />
 <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="author" content="ROBLOX Corporation" />
@@ -140,7 +140,7 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager', 'aspnetForm',
     <p style="text-align: center">
         &nbsp;</p>
     <p style="text-align: center">
-        <img src="http://aftwld.xyz/Images/grafik.png" id="ctl00_cphRoblox_imgRobloxTeam" alt="Offline" /></p>
+        <img src="http://roblox.local/Images/grafik.png" id="ctl00_cphRoblox_imgRobloxTeam" alt="Offline" /></p>
     <h3 style="text-align: center">
         The site is currently offline for maintenance and upgrades. Please check back soon!
     </h3>

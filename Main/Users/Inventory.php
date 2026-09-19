@@ -1,12 +1,13 @@
 <?php
 // writen by chloe
+// fixed by omnifla
 include_once $_SERVER['DOCUMENT_ROOT'] . '/../config/main.php';
-session_start();
-$currentUser = null;
-if (isset($_SESSION['id'])) {
-    $stmt = $conn->prepare('SELECT "InventoryPrivacy" FROM users WHERE id = :id');
-    $stmt->execute([':id' => $_SESSION['id']]);
-    $currentUser = $stmt->fetch(PDO::FETCH_ASSOC);
+use Roblox\Authentication as Auth;
+
+$viewerId = 0;
+$viewer = Auth::GetAuthenticatedUserInfo();
+if ($viewer) {
+    $viewerId = (int) $viewer['id'];
 }
 
 $id = intval($_GET['id'] ?? 0);
@@ -18,21 +19,62 @@ if ($id <= 0) {
     exit;
 }
 
-if (!$currentUser || $currentUser['InventoryPrivacy'] !== 'All') {
+$db = $conn;
+
+$targetStmt = $db->prepare('SELECT "InventoryPrivacy" FROM users WHERE id = :id');
+$targetStmt->execute([':id' => $id]);
+$targetUser = $targetStmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$targetUser) {
+    http_response_code(404);
+    exit;
+}
+
+function isFriendsWith(PDO $db, int $userA, int $userB, bool $bestOnly = false): bool
+{
+    $stmt = $db->prepare('
+        SELECT bestfriend FROM friends
+        WHERE status = 2
+          AND ((fromid = :a AND toid = :b) OR (fromid = :b AND toid = :a))
+        LIMIT 1
+    ');
+    $stmt->execute([':a' => $userA, ':b' => $userB]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$row)
+        return false;
+    return $bestOnly ? (bool) $row['bestfriend'] : true;
+}
+
+$isOwner = $viewerId !== 0 && $viewerId === $id;
+
+switch ($targetUser['InventoryPrivacy']) {
+    case 'All':
+        $canViewInventory = true;
+        break;
+    case 'BestFriends':
+        $canViewInventory = $isOwner || ($viewerId !== 0 && isFriendsWith($db, $viewerId, $id, true));
+        break;
+    case 'Friends':
+        $canViewInventory = $isOwner || ($viewerId !== 0 && isFriendsWith($db, $viewerId, $id, false));
+        break;
+    case 'Noone':
+    default:
+        $canViewInventory = $isOwner;
+        break;
+}
+
+if (!$canViewInventory) {
     echo '<!DOCTYPE html><html><head><title>Inventory</title></head><body><p>You cannot view this user\'s inventory.</p></body></html>';
     exit;
 }
 
 $itemsPerPage = 18;
 $offset = ($page - 1) * $itemsPerPage;
-
-$db = $conn;
-
 $catFilter = $cat !== null ? 'AND a."AssetType" = :cat' : '';
 
 $sql = '
 SELECT i."UAID", i."Timestamp", a."AssetId", a."OwnerId", a."AssetType", a."Name", a."Description",
-       a."RobuxPrice", a."TixPrice", a."Offsale", a."Limited", a."LimitedUnique", a."Serials",
+       a."PriceInRobux", a."PriceInTickets", a."IsForSale", a."Limited",
        a."CreationDate", a."UpdatedDate"
 FROM "inventory" i
 INNER JOIN "assets" a ON i."AssetId" = a."AssetId"
@@ -40,7 +82,7 @@ WHERE i."UserId" = :userId ' . $catFilter . '
 ORDER BY i."Timestamp" DESC
 LIMIT :limit OFFSET :offset
 ';
-
+// need to add a."LimitedUnique", a."Serials",
 $stmt = $db->prepare($sql);
 $stmt->bindValue(':userId', $id, PDO::PARAM_INT);
 if ($cat !== null) {
@@ -55,59 +97,63 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <!DOCTYPE html>
 <html style="background-color: #fff;">
+
 <head>
     <link rel="stylesheet" href="/CSS/Base/CSS/FetchCSS?path=main___dac4a444950639c02cc831a484c826f5_m.css">
     <link rel="stylesheet" href="/CSS/Base/CSS/FetchCSS?path=page___1b22aeedd7f4e73ab0700a149f589336_m.css">
 </head>
+
 <body>
-<div id="AssetsContent">
-    <div id="RepeatingUserAssetData">
-        <?php if (count($assets) === 0): ?>
-            <p>This user has no items in this category.</p>
-        <?php else: ?>
-        <table cellspacing="0" border="0" style="border-collapse:collapse;">
-            <tbody>
-            <?php
-            $cols = 6;
-            $rows = 3;
-            $total = count($assets);
-            
-            $ownerIds = array_map(function($a) { return (int)$a['OwnerId']; }, $assets);
-            $ownerIds = array_unique($ownerIds);
-            $placeholders = implode(',', array_fill(0, count($ownerIds), '?'));
-            
-            $stmt = $db->prepare("SELECT id, username FROM users WHERE id IN ($placeholders)");
-            $stmt->execute($ownerIds);
-            $usernames = $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
-            
-            for ($r = 0; $r < $rows; $r++) {
-                echo "<tr>";
-                for ($c = 0; $c < $cols; $c++) {
-                    $index = $r * $cols + $c;
-                    if ($index >= $total) {
-                        echo "<td class='Asset'></td>";
-                        continue;
-                    }
-            
-                    $a = $assets[$index];
-                    $imgSrc = "/Asset/Thumbs/{$a['AssetId']}.png";
-                    $nameEscaped = htmlspecialchars($a['Name']);
-                    $descEscaped = htmlspecialchars($a['Description'] ?? '');
-                    $ownerId = (int)$a['OwnerId'];
-                    $assetId = (int)$a['AssetId'];
-                    $creatorName = isset($usernames[$ownerId]) ? htmlspecialchars($usernames[$ownerId]) : "User {$ownerId}";
-            
-                    $limitedIcon = "";
-                    $serialDiv = "";
-            
-                    if ($a['LimitedUnique']) {
-                        $limitedIcon = '<div style="position:relative;left:-22px;top:-13px;"><img src="/images/assetIcons/limitedunique.png"></div>';
-                        $serialDiv = '<div style="position:relative;text-align:center;width:95px;font-size:10px;left:0px;top:-124px;font-weight:bold;color:#003366">#' . ($a['Serials'] > 0 ? $a['Serials'] : 'N/A') . ' / ' . ($a['Serials'] > 0 ? $a['Serials'] : 'N/A') . '</div>';
-                    } elseif ($a['Limited']) {
-                        $limitedIcon = '<div style="position:relative;left:-22px;top:-13px;"><img src="/images/assetIcons/limited.png"></div>';
-                    }
-            
-                    echo "<td class='Asset' valign='top'>
+    <div id="AssetsContent">
+        <div id="RepeatingUserAssetData">
+            <?php if (count($assets) === 0): ?>
+                <p>This user has no items in this category.</p>
+            <?php else: ?>
+                <table cellspacing="0" border="0" style="border-collapse:collapse;">
+                    <tbody>
+                        <?php
+                        $cols = 6;
+                        $rows = 3;
+                        $total = count($assets);
+
+                        $ownerIds = array_map(function ($a) {
+                            return (int) $a['OwnerId'];
+                        }, $assets);
+                        $ownerIds = array_unique($ownerIds);
+                        $placeholders = implode(',', array_fill(0, count($ownerIds), '?'));
+
+                        $stmt = $db->prepare("SELECT id, username FROM users WHERE id IN ($placeholders)");
+                        $stmt->execute($ownerIds);
+                        $usernames = $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
+
+                        for ($r = 0; $r < $rows; $r++) {
+                            echo "<tr>";
+                            for ($c = 0; $c < $cols; $c++) {
+                                $index = $r * $cols + $c;
+                                if ($index >= $total) {
+                                    echo "<td class='Asset'></td>";
+                                    continue;
+                                }
+
+                                $a = $assets[$index];
+                                $imgSrc = "/Asset/Thumbs/{$a['AssetId']}.png";
+                                $nameEscaped = htmlspecialchars($a['Name']);
+                                $descEscaped = htmlspecialchars($a['Description'] ?? '');
+                                $ownerId = (int) $a['OwnerId'];
+                                $assetId = (int) $a['AssetId'];
+                                $creatorName = isset($usernames[$ownerId]) ? htmlspecialchars($usernames[$ownerId]) : "User {$ownerId}";
+
+                                $limitedIcon = "";
+                                $serialDiv = "";
+
+                                if ($a['LimitedUnique']) {
+                                    $limitedIcon = '<div style="position:relative;left:-22px;top:-13px;"><img src="/images/assetIcons/limitedunique.png"></div>';
+                                    $serialDiv = '<div style="position:relative;text-align:center;width:95px;font-size:10px;left:0px;top:-124px;font-weight:bold;color:#003366">#' . ($a['Serials'] > 0 ? $a['Serials'] : 'N/A') . ' / ' . ($a['Serials'] > 0 ? $a['Serials'] : 'N/A') . '</div>';
+                                } elseif ($a['Limited']) {
+                                    $limitedIcon = '<div style="position:relative;left:-22px;top:-13px;"><img src="/images/assetIcons/limited.png"></div>';
+                                }
+
+                                echo "<td class='Asset' valign='top'>
                         <div style='padding: 5px'>
                             <div class='AssetThumbnail'>
                                 <a class='notranslate' title='{$nameEscaped}' href='/Item?id={$assetId}' style='display:inline-block;height:110px;width:110px;cursor:pointer;'>
@@ -129,39 +175,44 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </div>
                         </div>
                     </td>";
-                }
-                echo "</tr>";
-            }
-            ?>
-            </tbody>
-        </table>
+                            }
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
 
-        <div id="ctl00_cphRoblox_rbxUserAssetsPane_FooterPagerPanel" class="FooterPager" style="width: 780px; display: flex; justify-content: center; align-items: center; gap: 5px;">
-            <?php if ($page > 1): ?>
-                <a href="javascript:void(0)" onclick="changePage(<?php echo $page - 1 ?>)"><span class="pager previous"></span></a>
-            <?php else: ?>
-                <span class="pager previous disabled"></span>
-            <?php endif; ?>
-            <span id="ctl00_cphRoblox_rbxUserAssetsPane_FooterPagerLabel" style="vertical-align: top; display: inline-block; padding: 5px; padding-top: 6px">
-                Page <?php echo $page ?>
-            </span>
-            <?php if ($total === $itemsPerPage): ?>
-                <a href="javascript:void(0)" onclick="changePage(<?php echo $page + 1 ?>)"><span class="pager next"></span></a>
-            <?php else: ?>
-                <span class="pager next disabled"></span>
+                <div id="ctl00_cphRoblox_rbxUserAssetsPane_FooterPagerPanel" class="FooterPager"
+                    style="width: 780px; display: flex; justify-content: center; align-items: center; gap: 5px;">
+                    <?php if ($page > 1): ?>
+                        <a href="javascript:void(0)" onclick="changePage(<?php echo $page - 1 ?>)"><span
+                                class="pager previous"></span></a>
+                    <?php else: ?>
+                        <span class="pager previous disabled"></span>
+                    <?php endif; ?>
+                    <span id="ctl00_cphRoblox_rbxUserAssetsPane_FooterPagerLabel"
+                        style="vertical-align: top; display: inline-block; padding: 5px; padding-top: 6px">
+                        Page <?php echo $page ?>
+                    </span>
+                    <?php if ($total === $itemsPerPage): ?>
+                        <a href="javascript:void(0)" onclick="changePage(<?php echo $page + 1 ?>)"><span
+                                class="pager next"></span></a>
+                    <?php else: ?>
+                        <span class="pager next disabled"></span>
+                    <?php endif; ?>
+                </div>
             <?php endif; ?>
         </div>
-        <?php endif; ?>
     </div>
-</div>
 
-<script>
-function changePage(newPage) {
-    const urlParams = new URLSearchParams(window.location.search);
-    const userId = urlParams.get('id') || 1;
-    const cat = urlParams.get('cat') || 0;
-    window.location.href = `/Users/Inventory.php?id=${userId}&page=${newPage}&cat=${cat}`;
-}
-</script>
+    <script>
+        function changePage(newPage) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const userId = urlParams.get('id') || 1;
+            const cat = urlParams.get('cat') || 0;
+            window.location.href = `/Users/Inventory.php?id=${userId}&page=${newPage}&cat=${cat}`;
+        }
+    </script>
 </body>
+
 </html>

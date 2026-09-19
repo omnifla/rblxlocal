@@ -24,7 +24,12 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 $authenticatedUser = Auth::GetAuthenticatedUserInfo();
-$gender = $_POST['Gender'] - 1;
+$genderInput = isset($_POST['Gender']) ? (int)$_POST['Gender'] : 0;
+$gender = in_array($genderInput, [2, 3], true) ? $genderInput - 1 : null;
+if ($gender === null) {
+    http_response_code(400);
+    exit;
+}
 $languageId = (int)$_POST['LanguageId'];
 $PersonalBlurb = $_POST['PersonalBlurb'] !== "Describe yourself here" ? trim($_POST['PersonalBlurb']) : "";
 $filter = new BasicTextFilter();

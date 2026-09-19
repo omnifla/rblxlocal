@@ -317,7 +317,7 @@ $(function(){
 <div id="PeopleSearchContainer" class="people-search-container" data-searchpageurl="/users/search" data-dosearchurl= "/users/do-search">
     <div>
         <span class="form-label">Search:</span>
-        <input id="people-search-keyword" autofocus autocomplete="off" name="name" type="text" class="text-box text-box-large people-search-textbox" placeholder="Search for users..." value="<?= $username ?>" />
+        <input id="people-search-keyword" autofocus autocomplete="off" name="name" type="text" class="text-box text-box-large people-search-textbox" placeholder="Search for users..." value="<?= htmlentities($username, ENT_QUOTES | ENT_HTML5, 'UTF-8') ?>" />
         <span class="search-button-image-container">
             <a  class="btn-small btn-primary" id="peoplesearch-search-button">Search Users</a>
             <img id="peoplesearch-search-loading" style="display: none" src="http://images.rbxcdn.com/ec4e85b0c4396cf753a06fade0a8d8af.gif" />

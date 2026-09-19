@@ -1037,7 +1037,11 @@ $html = <<<HTML
                     </div>
                     
                 </div>
-                <script type="text/javascript" src="https://js.rbxcdn.com/f6ebdcdab40c43bb18d29009ce0880be.js.gzip"></script>
+                <script type="text/javascript" src="/js/jquery.cookies.2.2.0.1.js"></script>
+                <script type="text/javascript" src="/js/jquery-extensions.js"></script>
+                <script type="text/javascript" src="/js/jPlayer/1.2.0/jquery.jplayer.min.js"></script>
+                <script type="text/javascript" src="/js/chat_v1.js"></script>
+                <script type="text/javascript" src="/js/blockUI.js"></script>
                 <script type="text/javascript" src="https://js.rbxcdn.com/32159205207304027c7e0aa4dd329d32.js.gzip"></script>
                 <div id="ChatContainer" style="position: fixed; bottom: 0px; right: 0px; z-index: 1000; width: 100%;">
                     <!-- Friends dock / chat bar -->
@@ -1311,7 +1315,7 @@ $html = <<<HTML
                     {$js_chat_info_val}
                 </div>
                     
-                        <script src="./ROBLOX.com_files/urchin.js" type="text/javascript"></script>
+                        <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
                         <script type="text/javascript">
                             _uacct = "UA-486632-1";
                             _udn = "roblox.com";
@@ -1325,7 +1329,7 @@ $html = <<<HTML
                 <div id="PlaceLauncherStatusPanel" style="display:none;width:300px">
                     <div class="modalPopup blueAndWhite PlaceLauncherModal" style="min-height: 160px">
                         <div id="Spinner" class="Spinner" style="margin:0 1em 1em 0; padding:20px 0;">
-                            <img src="./ROBLOX.com_files/e998fb4c03e8c2e30792f2f3436e9416.gif" alt="Progress">
+                            <img src="/images/e998fb4c03e8c2e30792f2f3436e9416.gif" alt="Progress">
                         </div>
                         <div id="status" style="min-height:40px;text-align:center;margin:5px 20px">
                             <div id="Starting" class="PlaceLauncherStatus MadStatusStarting" style="display:block">

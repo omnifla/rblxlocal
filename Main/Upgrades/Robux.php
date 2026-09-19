@@ -325,7 +325,7 @@ use UserControls\Navigation\SiteAlert;
      data-event-stream-for-plugin-enabled="True"
      data-event-stream-for-protocol-enabled="True"
      data-is-protocol-handler-launch-enabled="True"
-     data-is-user-logged-in="<?= $isLoggedIn ?>"
+     data-is-user-logged-in="<?= $isUserLoggedInCheck ?>"
      data-os-name="Windows"
      data-protocol-name-for-client="roblox-player"
      data-protocol-name-for-studio="roblox-studio"

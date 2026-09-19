@@ -38,10 +38,33 @@ if($getred){
         "errorMsg" => "Code already redeemed."
     ]));
 }
-$newred = new PromoCodeRedemption();
-$newred->setUserID($auth['id']);
-$newred->setPromoCodeID($check->getID());
-$newred->Save();
+if (!$check->CanRedeem()) {
+    exit(json_encode([
+        "success" => false,
+        "errorMsg" => "Promo code cannot be redeemed at this time."
+    ]));
+}
+try {
+    global $conn;
+    $conn->beginTransaction();
+
+    $check->applyToUser($auth['id']);
+
+    $newred = new PromoCodeRedemption();
+    $newred->setUserID($auth['id']);
+    $newred->setPromoCodeID($check->getID());
+    $newred->Save();
+
+    $conn->commit();
+} catch (Exception $ex) {
+    if (isset($conn) && $conn->inTransaction()) {
+        $conn->rollBack();
+    }
+    exit(json_encode([
+        "success" => false,
+        "errorMsg" => "Failed to redeem promo code: " . $ex->getMessage()
+    ]));
+}
 exit(json_encode([
     "success" => true,
     "successMsg" => "Promo code successfully redeemed!",
