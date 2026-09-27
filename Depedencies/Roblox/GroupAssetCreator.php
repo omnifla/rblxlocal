@@ -1,15 +1,24 @@
 <?php
 namespace Roblox;
 
+use Roblox\Caching\CacheInfo;
+use Roblox\Caching\CacheabilitySettings;
 use Roblox\DataAccess\GroupAssetCreatorDAL;
 
 class GroupAssetCreator
 {
     private GroupAssetCreatorDAL $entityDAL;
 
-    public function __construct()
+    public static CacheInfo $EntityCacheInfo;
+
+    public function __construct(?GroupAssetCreatorDAL $dal = null)
     {
-        $this->entityDAL = new GroupAssetCreatorDAL();
+        $this->entityDAL = $dal ?? new GroupAssetCreatorDAL();
+    }
+
+    public function getCacheInfo(): CacheInfo
+    {
+        return self::$EntityCacheInfo;
     }
 
     public function getID(): int
@@ -114,4 +123,30 @@ class GroupAssetCreator
     {
         $this->entityDAL = $dal;
     }
+
+    public function buildEntityIDLookups(): array
+    {
+        return ['AssetID:' . $this->getAssetID()];
+    }
+
+    public function buildStateTokenCollection(): array
+    {
+        return [];
+    }
+
+    public function getSerializable(): GroupAssetCreatorDAL
+    {
+        return $this->entityDAL;
+    }
 }
+
+GroupAssetCreator::$EntityCacheInfo = new CacheInfo(
+    new CacheabilitySettings(
+        collectionsAreCacheable: true,
+        countsAreCacheable: true,
+        entityIsCacheable: true,
+        idLookupsAreCacheable: true
+    ),
+    'Roblox.GroupAssetCreator',
+    isNullCacheable: true
+);

@@ -63,7 +63,7 @@ class GroupAssetCreatorDAL
     {
         if ($assetId === 0) throw new \InvalidArgumentException("AssetID is required");
         $db = Database::getRobloxGroups();
-        $stmt = $db->prepare("SELECT * FROM group_asset_creators WHERE asset_id = :asset_id");
+        $stmt = $db->prepare("SELECT * FROM group_asset_creators WHERE asset_id = :asset_id LIMIT 1");
         $stmt->execute([':asset_id' => $assetId]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return $row ? self::buildDAL($row) : null;

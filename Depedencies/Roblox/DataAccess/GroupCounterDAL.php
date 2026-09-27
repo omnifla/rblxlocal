@@ -7,12 +7,12 @@ use DateTime;
 
 class GroupCounterDAL
 {
-    public int $id;
-    public int $groupId;
-    public int $groupCounterTypeId;
-    public int $value;
-    public string $created;
-    public string $updated;
+    public int $id = 0;
+    public int $groupId = 0;
+    public int $groupCounterTypeId = 0;
+    public int $value = 0;
+    public string $created = '0001-01-01 00:00:00';
+    public string $updated = '0001-01-01 00:00:00';
 
     private static function getDb(): PDO
     {
@@ -54,11 +54,14 @@ class GroupCounterDAL
         if (!$this->groupCounterTypeId) {
             throw new Exception("Required value not specified: GroupCounterTypeID.");
         }
-        if (!$this->value) {
+        if ($this->value === 0) {
             throw new Exception("Required value not specified: Value.");
         }
-        if (!$this->created || !$this->updated) {
-            throw new Exception("Required value not specified: Created/Updated.");
+        if ($this->created === '0001-01-01 00:00:00') {
+            throw new Exception("Required value not specified: Created.");
+        }
+        if ($this->updated === '0001-01-01 00:00:00') {
+            throw new Exception("Required value not specified: Updated.");
         }
 
         $stmt = self::getDb()->prepare("INSERT INTO group_counters (group_id, group_counter_type_id, value, created, updated) VALUES (:group_id, :type_id, :value, :created, :updated) RETURNING id");
@@ -70,6 +73,21 @@ class GroupCounterDAL
     {
         if (!$this->id) {
             throw new Exception("Required value not specified: ID.");
+        }
+        if (!$this->groupId) {
+            throw new Exception("Required value not specified: GroupID.");
+        }
+        if (!$this->groupCounterTypeId) {
+            throw new Exception("Required value not specified: GroupCounterTypeID.");
+        }
+        if ($this->value === 0) {
+            throw new Exception("Required value not specified: Value.");
+        }
+        if ($this->created === '0001-01-01 00:00:00') {
+            throw new Exception("Required value not specified: Created.");
+        }
+        if ($this->updated === '0001-01-01 00:00:00') {
+            throw new Exception("Required value not specified: Updated.");
         }
 
         $stmt = self::getDb()->prepare("UPDATE group_counters SET group_id = :group_id, group_counter_type_id = :type_id, value = :value, created = :created, updated = :updated WHERE id = :id");

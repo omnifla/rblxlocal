@@ -5,7 +5,7 @@ use PDO;
 
 class GroupCounterTypeDAL
 {
-    public ?int $id = null;
+    public int $id = 0;
     public string $value = '';
     public ?string $created = null;
     public ?string $updated = null;
@@ -34,6 +34,10 @@ class GroupCounterTypeDAL
 
     public static function getByValue(string $value): ?self
     {
+        if ($value === '') {
+            return null;
+        }
+
         global $conn;
 
         $stmt = $conn->prepare("
@@ -56,6 +60,7 @@ class GroupCounterTypeDAL
 
     public function insert(): void
     {
+        $this->validateForWrite(false);
         global $conn;
 
         $stmt = $conn->prepare("
@@ -83,6 +88,7 @@ class GroupCounterTypeDAL
 
     public function update(): void
     {
+        $this->validateForWrite(true);
         global $conn;
 
         $stmt = $conn->prepare("
@@ -102,6 +108,10 @@ class GroupCounterTypeDAL
 
     public function delete(): void
     {
+        if ($this->id === 0) {
+            throw new \InvalidArgumentException('Required value not specified: ID.');
+        }
+
         global $conn;
 
         $stmt = $conn->prepare("
@@ -119,10 +129,38 @@ class GroupCounterTypeDAL
         $dal = new self();
 
         $dal->id = (int)$row['id'];
-        $dal->value = $row['value'];
+        $dal->setValue($row['value']);
         $dal->created = $row['created'];
         $dal->updated = $row['updated'];
 
         return $dal;
+    }
+
+    public function setValue(string $value): void
+    {
+        if (function_exists('mb_substr')) {
+            $this->value = mb_substr($value, 0, 50);
+        } elseif (function_exists('iconv_substr')) {
+            $truncated = iconv_substr($value, 0, 50, 'UTF-8');
+            $this->value = $truncated === false ? substr($value, 0, 50) : $truncated;
+        } else {
+            $this->value = substr($value, 0, 50);
+        }
+    }
+
+    private function validateForWrite(bool $updating): void
+    {
+        if ($updating && $this->id === 0) {
+            throw new \InvalidArgumentException('Required value was not specified: ID.');
+        }
+        if (trim($this->value) === '') {
+            throw new \InvalidArgumentException('Required value not specified: Value.');
+        }
+        if ($this->created === null || $this->created === '') {
+            throw new \InvalidArgumentException('Required value not specified: Created.');
+        }
+        if ($this->updated === null || $this->updated === '') {
+            throw new \InvalidArgumentException('Required value not specified: Updated.');
+        }
     }
 }
