@@ -19,9 +19,9 @@ class GroupCounterType implements IRobloxEntity, ICacheableObject
 
     public static CacheInfo $entityCacheInfo;
 
-    public function __construct()
+    public function __construct(?GroupCounterTypeDAL $dal = null)
     {
-        $this->dal = new GroupCounterTypeDAL();
+        $this->dal = $dal ?? new GroupCounterTypeDAL();
     }
 
     public static function init(): void
@@ -53,7 +53,7 @@ class GroupCounterType implements IRobloxEntity, ICacheableObject
 
     public function setValue(string $value): void
     {
-        $this->dal->value = $value;
+        $this->dal->setValue($value);
     }
 
     public function getCreated(): string
@@ -110,6 +110,10 @@ class GroupCounterType implements IRobloxEntity, ICacheableObject
 
     public static function get(int $id): ?GroupCounterType
     {
+        if ($id <= 0) {
+            return null;
+        }
+
         return EntityHelper::getEntity(
             self::$entityCacheInfo,
             $id,

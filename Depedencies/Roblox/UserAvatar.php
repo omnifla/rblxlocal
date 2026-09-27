@@ -1,111 +1,158 @@
 <?php
-// ported by omnifla
 namespace Roblox;
+
+use Roblox\Caching\CacheInfo;
+use Roblox\Caching\CacheabilitySettings;
+use Roblox\DataAccess\UserAvatarDAL;
 
 class UserAvatar
 {
-    public int $id;
-    public int $userId;
-    public string $avatarHash = '';
-    public int $newAvatarAssetHashId = 0;
-    public ?int $bodyColorSetId = null;
-    public ?int $playerAvatarTypeId = null;
-    public ?int $scaleId = null;
-    public string $created = '';
-    public string $updated = '';
+    public static string $DefaultPants = '';
+    public static string $DefaultShirt = '';
+    public static string $DefaultTeeShirt = '';
+    public static CacheInfo $EntityCacheInfo;
 
-    private function __construct()
+    private UserAvatarDAL $_EntityDAL;
+    private static array $clearThumbnailHandlers = [];
+    private static array $userAssetRemovedHandlers = [];
+
+    public function __construct(?UserAvatarDAL $userAvatarDAL = null)
     {
+        $this->_EntityDAL = $userAvatarDAL ?? new UserAvatarDAL();
     }
 
-    public static function getOrCreate(int $userId, ?int $playerAvatarTypeId = null, ?int $scaleId = null): self
+    public function getID(): int
     {
-        global $conn;
-
-        $stmt = $conn->prepare("
-            SELECT * FROM user_avatars WHERE user_id = :uid LIMIT 1
-        ");
-        $stmt->execute([':uid' => $userId]);
-        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
-
-        if ($row) {
-            return self::fromRow($row);
-        }
-
-        // create
-        $conn->prepare("
-            INSERT INTO user_avatars (user_id, avatar_hash, new_avatar_asset_hash_id, player_avatar_type_id, scale_id, created, updated)
-            VALUES (:uid, '', 0, :pat, :sid, NOW(), NOW())
-        ")->execute([
-                    ':uid' => $userId,
-                    ':pat' => $playerAvatarTypeId,
-                    ':sid' => $scaleId,
-                ]);
-
-        return self::getOrCreate($userId, $playerAvatarTypeId, $scaleId);
+        return $this->_EntityDAL->id;
     }
 
-    public static function get(int $id): ?self
+    public function getUserID(): int
     {
-        global $conn;
-        $stmt = $conn->prepare("SELECT * FROM user_avatars WHERE id = :id LIMIT 1");
-        $stmt->execute([':id' => $id]);
-        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
-        return $row ? self::fromRow($row) : null;
+        return $this->_EntityDAL->user_id;
     }
 
-    private static function fromRow(array $row): self
+    public function getCacheInfo(): CacheInfo
     {
-        $a = new self();
-        $a->id = (int) $row['id'];
-        $a->userId = (int) $row['user_id'];
-        $a->avatarHash = $row['avatar_hash'] ?? '';
-        $a->newAvatarAssetHashId = (int) ($row['new_avatar_asset_hash_id'] ?? 0);
-        $a->bodyColorSetId = isset($row['body_color_set_id']) ? (int) $row['body_color_set_id'] : null;
-        $a->playerAvatarTypeId = isset($row['player_avatar_type_id']) ? (int) $row['player_avatar_type_id'] : null;
-        $a->scaleId = isset($row['scale_id']) ? (int) $row['scale_id'] : null;
-        $a->created = $row['created'] ?? '';
-        $a->updated = $row['updated'] ?? '';
-        return $a;
+        return self::$EntityCacheInfo;
+    }
+
+    public function getAvatarHash(): string
+    {
+        return $this->_EntityDAL->avatar_hash;
     }
 
     public function setAvatarHash(string $hash): void
     {
         $hash = substr($hash, 0, 32);
-        if ($this->avatarHash !== $hash) {
-            $this->newAvatarAssetHashId = 0;
+        if ($this->_EntityDAL->avatar_hash !== $hash) {
+            $this->_EntityDAL->new_avatar_asset_hash_id = 0;
         }
-        $this->avatarHash = $hash;
+        $this->_EntityDAL->avatar_hash = $hash;
+    }
+
+    public function getNewAvatarAssetHashID(): int
+    {
+        return $this->_EntityDAL->new_avatar_asset_hash_id;
+    }
+
+    public function setNewAvatarAssetHashID(int $value): void
+    {
+        $this->_EntityDAL->new_avatar_asset_hash_id = $value;
+    }
+
+    public function getCreated(): string
+    {
+        return $this->_EntityDAL->created;
+    }
+
+    public function getUpdated(): string
+    {
+        return $this->_EntityDAL->updated;
+    }
+
+    public function getBodyColorSetID(): ?int
+    {
+        return $this->_EntityDAL->body_color_set_id;
+    }
+
+    public function setBodyColorSetID(?int $value): void
+    {
+        $this->_EntityDAL->body_color_set_id = $value;
+    }
+
+    public function getPlayerAvatarTypeID(): ?int
+    {
+        return $this->_EntityDAL->player_avatar_type_id;
+    }
+
+    public function setPlayerAvatarTypeID(?int $value): void
+    {
+        $this->_EntityDAL->player_avatar_type_id = $value;
+    }
+
+    public function getScaleID(): ?int
+    {
+        return $this->_EntityDAL->scale_id;
+    }
+
+    public function setScaleID(?int $value): void
+    {
+        $this->_EntityDAL->scale_id = $value;
     }
 
     public function clearThumbnail(): void
     {
-        if ($this->newAvatarAssetHashId !== 0) {
-            $this->newAvatarAssetHashId = 0;
+        if ($this->getNewAvatarAssetHashID() !== 0) {
+            $this->setNewAvatarAssetHashID(0);
             $this->save();
         }
     }
 
     public function save(): void
     {
-        global $conn;
-        $conn->prepare("
-            UPDATE user_avatars
-            SET avatar_hash             = :hash,
-                new_avatar_asset_hash_id = :nahid,
-                body_color_set_id       = :bcid,
-                player_avatar_type_id   = :patid,
-                scale_id                = :sid,
-                updated                 = NOW()
-            WHERE id = :id
-        ")->execute([
-                    ':hash' => substr($this->avatarHash, 0, 32),
-                    ':nahid' => $this->newAvatarAssetHashId,
-                    ':bcid' => $this->bodyColorSetId,
-                    ':patid' => $this->playerAvatarTypeId,
-                    ':sid' => $this->scaleId,
-                    ':id' => $this->id,
-                ]);
+        $this->_EntityDAL->updated = date('Y-m-d H:i:s');
+        $this->_EntityDAL->update();
+    }
+
+    private static function doGetOrCreate(int $userId, ?int $playerAvatarTypeId, ?int $scaleId): self
+    {
+        return new self(UserAvatarDAL::getOrCreate($userId, $playerAvatarTypeId, $scaleId));
+    }
+
+    public static function get(int $id): ?self
+    {
+        $dal = UserAvatarDAL::get($id);
+        return $dal ? new self($dal) : null;
+    }
+
+    public static function multiGet(array $ids): array
+    {
+        return array_map(static fn(UserAvatarDAL $dal): self => new self($dal), UserAvatarDAL::multiGet($ids));
+    }
+
+    public static function getOrCreate(int $userId, ?int $playerAvatarTypeId = null, ?int $scaleId = null): self
+    {
+        return self::doGetOrCreate($userId, $playerAvatarTypeId, $scaleId);
+    }
+
+    public function construct(UserAvatarDAL $dal): void
+    {
+        $this->_EntityDAL = $dal;
+    }
+
+    public function buildEntityIDLookups(): array
+    {
+        return $this->getID() > 0 ? ['UserID:' . $this->getUserID()] : [];
+    }
+
+    public function buildStateTokenCollection(): array
+    {
+        return [];
+    }
+
+    public function getSerializable(): UserAvatarDAL
+    {
+        return $this->_EntityDAL;
     }
 
     public function appearanceChanged(): void
@@ -116,8 +163,97 @@ class UserAvatar
     public function getUser(): array
     {
         global $conn;
-        $stmt = $conn->prepare("SELECT * FROM users WHERE id = :id LIMIT 1");
-        $stmt->execute([':id' => $this->userId]);
+        $stmt = $conn->prepare('SELECT * FROM users WHERE id = :id LIMIT 1');
+        $stmt->execute([':id' => $this->getUserID()]);
         return $stmt->fetch(\PDO::FETCH_ASSOC) ?: [];
     }
+
+    public static function onClearThumbnail(callable $handler): void
+    {
+        self::$clearThumbnailHandlers[] = $handler;
+    }
+
+    public static function onUserAssetRemoved(callable $handler): void
+    {
+        self::$userAssetRemovedHandlers[] = $handler;
+    }
+
+    public static function invokeClearThumbnailEvent(int $userId): void
+    {
+        foreach (self::$clearThumbnailHandlers as $handler) {
+            $handler($userId);
+        }
+    }
+
+    public static function invokeUserAssetRemovedEvent(int $userAssetId, int $userId): void
+    {
+        foreach (self::$userAssetRemovedHandlers as $handler) {
+            $handler($userAssetId, $userId);
+        }
+    }
+
+    public function __get(string $name)
+    {
+        return match ($name) {
+            'id', 'ID' => $this->_EntityDAL->id,
+            'userId', 'UserID' => $this->_EntityDAL->user_id,
+            'avatarHash', 'AvatarHash' => $this->_EntityDAL->avatar_hash,
+            'newAvatarAssetHashId', 'NewAvatarAssetHashID' => $this->_EntityDAL->new_avatar_asset_hash_id,
+            'bodyColorSetId', 'BodyColorSetID' => $this->_EntityDAL->body_color_set_id,
+            'playerAvatarTypeId', 'PlayerAvatarTypeID' => $this->_EntityDAL->player_avatar_type_id,
+            'scaleId', 'ScaleID' => $this->_EntityDAL->scale_id,
+            'created', 'Created' => $this->_EntityDAL->created,
+            'updated', 'Updated' => $this->_EntityDAL->updated,
+            default => throw new \OutOfBoundsException("Unknown UserAvatar property: $name"),
+        };
+    }
+
+    public function __set(string $name, mixed $value): void
+    {
+        switch ($name) {
+            case 'avatarHash':
+            case 'AvatarHash':
+                $this->setAvatarHash((string) $value);
+                return;
+            case 'newAvatarAssetHashId':
+            case 'NewAvatarAssetHashID':
+                $this->setNewAvatarAssetHashID((int) $value);
+                return;
+            case 'bodyColorSetId':
+            case 'BodyColorSetID':
+                $this->setBodyColorSetID($value === null ? null : (int) $value);
+                return;
+            case 'playerAvatarTypeId':
+            case 'PlayerAvatarTypeID':
+                $this->setPlayerAvatarTypeID($value === null ? null : (int) $value);
+                return;
+            case 'scaleId':
+            case 'ScaleID':
+                $this->setScaleID($value === null ? null : (int) $value);
+                return;
+            default:
+                throw new \OutOfBoundsException("UserAvatar property is read-only or unknown: $name");
+        }
+    }
+
+    public function __isset(string $name): bool
+    {
+        try {
+            return $this->__get($name) !== null;
+        } catch (\OutOfBoundsException) {
+            return false;
+        }
+    }
 }
+
+UserAvatar::$EntityCacheInfo = new CacheInfo(
+    new CacheabilitySettings(
+        collectionsAreCacheable: false,
+        countsAreCacheable: false,
+        entityIsCacheable: true,
+        idLookupsAreCacheable: true,
+        hasUnqualifiedCollections: false
+    ),
+    'UserAvatar',
+    isNullCacheable: true
+);

@@ -79,26 +79,13 @@ class Authentication
         }
         return password_verify($password, $userinfo['password']);
     }
-    // used for captcha verification on the site
-    public static function Login(string $username, string $password)
+    // shared by Login/Register/RedeemHandoffTicket so cookie hardening only lives in one place
+    private static function IssueSessionCookies(int $userId, string $username): string
     {
-        global $conn;
         $jwt_secret = $_ENV['JWT_SECRET'];
-
-        if (empty($username) || empty($password)) {
-            throw new \InvalidArgumentException("Username and password are required.");
-        }
-        $stmt = $conn->prepare("SELECT * FROM users WHERE username = :username LIMIT 1");
-        $stmt->execute([':username' => $username]);
-        $user = $stmt->fetch(\PDO::FETCH_ASSOC);
-
-        if (!$user || !password_verify($password, $user['password'])) {
-            throw new \InvalidArgumentException("Invalid username or password.");
-        }
-
         $payload = [
-            'sub' => $user['id'],
-            'username' => $user['username'],
+            'sub' => $userId,
+            'username' => $username,
             'iat' => time(),
             'exp' => time() + 60 * 60 * 24 * 7
         ];
@@ -122,7 +109,71 @@ class Authentication
             'samesite' => 'Lax'
         ]);
 
+        return $jwt;
+    }
+
+    // used for captcha verification on the site
+    public static function Login(string $username, string $password)
+    {
+        global $conn;
+
+        if (empty($username) || empty($password)) {
+            throw new \InvalidArgumentException("Username and password are required.");
+        }
+        $stmt = $conn->prepare("SELECT * FROM users WHERE username = :username LIMIT 1");
+        $stmt->execute([':username' => $username]);
+        $user = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        if (!$user || !password_verify($password, $user['password'])) {
+            throw new \InvalidArgumentException("Invalid username or password.");
+        }
+
+        self::IssueSessionCookies((int) $user['id'], $user['username']);
+
         return $user;
+    }
+
+    // issues a short-lived (60s), single-use code the game client/Studio can hand to a
+    // freshly-opened browser via Negotiate.ashx?suggest=<code>. Never put the real
+    // 7-day session token in a URL directly - logs/history/referer would leak it.
+    public static function IssueHandoffTicket(int $userId): string
+    {
+        global $conn;
+        $code = bin2hex(random_bytes(32));
+        $expires = (new \DateTime())->modify('+60 seconds')->format('Y-m-d H:i:s');
+        $stmt = $conn->prepare('INSERT INTO login_handoff_tickets (user_id, code, expires) VALUES (:uid, :code, :expires)');
+        $stmt->execute([':uid' => $userId, ':code' => $code, ':expires' => $expires]);
+        return $code;
+    }
+
+    // atomically claims a handoff ticket (so it can never be redeemed twice) and,
+    // if valid, mints a fresh session token/cookie the same way Login() does.
+    // Returns the raw token so the caller can echo it in the response body too,
+    // matching how the native client reads it back.
+    public static function RedeemHandoffTicket(string $code): ?string
+    {
+        global $conn;
+        if (empty($code)) {
+            return null;
+        }
+        $stmt = $conn->prepare("
+            UPDATE login_handoff_tickets
+            SET used = TRUE
+            WHERE code = :code AND used = FALSE AND expires > NOW()
+            RETURNING user_id
+        ");
+        $stmt->execute([':code' => $code]);
+        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+        if (!$row) {
+            return null;
+        }
+
+        $user = self::GetUserInfo((int) $row['user_id']);
+        if (!$user) {
+            return null;
+        }
+
+        return self::IssueSessionCookies((int) $user['id'], $user['username']);
     }
     public static function ValidateUsername(string $username)
     {
@@ -153,7 +204,6 @@ class Authentication
     public static function Register(string $username, string $password, ?int $gender = 1, ?string $email = "", ?string $birthdate = "1970-01-01")
     {
         global $conn;
-        $jwt_secret = $_ENV['JWT_SECRET'];
 
         if (empty($birthdate)) {
             throw new \InvalidArgumentException("Birthday must be set first.");
@@ -209,22 +259,7 @@ class Authentication
         ]);
         $userId = $conn->lastInsertId('users_id_seq');
 
-        $payload = [
-            'sub' => $userId,
-            'username' => $username,
-            'iat' => time(),
-            'exp' => time() + 60 * 60 * 24 * 7
-        ];
-
-        $jwt = \Firebase\JWT\JWT::encode($payload, $jwt_secret, 'HS256');
-        setcookie('.ROBLOSECURITY', $jwt, [
-            'expires' => $payload['exp'],
-            'path' => '/',
-            'domain' => '.roblox.local',
-            'secure' => false,
-            'httponly' => true,
-            'samesite' => 'Lax'
-        ]);
+        self::IssueSessionCookies((int) $userId, $username);
 
         return $userId;
     }
