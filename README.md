@@ -1,8 +1,8 @@
 > [!WARNING]
-> This source code is heavily incomplete, not all features were implemented on it hence why I'd say that if u wanna use it, you'd have to implement all of the other stuff by yourself
+> This source code is heavily incomplete; Not all features were implemented in it, hence why I'd say that if u wanna use it, you'd have to implement all of the other stuff by yourself
 
 > [!NOTE]
-> Skyler's Fridge does not own the rights to RBLXLocal or any of it's assets and we do not claim ownership of the source code.
+> omnifla does not own the rights to RBLXLocal or any of its assets. This is a heavily modified version of most of the source code, any source not written by me I do not claim.
 
 <p align="center">
     <img src="https://github.com/omnifla/rblxlocal/blob/main/logo.png#gh-dark-mode-only" width="420">
@@ -44,7 +44,7 @@ Coming soon...
 - [x] Add working launcher
 - [x] Add renders
 - [ ] Admin panel
-- [ ] Add api.site.com apis other than /Setting/QuietGet
+- [ ] Add api.site.com APIs other than /Setting/QuietGet
 
 ## Legal Disclaimer
 RBLX.Local is not affiliated with, endorsed by, or in any way officially connected to Roblox Corporation. Roblox and the Roblox logo are registered trademarks of Roblox Corporation. Any references to Roblox on this site are for descriptive purposes only and do not imply any sponsorship, endorsement, or partnership. Use of third-party trademarks and content is subject to the rights of their respective owners.
